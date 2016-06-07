@@ -1,0 +1,2 @@
+# Simplespot
+Elegant. Easy. Effective.
