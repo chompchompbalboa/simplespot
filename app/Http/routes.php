@@ -49,7 +49,7 @@ Route::group(['middleware' => ['shared']], function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::any('/', [
+    Route::any('/{optional?}', [
         "as" => "site_home",
         "uses" => "SiteController@home",
     ]);

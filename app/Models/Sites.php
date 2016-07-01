@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-class Invite extends Eloquent
+class Sites extends Eloquent
 {
-    protected $collection = 'invites';
+    protected $collection = 'sites';
     protected $primaryKey = '_id';
 }

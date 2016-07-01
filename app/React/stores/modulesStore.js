@@ -2,7 +2,7 @@
 // Requires
 //-----------------------------------------------------------------------------
 var ContentDispatcher = require('../dispatcher/ContentDispatcher');
-var seedConstants = require('../constants/seedConstants');
+var modulesConstants = require('../constants/modulesConstants');
 var objectAssign = require('object-assign');
 var EventEmitter = require('events').EventEmitter;
 
@@ -39,9 +39,9 @@ var EventEmitter = require('events').EventEmitter;
     _store.content = newStore;
   };
 
-  var updateContent = function(content) {
-      _store.content = content;
-  };
+    var updateContent = function(content) {
+        _store.content = content;
+    };
 
   var _changeStoreCopy = function(currentStoreCopy, change) {
     // Access parameters
@@ -119,7 +119,7 @@ var EventEmitter = require('events').EventEmitter;
     // Store
     //------------------
 
-    var seedStore = objectAssign({}, EventEmitter.prototype, {
+    var modulesStore = objectAssign({}, EventEmitter.prototype, {
 
         addChangeListener: function(callback){
             this.on(CHANGE_EVENT, callback);
@@ -139,23 +139,23 @@ var EventEmitter = require('events').EventEmitter;
     // Register w/ Dispatcher
     //------------------
 
-    seedStore.dispatchToken = ContentDispatcher.register(function(payload){
+    modulesStore.dispatchToken = ContentDispatcher.register(function(payload){
         
         var action=payload.action;
 
         switch(action.actionType){
 
-            case seedConstants.CHANGE_SEED:
+            case modulesConstants.CHANGE_MODULES:
                 
                 changeContent(action.data);
-                seedStore.emit(CHANGE_EVENT);
+                modulesStore.emit(CHANGE_EVENT);
             
             break;
 
-            case seedConstants.UPDATE_SEED:
+            case modulesConstants.UPDATE_MODULES:
                 
                 updateContent(action.data);
-                seedStore.emit(CHANGE_EVENT);
+                modulesStore.emit(CHANGE_EVENT);
             
             break;
             
@@ -167,4 +167,4 @@ var EventEmitter = require('events').EventEmitter;
 //-----------------------------------------------------------------------------
 // Export
 //-----------------------------------------------------------------------------
-module.exports = seedStore;
+module.exports = modulesStore;

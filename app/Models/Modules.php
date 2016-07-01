@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-class ParsedSiteObjects extends Eloquent
+class Modules extends Eloquent
 {
-    protected $collection = 'parsedsiteobjects';
+    protected $collection = 'modules';
     protected $primaryKey = '_id';
 }

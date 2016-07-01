@@ -58,26 +58,28 @@ var build_dev = function(index, output) {
 gulp.task('all', function() {
     build('./app/React/index/Admin/admin-index.js', 'admin-index.js');
     build('./app/React/index/App/app-index.js', 'app-index.js');
-    build('./app/React/index/Site/brick-index.js', 'brick-index.js');
+    build('./app/React/index/Site/site-index.js', 'site-index.js');
 });
 gulp.task('Admin', function() {build('./app/React/index/Admin/admin-index.js', 'admin-index.js')});
 gulp.task('App', function() {build('./app/React/index/App/app-index.js', 'app-index.js')});
-gulp.task('Brick', function() {build('./app/React/index/Site/brick-index.js', 'brick-index.js')});
+gulp.task('Site', function() {build('./app/React/index/Site/site-index.js', 'site-index.js')});
 
 // Watch files for changes
 gulp.task('watch', function() {
     gulp.watch('./app/React/actions/*.js', ['all']);
     gulp.watch('./app/React/constants/*.js', ['all']);
+    gulp.watch('./app/React/handles/*.js', ['all']);
     gulp.watch('./app/React/store/*.js', ['all']);
-    gulp.watch('./app/React/components/**/*.js', ['Admin']);
-    gulp.watch('./app/React/components/**/*.jsx', ['Admin']);
+    gulp.watch('./app/React/utils/*.js', ['all']);
+    gulp.watch('./app/React/components/Modules/**/*.js', ['all']);
+    gulp.watch('./app/React/components/Modules/**/*.jsx', ['all']);
+    gulp.watch('./app/React/components/Admin/**/*.js', ['Admin']);
+    gulp.watch('./app/React/components/Admin/**/*.jsx', ['Admin']);
     gulp.watch('./app/React/components/App/**/*.js', ['Admin', 'App']);
     gulp.watch('./app/React/components/App/**/*.jsx', ['Admin', 'App']);
-    gulp.watch('./app/React/components/Site/**/*.js', ['Admin', 'App']);
-    gulp.watch('./app/React/components/Site/**/*.js', ['Admin', 'App']);
-    gulp.watch('./app/React/components/Site/Brick/*.js', ['Admin', 'App', 'Brick']);
-    gulp.watch('./app/React/components/Site/Brick/*.jsx', ['Admin', 'App', 'Brick']);
+    gulp.watch('./app/React/components/Site/**/*.js', ['Admin', 'App', 'Site']);
+    gulp.watch('./app/React/components/Site/**/*.jsx', ['Admin', 'App', 'Site']);
 });
 
 // Default tasks
-gulp.task('default', ['Admin', 'App', 'Brick', 'watch']);
+gulp.task('default', ['Admin', 'App', 'Site', 'watch']);

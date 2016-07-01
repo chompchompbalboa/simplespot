@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 var ContentDispatcher = require('../dispatcher/ContentDispatcher');
 var appConstants = require('../constants/appConstants');
-var objectAssign = require('react/lib/Object.assign');
+var objectAssign = require('object-assign');
 var EventEmitter = require('events').EventEmitter;
 
 //-----------------------------------------------------------------------------

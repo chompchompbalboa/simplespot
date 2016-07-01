@@ -33,7 +33,7 @@ class SiteController extends Controller
     public function home()
     {
         $data['title'] = 'Site';
-        $data['bundle'] = '/js/brick-index.js';
+        $data['bundle'] = '/js/site-index.js';
         return view('site', $data);
     }
 

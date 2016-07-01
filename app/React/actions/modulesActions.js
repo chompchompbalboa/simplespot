@@ -4,24 +4,24 @@
 var React = require('react');
 
 var ContentDispatcher = require('../dispatcher/ContentDispatcher');
-var siteConstants = require('../constants/siteConstants');
+var modulesConstants = require('../constants/modulesConstants');
 
 //-----------------------------------------------------------------------------
 // Module
 //-----------------------------------------------------------------------------
 
-var siteActions = {
+var modulesActions = {
 
     //-----------------------------------------------------------------------------
     // "Public" functions
     //-----------------------------------------------------------------------------
 
     changeContent: function(change){
-        this._action("CHANGE_SITE", change);
+        this._action("CHANGE_MODULES", change);
     },
 
-    fetchSite: function(){
-        this._ajax("react/site", this._url(), "UPDATE_SITE");
+    fetchModules: function(){
+        this._ajax("react/modules", JSON.stringify({url: window.location.pathname}), "UPDATE_MODULES");
     },
 
     //-----------------------------------------------------------------------------
@@ -30,16 +30,16 @@ var siteActions = {
 
     _action: function(action, data) {
         switch(action){
-            case "CHANGE_SITE":
+            case "CHANGE_MODULES":
                 ContentDispatcher.handleAction({
-                    actionType: siteConstants.CHANGE_SITE,
+                    actionType: modulesConstants.CHANGE_MODULES,
                     data: data
                 });
             break;
 
-            case "UPDATE_SITE":
+            case "UPDATE_MODULES":
                 ContentDispatcher.handleAction({
-                    actionType: siteConstants.UPDATE_SITE,
+                    actionType: modulesConstants.UPDATE_MODULES,
                     data: data
                 });
             break;
@@ -70,14 +70,6 @@ var siteActions = {
         });
     },
 
-    _url: function() {
-        var url = {
-            domain: window.location.hostname,
-            path: window.location.pathname
-        }
-        return JSON.stringify(url);
-    },
-
     _token: function() {
         var token = $('meta[name="_token"]').attr('content');
         return token;
@@ -87,4 +79,4 @@ var siteActions = {
 //-----------------------------------------------------------------------------
 // Export
 //-----------------------------------------------------------------------------
-module.exports = siteActions;
+module.exports = modulesActions;

@@ -11,7 +11,8 @@ use App\Http\Controllers\Controller;
 
 use App\Helpers\Helper;
 
-use App\Models\Seed;
+use App\Models\Modules;
+use App\Models\Sites;
 
 class ReactController extends Controller
 {
@@ -19,10 +20,11 @@ class ReactController extends Controller
     // Constructor
     //-------------------------------------------------------------------------
 
-    public function __construct(Request $request, Seed $seed)
+    public function __construct(Modules $modules, Request $request, Sites $sites)
     {
+        $this->modules = $modules;
         $this->request = $request;
-        $this->seed = $seed;
+        $this->sites = $sites;
     }
 
     public function react()
@@ -50,6 +52,12 @@ class ReactController extends Controller
         return $app;
     }
 
+    private function modules($data, $info)
+    {
+        $modules = Helper::fetchJSON('/assets/modules.json');
+        return $modules;
+    }
+
     public function seed($data, $info)
     {
         $seed = Helper::fetchJSON('/assets/seed.json');
@@ -58,8 +66,10 @@ class ReactController extends Controller
 
     public function site($data, $info)
     {
-        $site['public'] = [];
-        $site['private']['container'] = $this->container;
+        $site = $this->sites->where('domain', '=', $data->domain)->first();
+        if(is_null($site)) {
+            $site = $this->sites->where('domain', '=', 'restaurant.local')->first();
+        }
         return $site;
     }
 
