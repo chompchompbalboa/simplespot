@@ -1,0 +1,22 @@
+{
+    "_id" : ObjectId("5793fa592cb85ae0b1b350ea"),
+    "domain" : "restaurant.local",
+    "versions": {
+        "active": {
+            "pages": {
+                "/": {
+                    "1": {
+                        "module": "OneHeader"
+                    },
+                    "2": {
+                        "module": "OneName"
+                    },
+                    "3": {
+                        "module": "OneCanvas"
+                    }
+                }
+            }
+        }
+    }
+    
+}

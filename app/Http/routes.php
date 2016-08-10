@@ -8,14 +8,20 @@ Route::group(['middleware' => ['shared']], function () {
     */
 
     $admin = function() {
-        Route::any('/', [
+        
+        Route::post('/react/{action}/{info?}', [
+            "as" => "admin_react",
+            "uses" => "AdminReactController@react",
+        ]);
+
+        Route::any('/{optional?}', [
             "as" => "admin_home",
             "uses" => "AdminController@home",
         ]);
 
-        Route::post('/react/{action}/{info?}', [
-            "as" => "admin_react",
-            "uses" => "AdminReactController@react",
+        Route::any('/{optional?}/{optional2?}', [
+            "as" => "admin_home",
+            "uses" => "AdminController@home",
         ]);
     };
 
@@ -29,14 +35,20 @@ Route::group(['middleware' => ['shared']], function () {
     */
 
     $app = function() {
-        Route::any('/', [
-            "as" => "app_home",
-            "uses" => "AppController@home",
-        ]);
 
         Route::post('/react/{action}/{info?}', [
             "as" => "app_react",
             "uses" => "AppReactController@react",
+        ]);
+
+        Route::any('/{optional?}', [
+            "as" => "app_home",
+            "uses" => "AppController@home",
+        ]);
+
+        Route::any('/{optional?}/{optional2?}', [
+            "as" => "app_home",
+            "uses" => "AppController@home",
         ]);
     };
 
@@ -49,14 +61,19 @@ Route::group(['middleware' => ['shared']], function () {
     |--------------------------------------------------------------------------
     */
 
+    Route::post('/react/{action}/{info?}', [
+        "as" => "site_react",
+        "uses" => "SiteReactController@react",
+    ]);
+
     Route::any('/{optional?}', [
         "as" => "site_home",
         "uses" => "SiteController@home",
     ]);
 
-    Route::post('/react/{action}/{info?}', [
-        "as" => "site_react",
-        "uses" => "SiteReactController@react",
+    Route::any('/{optional?}/{optional2?}', [
+        "as" => "site_home",
+        "uses" => "SiteController@home",
     ]);
     
 });

@@ -1,8 +1,21 @@
-//-----------------------------------------------------------------------------
-// Requires
-//-----------------------------------------------------------------------------
+/**
+* AdminBundle.jsx
+* @copyright simplespot.co, 2016-Present. All Rights Reserved.
+* @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
+*
+* @requires StyleRoot
+* @requires React
+* @requires Radium
+* @requires appStore
+* @requires appActions
+* @requires modulesStore
+* @requires modulesActions
+* @requires siteStore
+* @requires siteActions
+* @requires utils
+* @requires Site
+*/
 import {StyleRoot} from 'radium';
-
 var React = require('react');
 var Radium = require('radium');
 
@@ -10,159 +23,117 @@ var adminStore = require('../../stores/adminStore');
 var adminActions = require('../../actions/adminActions');
 var appStore = require('../../stores/appStore');
 var appActions = require('../../actions/appActions');
+var displayStore = require('../../stores/displayStore');
+var displayActions = require('../../actions/displayActions');
 var modulesStore = require('../../stores/modulesStore');
 var modulesActions = require('../../actions/modulesActions');
-var seedStore = require('../../stores/seedStore');
-var seedActions = require('../../actions/seedActions');
 var siteStore = require('../../stores/siteStore');
 var siteActions = require('../../actions/siteActions');
+var utils = require('../../utils/utils');
 
 var Admin = require('./Admin.jsx');
-var App = require('../App/App.jsx');
+var App = require('./App.jsx');
 var Site = require('../Site/Site.jsx');
 
-//-----------------------------------------------------------------------------
-// Module
-//-----------------------------------------------------------------------------
+/**
+* The bundler for the admin sections
+*
+* @module AdminBundle
+*/
 var AdminBundle = React.createClass({
-    //-------------------------------------------------------------------------
-    // Display Name
-    //-------------------------------------------------------------------------
 
-    //-------------------------------------------------------------------------
-    // Prop Types
-    //-------------------------------------------------------------------------
-
-    //-------------------------------------------------------------------------
-    // Mixins
-    //-------------------------------------------------------------------------
-
-    //-------------------------------------------------------------------------
-    // Statics
-    //-------------------------------------------------------------------------
-
-    //-------------------------------------------------------------------------
-    // Get Initial State
-    //-------------------------------------------------------------------------
-
+    /**
+    * @function getInitialState
+    */
     getInitialState: function() {
         return {
             admin: null,
             app: null,
+            display: {
+                app: {
+                    AdminCreate: {
+                        active: "AdminCreateHome"
+                    },
+                    AdminHome: {
+                        submitText: "Login/Register"
+                    },
+                    load: "initial",
+                    path: window.location.pathname
+                },
+                site: {
+                    load: "initial",
+                    path: "/"
+                }
+            },
             modules: null,
-            seed: null,
             site: null
         };
     },
 
-    //-------------------------------------------------------------------------
-    // Get Default Props
-    //-------------------------------------------------------------------------
-
-    //-------------------------------------------------------------------------
-    // Component Will Mount
-    //-------------------------------------------------------------------------
-
-    //-------------------------------------------------------------------------
-    // Component Did Mount
-    //-------------------------------------------------------------------------
-
+    /**
+    * @function componentDidMount
+    */
     componentDidMount: function() {
-        adminStore.addChangeListener(this._onChange);
-        appStore.addChangeListener(this._onChange);
-        modulesStore.addChangeListener(this._onChange);
-        seedStore.addChangeListener(this._onChange);
-        siteStore.addChangeListener(this._onChange);
-        adminActions.fetchAdmin();
-        appActions.fetchApp();
-        modulesActions.fetchModules();
-        seedActions.fetchSeed();
-        siteActions.fetchSite();
+        window.history.replaceState({display: this.state.display}, "", window.location.pathname);
+        window.addEventListener('popstate', (e) => utils.displayHandler.popStateChange(e));
+        adminStore.addChangeListener(this._onChange); 
+        adminActions.fetchContent();
+        appStore.addChangeListener(this._onChange); 
+        appActions.fetchContent();
+        displayStore.addChangeListener(this._onChange); 
+        displayActions.fetchContent();
+        modulesStore.addChangeListener(this._onChange); 
+        modulesActions.fetchContent();
+        siteStore.addChangeListener(this._onChange); 
+        siteActions.fetchContent();
     },
 
-    //-------------------------------------------------------------------------
-    // Component Will Recieve Props
-    //-------------------------------------------------------------------------
-
-    //-------------------------------------------------------------------------
-    // Should Component Update
-    //-------------------------------------------------------------------------
-
-    //-------------------------------------------------------------------------
-    // Component Will Update
-    //-------------------------------------------------------------------------
-
-    //-------------------------------------------------------------------------
-    // Component Did Update
-    //-------------------------------------------------------------------------
-
-    //-------------------------------------------------------------------------
-    // Component Will Unmount
-    //-------------------------------------------------------------------------
-
+    /**
+    * @function componentWillMount
+    */
     componentWillUnmount: function() {
+        window.removeEventListener('popstate', (e) => utils.displayHandler.popStateChange(e));
         adminStore.removeChangeListener(this._onChange);
         appStore.removeChangeListener(this._onChange);
+        displayStore.removeChangeListener(this._onChange);
         modulesStore.removeChangeListener(this._onChange);
-        seedStore.removeChangeListener(this._onChange);
         siteStore.removeChangeListener(this._onChange);
     },
 
-    //-------------------------------------------------------------------------
-    // On Change
-    //-------------------------------------------------------------------------
-
+    /**
+    * @function _onChange
+    */
     _onChange: function() {
       this.setState({
             admin: adminStore.getContent(),
             app: appStore.getContent(),
+            display: displayStore.getContent(),
             modules: modulesStore.getContent(),
-            seed: seedStore.getContent(),
             site: siteStore.getContent()
       });
     },
 
-    //-------------------------------------------------------------------------
-    // Handle Change Content
-    //-------------------------------------------------------------------------
-
-    //-------------------------------------------------------------------------
-    // Objects
-    //-------------------------------------------------------------------------
-
-    //-------------------------------------------------------------------------
-    // Handles
-    //-------------------------------------------------------------------------
-
-    //-------------------------------------------------------------------------
-    // Render
-    //-------------------------------------------------------------------------
-
+    /**
+    * @function render a
+    */
     render: function() {
-
-        if(this.state.admin !== null && this.state.app !== null && this.state.modules !== null && this.state.seed !== null && this.state.site !== null) {
-
+        if(this.state.admin !== null && this.state.app !== null && this.state.display !== null && this.state.modules !== null && this.state.site !== null) {
             return (
                 <StyleRoot>
-                    <Admin admin={this.state.admin} app={this.state.app} modules={this.state.modules} seed={this.state.seed} site={this.state.site} />
-                    <App app={this.state.app} modules={this.state.modules} seed={this.state.seed} site={this.state.site} />
-                    <Site modules={this.state.modules} seed={this.state.seed} site={this.state.site} />
+                    <Admin admin={this.state.admin} app={this.state.app} display={this.state.display} modules={this.state.modules} site={this.state.site} utils={utils} />
+                    <App app={this.state.app} display={this.state.display} modules={this.state.modules} site={this.state.site} utils={utils} />
+                    <Site display={this.state.display} site={this.state.site} utils={utils} />
                 </StyleRoot>
             ) 
         }
         else {
             return (
                 <StyleRoot>
-                    <section id="admin">
+                    <section id="app">
                     </section>
                 </StyleRoot>
             ) 
         } 
-    }
-    
+    }    
 });
-    
-//-----------------------------------------------------------------------------
-// Export
-//-----------------------------------------------------------------------------
 module.exports = Radium(AdminBundle);

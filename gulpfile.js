@@ -1,12 +1,19 @@
-// Require dependencies
+// Shared dependencies
+var gulp = require('gulp');
+var uglify = require('gulp-uglify');
+
+// Build dependencies
 var babelify = require('babelify');
 var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
 var collapse = require('bundle-collapser/plugin');
-var gulp = require('gulp');
 var reactify = require('reactify'); 
 var source = require('vinyl-source-stream');
-var uglify = require('gulp-uglify');
+
+// Module dependencies
+var fs = require('fs');
+var jsonfile = require('jsonfile');
+var simplespot = require('./build/simplespot');
 
 // Babelify transform
 var babelifyES6 = function(file) {
@@ -16,11 +23,9 @@ var babelifyES6 = function(file) {
 // Initialize the current build
 var build = function(index, output) {
     if(process.env.NODE_ENV === 'dev') {
-        console.log('DEVELOPMENT build');
         build_dev(index, output);
     }
     else {
-        console.log('PRODUCTION build')
         build_prod(index, output);
     }
 };
@@ -56,9 +61,10 @@ var build_dev = function(index, output) {
 
 // Build indexes
 gulp.task('all', function() {
-    build('./app/React/index/Admin/admin-index.js', 'admin-index.js');
+    //build('./app/React/index/Admin/admin-index.js', 'admin-index.js');
     build('./app/React/index/App/app-index.js', 'app-index.js');
     build('./app/React/index/Site/site-index.js', 'site-index.js');
+    simplespot.buildTasks(fs, jsonfile);
 });
 gulp.task('Admin', function() {build('./app/React/index/Admin/admin-index.js', 'admin-index.js')});
 gulp.task('App', function() {build('./app/React/index/App/app-index.js', 'app-index.js')});
@@ -68,18 +74,19 @@ gulp.task('Site', function() {build('./app/React/index/Site/site-index.js', 'sit
 gulp.task('watch', function() {
     gulp.watch('./app/React/actions/*.js', ['all']);
     gulp.watch('./app/React/constants/*.js', ['all']);
-    gulp.watch('./app/React/handles/*.js', ['all']);
-    gulp.watch('./app/React/store/*.js', ['all']);
-    gulp.watch('./app/React/utils/*.js', ['all']);
-    gulp.watch('./app/React/components/Modules/**/*.js', ['all']);
+    gulp.watch('./app/React/loader/**/*.js', ['all']);
+    gulp.watch('./app/React/stores/*.js', ['all']);
+    gulp.watch('./app/React/utils/**/*.js', ['all']);
     gulp.watch('./app/React/components/Modules/**/*.jsx', ['all']);
-    gulp.watch('./app/React/components/Admin/**/*.js', ['Admin']);
-    gulp.watch('./app/React/components/Admin/**/*.jsx', ['Admin']);
-    gulp.watch('./app/React/components/App/**/*.js', ['Admin', 'App']);
-    gulp.watch('./app/React/components/App/**/*.jsx', ['Admin', 'App']);
-    gulp.watch('./app/React/components/Site/**/*.js', ['Admin', 'App', 'Site']);
-    gulp.watch('./app/React/components/Site/**/*.jsx', ['Admin', 'App', 'Site']);
+    //gulp.watch('./app/React/components/Modules/**/*.js', ['all']);
+    //gulp.watch('./app/React/components/Modules/**/*.jsx', ['all']);
+    gulp.watch('./app/React/components/Admin/**/*.js', ['all']);
+    gulp.watch('./app/React/components/Admin/**/*.jsx', ['all']);
+    gulp.watch('./app/React/components/App/**/*.js', ['all']);
+    gulp.watch('./app/React/components/App/**/*.jsx', ['all']);
+    gulp.watch('./app/React/components/Site/**/*.js', ['all']);
+    gulp.watch('./app/React/components/Site/**/*.jsx', ['all']);
 });
 
 // Default tasks
-gulp.task('default', ['Admin', 'App', 'Site', 'watch']);
+gulp.task('default', ['all', 'watch']);

@@ -1,90 +1,36 @@
-//-----------------------------------------------------------------------------
-// Requires
-//-----------------------------------------------------------------------------
-var React = require('react');
+/**
+* siteActions.js
+* @copyright simplespot.co, 2016-Present. All Rights Reserved.
+* @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
+*
+* @requires actions
+*/
+var actions = require('./actions');
 
-var ContentDispatcher = require('../dispatcher/ContentDispatcher');
-var siteConstants = require('../constants/siteConstants');
-
-//-----------------------------------------------------------------------------
-// Module
-//-----------------------------------------------------------------------------
-
+/**
+* This module defines the actions that the site can call.
+*
+* @module siteActions
+*/
 var siteActions = {
 
-    //-----------------------------------------------------------------------------
-    // "Public" functions
-    //-----------------------------------------------------------------------------
-
+    /**
+    * Change nested content within the store
+    * 
+    * @function changeContent
+    * @param {object} change - The desired changes
+    */
     changeContent: function(change){
-        this._action("CHANGE_SITE", change);
+        actions.dispatchAction("CHANGE_SITE", change);
     },
 
-    fetchSite: function(){
-        this._ajax("react/site", this._url(), "UPDATE_SITE");
-    },
-
-    //-----------------------------------------------------------------------------
-    // "Private" functions
-    //-----------------------------------------------------------------------------
-
-    _action: function(action, data) {
-        switch(action){
-            case "CHANGE_SITE":
-                ContentDispatcher.handleAction({
-                    actionType: siteConstants.CHANGE_SITE,
-                    data: data
-                });
-            break;
-
-            case "UPDATE_SITE":
-                ContentDispatcher.handleAction({
-                    actionType: siteConstants.UPDATE_SITE,
-                    data: data
-                });
-            break;
-            
-            default:
-                return true;
-        }
-    },
-
-    _ajax: function(url, data, action) {
-        $.ajax({
-            method: "POST",
-            url: url,
-            headers: {
-                'X-CSRF-TOKEN': this._token()
-            },
-            data: {
-                data: data
-            },
-            dataType: 'json',
-            cache: false,
-            success: function(value) {
-                this._action(action, value);
-            }.bind(this),
-            error: function(xhr, status, err) {
-              console.error(url, status, err.toString());
-            }.bind(this)
-        });
-    },
-
-    _url: function() {
-        var url = {
-            domain: window.location.hostname,
-            path: window.location.pathname
-        }
-        return JSON.stringify(url);
-    },
-
-    _token: function() {
-        var token = $('meta[name="_token"]').attr('content');
-        return token;
+    /**
+    * Fetch the initial site content from the server
+    * 
+    * @function fetchContent
+    */
+    fetchContent: function(){
+        actions.fetchContent("UPDATE_SITE", "react/site");
     }
 };
-
-//-----------------------------------------------------------------------------
-// Export
-//-----------------------------------------------------------------------------
 module.exports = siteActions;

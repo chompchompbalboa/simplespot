@@ -1,82 +1,25 @@
-//-----------------------------------------------------------------------------
-// Requires
-//-----------------------------------------------------------------------------
-var React = require('react');
+/**
+* modulesActions.js
+* @copyright simplespot.co, 2016-Present. All Rights Reserved.
+* @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
+*
+* @requires actions
+*/
+var actions = require('./actions');
 
-var ContentDispatcher = require('../dispatcher/ContentDispatcher');
-var modulesConstants = require('../constants/modulesConstants');
-
-//-----------------------------------------------------------------------------
-// Module
-//-----------------------------------------------------------------------------
-
+/**
+* This module defines the actions that the modules can call.
+*
+* @module modulesActions
+*/
 var modulesActions = {
-
-    //-----------------------------------------------------------------------------
-    // "Public" functions
-    //-----------------------------------------------------------------------------
-
-    changeContent: function(change){
-        this._action("CHANGE_MODULES", change);
-    },
-
-    fetchModules: function(){
-        this._ajax("react/modules", JSON.stringify({url: window.location.pathname}), "UPDATE_MODULES");
-    },
-
-    //-----------------------------------------------------------------------------
-    // "Private" functions
-    //-----------------------------------------------------------------------------
-
-    _action: function(action, data) {
-        switch(action){
-            case "CHANGE_MODULES":
-                ContentDispatcher.handleAction({
-                    actionType: modulesConstants.CHANGE_MODULES,
-                    data: data
-                });
-            break;
-
-            case "UPDATE_MODULES":
-                ContentDispatcher.handleAction({
-                    actionType: modulesConstants.UPDATE_MODULES,
-                    data: data
-                });
-            break;
-            
-            default:
-                return true;
-        }
-    },
-
-    _ajax: function(url, data, action) {
-        $.ajax({
-            method: "POST",
-            url: url,
-            headers: {
-                'X-CSRF-TOKEN': this._token()
-            },
-            data: {
-                data: data
-            },
-            dataType: 'json',
-            cache: false,
-            success: function(value) {
-                this._action(action, value);
-            }.bind(this),
-            error: function(xhr, status, err) {
-              console.error(url, status, err.toString());
-            }.bind(this)
-        });
-    },
-
-    _token: function() {
-        var token = $('meta[name="_token"]').attr('content');
-        return token;
+    /**
+    * Fetch the initial modules content from the server
+    * 
+    * @function fetchContent
+    */
+    fetchContent: function(){
+        actions.fetchContent("UPDATE_MODULES", "react/modules");
     }
 };
-
-//-----------------------------------------------------------------------------
-// Export
-//-----------------------------------------------------------------------------
 module.exports = modulesActions;

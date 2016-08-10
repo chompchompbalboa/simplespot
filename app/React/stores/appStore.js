@@ -1,170 +1,93 @@
-//-----------------------------------------------------------------------------
-// Requires
-//-----------------------------------------------------------------------------
+/**
+* appStore.js
+* @copyright simplespot.co, 2016-Present. All Rights Reserved.
+* @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
+*
+* @requires ContentDispatcher
+* @requires objectAssign
+* @requires EventEmitter
+* @requires store
+*/
 var ContentDispatcher = require('../dispatcher/ContentDispatcher');
-var appConstants = require('../constants/appConstants');
 var objectAssign = require('object-assign');
 var EventEmitter = require('events').EventEmitter;
+var store = require('./store');
 
-//-----------------------------------------------------------------------------
-// Module
-//-----------------------------------------------------------------------------
+/**
+* Set the initial store value
+* 
+* @type {object}
+*/
+var _store = {
+    content: null
+};
 
-    //------------------
-    // Change Event
-    //------------------
+/**
+* Set the constant identifying change events
+* 
+* @constant
+* @type {string}
+*/
+var CHANGE_EVENT = 'change';
 
-    var CHANGE_EVENT = 'change';
+/**
+* Change any nested content within the store object
+* 
+* @function changeContent
+* @param {object} changes - The changes to be made within the store object
+*/
+var changeContent = function(changes){
+    _store.content = store.changeContent(changes, _store.content);
+};
 
-    //------------------
-    // Data
-    //------------------
+/**
+* Update the store by changing it in its entireity
+* 
+* @function updateContent
+* @param {object} content - The new store
+*/
+var updateContent = function(content) {
+    _store.content = content;
+};
 
-    var _store = {
-        content: null
-    };
+/**
+* Set the methods that track changes to the store and emit events to the
+* the registered listeners
+*/
+var appStore = objectAssign({}, EventEmitter.prototype, {
 
-    //------------------
-    // Setter methods
-    //------------------
+    addChangeListener: function(callback){
+        this.on(CHANGE_EVENT, callback);
+    },
 
-  var changeContent = function(changes){
-    var newStore = jQuery.extend(true, {}, _store.content);
+    removeChangeListener: function(callback){
+        this.removeListener(CHANGE_EVENT, callback);
+    },
 
-    for(var change in changes)
-    {
-      newStore = _changeStoreCopy(newStore, changes[change]);
+    getContent: function(){
+        return _store.content;
     }
 
-    _store.content = newStore;
-  };
+});
 
-    var updateContent = function(content) {
-        _store.content = content;
-    };
+/**
+* Register the store with the dispatcher.
+*/
+appStore.dispatchToken = ContentDispatcher.register(function(payload){
 
-  var _changeStoreCopy = function(currentStoreCopy, change) {
-    // Access parameters
-    var currentStoreKey = change.key;
-    var StoreValue = change.value;
+    var action = payload.action;
 
-    // Initialize variables
-    var newStore = {};
-    var currentKey = currentStoreKey.split('.').shift();
-    var lastKey = currentStoreKey.split('.').pop();
-    var splitKey = currentStoreKey.split('.');
-    splitKey.shift();
-    var nextKey = splitKey.join('.');
-    var nextStoreCopy = currentStoreCopy[currentKey];
-
-    // If we have hit the last level of nesting, we just need to set the value
-    if(splitKey.unshift(nextKey) == 1)
-    {
-      // Determine if we want to delete a value or just change it
-      if(StoreValue === "delete")
-      {
-        delete currentStoreCopy[currentStoreKey];
-      }
-      else if(currentStoreCopy[currentStoreKey] === "active" && StoreValue === "false")
-      {
-        currentStoreCopy[currentStoreKey] = currentStoreCopy[currentStoreKey];
-      }
-      else
-      {
-        // Add the value to the current version of our store copy
-        currentStoreCopy[currentStoreKey] = StoreValue;
-      }
-
-      // Set the new store
-      newStore = currentStoreCopy;
+    switch(action.actionType){
+        case "CHANGE_APP":
+            changeContent(action.data);
+            appStore.emit(CHANGE_EVENT);
+        break;
+        case "UPDATE_APP":
+            updateContent(action.data);
+            appStore.emit(CHANGE_EVENT);
+        break;
+        default:
+            return true;
     }
-    // If not, we need to set all the values for that current level and recurse
-    // the current key back through this function
-    else
-    {
-      // Since we need to rebuild the entire store outside of what we are
-      // changing, we need to know the keys for the current level of nesting 
-      var currentLevelKeys = Object.keys(currentStoreCopy);
-      var currentLevelKeysLength = currentLevelKeys.length;
-
-      // For each of those keys
-      for (var i = 0; i < currentLevelKeysLength; i++)
-      {
-        // If it matches the key we are currently trying to change
-        if(currentLevelKeys[i] == currentKey)
-        {
-          // Initialize parameters
-          var parameters = {};
-
-          // Set parameters
-          parameters.key = nextKey;
-          parameters.value = StoreValue;
-
-          // Recurse
-          newStore[currentKey] = _changeStoreCopy(nextStoreCopy, parameters);
-        }
-        // If not
-        else
-        {
-          // Set that key to it's current value
-          newStore[currentLevelKeys[i]] = currentStoreCopy[currentLevelKeys[i]];
-        }
-      }
-    }
-    // Return the new store
-    return newStore;   
-  };
-
-    //------------------
-    // Store
-    //------------------
-
-    var appStore = objectAssign({}, EventEmitter.prototype, {
-
-        addChangeListener: function(callback){
-            this.on(CHANGE_EVENT, callback);
-        },
-
-        removeChangeListener: function(callback){
-            this.removeListener(CHANGE_EVENT, callback);
-        },
-
-        getContent: function(){
-            return _store.content;
-        }
-
-    });
-
-    //------------------
-    // Register w/ Dispatcher
-    //------------------
-
-    appStore.dispatchToken = ContentDispatcher.register(function(payload){
-        
-        var action=payload.action;
-
-        switch(action.actionType){
-
-            case appConstants.CHANGE_APP:
-                
-                changeContent(action.data);
-                appStore.emit(CHANGE_EVENT);
-            
-            break;
-
-            case appConstants.UPDATE_APP:
-                
-                updateContent(action.data);
-                appStore.emit(CHANGE_EVENT);
-            
-            break;
-            
-            default:
-                return true;
-        }
-    });
-
-//-----------------------------------------------------------------------------
-// Export
-//-----------------------------------------------------------------------------
+});
 module.exports = appStore;

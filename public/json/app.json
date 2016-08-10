@@ -1,0 +1,36 @@
+{   
+    "themes": {
+        "1": "One"
+    },
+    "user": {
+        "loggedIn": "false",
+        "email": "false"
+    },
+    "versions": {
+        "active": {
+            "pages": {
+                "/": {
+                    "1": {
+                        "module": "AppBackground"
+                    },
+                    "2": {
+                        "module": "AppHome"
+                    }
+                },
+                "/dashboard": {
+                    "1": {
+                        "module": "AppBackground"
+                    },
+                    "2": {
+                        "module": "AppDashboard"
+                    }
+                },
+                "/create": {
+                    "1": {
+                        "module": "AppCreate"
+                    }
+                }
+            }
+        }
+    }
+}

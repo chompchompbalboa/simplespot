@@ -10,9 +10,11 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Helpers\Helper;
+use App\Helpers\ThemeTranslator;
 
 use App\Models\Modules;
 use App\Models\Sites;
+use App\Models\User;
 
 class ReactController extends Controller
 {
@@ -20,11 +22,14 @@ class ReactController extends Controller
     // Constructor
     //-------------------------------------------------------------------------
 
-    public function __construct(Modules $modules, Request $request, Sites $sites)
+    public function __construct(Auth $auth, Modules $modules, Request $request, Sites $sites, ThemeTranslator $themeTranslator, User $user)
     {
+        $this->auth = $auth;
         $this->modules = $modules;
         $this->request = $request;
         $this->sites = $sites;
+        $this->themeTranslator = $themeTranslator;
+        $this->user = $user;
     }
 
     public function react()
@@ -42,33 +47,66 @@ class ReactController extends Controller
 
     public function admin($data, $info)
     {
-        $admin = Helper::fetchJSON('/assets/admin.json');
+        $admin = Helper::fetchJSON('/json/adminNew.json');
+        $admin->display = [
+            "active" => "true",
+            "load" => "initial",
+            "path" => $data->path
+        ];
+        $admin->versions->active->stores->admin = Helper::fetchJSON('/json/stores/adminStoreNew.json');
         return $admin;
     }
 
     private function app($data, $info)
     {
-        $app = Helper::fetchJSON('/assets/app.json');
-        return $app;
+        switch ($info) {
+            case "login":
+                return $this->login($data);
+            break;
+            case "logout":
+                return $this->logout($data);
+            break;
+            case "new":
+                return $this->newSite($data);
+            break;
+            case "register":
+                return $this->register($data);
+            break;
+            case "user":
+                return $this->doesUserExist($data); 
+            break;
+            default:
+                $app = Helper::fetchJSON('/json/app.json');
+                if (Auth::check()) {
+                    $user = Auth::user();
+                    $app->user->loggedIn = "true";
+                    $app->user->email = $user->email;
+                }
+                return $app;
+        }
     }
 
     private function modules($data, $info)
     {
-        $modules = Helper::fetchJSON('/assets/modules.json');
+        $modules = Helper::fetchJSON('/json/modules.json');
+        //$modules = $this->modules->all();
         return $modules;
     }
 
     public function seed($data, $info)
     {
-        $seed = Helper::fetchJSON('/assets/seed.json');
+        $seed = Helper::fetchJSON('/json/seed.json');
         return $seed;
     }
 
-    public function site($data, $info)
+    private function site($data, $info)
     {
-        $site = $this->sites->where('domain', '=', $data->domain)->first();
-        if(is_null($site)) {
-            $site = $this->sites->where('domain', '=', 'restaurant.local')->first();
+        switch ($info) {
+            default:
+                $site = $this->sites->where('domain', '=', $data->domain)->first();
+                if(is_null($site)) {
+                    $site = $this->sites->where('domain', '=', 'restaurant.local')->first();
+                }
         }
         return $site;
     }

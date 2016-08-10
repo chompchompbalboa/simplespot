@@ -1,0 +1,16 @@
+{
+    "app": {
+        "AppCreate": {
+            "active": "AppCreateHome"
+        },
+        "AppHome": {
+            "submitText": "Login/Register"
+        },
+        "load": "initial",
+        "path": "/"
+    },
+    "site": {
+        "load": "initial",
+        "path": "/"
+    }
+}

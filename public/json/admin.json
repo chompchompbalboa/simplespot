@@ -1,0 +1,307 @@
+{
+    "display": {
+        "active": "true",
+        "load": "initial",
+        "path": "/"
+    },
+    "versions": {
+        "active": {
+            "pages": {
+                "0": {
+                    "path": "/",
+                    "modules": {
+                        "0": {
+                            "element": "section",
+                            "key": "admin__AdminNavigation",
+                            "module": "AdminNavigation",
+                            "settings": {
+                                "self": {
+                                    "0": "element__section"
+                                },
+                                "0": {
+                                    "0": {
+                                        "element": "nav",
+                                        "key": "admin__AdminNavigation_nav",
+                                        "settings": {
+                                            "self": {
+                                                "0": "element__nav",
+                                                "1": "admin__section_nav"
+                                            },
+                                            "0": {
+                                                "0": {
+                                                    "element": "ul",
+                                                    "key": "admin__AdminNavigation_nav_ul",
+                                                    "settings": {
+                                                        "self": {
+                                                            "0": "element__ul",
+                                                            "1": "admin__nav_ul",
+                                                            "2": "admin__section_nav_ul"
+                                                        },
+                                                        "0": {
+                                                            "0": {
+                                                                "element": "li",
+                                                                "key": "admin__AdminNavigation_nav_ul_li0",
+                                                                "settings": {
+                                                                    "self": {
+                                                                        "0": "element__li",
+                                                                        "1": "admin__ul_li",
+                                                                        "2": "admin__nav_ul_li",
+                                                                        "3": "admin__section_nav_ul_li"
+                                                                    },
+                                                                    "0": {
+                                                                        "0": {
+                                                                            "element": "a",
+                                                                            "key": "admin__AdminNavigation_nav_ul_li0_a",
+                                                                            "settings": {
+                                                                                "self": {
+                                                                                    "0": "element__a",
+                                                                                    "1": "admin__li_a",
+                                                                                    "2": "admin__ul_li_a",
+                                                                                    "3": "admin__nav_ul_li_a",
+                                                                                    "4": "admin__section_nav_ul_li_a"
+                                                                                },
+                                                                                "0": {
+                                                                                    "0": {
+                                                                                        "element": "div",
+                                                                                        "key": "admin__AdminNavigation_nav_ul_li0_a_img",
+                                                                                        "settings": {
+                                                                                            "self": {
+                                                                                                "0": "element__img",
+                                                                                                "1": "admin__a_img",
+                                                                                                "2": "admin__li_a_img",
+                                                                                                "3": "admin__ul_li_a_img",
+                                                                                                "4": "admin__nav_ul_li_a_img",
+                                                                                                "5": "admin__section_nav_ul_li_a_img",
+                                                                                                "6": "admin__AdminSandbox_img",
+                                                                                                "7": "admin__icon"
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    "1": {
+                                                                                        "element": "span",
+                                                                                        "key": "admin__AdminNavigation_nav_ul_li0_a_text",
+                                                                                        "settings": {
+                                                                                            "self": {
+                                                                                                "0": "element__text",
+                                                                                                "1": "admin__a_text",
+                                                                                                "2": "admin__li_a_text",
+                                                                                                "3": "admin__ul_li_a_text",
+                                                                                                "4": "admin__nav_ul_li_a_text",
+                                                                                                "5": "admin__section_nav_ul_li_a_text",
+                                                                                                "6": "admin__AdminSandbox_text"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }    
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            "1": {
+                                                                "element": "li",
+                                                                "key": "admin__AdminNavigation_nav_ul_li1",
+                                                                "settings": {
+                                                                    "self": {
+                                                                        "0": "element__li",
+                                                                        "1": "admin__ul_li",
+                                                                        "2": "admin__nav_ul_li",
+                                                                        "3": "admin__section_nav_ul_li"
+                                                                    },
+                                                                    "0": {
+                                                                        "0": {
+                                                                            "element": "a",
+                                                                            "key": "admin__AdminNavigation_nav_ul_li1_a",
+                                                                            "settings": {
+                                                                                "self": {
+                                                                                    "0": "element__a",
+                                                                                    "1": "admin__li_a",
+                                                                                    "2": "admin__ul_li_a",
+                                                                                    "3": "admin__nav_ul_li_a",
+                                                                                    "4": "admin__section_nav_ul_li_a"
+                                                                                },
+                                                                                "0": {
+                                                                                    "0": {
+                                                                                        "element": "div",
+                                                                                        "key": "admin__AdminNavigation_nav_ul_li1_a_img",
+                                                                                        "settings": {
+                                                                                            "self": {
+                                                                                                "0": "element__img",
+                                                                                                "1": "admin__a_img",
+                                                                                                "2": "admin__li_a_img",
+                                                                                                "3": "admin__ul_li_a_img",
+                                                                                                "4": "admin__nav_ul_li_a_img",
+                                                                                                "5": "admin__section_nav_ul_li_a_img",
+                                                                                                "6": "admin__icon"
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    "1": {
+                                                                                        "element": "span",
+                                                                                        "key": "admin__AdminNavigation_nav_ul_li1_a_text",
+                                                                                        "settings": {
+                                                                                            "self": {
+                                                                                                "0": "element__text",
+                                                                                                "1": "admin__a_text",
+                                                                                                "2": "admin__li_a_text",
+                                                                                                "3": "admin__ul_li_a_text",
+                                                                                                "4": "admin__nav_ul_li_a_text",
+                                                                                                "5": "admin__section_nav_ul_li_a_text"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }    
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            "2": {
+                                                                "element": "li",
+                                                                "key": "admin__AdminNavigation_nav_ul_li2",
+                                                                "settings": {
+                                                                    "self": {
+                                                                        "0": "element__li",
+                                                                        "1": "admin__ul_li",
+                                                                        "2": "admin__nav_ul_li",
+                                                                        "3": "admin__section_nav_ul_li"
+                                                                    },
+                                                                    "0": {
+                                                                        "0": {
+                                                                            "element": "a",
+                                                                            "key": "admin__AdminNavigation_nav_ul_li2_a",
+                                                                            "settings": {
+                                                                                "self": {
+                                                                                    "0": "element__a",
+                                                                                    "1": "admin__li_a",
+                                                                                    "2": "admin__ul_li_a",
+                                                                                    "3": "admin__nav_ul_li_a",
+                                                                                    "4": "admin__section_nav_ul_li_a"
+                                                                                },
+                                                                                "0": {
+                                                                                    "0": {
+                                                                                        "element": "div",
+                                                                                        "key": "admin__AdminNavigation_nav_ul_li2_a_img",
+                                                                                        "settings": {
+                                                                                            "self": {
+                                                                                                "0": "element__img",
+                                                                                                "1": "admin__a_img",
+                                                                                                "2": "admin__li_a_img",
+                                                                                                "3": "admin__ul_li_a_img",
+                                                                                                "4": "admin__nav_ul_li_a_img",
+                                                                                                "5": "admin__section_nav_ul_li_a_img",
+                                                                                                "6": "admin__icon"
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    "1": {
+                                                                                        "element": "span",
+                                                                                        "key": "admin__AdminNavigation_nav_ul_li2_a_text",
+                                                                                        "settings": {
+                                                                                            "self": {
+                                                                                                "0": "element__text",
+                                                                                                "1": "admin__a_text",
+                                                                                                "2": "admin__li_a_text",
+                                                                                                "3": "admin__ul_li_a_text",
+                                                                                                "4": "admin__nav_ul_li_a_text",
+                                                                                                "5": "admin__section_nav_ul_li_a_text"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }    
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "1": {
+                    "path": "/preview",
+                    "modules": {
+
+                    }
+                },
+                "2": {
+                    "path": "/sandbox",
+                    "modules": {
+                        "0": {
+                            "element": "section",
+                            "key": "admin__AdminHeader_AdminSandbox",
+                            "settings": {
+                                "self": {
+                                    "0": "admin__AdminHeader"
+                                },
+                                "0": {
+                                    "0": {
+                                        "element": "div",
+                                        "key": "admin__AdminHeader_AdminSandbox_container",
+                                        "settings": {
+                                            "self": {
+                                                "0": "admin__AdminHeader_container"
+                                            },
+                                            "0": {
+                                                "0": {
+                                                    "element": "div",
+                                                    "key": "admin__AdminHeader_AdminSandbox_container_img",
+                                                    "settings": {
+                                                        "self": {
+                                                            "0": "element__img",
+                                                            "1": "admin__AdminHeader_container_img",
+                                                            "2": "admin__AdminSandbox_img",
+                                                            "3": "admin__icon"
+                                                        }
+                                                    }
+                                                },
+                                                "1": {
+                                                    "element": "div",
+                                                    "key": "admin__AdminHeader_AdminSandbox_container_text",
+                                                    "settings": {
+                                                        "self": {
+                                                            "0": "admin__AdminHeader_container_img",
+                                                            "1": "admin__AdminSandbox_text"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "1": {
+                            "element": "section",
+                            "key": "admin__AdminSandbox",
+                            "settings": {
+                                "self": {
+                                },
+                                "0": {
+                                    "0": {
+                                        "element": "section",
+                                        "key": "admin__AdminSandbox_container",
+                                        "settings": {
+                                            "self": {
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "stores": {
+            }
+        }
+    }
+}

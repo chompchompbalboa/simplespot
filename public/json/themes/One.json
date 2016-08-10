@@ -1,0 +1,18 @@
+{
+    "pages": {
+        "/": {
+            "1": {
+                "module": "OneHeader"
+            },
+            "2": {
+                "module": "OneName",
+                "props": {
+                    "name": "{*( name )*}"
+                }
+            },
+            "3": {
+                "module": "OneCanvas"
+            }
+        }
+    }
+}

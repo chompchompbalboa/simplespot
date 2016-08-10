@@ -1,55 +1,27 @@
-//-----------------------------------------------------------------------------
-// Requires
-//-----------------------------------------------------------------------------
+/**
+* Site.jsx
+* @copyright simplespot.co, 2016-Present. All Rights Reserved.
+* @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
+*
+* @requires React
+* @requires Radium
+*/
 var React = require('react');
 var Radium = require('radium');
 
-var handles = require('../../handles/siteHandles');
-var siteLoader = require('../../loaders/siteLoader');
-//-----------------------------------------------------------------------------
-// Module
-//-----------------------------------------------------------------------------
+/**
+* The top level site component
+*
+* @module Site
+*/
 var Site = React.createClass({
 
-    //-------------------------------------------------------------------------
-    // Component Did Mount
-    //-------------------------------------------------------------------------
-
-    componentDidMount: function() {
-        this.replaceURL(this.props.site.display.url);
-        window.addEventListener('popstate', handles.popState);
-    },
-
-    //-------------------------------------------------------------------------
-    // Component Did Update
-    //-------------------------------------------------------------------------
-
-    componentDidUpdate: function() {
-        if(this.props.site.display.load !== "pop") {
-            this.setURL(this.props.site.display.url);
-        }    
-    },
-
-    //-------------------------------------------------------------------------
-    // Set URL
-    //-------------------------------------------------------------------------
-
-    setURL: function(url) {
-        window.history.pushState({url: url}, "", url);
-    },
-
-    //-------------------------------------------------------------------------
-    // Replace URL
-    //-------------------------------------------------------------------------
-
-    replaceURL: function(url) {
-        window.history.replaceState({url: url}, "", url);
-    },
-
-    //-------------------------------------------------------------------------
-    // Style
-    //-------------------------------------------------------------------------
-
+    /**
+    * Builds the style object for this component
+    *
+    * @function style
+    * @return {object}
+    */
     style: function() {
         var style = {
             section: {
@@ -62,29 +34,25 @@ var Site = React.createClass({
                 alignItems: 'center'
             }
         };
-
         return style;
     },
 
-    //-------------------------------------------------------------------------
-    // Render
-    //-------------------------------------------------------------------------
-
+    /**
+    * Render the component
+    *
+    * @function render
+    * @return {string}
+    */
     render: function() {
-        var {site, ...other} = this.props;
-        var page = siteLoader.load(site.pages, site.display.path);
+        var {display, editable, site, utils, ...other} = this.props;
+        var path = display.site.path;
+        var page = utils.loader.loadModules(null, display, path, site.versions.active.pages[path], site, utils);
         var style = this.style();
-
         return (
             <section id="site" style={style.section}>
                 {page}
             </section>
         )
-    }
-    
+    }    
 });
-    
-//-----------------------------------------------------------------------------
-// Export
-//-----------------------------------------------------------------------------
 module.exports = Radium(Site);
