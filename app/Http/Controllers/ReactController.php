@@ -34,10 +34,18 @@ class ReactController extends Controller
 
     public function react()
     {
-        $action = $this->request->route('action');
-        $data = json_decode($this->request->input('data'));
-        $info = $this->request->route('info');
-        $response = $this->$action($data, $info);
+        $request = $this->request->input('request');
+        $url = json_decode($this->request->input('url'));
+        switch($request) {
+            case "CONTENT_SITE":
+                $response = [
+                    [
+                        "key" => "site",
+                        "value" => $this->fetchSite($url)
+                    ]
+                ];
+            break;
+        }
         return json_encode($response);
     }
 
@@ -99,14 +107,17 @@ class ReactController extends Controller
         return $seed;
     }
 
-    private function site($data, $info)
+    private function fetchSite($url)
     {
-        switch ($info) {
-            default:
-                $site = $this->sites->where('domain', '=', $data->domain)->first();
-                if(is_null($site)) {
-                    $site = $this->sites->where('domain', '=', 'restaurant.local')->first();
-                }
+        // Translate any local path to the appropriate backend one
+        $explode = explode('.', $url->domain);
+        if($explode[1] === 'local') {
+            $explode[1] = 'com';
+        }
+        $domain = implode('.', $explode);
+        $site = $this->sites->where('domain', '=', $domain)->first();
+        if(is_null($site)) {
+            $site = $this->sites->where('domain', '=', 'restaurant.local')->first();
         }
         return $site;
     }

@@ -64,7 +64,7 @@ gulp.task('all', function() {
     //build('./app/React/index/Admin/admin-index.js', 'admin-index.js');
     build('./app/React/index/App/app-index.js', 'app-index.js');
     build('./app/React/index/Site/site-index.js', 'site-index.js');
-    simplespot.buildTasks(fs, jsonfile);
+    //simplespot.buildTasks(fs, jsonfile);
 });
 gulp.task('Admin', function() {build('./app/React/index/Admin/admin-index.js', 'admin-index.js')});
 gulp.task('App', function() {build('./app/React/index/App/app-index.js', 'app-index.js')});

@@ -3,16 +3,22 @@ Route::group(['middleware' => ['shared']], function () {
 
     /*
     |--------------------------------------------------------------------------
+    | React
+    |--------------------------------------------------------------------------
+    */
+
+    Route::post('/react', [
+        "as" => "react",
+        "uses" => "ReactController@react",
+    ]);
+
+    /*
+    |--------------------------------------------------------------------------
     | Admin
     |--------------------------------------------------------------------------
     */
 
     $admin = function() {
-        
-        Route::post('/react/{action}/{info?}', [
-            "as" => "admin_react",
-            "uses" => "AdminReactController@react",
-        ]);
 
         Route::any('/{optional?}', [
             "as" => "admin_home",
@@ -36,11 +42,6 @@ Route::group(['middleware' => ['shared']], function () {
 
     $app = function() {
 
-        Route::post('/react/{action}/{info?}', [
-            "as" => "app_react",
-            "uses" => "AppReactController@react",
-        ]);
-
         Route::any('/{optional?}', [
             "as" => "app_home",
             "uses" => "AppController@home",
@@ -60,11 +61,6 @@ Route::group(['middleware' => ['shared']], function () {
     | Sites
     |--------------------------------------------------------------------------
     */
-
-    Route::post('/react/{action}/{info?}', [
-        "as" => "site_react",
-        "uses" => "SiteReactController@react",
-    ]);
 
     Route::any('/{optional?}', [
         "as" => "site_home",

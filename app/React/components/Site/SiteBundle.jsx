@@ -15,10 +15,8 @@ import {StyleRoot} from 'radium';
 var React = require('react');
 var Radium = require('radium');
 
-var displayStore = require('../../stores/displayStore');
-var displayActions = require('../../actions/displayActions');
-var siteStore = require('../../stores/siteStore');
-var siteActions = require('../../actions/siteActions');
+var contentStore = require('../../stores/contentStore');
+var contentActions = require('../../actions/contentActions');
 var utils = require('../../utils/utils');
 
 var Site = require('./Site.jsx');
@@ -35,13 +33,7 @@ var SiteBundle = React.createClass({
     */
     getInitialState: function() {
         return {
-            display: {
-                site: {
-                    load: "initial",
-                    path: window.location.pathname
-                }
-            },
-            site: null
+            content: null
         };
     },
 
@@ -49,21 +41,18 @@ var SiteBundle = React.createClass({
     * @function componentDidMount
     */
     componentDidMount: function() {
-        window.history.replaceState({display: this.state.display}, "", window.location.pathname);
-        window.addEventListener('popstate', (e) => utils.displayHandler.popStateChange(e));
-        displayStore.addChangeListener(this._onChange); 
-        displayActions.fetchContent();
-        siteStore.addChangeListener(this._onChange); 
-        siteActions.fetchContent();
+        //window.history.replaceState({content: this.state.content}, "", window.location.pathname);
+        //window.addEventListener('popstate', (e) => utils.displayHandler.popStateChange(e));
+        contentStore.addChangeListener(this._onChange); 
+        contentActions.fetchContent("CONTENT_SITE");
     },
 
     /**
     * @function componentWillMount
     */
     componentWillUnmount: function() {
-        window.removeEventListener('popstate', (e) => utils.displayHandler.popStateChange(e));
+        //window.removeEventListener('popstate', (e) => utils.displayHandler.popStateChange(e));
         displayStore.removeChangeListener(this._onChange);
-        siteStore.removeChangeListener(this._onChange);
     },
 
     /**
@@ -71,8 +60,7 @@ var SiteBundle = React.createClass({
     */
     _onChange: function() {
       this.setState({
-            display: displayStore.getContent(),
-            site: siteStore.getContent()
+            content: contentStore.getContent()
       });
     },
 
@@ -80,10 +68,10 @@ var SiteBundle = React.createClass({
     * @function render
     */
     render: function() {
-        if(this.state.display !== null && this.state.site !== null) {
+        if(this.state.content !== null) {
             return (
                 <StyleRoot>
-                    <Site display={this.state.display} site={this.state.site} utils={utils} />
+                    <Site content={this.state.content} utils={utils} />
                 </StyleRoot>
             ) 
         }

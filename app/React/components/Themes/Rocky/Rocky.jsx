@@ -1,5 +1,5 @@
 /**
-* Site.jsx
+* Rocky.jsx
 * @copyright simplespot.co, 2016-Present. All Rights Reserved.
 * @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
 *
@@ -10,11 +10,34 @@ var React = require('react');
 var Radium = require('radium');
 
 /**
-* The top level site component
+* Rocky's personal website
 *
-* @module Site
+* @module Rocky
 */
-var Site = React.createClass({
+var Rocky = React.createClass({
+
+    /**
+    * Validate props types
+    *
+    * @prop propTypes
+    * @return {object}
+    */
+    propTypes: {
+        props: React.PropTypes.object.isRequired
+    },
+
+    /**
+    * Get the default props
+    *
+    * @function getDefaultProps
+    * @return {object}
+    */
+    getDefaultProps: function() {
+        return {
+            props: {
+            }
+        }
+    },    
 
     /**
     * Settings for: _section
@@ -25,10 +48,6 @@ var Site = React.createClass({
     _section: function() {
         return {
             style: {
-                zIndex: '0',
-                position: 'relative',
-                top: '0vh',
-                left: '0vw'
             }
         }
     },
@@ -40,14 +59,13 @@ var Site = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {content, utils, ...other} = this.props;
+        var {props, ...other} = this.props;
         let _section = this._section();
-        let __site = utils.loader.loadTheme(content.site.versions.active.props, content.site.versions.active.theme);
         return (
-            <section id="site" style={_section.style}>
-                {__site}
+            <section className="section" style={_section.style}>
+                Rocky
             </section>
         )
     }    
 });
-module.exports = Radium(Site);
+module.exports = Radium(Rocky);
