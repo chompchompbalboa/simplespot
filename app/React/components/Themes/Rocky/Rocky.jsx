@@ -9,6 +9,10 @@
 var React = require('react');
 var Radium = require('radium');
 
+var Rocky3DModeling = require('./Rocky3DModeling/Rocky3DModeling.jsx');
+var RockyHome = require('./RockyHome/RockyHome.jsx');
+var RockyWebDevelopment = require('./RockyWebDevelopment/RockyWebDevelopment.jsx');
+
 /**
 * Rocky's personal website
 *
@@ -23,7 +27,6 @@ var Rocky = React.createClass({
     * @return {object}
     */
     propTypes: {
-        props: React.PropTypes.object.isRequired
     },
 
     /**
@@ -34,8 +37,6 @@ var Rocky = React.createClass({
     */
     getDefaultProps: function() {
         return {
-            props: {
-            }
         }
     },    
 
@@ -53,17 +54,50 @@ var Rocky = React.createClass({
     },
 
     /**
+    * Settings for: __active
+    *
+    * @function __active
+    * @return {object}
+    */
+    __active: function(site) {
+        let payload = [];
+        switch(site.display.path) {
+            case "/":
+                payload.push(
+                    <RockyHome key="key" site={site}/>
+                );
+            break;
+            case "/3d-modeling":
+                payload.push(
+                    <Rocky3DModeling key="key" site={site}/>
+                );
+            break;
+            case "/web-development":
+                payload.push(
+                    <RockyWebDevelopment key="key" site={site}/>
+                );
+            break;
+            default:
+                payload.push(
+                    <RockyHome key="key" site={site}/>
+                );
+        }
+        return payload;
+    },
+
+    /**
     * Render the component
     *
     * @function render
     * @return {string}
     */
     render: function() {
-        var {props, ...other} = this.props;
+        var {site, ...other} = this.props;
         let _section = this._section();
+        let __active = this.__active(site);
         return (
             <section className="section" style={_section.style}>
-                Rocky
+                {__active}
             </section>
         )
     }    

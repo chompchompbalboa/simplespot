@@ -29,10 +29,15 @@ var loader = {
     * @param {object} modules
     * @param {object} utils
     */
-    loadTheme: function(props, theme) {
+    loadTheme: function(site, utils) {
+        console.log(site);
+        let theme = eval(site.theme);
+        let props = {
+            utils: utils
+        };
         return (
             React.createElement(
-                eval(theme),
+                theme,
                 props,
             )
         )

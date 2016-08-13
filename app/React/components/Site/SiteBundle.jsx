@@ -17,7 +17,7 @@ var Radium = require('radium');
 
 var contentStore = require('../../stores/contentStore');
 var contentActions = require('../../actions/contentActions');
-var utils = require('../../utils/utils');
+//var utils = require('../../utils/utils');
 
 var Site = require('./Site.jsx');
 
@@ -41,8 +41,8 @@ var SiteBundle = React.createClass({
     * @function componentDidMount
     */
     componentDidMount: function() {
-        //window.history.replaceState({content: this.state.content}, "", window.location.pathname);
-        //window.addEventListener('popstate', (e) => utils.displayHandler.popStateChange(e));
+        window.history.replaceState({content: this.state.content}, "", window.location.pathname);
+        window.addEventListener('popstate', (e) => contentActions.replaceContent(e.state.content));
         contentStore.addChangeListener(this._onChange); 
         contentActions.fetchContent("CONTENT_SITE");
     },
@@ -51,7 +51,7 @@ var SiteBundle = React.createClass({
     * @function componentWillMount
     */
     componentWillUnmount: function() {
-        //window.removeEventListener('popstate', (e) => utils.displayHandler.popStateChange(e));
+        window.removeEventListener('popstate', (e) => contentActions.replaceContent(e.state.content));
         displayStore.removeChangeListener(this._onChange);
     },
 
@@ -71,7 +71,7 @@ var SiteBundle = React.createClass({
         if(this.state.content !== null) {
             return (
                 <StyleRoot>
-                    <Site content={this.state.content} utils={utils} />
+                    <Site content={this.state.content} />
                 </StyleRoot>
             ) 
         }

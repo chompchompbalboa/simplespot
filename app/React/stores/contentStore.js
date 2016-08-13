@@ -31,6 +31,23 @@ var _store = {
 var CHANGE_EVENT = 'change';
 
 /**
+* Determine the active bundle
+* 
+* @return {string}
+*/
+var activeBundle = function() {
+    switch(window.location.hostname) {
+        case "simplespot.local":
+        case "simplespot.com":
+            return "app"
+        break;
+        default:
+            return "site"
+    }
+
+};
+
+/**
 * Change any nested content within the store object
 * 
 * @function changeContent
@@ -38,15 +55,16 @@ var CHANGE_EVENT = 'change';
 */
 var changeContent = function(changes){
     _store.content = store.changeContent(changes, _store.content);
+    window.history.pushState({content: _store.content}, "", _store.content[activeBundle()]['display']['path']);
 };
 
 /**
-* Update the store by changing it in its entireity
+* Update the store by replacing it in its entireity
 * 
-* @function updateContent
+* @function replaceContent
 * @param {object} content - The new store
 */
-var updateContent = function(content) {
+var replaceContent = function(content) {
     _store.content = content;
 };
 
@@ -82,8 +100,8 @@ contentStore.dispatchToken = ContentDispatcher.register(function(payload){
             changeContent(action.data);
             contentStore.emit(CHANGE_EVENT);
         break;
-        case "UPDATE_CONTENT":
-            updateContent(action.data);
+        case "REPLACE_CONTENT":
+            replaceContent(action.data);
             contentStore.emit(CHANGE_EVENT);
         break;
         default:

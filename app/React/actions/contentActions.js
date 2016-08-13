@@ -19,19 +19,35 @@ var contentActions = {
     * Change nested content within the store
     * 
     * @function changeContent
-    * @param {object} change - The desired changes
+    * @param {object} changes - The desired changes
     */
-    changeContent: function(change){
-        //actions.dispatchAction("CHANGE_SITE", change);
+    changeContent: function(changes){
+        ContentDispatcher.handleAction({
+            actionType: "CHANGE_CONTENT",
+            data: changes
+        });
     },
 
     /**
-    * Fetch the initial content content from the server
+    * Fetch the initial content from the server
     * 
     * @function fetchContent
     */
     fetchContent: function(request){
         this._ajax(request);
+    },
+
+    /**
+    * Fully replace the stored content with a different content object
+    * 
+    * @function replaceContent
+    * @param {object} changes - The desired changes
+    */
+    replaceContent: function(content){
+        ContentDispatcher.handleAction({
+            actionType: "REPLACE_CONTENT",
+            data: content
+        });
     },
 
     /**

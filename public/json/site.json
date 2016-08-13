@@ -1,22 +1,9 @@
-{
-    "_id" : ObjectId("5793fa592cb85ae0b1b350ea"),
-    "domain" : "restaurant.local",
-    "versions": {
-        "active": {
-            "pages": {
-                "/": {
-                    "1": {
-                        "module": "OneHeader"
-                    },
-                    "2": {
-                        "module": "OneName"
-                    },
-                    "3": {
-                        "module": "OneCanvas"
-                    }
-                }
-            }
+db.sites.insert({
+    "_id" : ObjectId("5776dd982cb85ae0b1b350e7"),
+    "domain" : "rockyeastman.com",
+    "versions" : {
+        "active" : {
+            "theme" : "Rocky"
         }
     }
-    
-}
+})

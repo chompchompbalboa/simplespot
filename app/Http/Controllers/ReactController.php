@@ -119,6 +119,11 @@ class ReactController extends Controller
         if(is_null($site)) {
             $site = $this->sites->where('domain', '=', 'restaurant.local')->first();
         }
+        $site = $site->versions['active'];
+        $site['display'] = [
+            "path" => $url->path
+        ];
+
         return $site;
     }
 

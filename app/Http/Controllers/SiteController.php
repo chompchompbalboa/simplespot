@@ -10,19 +10,14 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Helpers\Helper;
 
-use App\Seed;
-use App\Invite;
-
 class SiteController extends Controller
 {
     //-------------------------------------------------------------------------
     // Constructor
     //-------------------------------------------------------------------------
 
-    public function __construct(Request $request)
+    public function __construct()
     {
-        // Inject dependencies
-        $this->request = $request;
     }
 
 
@@ -32,7 +27,8 @@ class SiteController extends Controller
 
     public function home()
     {
-        $data['title'] = 'Site';
+        $data['title'] = "Rocky Eastman";
+        $data['favicon'] = "favicon.ico";
         $data['bundle'] = '/js/site-index.js';
         return view('site', $data);
     }
