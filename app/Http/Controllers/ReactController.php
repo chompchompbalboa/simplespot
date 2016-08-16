@@ -37,6 +37,21 @@ class ReactController extends Controller
         $request = $this->request->input('request');
         $url = json_decode($this->request->input('url'));
         switch($request) {
+            case "CONTENT_APP":
+                $defaultSite = new StdClass();
+                $defaultSite->domain = "rockyeastman.local";
+                $defaultSite->path = "/";
+                $response = [
+                    [
+                        "key" => "app",
+                        "value" => $this->fetchApp()
+                    ],
+                    [
+                        "key" => "site",
+                        "value" => $this->fetchSite($defaultSite)
+                    ]
+                ];
+            break;
             case "CONTENT_SITE":
                 $response = [
                     [
@@ -107,6 +122,11 @@ class ReactController extends Controller
         return $seed;
     }
 
+    private function fetchApp()
+    {
+        return [];
+    }
+
     private function fetchSite($url)
     {
         // Translate any local path to the appropriate backend one
@@ -117,7 +137,7 @@ class ReactController extends Controller
         $domain = implode('.', $explode);
         $site = $this->sites->where('domain', '=', $domain)->first();
         if(is_null($site)) {
-            $site = $this->sites->where('domain', '=', 'restaurant.local')->first();
+            $site = $this->sites->where('domain', '=', 'rockyeastman.com')->first();
         }
         $site = $site->versions['active'];
         $site['display'] = [

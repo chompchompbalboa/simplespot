@@ -37,10 +37,10 @@ var CHANGE_EVENT = 'change';
 */
 var activeBundle = function() {
     switch(window.location.hostname) {
-        case "simplespot.local":
-        case "simplespot.com":
-            return "app"
-        break;
+        //case "simplespot.local":
+        //case "simplespot.com":
+            //return "app"
+        //break;
         default:
             return "site"
     }

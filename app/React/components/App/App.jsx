@@ -9,6 +9,8 @@
 var React = require('react');
 var Radium = require('radium');
 
+var Thumbs = require('./Thumbs/Thumbs.jsx');
+
 /**
 * The top level app component
 *
@@ -17,40 +19,31 @@ var Radium = require('radium');
 var App = React.createClass({
 
     /**
-    * Verify user access
+    * Settings for: _section
     *
-    * @function style
+    * @function _section
     * @return {object}
     */
-    guard: function(app, path) {
-        if (path !== "/" && app.user.loggedIn === "false") {
-            // redirect to /
-            window.location = '/';
-        }
-        else if (path === "/" && app.user.loggedIn === "true") {
-            // redirect to dashboard
-            window.location = '/dashboard';
-        }
-        else {
-            return true;
+    _section: function() {
+        return {
+            style: {
+                zIndex: '1',
+                position: 'absolute',
+                top: '0vh',
+                left: '0vw'
+            }
         }
     },
 
     /**
-    * Builds the style object for this component
+    * Settings for: __app
     *
-    * @function style
-    * @return {object}
+    * @function __app
+    * @param {object} app
+    * @param {object} utils
+    * @return ReactElement
     */
-    style: function() {
-        var style = {
-            section: {
-                zIndex: '1',
-                position: 'fixed',
-                backfaceVisibility: 'hidden'
-            }
-        };
-        return style;
+    __app: function(app) {
     },
 
     /**
@@ -60,25 +53,14 @@ var App = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {app, display, modules, site, utils, ...other} = this.props;
-        // Guard the path so only authenticated users are allowed permission to
-        // the app
-        if(this.guard(app, display.app.path)) {
-            var path = display.app.path;
-            var page = utils.loader.loadModules(app, display, path, app.versions.active.pages[path], site, utils);
-            var style = this.style();
-            return (
-                <section id="app" style={style.section}>
-                    {page}
-                </section>
-            )
-        } 
-        else {
-            return (
-                <section id="app-catcher">
-                </section>
-            )
-        }  
+        var {content, utils, ...other} = this.props;
+        let _section = this._section();
+        let __app = this.__app(content.app);
+        return (
+            <section id="app" style={_section.style}>
+                <Thumbs />
+            </section>
+        )
     }    
 });
 module.exports = Radium(App);

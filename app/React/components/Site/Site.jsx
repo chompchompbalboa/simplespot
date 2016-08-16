@@ -14,7 +14,8 @@ var Radium = require('radium');
 * eventually, but for ease of development's sake, I'm going to leave it here
 * for now.
 */
-var Rocky = require('../Themes/Rocky/Rocky.jsx');
+var Random = require('./Themes/Random/Random.jsx');
+var Rocky = require('./Themes/Rocky/Rocky.jsx');
 
 /**
 * The top level site component
