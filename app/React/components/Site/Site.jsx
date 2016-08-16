@@ -14,6 +14,7 @@ var Radium = require('radium');
 * eventually, but for ease of development's sake, I'm going to leave it here
 * for now.
 */
+var NWAire = require('./Themes/NWAire/NWAire.jsx');
 var Random = require('./Themes/Random/Random.jsx');
 var Rocky = require('./Themes/Rocky/Rocky.jsx');
 

@@ -129,21 +129,7 @@ class ReactController extends Controller
 
     private function fetchSite($url)
     {
-        // Translate any local path to the appropriate backend one
-        $explode = explode('.', $url->domain);
-        if($explode[1] === 'local') {
-            $explode[1] = 'com';
-        }
-        $domain = implode('.', $explode);
-        $site = $this->sites->where('domain', '=', $domain)->first();
-        if(is_null($site)) {
-            $site = $this->sites->where('domain', '=', 'rockyeastman.com')->first();
-        }
-        $site = $site->versions['active'];
-        $site['display'] = [
-            "path" => $url->path
-        ];
-
+        $site = Helper::fetchSite($this->sites, $url);
         return $site;
     }
 
