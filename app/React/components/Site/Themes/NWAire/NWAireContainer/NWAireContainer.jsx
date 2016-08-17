@@ -1,5 +1,5 @@
 /**
-* NWAire.jsx
+* NWAireContainer.jsx
 * @copyright simplespot.co, 2016-Present. All Rights Reserved.
 * @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
 *
@@ -9,15 +9,12 @@
 var React = require('react');
 var Radium = require('radium');
 
-var NWAireMenu = require('./NWAireMenu/NWAireMenu.jsx');
-var NWAireContainer = require('./NWAireContainer/NWAireContainer.jsx');
-
 /**
 * The theme for Northwest Aire Services
 *
-* @module NWAire
+* @module NWAireContainer
 */
-var NWAire = React.createClass({
+var NWAireContainer = React.createClass({
 
     /**
     * Validate props types
@@ -48,6 +45,18 @@ var NWAire = React.createClass({
     _section: function() {
         return {
             style: {
+                position: "absolute",
+                width: "100vw",
+                height: "100vh",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center center",
+                backgroundSize: "cover",
+                backgroundImage: "url(uploads/57b35f928bcb76f5d65e79fa/placeholder.jpg)",
+                "@media (min-width: 64em)": {
+                    left: "15vw",
+                    width: "85vw",
+                    height: "100vh"
+                }
             }
         }
     },
@@ -59,14 +68,12 @@ var NWAire = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {site, ...other} = this.props;
+        var {...other} = this.props;
         let _section = this._section();
         return (
             <section className="section" style={_section.style}>
-                <NWAireMenu site={site} />
-                <NWAireContainer site={site} />
             </section>
         )
     }    
 });
-module.exports = Radium(NWAire);
+module.exports = Radium(NWAireContainer);

@@ -1,5 +1,5 @@
 /**
-* NWAire.jsx
+* Omni.jsx
 * @copyright simplespot.co, 2016-Present. All Rights Reserved.
 * @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
 *
@@ -9,15 +9,14 @@
 var React = require('react');
 var Radium = require('radium');
 
-var NWAireMenu = require('./NWAireMenu/NWAireMenu.jsx');
-var NWAireContainer = require('./NWAireContainer/NWAireContainer.jsx');
+var Modules = require('./Modules.jsx');
 
 /**
-* The theme for Northwest Aire Services
+* The base generator for all of our sites
 *
-* @module NWAire
+* @module Omni
 */
-var NWAire = React.createClass({
+var Omni = React.createClass({
 
     /**
     * Validate props types
@@ -36,6 +35,8 @@ var NWAire = React.createClass({
     */
     getDefaultProps: function() {
         return {
+            specs: {
+            }
         }
     },
 
@@ -50,6 +51,16 @@ var NWAire = React.createClass({
             style: {
             }
         }
+    },  
+
+    /**
+    * Settings for: _specs
+    *
+    * @function _specs
+    * @return {object}
+    */
+    _specs: function(specs) {
+        return specs;
     },
 
     /**
@@ -59,14 +70,14 @@ var NWAire = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {site, ...other} = this.props;
+        var {site, specs, ...other} = this.props;
         let _section = this._section();
+        let _specs = this._specs(specs);
         return (
             <section className="section" style={_section.style}>
-                <NWAireMenu site={site} />
-                <NWAireContainer site={site} />
+                <Modules specs={_specs}/>
             </section>
         )
     }    
 });
-module.exports = Radium(NWAire);
+module.exports = Radium(Omni);
