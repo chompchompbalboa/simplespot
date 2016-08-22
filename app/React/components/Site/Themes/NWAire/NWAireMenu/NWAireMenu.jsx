@@ -10,6 +10,7 @@ var React = require('react');
 var Radium = require('radium');
 
 var NWAireMenuLogo = require('../NWAireMenuLogo/NWAireMenuLogo.jsx');
+var NWAireMenuLinks = require('../NWAireMenuLinks/NWAireMenuLinks.jsx');
 
 /**
 * The theme for Northwest Aire Services
@@ -51,6 +52,20 @@ var NWAireMenu = React.createClass({
     },
 
     /**
+    * Change active
+    *
+    * @function getInitialState
+    * @return {object}
+    */
+    changeActive: function(e, active) {
+        e.preventDefault();
+        let newActive = (active === "logo" ? "menu" : "logo");
+        this.setState({
+            active: newActive
+        });
+    },
+
+    /**
     * Settings for: _section
     *
     * @function _section
@@ -59,24 +74,9 @@ var NWAireMenu = React.createClass({
     _section: function() {
         return {
             style: {
-                zIndex: "2",
-                position: "absolute",
-                top: "0vh",
-                left: "0vw",
-                width: "100vw",
-                height: (this.state.active === "logo" ? "10vh" : "100vh")
+                zIndex: "2"
             }
         }
-    },
-
-    /**
-    * Settings for: __menu
-    *
-    * @function __menu
-    * @return {object}
-    */
-    __menu: function() {
-        return (<NWAireMenuLogo />)
     },
 
     /**
@@ -88,10 +88,10 @@ var NWAireMenu = React.createClass({
     render: function() {
         var {...other} = this.props;
         let _section = this._section();
-        let __menu = this.__menu()
         return (
             <section className="section" style={_section.style}>
-                {__menu}
+                <NWAireMenuLogo active={this.state.active} changeActive={this.changeActive}/>
+                <NWAireMenuLinks active={this.state.active}/>
             </section>
         )
     }    

@@ -49,7 +49,7 @@ var NWAireMenuLogo = React.createClass({
         return {
             style: {
                 width: "100%",
-                height: "60vh",
+                height: "70vh",
                 display: "flex",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center center",

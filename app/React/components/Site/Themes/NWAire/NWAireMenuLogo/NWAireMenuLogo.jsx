@@ -9,10 +9,6 @@
 var React = require('react');
 var Radium = require('radium');
 
-var contentActions = require('../../../../../actions/contentActions');
-import randomImport from '../../../../../utils/random';
-const random = new randomImport();
-
 /**
 * The theme for Northwest Aire Services
 *
@@ -40,6 +36,19 @@ var NWAireMenuLogo = React.createClass({
     },
 
     /**
+    * Settings for: _a
+    *
+    * @function _a
+    * @return {object}
+    */
+    _a: function() {
+        return {
+            style: {
+            }
+        }
+    },
+
+    /**
     * Settings for: _container
     *
     * @function _container
@@ -48,11 +57,16 @@ var NWAireMenuLogo = React.createClass({
     _container: function() {
         return {
             style: {
-                width: "100%",
-                height: "100%",
+                zIndex: "1",
+                position: "fixed",
+                top: "0vh",
+                left: "0vw",
+                width: "100vw",
+                height: "10vh",
                 display: "flex",
                 justifyContent: "flex-start",
-                alignItems: "center"
+                alignItems: "center",
+                backgroundColor: "transparent"
             }
         }
     },
@@ -63,16 +77,17 @@ var NWAireMenuLogo = React.createClass({
     * @function _logo
     * @return {object}
     */
-    _logo: function() {
+    _logo: function(active) {
+        let backgroundImage = (active === "logo" ? "url(uploads/57b35f928bcb76f5d65e79fa/menuLogo.png)" : "url(uploads/57b35f928bcb76f5d65e79fa/menuBack.png)")
         return {
             style: {
-                margin: "0 0 0 5vw",
+                margin: "0 0 0 3vh",
                 width: "4vh",
                 height: "4vh",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center center",
                 backgroundSize: "cover",
-                backgroundImage: "url(uploads/57b35f928bcb76f5d65e79fa/menuLogo.png)"
+                backgroundImage: backgroundImage
             }
         }
     },
@@ -84,12 +99,15 @@ var NWAireMenuLogo = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {...other} = this.props;
-        let _container = this._container();
-        let _logo = this._logo();
+        var {active, changeActive, ...other} = this.props;
+        let _a = this._a();
+        let _container = this._container(active);
+        let _logo = this._logo(active);
         return (
             <div className="container" style={_container.style}>
-                <div className="logo" style={_logo.style}></div>
+                <a href="" style={_a.style} onClick={(e) => changeActive(e, active)}>
+                    <div className="logo" style={_logo.style}></div>
+                </a>
             </div>
         )
     }    
