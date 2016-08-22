@@ -47,7 +47,7 @@ var NWAireMenuLinks = React.createClass({
             style: {
                 zIndex: "0",
                 padding: "10vh 0 0 0",
-                position: "fixed",
+                position: "absolute",
                 top: "0vh",
                 left: (active === "menu" ? "0vw" : "-75vw"),
                 width: "75vw",

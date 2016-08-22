@@ -1,5 +1,5 @@
 /**
-* NWAireSplash.jsx
+* NWAireAbout.jsx
 * @copyright simplespot.co, 2016-Present. All Rights Reserved.
 * @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
 *
@@ -8,13 +8,14 @@
 */
 var React = require('react');
 var Radium = require('radium');
-
+import randomImport from '../../../../../utils/random';
+const random = new randomImport();
 /**
 * The theme for Northwest Aire Services
 *
-* @module NWAireSplash
+* @module NWAireAbout
 */
-var NWAireSplash = React.createClass({
+var NWAireAbout = React.createClass({
 
     /**
     * Validate props types
@@ -36,28 +37,6 @@ var NWAireSplash = React.createClass({
     },
 
     /**
-    * Settings for: _imageContainer
-    *
-    * @function _imageContainer
-    * @return {object}
-    */
-    _imageContainer: function() {
-        return {
-            style: {
-                width: "90%",
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center center",
-                backgroundSize: "cover",
-                backgroundImage: "linear-gradient(to top, rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url(uploads/57b35f928bcb76f5d65e79fa/seattle.jpg)"
-            }
-        }
-    },
-
-    /**
     * Settings for: _section
     *
     * @function _section
@@ -67,8 +46,9 @@ var NWAireSplash = React.createClass({
         return {
             style: {
                 width: "100%",
-                height: "60vh",
+                height: "30vh",
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center"
             }
@@ -84,15 +64,14 @@ var NWAireSplash = React.createClass({
     _textContainer: function() {
         return {
             style: {
-                width: "95%",
-                height: "100%",
+                width: "90%",
+                height: "90%",
                 display: "flex",
-                flexDirection: "column",
                 justifyContent: "center",
-                alignItems: "flex-end",
-                fontFamily: "Play, sans-serif",
-                fontSize: "48px",
-                color: "white"
+                alignItems: "flex-start",
+                color: "black",
+                fontFamily: random.fontFamily(),
+                fontSize: "18px"
             }
         }
     },
@@ -105,20 +84,14 @@ var NWAireSplash = React.createClass({
     */
     render: function() {
         var {...other} = this.props;
-        let _imageContainer = this._imageContainer();
         let _section = this._section();
         let _textContainer = this._textContainer();
         return (
             <section className="section" style={_section.style}>
-                <div className="imageContainer" style={_imageContainer.style}>
-                    <div className="textContainer" style={_textContainer.style}>
-                        <div>Northwest</div>
-                        <div>Aire</div>
-                        <div>Services</div>
-                    </div>
+                <div className="textContainer" style={_textContainer.style}>
                 </div>
             </section>
         )
     }    
 });
-module.exports = Radium(NWAireSplash);
+module.exports = Radium(NWAireAbout);

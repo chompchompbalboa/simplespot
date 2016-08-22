@@ -9,7 +9,7 @@
 var React = require('react');
 var Radium = require('radium');
 
-var NWAireMenuLogo = require('../NWAireMenuLogo/NWAireMenuLogo.jsx');
+var NWAireMenuLogos = require('../NWAireMenuLogos/NWAireMenuLogos.jsx');
 var NWAireMenuLinks = require('../NWAireMenuLinks/NWAireMenuLinks.jsx');
 
 /**
@@ -74,7 +74,6 @@ var NWAireMenu = React.createClass({
     _section: function() {
         return {
             style: {
-                zIndex: "2"
             }
         }
     },
@@ -90,7 +89,7 @@ var NWAireMenu = React.createClass({
         let _section = this._section();
         return (
             <section className="section" style={_section.style}>
-                <NWAireMenuLogo active={this.state.active} changeActive={this.changeActive}/>
+                <NWAireMenuLogos active={this.state.active} changeActive={this.changeActive}/>
                 <NWAireMenuLinks active={this.state.active}/>
             </section>
         )

@@ -9,6 +9,7 @@
 var React = require('react');
 var Radium = require('radium');
 
+var NWAireAbout = require('./NWAireAbout/NWAireAbout.jsx');
 var NWAireMenu = require('./NWAireMenu/NWAireMenu.jsx');
 var NWAireSplash = require('./NWAireSplash/NWAireSplash.jsx');
 
@@ -48,6 +49,11 @@ var NWAire = React.createClass({
     _section: function() {
         return {
             style: {
+                width: "100vw",
+                display: "flex",
+                flexFlow: "row wrap",
+                justifyContent: "flex-start",
+                alignItems: "center"
             }
         }
     },
@@ -65,6 +71,7 @@ var NWAire = React.createClass({
             <section className="section" style={_section.style}>
                 <NWAireMenu site={site} />
                 <NWAireSplash site={site} />
+                <NWAireAbout site={site} />
             </section>
         )
     }    
