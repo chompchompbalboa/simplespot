@@ -45,13 +45,17 @@ var NWAireContainer = React.createClass({
     _section: function() {
         return {
             style: {
+                zIndex: "1",
                 position: "absolute",
                 width: "100vw",
                 height: "100vh",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center center",
-                backgroundSize: "cover",
-                backgroundImage: "url(uploads/57b35f928bcb76f5d65e79fa/placeholder.jpg)",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                //backgroundRepeat: "no-repeat",
+                //backgroundPosition: "center center",
+                //backgroundSize: "cover",
+                //backgroundImage: "url(uploads/57b35f928bcb76f5d65e79fa/placeholder.jpg)",
                 "@media (min-width: 64em)": {
                     left: "15vw",
                     width: "85vw",
@@ -62,16 +66,28 @@ var NWAireContainer = React.createClass({
     },
 
     /**
+    * Settings for: __contents
+    *
+    * @function __contents
+    * @return {object}
+    */
+    __contents: function(path) {
+        return path;
+    },
+
+    /**
     * Render the component
     *
     * @function render
     * @return {string}
     */
     render: function() {
-        var {...other} = this.props;
+        var {site, ...other} = this.props;
         let _section = this._section();
+        let __contents = this.__contents(site.display.path);
         return (
             <section className="section" style={_section.style}>
+                {__contents}
             </section>
         )
     }    

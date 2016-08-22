@@ -9,7 +9,7 @@
 var React = require('react');
 var Radium = require('radium');
 
-var NWAireMenuLink = require('../NWAireMenuLink/NWAireMenuLink.jsx');
+var NWAireMenuLogo = require('../NWAireMenuLogo/NWAireMenuLogo.jsx');
 
 /**
 * The theme for Northwest Aire Services
@@ -39,36 +39,14 @@ var NWAireMenu = React.createClass({
     },
 
     /**
-    * Settings for: _nav
+    * Set the initial state
     *
-    * @function _nav
+    * @function getInitialState
     * @return {object}
     */
-    _nav: function() {
+    getInitialState: function() {
         return {
-            style: {
-                width: "100%",
-                height: "100%"
-            }
-        }
-    },
-
-    /**
-    * Settings for: _navList
-    *
-    * @function _navList
-    * @return {object}
-    */
-    _navList: function() {
-        return {
-            style: {
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                flexFlow: "row wrap",
-                justifyContent: "flex-start",
-                alignItems: "center"
-            }
+            active: "logo"
         }
     },
 
@@ -78,47 +56,27 @@ var NWAireMenu = React.createClass({
     * @function _section
     * @return {object}
     */
-    _section: function(active) {
+    _section: function() {
         return {
             style: {
-                position: "fixed",
-                top: (active ? "0vh" : "-100vh"),
+                zIndex: "2",
+                position: "absolute",
+                top: "0vh",
                 left: "0vw",
                 width: "100vw",
-                height: "100vh",
-                "@media (min-width: 64em)": {
-                    top: "0vh",
-                    width: "15vw"
-                }
+                height: (this.state.active === "logo" ? "10vh" : "100vh")
             }
         }
     },
 
     /**
-    * Settings for: __navListItems
+    * Settings for: __menu
     *
-    * @function __navListItems
+    * @function __menu
     * @return {object}
     */
-    __navListItems: function(display) {
-        let items = [
-            {text: {large: "Home", small: "Hello there"}, path: "/"},
-            {text: {large: "About", small: "Our company"}, path: "/two"},
-            {text: {large: "Services", small: "What we do"}, path: "/three"},
-            {text: {large: "Contact", small: "Let's talk"}, path: "/four"}
-        ];
-        let payload = items.map(function(item, index) {
-            let active = (display.path === item.path ? true : false);
-            return <NWAireMenuLink key={index} active={active} path={item.path} texts={item.text}/>
-        });
-        let homeText = {
-            large: "Home",
-            small: "Home Description"
-        }
-        payload.unshift(
-            <NWAireMenuLink key={"home"} active={false} logo={true} path={"/"} texts={{large: "Home", small: "Home Description"}}/>
-        );
-        return payload;
+    __menu: function() {
+        return (<NWAireMenuLogo />)
     },
 
     /**
@@ -128,18 +86,12 @@ var NWAireMenu = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {site, ...other} = this.props;
-        let _nav = this._nav();
-        let _navList = this._navList();
-        let _section = this._section(true);
-        let __navListItems = this.__navListItems(site.display);
+        var {...other} = this.props;
+        let _section = this._section();
+        let __menu = this.__menu()
         return (
             <section className="section" style={_section.style}>
-                <nav className="nav" style={_nav.style}>
-                    <ul className="navList" style={_navList.style}>
-                        {__navListItems}
-                    </ul>
-                </nav>    
+                {__menu}
             </section>
         )
     }    

@@ -9,10 +9,16 @@
 var React = require('react');
 var Radium = require('radium');
 
-var Modules = require('./Modules.jsx');
+var HoursOne = require('./modules/Hours/HoursOne/HoursOne.jsx');
+var ImageOne = require('./modules/Image/ImageOne/ImageOne.jsx');
+var NavigationOne = require('./modules/Navigation/NavigationOne/NavigationOne.jsx');
+var NavigationTwo = require('./modules/Navigation/NavigationTwo/NavigationTwo.jsx');
+var LinkOne = require('./modules/Link/LinkOne/LinkOne.jsx');
+var LocationOne = require('./modules/Location/LocationOne/LocationOne.jsx');
+var SplashOne = require('./modules/Splash/SplashOne/SplashOne.jsx');
 
 /**
-* The base generator for all of our sites
+* Load the modules
 *
 * @module Omni
 */
@@ -35,8 +41,6 @@ var Omni = React.createClass({
     */
     getDefaultProps: function() {
         return {
-            specs: {
-            }
         }
     },
 
@@ -49,18 +53,49 @@ var Omni = React.createClass({
     _section: function() {
         return {
             style: {
+                width: "100vw",
+                display: "flex",
+                flexFlow: "row wrap",
+                justifyContent: "flex-start",
+                alignItems: "center"
             }
         }
-    },  
+    },
 
     /**
-    * Settings for: _specs
+    * Settings for: __modules
     *
-    * @function _specs
+    * @function __modules
     * @return {object}
     */
-    _specs: function(specs) {
-        return specs;
+    __modules: function(page) {
+        let payload = [];
+        for(let current in page) {
+            let module = eval(page[current].module);
+            let props = this.__modulesProps(current, page[current].props);
+            payload.push(
+                React.createElement(
+                    module,
+                    props
+                )
+            )
+        }
+        return payload;
+    },
+
+    /**
+    * Settings for: __modulesProps
+    *
+    * @function __modulesProps
+    * @return {object}
+    */
+    __modulesProps: function(current, props) {
+        let payload = {};
+        payload['key'] = current;
+        for (let i in props) {
+            payload[i] = props[i];
+        }
+        return payload;
     },
 
     /**
@@ -70,12 +105,12 @@ var Omni = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {site, specs, ...other} = this.props;
+        let {site, ...other} = this.props;
         let _section = this._section();
-        let _specs = this._specs(specs);
+        let __modules = this.__modules(site.pages[site.display.path]);
         return (
             <section className="section" style={_section.style}>
-                <Modules specs={_specs}/>
+                {__modules}
             </section>
         )
     }    

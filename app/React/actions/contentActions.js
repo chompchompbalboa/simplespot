@@ -7,6 +7,8 @@
 */
 
 var ContentDispatcher = require('../dispatcher/ContentDispatcher');
+import randomGeneratorImport from '../utils/randomGenerator';
+const randomGenerator = new randomGeneratorImport();
 
 /**
 * Define the actions that shape the content
@@ -35,6 +37,21 @@ var contentActions = {
     */
     fetchContent: function(request){
         this._ajax(request);
+    },
+
+    /**
+    * Generate a new set of inputs for a given site type and theme
+    * 
+    * @function generateRandom
+    */
+    generateRandom: function(type){
+        let changes = [
+            {key: "site.pages", value: randomGenerator.generate(type)}
+        ];
+        ContentDispatcher.handleAction({
+            actionType: "CHANGE_CONTENT",
+            data: changes
+        });
     },
 
     /**
@@ -76,7 +93,7 @@ var contentActions = {
                 });
             }.bind(this),
             error: function(xhr, status, err) {
-              console.error(url, status, err.toString());
+              console.error(status, err.toString());
             }.bind(this)
         });
     },

@@ -1,9 +1,22 @@
-db.sites.insert({
-    "_id" : ObjectId("5776dd982cb85ae0b1b350e7"),
-    "domain" : "rockyeastman.com",
+db.sites.insert(
+{
+    "_id" : ObjectId("57b359b02c7a09b9e6200ffd"),
+    "domain" : "omni.com",
     "versions" : {
         "active" : {
-            "theme" : "Rocky"
+            "meta" : {
+                "title" : "Omni"
+            },
+            "theme" : "Omni",
+            "pages": {
+                "/": {
+                    "0": {
+                        "module": "SplashOne",
+                        "props": {}
+                    }
+                }
+            }
         }
     }
-})
+}
+)

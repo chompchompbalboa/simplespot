@@ -15,7 +15,7 @@ var Radium = require('radium');
 * for now.
 */
 var NWAire = require('./Themes/NWAire/NWAire.jsx');
-var Random = require('./Themes/Random/Random.jsx');
+var Omni = require('./Themes/Omni/Omni.jsx');
 var Rocky = require('./Themes/Rocky/Rocky.jsx');
 
 /**
@@ -54,7 +54,7 @@ var Site = React.createClass({
         let theme = eval(site.theme);
         let props = {
             site: site
-        }
+        };
         return (
             React.createElement(
                 theme,

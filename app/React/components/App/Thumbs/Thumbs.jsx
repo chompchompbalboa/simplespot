@@ -1,22 +1,31 @@
 /**
-* SplashOne.jsx
+* Thumbs.jsx
 * @copyright simplespot.co, 2016-Present. All Rights Reserved.
 * @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
 *
 * @requires React
 * @requires Radium
 */
-var React = require('react');
-var Radium = require('radium');
+import React, { PropTypes } from 'react';
+import Radium from 'radium';
 
 var contentActions = require('../../../actions/contentActions');
 
 /**
 * Let's throw a party
 *
-* @module SplashOne
+* @module Thumbs
 */
-var SplashOne = React.createClass({
+class Thumbs extends React.Component {
+
+    /**
+    * Constructor
+    *
+    * @requires {object} props
+    */
+    constructor(props) {
+        super(props)
+    }
 
     /**
     * Validate props types
@@ -24,8 +33,8 @@ var SplashOne = React.createClass({
     * @prop propTypes
     * @return {object}
     */
-    propTypes: {
-    },
+    static propTypes = {
+    }
 
     /**
     * Get the default props
@@ -33,10 +42,8 @@ var SplashOne = React.createClass({
     * @function getDefaultProps
     * @return {object}
     */
-    getDefaultProps: function() {
-        return {
-        }
-    },
+    static defaultProps = {
+    }
 
     /**
     * Handle Click
@@ -44,10 +51,10 @@ var SplashOne = React.createClass({
     * @function handleClick
     * @return {object}
     */
-    handleClick: function(e, response) {
+    handleClick(e, response) {
         e.preventDefault();
-        contentActions.changeContent([]);
-    },
+        contentActions.generateRandom("restaurant");
+    }
 
     /**
     * Settings for: _section
@@ -55,17 +62,21 @@ var SplashOne = React.createClass({
     * @function _section
     * @return {object}
     */
-    _section: function() {
+    _section() {
         return {
             style: {
-                width: "100vw",
-                height: "10vh",
+                position: "fixed",
+                top: "95vh",
+                left: "0vw",
+                width: "10vw",
+                height: "5vh",
                 display: "flex",
                 justifyContent: "center",
-                alignItems: "center"
+                alignItems: "center",
+                backgroundColor: "black"
             }
         }
-    },
+    }
 
     /**
     * Settings for: _text
@@ -73,17 +84,17 @@ var SplashOne = React.createClass({
     * @function _text
     * @return {object}
     */
-    _text: function() {
+    _text() {
         return {
             style: {
                 margin: "0 1vw 0 1vw",
                 color: "white",
                 fontFamily: "titilliumlight",
-                fontSize: "24px",
+                fontSize: "4vh",
                 textTransform: "uppercase"
             }
         }
-    },
+    }
 
     /**
     * Render the component
@@ -91,7 +102,7 @@ var SplashOne = React.createClass({
     * @function render
     * @return {string}
     */
-    render: function() {
+    render() {
         var {...other} = this.props;
         let _section = this._section();
         let _text = this._text();
@@ -115,5 +126,5 @@ var SplashOne = React.createClass({
             </section>
         )
     }    
-});
-module.exports = Radium(SplashOne);
+};
+module.exports = Radium(Thumbs);

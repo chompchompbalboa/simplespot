@@ -24,6 +24,7 @@ class ReactController extends Controller
 
     public function __construct(Auth $auth, Modules $modules, Request $request, Sites $sites, ThemeTranslator $themeTranslator, User $user)
     {
+        $this->app = app();
         $this->auth = $auth;
         $this->modules = $modules;
         $this->request = $request;
@@ -38,8 +39,8 @@ class ReactController extends Controller
         $url = json_decode($this->request->input('url'));
         switch($request) {
             case "CONTENT_APP":
-                $defaultSite = new StdClass();
-                $defaultSite->domain = "rockyeastman.local";
+                $defaultSite = $this->app->make('stdClass');
+                $defaultSite->domain = "omni.com";
                 $defaultSite->path = "/";
                 $response = [
                     [

@@ -76,6 +76,7 @@ gulp.task('watch', function() {
     gulp.watch('./app/React/constants/*.js', ['all']);
     gulp.watch('./app/React/loader/**/*.js', ['all']);
     gulp.watch('./app/React/stores/*.js', ['all']);
+    gulp.watch('./app/React/utils/*.js', ['all']);
     gulp.watch('./app/React/utils/**/*.js', ['all']);
     gulp.watch('./app/React/components/Themes/**/*.jsx', ['all']);
     //gulp.watch('./app/React/components/Modules/**/*.js', ['all']);

@@ -10,7 +10,7 @@ var React = require('react');
 var Radium = require('radium');
 
 var NWAireMenu = require('./NWAireMenu/NWAireMenu.jsx');
-var NWAireContainer = require('./NWAireContainer/NWAireContainer.jsx');
+var NWAireSplash = require('./NWAireSplash/NWAireSplash.jsx');
 
 /**
 * The theme for Northwest Aire Services
@@ -64,7 +64,7 @@ var NWAire = React.createClass({
         return (
             <section className="section" style={_section.style}>
                 <NWAireMenu site={site} />
-                <NWAireContainer site={site} />
+                <NWAireSplash site={site} />
             </section>
         )
     }    

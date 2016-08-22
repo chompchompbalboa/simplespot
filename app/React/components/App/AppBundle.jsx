@@ -45,7 +45,7 @@ var AppBundle = React.createClass({
         window.history.replaceState({content: this.state.content}, "", window.location.pathname);
         window.addEventListener('popstate', (e) => contentActions.replaceContent(e.state.content));
         contentStore.addChangeListener(this._onChange); 
-        contentActions.fetchContent("CONTENT_SITE");
+        contentActions.fetchContent("CONTENT_APP");
     },
 
     /**

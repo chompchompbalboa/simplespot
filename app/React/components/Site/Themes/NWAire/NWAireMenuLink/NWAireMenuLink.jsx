@@ -9,6 +9,8 @@
 var React = require('react');
 var Radium = require('radium');
 
+var contentActions = require('../../../../../actions/contentActions');
+
 /**
 * The theme for Northwest Aire Services
 *
@@ -49,9 +51,12 @@ var NWAireMenuItem = React.createClass({
     * @function handleClick
     * @return {object}
     */
-    handleClick: function(e) {
+    handleClick: function(e, path) {
         e.preventDefault();
-        console.log('click');
+        let changes = [
+            {key: "site.display.path", value: path}
+        ];
+        contentActions.changeContent(changes);
     },
 
     /**
@@ -66,9 +71,47 @@ var NWAireMenuItem = React.createClass({
                 width: "100%",
                 height: "100%",
                 display: "flex",
-                flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "flex-start"
+            }
+        }
+    },
+
+    /**
+    * Settings for: _image
+    *
+    * @function _image
+    * @return {object}
+    */
+    _image: function() {
+        return {
+            style: {
+                width: "100%",
+                height: "100%",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center center",
+                backgroundSize: "cover",
+                backgroundImage: "url(uploads/57b35f928bcb76f5d65e79fa/placeholder.jpg)",
+            }
+        }
+    },
+
+    /**
+    * Settings for: _imageContainer
+    *
+    * @function _imageContainer
+    * @return {object}
+    */
+    _imageContainer: function(side) {
+        return {
+            style: {
+                order: (side === "left" ? "2" : "1"),
+                width: "60%",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center"
             }
         }
     },
@@ -82,10 +125,12 @@ var NWAireMenuItem = React.createClass({
     _li: function(logo) {
         return {
             style: {
-                display: "inline",
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
                 width: "100%",
                 height: (logo ? "28vh" : "18vh"),
-                backgroundColor: (logo ? "rgba(45,69,113,1)" : "white"),
+                backgroundColor: (logo ? "rgba(26,51,0,1)" : "white"),
                 borderBottom: "1px solid grey"
             }
         }
@@ -105,19 +150,40 @@ var NWAireMenuItem = React.createClass({
     },
 
     /**
+    * Settings for: _textContainer
+    *
+    * @function _textContainer
+    * @return {object}
+    */
+    _textContainer: function(side) {
+        return {
+            style: {
+                order: (side === "left" ? "1" : "2"),
+                width: "40%",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: (side === "left" ? "flex-start" : "flex-end")
+            }
+        }
+    },
+
+    /**
     * Settings for: _textLarge
     *
     * @function _textLarge
     * @return {object}
     */
-    _textLarge: function(active, logo) {
+    _textLarge: function(side) {
         return {
             style: {
-                margin: "-3vh 0 0 10%",
-                color: (logo ? "white" : (active ? "rgba(62,49,117,1)" : "black")),
+                margin: (side === "left" ? "0 0 0 15%" : "0 15% 0 0"),
+                color: "black",
                 fontFamily: "Montserrat, sans-serif",
                 fontSize: "3vh",
-                letterSpacing: "1px"
+                letterSpacing: "1px",
+                textTransform: "uppercase"
             }
         }
     },
@@ -128,10 +194,10 @@ var NWAireMenuItem = React.createClass({
     * @function _textSmall
     * @return {object}
     */
-    _textSmall: function(logo) {
+    _textSmall: function(side) {
         return {
             style: {
-                margin: "0 0 0 10%",
+                margin: (side === "left" ? "0 0 0 15%" : "0 15% 0 0"),
                 color: "rgba(175,175,175,1)",
                 fontFamily: "Raleway, sans-serif",
                 fontSize: "1.5vh",
@@ -148,17 +214,26 @@ var NWAireMenuItem = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {active, logo, path, texts, ...other} = this.props;
+        var {active, image, path, side, texts, ...other} = this.props;
         let _a = this._a();
-        let _li = this._li(logo);
+        let _image = this._image();
+        let _imageContainer = this._imageContainer(side);
+        let _li = this._li();
         let _text = this._text();
-        let _textLarge = this._textLarge(active, logo);
-        let _textSmall = this._textSmall(logo);
+        let _textContainer = this._textContainer(side);
+        let _textLarge = this._textLarge(side);
+        let _textSmall = this._textSmall(side);
         return (
             <li style={_li.style}>
                 <a href={path} style={_a.style} onClick={(e) => this.handleClick(e, path)}>
-                    <div className="textLarge" style={[_text.style, _textLarge.style]}>{texts.large}</div> 
-                    <div className="textSmall" style={[_text.style, _textSmall.style]}>{texts.small}</div>  
+                    <div className="textContainer" style={_textContainer.style}>
+                        <div className="textLarge" style={[_text.style, _textLarge.style]}>{texts.large}</div> 
+                        <div className="textSmall" style={[_text.style, _textSmall.style]}>{texts.small}</div> 
+                    </div>
+                    <div className="imageContainer" style={_imageContainer.style}>
+                        <div className="image" style={_image.style}>
+                        </div>
+                    </div>
                 </a>
             </li>
         )

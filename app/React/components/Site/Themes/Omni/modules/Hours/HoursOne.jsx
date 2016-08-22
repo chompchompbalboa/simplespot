@@ -1,5 +1,5 @@
 /**
-* SplashOne.jsx
+* HoursOne.jsx
 * @copyright simplespot.co, 2016-Present. All Rights Reserved.
 * @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
 *
@@ -12,9 +12,9 @@ var Radium = require('radium');
 /**
 * Let's throw a party
 *
-* @module SplashOne
+* @module HoursOne
 */
-var SplashOne = React.createClass({
+var HoursOne = React.createClass({
 
     /**
     * Validate props types
@@ -42,24 +42,12 @@ var SplashOne = React.createClass({
     * @function _section
     * @return {object}
     */
-    _section: function() {
+    _section: function(colors, fonts) { 
         return {
             style: {
-                width: "100vw",
+                color: colors.primary,
                 height: "100vh",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                fontFamily: this.props.random.font(),
-                fontSize: this.props.random.integer(40, 64) + "px",
-                fontWeight: this.props.random.fontWeight(),
-                textTransform: this.props.random.fromArray(["", "uppercase"]),
-                letterSpacing: this.props.random.integer(1,15) + "px",
-                color: "white",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center center",
-                backgroundSize: "cover",
-                backgroundImage: this.props.random.backgroundImageWithOverlay()
+                width: "100vw"
             }
         }
     },
@@ -71,13 +59,13 @@ var SplashOne = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {...other} = this.props;
-        let _section = this._section();
+        var {colors, fonts, random, ...other} = this.props;
+        let _section = this._section(colors, fonts);
         return (
             <section className="section" style={_section.style}>
-                Restaurant
+                HoursOne
             </section>
         )
     }    
 });
-module.exports = Radium(SplashOne);
+module.exports = Radium(HoursOne);

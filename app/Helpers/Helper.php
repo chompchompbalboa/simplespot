@@ -40,7 +40,7 @@ class Helper
         $site = $sites->where('domain', '=', $domain)->first();
         // Return a default site when needed
         if(is_null($site)) {
-            $site = $sites->where('domain', '=', 'randomizer.com')->first();
+            $site = $sites->where('domain', '=', 'omni.com')->first();
         }
         // Get the id
         $id = $site->_id;
