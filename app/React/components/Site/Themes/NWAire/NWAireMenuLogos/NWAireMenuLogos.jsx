@@ -57,9 +57,9 @@ var NWAireMenuLogo = React.createClass({
     _emailLogo: function(active) {
         return {
             style: {
-                margin: "0 4vh 0 0",
-                width: "4.65vh",
-                height: "2.75vh",
+                margin: "0 3vh 0 0",
+                width: "3.8vh",
+                height: "2.25vh",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center center",
                 backgroundSize: "cover",
@@ -115,9 +115,9 @@ var NWAireMenuLogo = React.createClass({
         let backgroundImage = (active === "logo" ? "url(uploads/57b35f928bcb76f5d65e79fa/menuLogo.png)" : "url(uploads/57b35f928bcb76f5d65e79fa/menuBack.png)")
         return {
             style: {
-                margin: "0 0 0 3vh",
-                width: "4vh",
-                height: "4vh",
+                margin: "0 0 0 3.5vh",
+                width: "3vh",
+                height: "3vh",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center center",
                 backgroundSize: "cover",
@@ -135,9 +135,9 @@ var NWAireMenuLogo = React.createClass({
     _phoneLogo: function(active) {
         return {
             style: {
-                margin: "0 4vh 0 0",
-                width: "4vh",
-                height: "4vh",
+                margin: "0 3vh 0 0",
+                width: "3vh",
+                height: "3vh",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center center",
                 backgroundSize: "cover",

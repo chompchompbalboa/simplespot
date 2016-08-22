@@ -9,6 +9,7 @@
 var React = require('react');
 var Radium = require('radium');
 
+var NWAireContainerItem = require('../NWAireContainerItem/NWAireContainerItem.jsx');
 /**
 * The theme for Northwest Aire Services
 *
@@ -33,6 +34,46 @@ var NWAireContainer = React.createClass({
     */
     getDefaultProps: function() {
         return {
+            items: {
+                "/": {
+                    1: {
+                        CoverImage: {
+                            image: "uploads/57b35f928bcb76f5d65e79fa/seattle.jpg",
+                            height: "60vh",
+                            text: {
+                                1: "Northwest",
+                                2: "Aire",
+                                3: "Services"
+                            }
+                        },
+                        ImageFeed: {
+                            images: {
+                            }
+                        },
+                        Section: {
+                            dot: {
+                                text: "A"
+                            },
+                            text: "About Us"
+                        },
+                        Header: {
+                            text: "Superior HVAC Service"
+                        },
+                        ShortText: {
+                            text: "Founded in 2003, Northwest Aire Services, Inc. prides itself on providing superior HVAC expertise to the Pacific Northwest."
+                        },
+                        FullText: {
+                            text: {
+                                1: "Our goal is to ensure the continued satisfaction of our customers, while providing the most rewarding environment for our employees.",
+                                2: "We offer a wide variety of commercial services, including but not limited to: air conditioning, heating, refrigeration, clean rooms, computer/server rooms, controls, service, maintenance, and installation.",
+                                //3: "Northwest Aire Services, Inc. is a full service commercial contractor and is equipped to competitively bid any job; from retro-fit to new construction, small light commercial buildings to large multi-million dollar projects.",
+                                //4: "Since opening our doors, we have grown by adding a fully functional sheet-metal fabrication shop to our services. We use only the most advanced tools and equipment available, coupled with trained, certified, and experienced technicians enabling us to ensure highly effective and efficient customer service.",
+                                //5: "From the most complex installations to routine service and maintenance, Northwest Aire Services, Inc. has the resources and motivation to provide an industry-leading solution. It is our hope to build lifelong relationships with our customers - relationships that will lead to an enduring and mutual satisfaction."
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
 
@@ -45,34 +86,32 @@ var NWAireContainer = React.createClass({
     _section: function() {
         return {
             style: {
-                zIndex: "1",
-                position: "absolute",
                 width: "100vw",
-                height: "100vh",
                 display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                //backgroundRepeat: "no-repeat",
-                //backgroundPosition: "center center",
-                //backgroundSize: "cover",
-                //backgroundImage: "url(uploads/57b35f928bcb76f5d65e79fa/placeholder.jpg)",
-                "@media (min-width: 64em)": {
-                    left: "15vw",
-                    width: "85vw",
-                    height: "100vh"
-                }
+                flexFlow: "row wrap",
+                justifyContent: "flex-start",
+                alignItems: "center"
             }
         }
     },
 
     /**
-    * Settings for: __contents
+    * Settings for: __items
     *
-    * @function __contents
+    * @function __items
     * @return {object}
     */
-    __contents: function(path) {
-        return path;
+    __items: function(items) {
+        let payload = [];
+        for (let i in items) {
+            payload.push(
+                <NWAireContainerItem
+                    key={i}
+                    item={items[i]}
+                />
+            )
+        }
+        return payload;
     },
 
     /**
@@ -82,12 +121,12 @@ var NWAireContainer = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {site, ...other} = this.props;
+        var {items, site, ...other} = this.props;
         let _section = this._section();
-        let __contents = this.__contents(site.display.path);
+        let __items = this.__items(items[site.display.path]);
         return (
             <section className="section" style={_section.style}>
-                {__contents}
+                {__items}
             </section>
         )
     }    

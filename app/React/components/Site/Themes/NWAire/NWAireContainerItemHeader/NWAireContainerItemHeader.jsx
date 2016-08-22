@@ -1,5 +1,5 @@
 /**
-* NWAire.jsx
+* NWAireContainerItemHeader.jsx
 * @copyright simplespot.co, 2016-Present. All Rights Reserved.
 * @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
 *
@@ -9,15 +9,14 @@
 var React = require('react');
 var Radium = require('radium');
 
-var NWAireContainer = require('./NWAireContainer/NWAireContainer.jsx');
-var NWAireMenu = require('./NWAireMenu/NWAireMenu.jsx');
-
+import randomImport from '../../../../../utils/random';
+const random = new randomImport();
 /**
 * The theme for Northwest Aire Services
 *
-* @module NWAire
+* @module NWAireContainerItemHeader
 */
-var NWAire = React.createClass({
+var NWAireContainerItemHeader = React.createClass({
 
     /**
     * Validate props types
@@ -36,23 +35,25 @@ var NWAire = React.createClass({
     */
     getDefaultProps: function() {
         return {
+            text: "Here's a brief description"
         }
     },
 
     /**
-    * Settings for: _section
+    * Settings for: _container
     *
-    * @function _section
+    * @function _container
     * @return {object}
     */
-    _section: function() {
+    _container: function() {
         return {
             style: {
-                width: "100vw",
-                display: "flex",
-                flexFlow: "row wrap",
-                justifyContent: "flex-start",
-                alignItems: "center"
+                width: "100%",
+                textAlign: "center",
+                fontFamily: "Muli, sans-serif",
+                fontWeight: "bold",
+                fontSize: "2.25vh",
+                letterSpacing: "1px"
             }
         }
     },
@@ -64,14 +65,13 @@ var NWAire = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {site, ...other} = this.props;
-        let _section = this._section();
+        var {text, ...other} = this.props;
+        let _container = this._container();
         return (
-            <section className="section" style={_section.style}>
-                <NWAireMenu site={site} />
-                <NWAireContainer site={site} />
-            </section>
+            <div className="container" style={_container.style}>
+                {text}   
+            </div>
         )
     }    
 });
-module.exports = Radium(NWAire);
+module.exports = Radium(NWAireContainerItemHeader);
