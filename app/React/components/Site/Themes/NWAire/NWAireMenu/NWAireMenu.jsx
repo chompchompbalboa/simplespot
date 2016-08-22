@@ -74,6 +74,9 @@ var NWAireMenu = React.createClass({
     _section: function() {
         return {
             style: {
+                position: "absolute",
+                top: "0vh",
+                left: "0vw"
             }
         }
     },

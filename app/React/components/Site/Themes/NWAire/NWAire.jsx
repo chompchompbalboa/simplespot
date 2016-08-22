@@ -48,11 +48,7 @@ var NWAire = React.createClass({
     _section: function() {
         return {
             style: {
-                width: "100vw",
-                display: "flex",
-                flexFlow: "row wrap",
-                justifyContent: "flex-start",
-                alignItems: "center"
+                width: "100vw"
             }
         }
     },

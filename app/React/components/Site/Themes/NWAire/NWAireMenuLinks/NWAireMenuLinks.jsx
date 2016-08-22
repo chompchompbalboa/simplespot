@@ -8,8 +8,6 @@
 */
 var React = require('react');
 var Radium = require('radium');
-import randomImport from '../../../../../utils/random';
-const random = new randomImport();
 /**
 * The theme for Northwest Aire Services
 *
@@ -45,9 +43,9 @@ var NWAireMenuLinks = React.createClass({
     _container: function(active) {
         return {
             style: {
-                zIndex: "0",
+                zIndex: "1",
                 padding: "10vh 0 0 0",
-                position: "absolute",
+                position: "fixed",
                 top: "0vh",
                 left: (active === "menu" ? "0vw" : "-75vw"),
                 width: "75vw",
@@ -63,6 +61,32 @@ var NWAireMenuLinks = React.createClass({
     },
 
     /**
+    * Settings for: _divider
+    *
+    * @function _divider
+    * @return {object}
+    */
+    _divider: function() {
+        return {
+            style: {
+                margin: "2vh 0 2vh 10vw",
+                width: "25vw",
+                height: "1px",
+                backgroundColor: "black"
+            }
+        }
+    },
+
+    /**
+    * Settings for: __info
+    *
+    * @function __info
+    * @return {object}
+    */
+    __info: function() {
+    },
+
+    /**
     * Settings for: __links
     *
     * @function __links
@@ -70,15 +94,14 @@ var NWAireMenuLinks = React.createClass({
     */
     __links: function() {
         let links = [
-            {path: "#about", text: "About Us"},
             {path: "#about", text: "Services"},
             {path: "#about", text: "Contact"}
         ];
         let style = {
-            margin: "3vh 0 0 10vw",
+            margin: "2vh 0 0 10vw",
             color: "black",
             fontFamily: "Monda, sans-serif",
-            fontSize: "30px"
+            fontSize: "20px"
         };
         return links.map(function(item, index) {
             return (
@@ -96,10 +119,14 @@ var NWAireMenuLinks = React.createClass({
     render: function() {
         var {active, ...other} = this.props;
         let _container = this._container(active);
+        let _divider = this._divider();
         let __links = this.__links();
+        let __info = this.__info();
         return (
             <div className="container" style={_container.style}>
                 {__links}
+                <div className="divider" style={_divider.style}></div>
+                {__info}
             </div>
         )
     }    

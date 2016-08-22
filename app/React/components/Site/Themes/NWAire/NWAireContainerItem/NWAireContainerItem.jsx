@@ -15,6 +15,7 @@ var NWAireContainerItemSection = require('../NWAireContainerItemSection/NWAireCo
 var NWAireContainerItemHeader = require('../NWAireContainerItemHeader/NWAireContainerItemHeader.jsx');
 var NWAireContainerItemShortText = require('../NWAireContainerItemShortText/NWAireContainerItemShortText.jsx');
 var NWAireContainerItemFullText = require('../NWAireContainerItemFullText/NWAireContainerItemFullText.jsx');
+var NWAireContainerItemFullTextLink = require('../NWAireContainerItemFullTextLink/NWAireContainerItemFullTextLink.jsx');
 /**
 * The theme for Northwest Aire Services
 *
@@ -55,12 +56,12 @@ var NWAireContainerItem = React.createClass({
     },
 
     /**
-    * Settings for: handleShortTextClick
+    * Settings for: handleFullTextLinkClick
     *
-    * @function handleShortTextClick
+    * @function handleFullTextLinkClick
     * @return {object}
     */
-    handleShortTextClick: function(e, visible) {
+    handleFullTextLinkClick: function(e, visible) {
         e.preventDefault();
         this.setState({
             fullTextVisible: (visible ? false : true)
@@ -97,8 +98,9 @@ var NWAireContainerItem = React.createClass({
                 <NWAireContainerItemImageFeed images={item.ImageFeed.images} />
                 <NWAireContainerItemSection dot={item.Section.dot} text={item.Section.text} />
                 <NWAireContainerItemHeader text={item.Header.text} />
-                <NWAireContainerItemShortText handleShortTextClick={this.handleShortTextClick} fullTextVisible={this.state.fullTextVisible} text={item.ShortText.text}/>
+                <NWAireContainerItemShortText fullTextVisible={this.state.fullTextVisible} handleFullTextLinkClick={this.handleFullTextLinkClick} text={item.ShortText.text}/>
                 <NWAireContainerItemFullText fullTextVisible={this.state.fullTextVisible} text={item.FullText.text}/>
+                <NWAireContainerItemFullTextLink fullTextVisible={this.state.fullTextVisible} handleFullTextLinkClick={this.handleFullTextLinkClick} text={item.FullText.text}/>
             </div>
         )
     }    

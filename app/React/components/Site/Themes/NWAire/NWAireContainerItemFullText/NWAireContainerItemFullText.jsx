@@ -9,7 +9,6 @@
 var React = require('react');
 var Radium = require('radium');
 
-var NWAireSplash = require('../NWAireSplash/NWAireSplash.jsx');
 /**
 * The theme for Northwest Aire Services
 *
@@ -69,7 +68,7 @@ var NWAireContainerItemFullText = React.createClass({
             width: "100%",
             textAlign: "center",
             fontFamily: "Muli, sans-serif",
-            fontSize: "1.75vh",
+            fontSize: "2vh",
             letterSpacing: "1px",
             color: "rgba(0,0,0,0.75)"
         };

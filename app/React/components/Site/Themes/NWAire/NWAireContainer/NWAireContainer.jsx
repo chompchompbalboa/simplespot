@@ -86,6 +86,10 @@ var NWAireContainer = React.createClass({
     _section: function() {
         return {
             style: {
+                zIndex: "-1",
+                position: "absolute",
+                top: "10vh",
+                left: "0vw",
                 width: "100vw",
                 display: "flex",
                 flexFlow: "row wrap",

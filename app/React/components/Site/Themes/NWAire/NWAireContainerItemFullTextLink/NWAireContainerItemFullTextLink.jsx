@@ -1,5 +1,5 @@
 /**
-* NWAireContainerItemShortText.jsx
+* NWAireContainerItemFullTextLink.jsx
 * @copyright simplespot.co, 2016-Present. All Rights Reserved.
 * @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
 *
@@ -8,12 +8,13 @@
 */
 var React = require('react');
 var Radium = require('radium');
+
 /**
 * The theme for Northwest Aire Services
 *
-* @module NWAireContainerItemShortText
+* @module NWAireContainerItemFullTextLink
 */
-var NWAireContainerItemShortText = React.createClass({
+var NWAireContainerItemFullTextLink = React.createClass({
 
     /**
     * Validate props types
@@ -32,7 +33,8 @@ var NWAireContainerItemShortText = React.createClass({
     */
     getDefaultProps: function() {
         return {
-            text: "Here's some short text that probably contains a brief description of the longer text."
+            fullTextVisible: false,
+            fullTextLinkVisible: true
         }
     },
 
@@ -46,7 +48,7 @@ var NWAireContainerItemShortText = React.createClass({
         return {
             style: {
                 width: "100%",
-                height: "100%"
+                color: "rgba(0,0,0,0.75)"
             }
         }
     },
@@ -57,15 +59,18 @@ var NWAireContainerItemShortText = React.createClass({
     * @function _container
     * @return {object}
     */
-    _container: function() {
+    _container: function(visible) {
         return {
             style: {
                 margin: "1vh 0 0 0",
                 width: "100%",
-                height: "100%",
+                display: (visible ? "flex" : "none"),
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
                 textAlign: "center",
                 fontFamily: "Muli, sans-serif",
-                fontSize: "2vh",
+                fontSize: "1.75vh",
                 letterSpacing: "1px",
                 color: "rgba(0,0,0,0.75)"
             }
@@ -73,13 +78,13 @@ var NWAireContainerItemShortText = React.createClass({
     },
 
     /**
-    * Settings for: __continued
+    * Settings for: __text
     *
-    * @function __continued
+    * @function __text
     * @return {object}
     */
-    __continued: function(fullTextVisible) {
-        return (fullTextVisible ? "" : "..");
+    __text: function(fullTextVisible) {
+        return "... read " + (fullTextVisible ? "less" : "more");
     },
 
     /**
@@ -89,17 +94,17 @@ var NWAireContainerItemShortText = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {handleFullTextLinkClick, text, fullTextVisible, ...other} = this.props;
+        var {fullTextVisible, fullTextLinkVisible, handleFullTextLinkClick, ...other} = this.props;
         let _a = this._a();
-        let _container = this._container();
-        let __continued = this.__continued(fullTextVisible);
+        let _container = this._container(fullTextLinkVisible);
+        let __text = this.__text(fullTextVisible);
         return (
             <a href="" className="a" style={_a.style} onClick={(e) => handleFullTextLinkClick(e, fullTextVisible)}>
                 <div className="container" style={_container.style}>
-                    {text}
+                    {__text}
                 </div>
             </a>
         )
     }    
 });
-module.exports = Radium(NWAireContainerItemShortText);
+module.exports = Radium(NWAireContainerItemFullTextLink);

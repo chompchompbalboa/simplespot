@@ -36,6 +36,43 @@ var NWAireMenuLogo = React.createClass({
     },
 
     /**
+    * Get the initial state
+    *
+    * @function getInitialState
+    * @return {object}
+    */
+    getInitialState: function() {
+        return {
+            visible: true,
+            lastScrollTop: 0
+        }
+    },
+
+    /**
+    * Component Did Mount
+    *
+    * @function componentDidMount
+    * @return {object}
+    */
+    componentDidMount: function() {
+        window.addEventListener('scroll', (e) => this.handleScroll(e));
+    },
+
+    /**
+    * Settings for: handleScroll
+    *
+    * @function handleScroll
+    * @return {object}
+    */
+    handleScroll: function(e) {
+        let scrollTop = window.scrollY;
+        this.setState({
+            visible: (scrollTop > this.state.lastScrollTop ? false : true),
+            lastScrollTop: scrollTop
+        });
+    },
+
+    /**
     * Settings for: _a
     *
     * @function _a
@@ -74,15 +111,20 @@ var NWAireMenuLogo = React.createClass({
     * @function _container
     * @return {object}
     */
-    _container: function() {
+    _container: function(visible) {
         return {
             style: {
                 zIndex: "2",
+                position: "fixed",
+                top: (visible ? "0vh" : "-10vh"),
+                left: "0vw",
                 width: "100vw",
                 height: "10vh",
                 display: "flex",
                 justifyContent: "space-between",
-                alignItems: "center"
+                alignItems: "center",
+                backgroundColor: "white",
+                transition: "top 0.25s"
             }
         }
     },
@@ -174,7 +216,7 @@ var NWAireMenuLogo = React.createClass({
         var {active, changeActive, ...other} = this.props;
         let _a = this._a();
         let _emailLogo = this._emailLogo(active);
-        let _container = this._container(active);
+        let _container = this._container(this.state.visible);
         let _leftContainer = this._leftContainer(active);
         let _menuLogo = this._menuLogo(active);
         let _phoneLogo = this._phoneLogo(active);
