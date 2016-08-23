@@ -79,6 +79,7 @@ var NWAireMenuLogo = React.createClass({
             style: {
                 zIndex: "2",
                 position: "fixed",
+                backfaceVisibility: "hidden",
                 top: "0vh",
                 left: "0vw",
                 width: "100vw",

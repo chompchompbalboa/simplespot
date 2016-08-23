@@ -117,7 +117,7 @@ var NWAireContainerItem = React.createClass({
                 opacity: (inView ? "1" : "0"),
                 margin: (inView ? "0 0 3vh 5%" : "5vh 0 3vh 5%"),
                 width: "90%",
-                transition: "opacity 0.5s, margin 0.5s"
+                transition: "opacity 1s, margin 0.5s"
             }
         }
     },

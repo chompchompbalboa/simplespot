@@ -8,6 +8,8 @@
 */
 var React = require('react');
 var Radium = require('radium');
+
+var NWAireBusinessInfo = require('../NWAireBusinessInfo/NWAireBusinessInfo.jsx');
 /**
 * The theme for Northwest Aire Services
 *
@@ -46,6 +48,7 @@ var NWAireMenuLinks = React.createClass({
                 zIndex: "1",
                 padding: "10vh 0 0 0",
                 position: "fixed",
+                backfaceVisibility: "hidden",
                 top: "0vh",
                 left: (active === "menu" ? "0vw" : "-75vw"),
                 width: "75vw",
@@ -84,6 +87,9 @@ var NWAireMenuLinks = React.createClass({
     * @return {object}
     */
     __info: function() {
+        return (
+            <NWAireBusinessInfo />
+        )
     },
 
     /**
@@ -122,10 +128,15 @@ var NWAireMenuLinks = React.createClass({
         let _divider = this._divider();
         let __links = this.__links();
         let __info = this.__info();
-        return (
+        /*return (
             <div className="container" style={_container.style}>
                 {__links}
                 <div className="divider" style={_divider.style}></div>
+                {__info}
+            </div>
+        )*/
+        return (
+            <div className="container" style={_container.style}>
                 {__info}
             </div>
         )
