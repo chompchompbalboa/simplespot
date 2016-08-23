@@ -51,7 +51,27 @@ var NWAireContainerItem = React.createClass({
     */
     getInitialState: function() {
         return {
-            fullTextVisible: false
+            fullTextVisible: false,
+            inView: false
+        }
+    },
+
+    /**
+    * Component did mount
+    *
+    * @function componentDidMount
+    * @return {object}
+    */
+    componentDidMount: function() {
+        let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        let elementBox = this.container.getBoundingClientRect();
+        if ((elementBox.top - (height * 0.05)) < height) {
+            this.setState({
+                inView: true
+            })
+        }
+        else {
+            window.addEventListener('scroll', this.handleScroll)
         }
     },
 
@@ -69,16 +89,35 @@ var NWAireContainerItem = React.createClass({
     },
 
     /**
+    * Settings for: handleScroll
+    *
+    * @function handleScroll
+    * @return {object}
+    */
+    handleScroll: function() {
+        let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        let elementBox = this.container.getBoundingClientRect();
+        if (elementBox.top < (height - (height * 0.05))) {
+            window.removeEventListener('scroll', this.handleScroll);
+            this.setState({
+                inView: true
+            });
+        }
+    },
+
+    /**
     * Settings for: _container
     *
     * @function _container
     * @return {object}
     */
-    _container: function() {
+    _container: function(inView) {
         return {
             style: {
-                margin: "0 0 0 5%",
-                width: "90%"
+                opacity: (inView ? "1" : "0"),
+                margin: (inView ? "0 0 3vh 5%" : "5vh 0 3vh 5%"),
+                width: "90%",
+                transition: "opacity 0.5s, margin 0.5s"
             }
         }
     },
@@ -91,9 +130,9 @@ var NWAireContainerItem = React.createClass({
     */
     render: function() {
         var {item, ...other} = this.props;
-        let _container = this._container();
+        let _container = this._container(this.state.inView);
         return (
-            <div className="container" style={_container.style}>
+            <div ref={(ref) => this.container = (ref)} className="container" style={_container.style}>
                 <NWAireContainerItemCoverImage height={item.CoverImage.height} image={item.CoverImage.image} text={item.CoverImage.text} />
                 <NWAireContainerItemImageFeed images={item.ImageFeed.images} />
                 <NWAireContainerItemSection dot={item.Section.dot} text={item.Section.text} />

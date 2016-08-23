@@ -71,6 +71,78 @@ var NWAireContainer = React.createClass({
                                 //5: "From the most complex installations to routine service and maintenance, Northwest Aire Services, Inc. has the resources and motivation to provide an industry-leading solution. It is our hope to build lifelong relationships with our customers - relationships that will lead to an enduring and mutual satisfaction."
                             }
                         }
+                    },
+                    2: {
+                        CoverImage: {
+                            image: "uploads/57b35f928bcb76f5d65e79fa/seattle.jpg",
+                            height: "60vh",
+                            text: {
+                                1: "Northwest",
+                                2: "Aire",
+                                3: "Services"
+                            }
+                        },
+                        ImageFeed: {
+                            images: {
+                            }
+                        },
+                        Section: {
+                            dot: {
+                                text: "A"
+                            },
+                            text: "About Us"
+                        },
+                        Header: {
+                            text: "Superior HVAC Service"
+                        },
+                        ShortText: {
+                            text: "Founded in 2003, Northwest Aire Services, Inc. prides itself on providing superior HVAC expertise to the Pacific Northwest."
+                        },
+                        FullText: {
+                            text: {
+                                1: "Our goal is to ensure the continued satisfaction of our customers, while providing the most rewarding environment for our employees.",
+                                2: "We offer a wide variety of commercial services, including but not limited to: air conditioning, heating, refrigeration, clean rooms, computer/server rooms, controls, service, maintenance, and installation.",
+                                //3: "Northwest Aire Services, Inc. is a full service commercial contractor and is equipped to competitively bid any job; from retro-fit to new construction, small light commercial buildings to large multi-million dollar projects.",
+                                //4: "Since opening our doors, we have grown by adding a fully functional sheet-metal fabrication shop to our services. We use only the most advanced tools and equipment available, coupled with trained, certified, and experienced technicians enabling us to ensure highly effective and efficient customer service.",
+                                //5: "From the most complex installations to routine service and maintenance, Northwest Aire Services, Inc. has the resources and motivation to provide an industry-leading solution. It is our hope to build lifelong relationships with our customers - relationships that will lead to an enduring and mutual satisfaction."
+                            }
+                        }
+                    },
+                    3: {
+                        CoverImage: {
+                            image: "uploads/57b35f928bcb76f5d65e79fa/seattle.jpg",
+                            height: "60vh",
+                            text: {
+                                1: "Northwest",
+                                2: "Aire",
+                                3: "Services"
+                            }
+                        },
+                        ImageFeed: {
+                            images: {
+                            }
+                        },
+                        Section: {
+                            dot: {
+                                text: "A"
+                            },
+                            text: "About Us"
+                        },
+                        Header: {
+                            text: "Superior HVAC Service"
+                        },
+                        ShortText: {
+                            text: "Founded in 2003, Northwest Aire Services, Inc. prides itself on providing superior HVAC expertise to the Pacific Northwest."
+                        },
+                        FullText: {
+                            text: {
+                                1: "Our goal is to ensure the continued satisfaction of our customers, while providing the most rewarding environment for our employees.",
+                                2: "We offer a wide variety of commercial services, including but not limited to: air conditioning, heating, refrigeration, clean rooms, computer/server rooms, controls, service, maintenance, and installation.",
+                                //3: "Northwest Aire Services, Inc. is a full service commercial contractor and is equipped to competitively bid any job; from retro-fit to new construction, small light commercial buildings to large multi-million dollar projects.",
+                                //4: "Since opening our doors, we have grown by adding a fully functional sheet-metal fabrication shop to our services. We use only the most advanced tools and equipment available, coupled with trained, certified, and experienced technicians enabling us to ensure highly effective and efficient customer service.",
+                                //5: "From the most complex installations to routine service and maintenance, Northwest Aire Services, Inc. has the resources and motivation to provide an industry-leading solution. It is our hope to build lifelong relationships with our customers - relationships that will lead to an enduring and mutual satisfaction."
+                            }
+                        }
                     }
                 }
             }
