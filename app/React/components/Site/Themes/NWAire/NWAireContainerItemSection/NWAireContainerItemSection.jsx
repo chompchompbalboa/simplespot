@@ -48,8 +48,8 @@ var NWAireContainerItemSection = React.createClass({
     * @function _container
     * @return {object}
     */
-    _container: function() {
-        return {
+    _container: function(itemWidth) {
+        let container = {
             style: {
                 margin: "1.5vh 0 0 0",
                 width: "100%",
@@ -58,7 +58,16 @@ var NWAireContainerItemSection = React.createClass({
                 justifyContent: "center",
                 alignItems: "center"
             }
+        };
+        if(itemWidth.lg === "100vw") {
+            container.style["@media (min-width: 64em)"] = {
+                margin: "0 0 1% 0",
+                width: "33%",
+                height: "50%",
+                alignItems: "flex-end"
+            }
         }
+        return container;
     },
 
     /**
@@ -79,7 +88,11 @@ var NWAireContainerItemSection = React.createClass({
                 alignItems: "center",
                 fontFamily: "Monda, sans-serif",
                 fontSize: "1.25vh",
-                color: "white"
+                color: "white",
+                "@media (min-width: 64em)": {
+                    width: "2.25vh",
+                    height: "2.25vh"
+                }
             },
             text: dot.text
         }
@@ -100,7 +113,10 @@ var NWAireContainerItemSection = React.createClass({
                 color: "rgba(0,0,0,0.25)",
                 display: "flex",
                 justifyContent: "center",
-                alignItems: "center"
+                alignItems: "flex-end",
+                "@media (min-width: 64em)": {
+                    margin: "0 0 0 1vw"
+                }
             },
             text: text
         }
@@ -113,8 +129,8 @@ var NWAireContainerItemSection = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {dot, text, ...other} = this.props;
-        let _container = this._container();
+        var {dot, itemWidth, text, ...other} = this.props;
+        let _container = this._container(itemWidth);
         let _dot = this._dot(dot);
         let _text = this._text(text);
         return (

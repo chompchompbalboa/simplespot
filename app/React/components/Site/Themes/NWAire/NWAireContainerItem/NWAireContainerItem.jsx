@@ -13,7 +13,7 @@ var NWAireContainerItemCoverImage = require('../NWAireContainerItemCoverImage/NW
 var NWAireContainerItemImageFeed = require('../NWAireContainerItemImageFeed/NWAireContainerItemImageFeed.jsx');
 var NWAireContainerItemSection = require('../NWAireContainerItemSection/NWAireContainerItemSection.jsx');
 var NWAireContainerItemHeader = require('../NWAireContainerItemHeader/NWAireContainerItemHeader.jsx');
-var NWAireContainerItemShortText = require('../NWAireContainerItemShortText/NWAireContainerItemShortText.jsx');
+var NWAireContainerItemText = require('../NWAireContainerItemText/NWAireContainerItemText.jsx');
 var NWAireContainerItemFullText = require('../NWAireContainerItemFullText/NWAireContainerItemFullText.jsx');
 var NWAireContainerItemFullTextLink = require('../NWAireContainerItemFullTextLink/NWAireContainerItemFullTextLink.jsx');
 /**
@@ -51,7 +51,6 @@ var NWAireContainerItem = React.createClass({
     */
     getInitialState: function() {
         return {
-            fullTextVisible: false,
             inView: false
         }
     },
@@ -73,19 +72,6 @@ var NWAireContainerItem = React.createClass({
         else {
             window.addEventListener('scroll', this.handleScroll)
         }
-    },
-
-    /**
-    * Settings for: handleFullTextLinkClick
-    *
-    * @function handleFullTextLinkClick
-    * @return {object}
-    */
-    handleFullTextLinkClick: function(e, visible) {
-        e.preventDefault();
-        this.setState({
-            fullTextVisible: (visible ? false : true)
-        });
     },
 
     /**
@@ -111,13 +97,75 @@ var NWAireContainerItem = React.createClass({
     * @function _container
     * @return {object}
     */
-    _container: function(inView) {
+    _container: function(inView, width, marginTop) {
         return {
             style: {
                 opacity: (inView ? "1" : "0"),
-                margin: (inView ? "0 0 3vh 5%" : "5vh 0 3vh 5%"),
-                width: "90%",
-                transition: "opacity 1s, margin 0.5s"
+                marginTop: (inView ? "0" : "5vh"),
+                marginBottom: "5vh",
+                width: width.sm,
+                transition: "opacity 1s, margin 0.5s",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    width: width.md
+                },
+                "@media (min-width: 64em)": {
+                    width: width.lg,
+                    marginTop: (inView ? marginTop : "calc(" + marginTop + " + 5vh)"),
+                }
+            }
+        }
+    },
+
+    /**
+    * Settings for: _fullWidthContainer
+    *
+    * @function _fullWidthContainer
+    * @return {object}
+    */
+    _fullWidthContainer: function(width) {
+        let fullWidthContainer = {
+            style: {
+                display: "flex",
+                flexFlow: "column wrap",
+                justifyContent: "center",
+                alignItems: "flex-start"
+            }
+        };
+        if (width.lg === "100vw") {
+            fullWidthContainer.style["@media (min-width: 64em)"] = {
+                height: "40vh"
+            }
+        }
+        return fullWidthContainer;
+    },
+
+    /**
+    * Settings for: _marginContainer
+    *
+    * @function _marginContainer
+    * @return {object}
+    */
+    _marginContainer: function(width) {
+        let current = {
+            margin: {},
+            width: {}
+        }
+        for (let i in width) {
+            current.margin[i] = ((100 - Number(width[i].replace("%", ""))) / 2) + "%";
+            current.width[i] = width[i];
+        }
+        return {
+            style: {
+                marginLeft: current.margin.sm,
+                width: current.width.sm,
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    marginLeft: current.margin.md,
+                    width: current.width.md
+                },
+                "@media (min-width: 64em)": {
+                    marginLeft: current.margin.lg,
+                    width: current.width.lg
+                }
             }
         }
     },
@@ -130,16 +178,21 @@ var NWAireContainerItem = React.createClass({
     */
     render: function() {
         var {item, ...other} = this.props;
-        let _container = this._container(this.state.inView);
+        let itemWidth = item.Item.width;
+        let _container = this._container(this.state.inView, itemWidth, item.Item.marginTop);
+        let _fullWidthContainer = this._fullWidthContainer(itemWidth);
+        let _marginContainer = this._marginContainer(item.Item.marginWidth);
         return (
             <div ref={(ref) => this.container = (ref)} className="container" style={_container.style}>
-                <NWAireContainerItemCoverImage height={item.CoverImage.height} image={item.CoverImage.image} text={item.CoverImage.text} />
-                <NWAireContainerItemImageFeed images={item.ImageFeed.images} />
-                <NWAireContainerItemSection dot={item.Section.dot} text={item.Section.text} />
-                <NWAireContainerItemHeader text={item.Header.text} />
-                <NWAireContainerItemShortText fullTextVisible={this.state.fullTextVisible} handleFullTextLinkClick={this.handleFullTextLinkClick} text={item.ShortText.text}/>
-                <NWAireContainerItemFullText fullTextVisible={this.state.fullTextVisible} text={item.FullText.text}/>
-                <NWAireContainerItemFullTextLink fullTextVisible={this.state.fullTextVisible} handleFullTextLinkClick={this.handleFullTextLinkClick} text={item.FullText.text}/>
+                <div className="marginContainer" style={_marginContainer.style}>
+                    <NWAireContainerItemCoverImage height={item.CoverImage.height} image={item.CoverImage.image} text={item.CoverImage.text} />
+                    <NWAireContainerItemImageFeed images={item.ImageFeed.images} />
+                    <div className="fullWidthContainer" style={_fullWidthContainer.style}>
+                        <NWAireContainerItemSection dot={item.Section.dot} itemWidth={itemWidth} text={item.Section.text} />
+                        <NWAireContainerItemHeader itemWidth={itemWidth} text={item.Header.text} />
+                        <NWAireContainerItemText itemWidth={itemWidth} text={item.Text.text}/>
+                    </div>
+                </div>
             </div>
         )
     }    

@@ -63,7 +63,10 @@ var NWAireMenuLogo = React.createClass({
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center center",
                 backgroundSize: "cover",
-                backgroundImage: "url(uploads/57b35f928bcb76f5d65e79fa/emailLogo.png)"
+                backgroundImage: "url(uploads/57b35f928bcb76f5d65e79fa/emailLogo.png)",
+                "@media (min-width: 64em)": {
+                    margin: "0 2.5vw 0 0"
+                }
             }
         }
     },
@@ -127,7 +130,10 @@ var NWAireMenuLogo = React.createClass({
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center center",
                 backgroundSize: "cover",
-                backgroundImage: backgroundImage
+                backgroundImage: backgroundImage,
+                "@media (min-width: 64em)": {
+                    margin: "0 0 0 2.5vw"
+                }
             }
         }
     },
@@ -147,7 +153,10 @@ var NWAireMenuLogo = React.createClass({
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center center",
                 backgroundSize: "cover",
-                backgroundImage: "url(uploads/57b35f928bcb76f5d65e79fa/phoneLogo.png)"
+                backgroundImage: "url(uploads/57b35f928bcb76f5d65e79fa/phoneLogo.png)",
+                "@media (min-width: 64em)": {
+                    margin: "0 2.5vw 0 0"
+                }
             }
         }
     },
@@ -193,10 +202,10 @@ var NWAireMenuLogo = React.createClass({
                     </a>
                 </div>
                 <div className="rightContainer" style={_rightContainer.style}>
-                    <a href="" style={_a.style} onClick={(e) => changeActive(e, active)}>
+                    <a href="mailto:kyle@nwaireservices.com" style={_a.style}>
                         <div className="emailLogo" style={_emailLogo.style}></div>
                     </a>
-                    <a href="" style={_a.style} onClick={(e) => changeActive(e, active)}>
+                    <a href="tel:2062412657" style={_a.style}>
                         <div className="phoneLogo" style={_phoneLogo.style}></div>
                     </a>
                 </div>

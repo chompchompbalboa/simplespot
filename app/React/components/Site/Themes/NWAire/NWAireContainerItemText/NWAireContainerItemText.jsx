@@ -1,5 +1,5 @@
 /**
-* NWAireContainerItemFullText.jsx
+* NWAireContainerItemText.jsx
 * @copyright simplespot.co, 2016-Present. All Rights Reserved.
 * @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
 *
@@ -8,13 +8,12 @@
 */
 var React = require('react');
 var Radium = require('radium');
-
 /**
 * The theme for Northwest Aire Services
 *
-* @module NWAireContainerItemFullText
+* @module NWAireContainerItemText
 */
-var NWAireContainerItemFullText = React.createClass({
+var NWAireContainerItemText = React.createClass({
 
     /**
     * Validate props types
@@ -33,7 +32,6 @@ var NWAireContainerItemFullText = React.createClass({
     */
     getDefaultProps: function() {
         return {
-            text: ""
         }
     },
 
@@ -43,21 +41,29 @@ var NWAireContainerItemFullText = React.createClass({
     * @function _container
     * @return {object}
     */
-    _container: function(itemWidth, visible) {
-        let container = {
+    _container: function(itemWidth) {
+        let container =  {
             style: {
+                margin: "1vh 0 0 0",
                 width: "100%",
-                display: (visible ? "flex" : "none"),
-                flexDirection: "column",
+                display: "flex",
+                flexFlow: "column wrap",
                 justifyContent: "center",
-                alignItems: "center"
+                alignItems: "flex-start",
+                textAlign: "center",
+                fontFamily: "Muli, sans-serif",
+                fontSize: "2vh",
+                letterSpacing: "1px",
+                color: "rgba(0,0,0,0.75)",
+                "@media (min-width: 64em)": {
+                    fontSize: "2.25vh"
+                }
             }
         }
         if (itemWidth.lg === "100vw") {
-            container.style["@media (min-width: 64em)"] = {
-                width: "33%",
-                height: "40%"
-            }
+            container.style["@media (min-width: 64em)"].width = "66%";
+            container.style["@media (min-width: 64em)"].height = "100%";
+            container.style["@media (min-width: 64em)"].overflowX = "hidden";
         }
         return container;
     },
@@ -68,17 +74,18 @@ var NWAireContainerItemFullText = React.createClass({
     * @function __text
     * @return {object}
     */
-    __text: function(text) {
+    __text: function(itemWidth, text) {
         let payload = [];
         let style = {
-            margin: "1vh 0 0 0",
-            width: "100%",
-            textAlign: "center",
-            fontFamily: "Muli, sans-serif",
-            fontSize: "2vh",
-            letterSpacing: "1px",
-            color: "rgba(0,0,0,0.75)"
-        };
+                margin: "2vh 0 0 0",
+                width: "100%"
+        }
+        if (itemWidth.lg === "100vw") {
+            style["@media (min-width: 64em)"] = {
+                margin: "2vh 1.5% 0 1.5%",
+                width: "47%"
+            }
+        }
         for (let i in text) {
             payload.push(
                 <div key={i} style={style}>{text[i]}</div>
@@ -94,9 +101,9 @@ var NWAireContainerItemFullText = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {fullTextVisible, itemWidth, text, ...other} = this.props;
-        let _container = this._container(itemWidth, fullTextVisible);
-        let __text = this.__text(text);
+        var {itemWidth, text, ...other} = this.props;
+        let _container = this._container(itemWidth);
+        let __text = this.__text(itemWidth, text)
         return (
             <div className="container" style={_container.style}>
                 {__text}
@@ -104,4 +111,4 @@ var NWAireContainerItemFullText = React.createClass({
         )
     }    
 });
-module.exports = Radium(NWAireContainerItemFullText);
+module.exports = Radium(NWAireContainerItemText);

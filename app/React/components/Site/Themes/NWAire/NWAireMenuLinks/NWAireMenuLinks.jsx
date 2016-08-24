@@ -58,7 +58,13 @@ var NWAireMenuLinks = React.createClass({
                 justifyContent: "flex-start",
                 alignItems: "flex-start",
                 backgroundColor: "rgba(255,255,255,0.85)",
-                transition: "left 0.25s"
+                transition: "left 0.25s",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    width: "60vw"
+                },
+                "@media (min-width: 64em)": {
+                    width: "50vw"
+                }
             }
         }
     },

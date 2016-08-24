@@ -42,13 +42,19 @@ var NWAireContainerItemShortText = React.createClass({
     * @function _a
     * @return {object}
     */
-    _a: function() {
-        return {
+    _a: function(itemWidth) {
+        let a = {
             style: {
-                width: "100%",
-                height: "100%"
+                width: "100%"
             }
         }
+        if (itemWidth.lg === "100vw") {
+            a.style["@media (min-width: 64em)"] = {
+                width: "30%"
+            }
+        }
+        return a;
+
     },
 
     /**
@@ -57,12 +63,11 @@ var NWAireContainerItemShortText = React.createClass({
     * @function _container
     * @return {object}
     */
-    _container: function() {
-        return {
+    _container: function(itemWidth) {
+        let container =  {
             style: {
                 margin: "1vh 0 0 0",
                 width: "100%",
-                height: "100%",
                 textAlign: "center",
                 fontFamily: "Muli, sans-serif",
                 fontSize: "2vh",
@@ -70,16 +75,7 @@ var NWAireContainerItemShortText = React.createClass({
                 color: "rgba(0,0,0,0.75)"
             }
         }
-    },
-
-    /**
-    * Settings for: __continued
-    *
-    * @function __continued
-    * @return {object}
-    */
-    __continued: function(fullTextVisible) {
-        return (fullTextVisible ? "" : "..");
+        return container;
     },
 
     /**
@@ -89,10 +85,9 @@ var NWAireContainerItemShortText = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {handleFullTextLinkClick, text, fullTextVisible, ...other} = this.props;
-        let _a = this._a();
-        let _container = this._container();
-        let __continued = this.__continued(fullTextVisible);
+        var {fullTextVisible, handleFullTextLinkClick, itemWidth, text, ...other} = this.props;
+        let _a = this._a(itemWidth);
+        let _container = this._container(itemWidth);
         return (
             <a href="" className="a" style={_a.style} onClick={(e) => handleFullTextLinkClick(e, fullTextVisible)}>
                 <div className="container" style={_container.style}>

@@ -23,7 +23,7 @@ var NWAireContainerItemCoverImage = React.createClass({
     * @return {object}
     */
     propTypes: {
-        height: React.PropTypes.string.isRequired,
+        height: React.PropTypes.object.isRequired,
         image: React.PropTypes.string.isRequired,
         text: React.PropTypes.object.isRequired,
     },
@@ -37,7 +37,11 @@ var NWAireContainerItemCoverImage = React.createClass({
     getDefaultProps: function() {
         return {
             image: "uploads/57b35f928bcb76f5d65e79fa/seattle.jpg",
-            height: "40vh",
+            height: {
+                sm: "40vh",
+                md: "40vh",
+                lg: "40vh"
+            },
             text: {
             }
         }
@@ -49,18 +53,24 @@ var NWAireContainerItemCoverImage = React.createClass({
     * @function _imageContainer
     * @return {object}
     */
-    _imageContainer: function(height, image) {
+    _imageContainer: function(height, image, width) {
         return {
             style: {
                 width: "100%",
-                height: height,
+                height: height.sm,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center center",
                 backgroundSize: "cover",
-                backgroundImage: "linear-gradient(to top, rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url(" + image + ")"
+                backgroundImage: "linear-gradient(to top, rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url(" + image + ")",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    height: height.md
+                },
+                "@media (min-width: 64em)": {
+                    height: height.lg
+                }
             }
         }
     },

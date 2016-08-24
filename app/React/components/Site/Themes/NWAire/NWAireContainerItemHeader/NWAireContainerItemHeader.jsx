@@ -8,9 +8,6 @@
 */
 var React = require('react');
 var Radium = require('radium');
-
-import randomImport from '../../../../../utils/random';
-const random = new randomImport();
 /**
 * The theme for Northwest Aire Services
 *
@@ -45,17 +42,25 @@ var NWAireContainerItemHeader = React.createClass({
     * @function _container
     * @return {object}
     */
-    _container: function() {
-        return {
+    _container: function(itemWidth) {
+        let container =  {
             style: {
                 width: "100%",
                 textAlign: "center",
                 fontFamily: "Muli, sans-serif",
                 fontWeight: "bold",
                 fontSize: "2.25vh",
-                letterSpacing: "1px"
+                letterSpacing: "1px",
+                "@media (min-width: 64em)": {
+                    fontSize: "3vh"
+                }
             }
+        };
+        if (itemWidth.lg === "100vw") {
+            container.style["@media (min-width: 64em)"].width = "33%";
+            container.style["@media (min-width: 64em)"].height = "40%";
         }
+        return container;
     },
 
     /**
@@ -65,8 +70,8 @@ var NWAireContainerItemHeader = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {text, ...other} = this.props;
-        let _container = this._container();
+        var {itemWidth, text, ...other} = this.props;
+        let _container = this._container(itemWidth);
         return (
             <div className="container" style={_container.style}>
                 {text}   
