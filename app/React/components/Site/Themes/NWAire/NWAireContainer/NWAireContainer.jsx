@@ -34,245 +34,7 @@ var NWAireContainer = React.createClass({
     */
     getDefaultProps: function() {
         return {
-            items: {
-                "/": {
-                    1: {
-                        Item: {
-                            marginWidth: {
-                                sm: "90%",
-                                md: "90%",
-                                lg: "95%"
-                            },
-                            width: {
-                                sm: "100vw",
-                                md: "100vw",
-                                lg: "100vw"
-                            }
-                        },
-                        CoverImage: {
-                            image: "uploads/57b35f928bcb76f5d65e79fa/seattle.jpg",
-                            height: {
-                                sm: "60vh",
-                                md: "60vh",
-                                lg: "85vh"
-                            },
-                            text: {
-                                1: "Northwest",
-                                2: "Aire",
-                                3: "Services"
-                            }
-                        },
-                        ImageFeed: {
-                            images: {
-                            }
-                        },
-                        Section: {
-                            dot: {
-                                text: "A"
-                            },
-                            text: "About Us"
-                        },
-                        Header: {
-                            text: "Superior HVAC Service"
-                        },
-                        Text: {
-                            text: {
-                                1: "Founded in 2003, Northwest Aire Services, Inc. prides itself on providing superior HVAC expertise to the Pacific Northwest.",
-                                2: "Our goal is to ensure the continued satisfaction of our customers, while providing the most rewarding environment for our employees.",
-                                3: "We offer a wide variety of commercial services, including but not limited to: air conditioning, heating, refrigeration, clean rooms, computer/server rooms, controls, service, maintenance, and installation.", 
-                            }
-                        }
-                    },
-                    2: {
-                        Item: {
-                            marginWidth: {
-                                sm: "90%",
-                                md: "90%",
-                                lg: "90%"
-                            },
-                            width: {
-                                sm: "100vw",
-                                md: "100vw",
-                                lg: "50vw"
-                            }
-                        },
-                        CoverImage: {
-                            image: "uploads/57b35f928bcb76f5d65e79fa/seattle.jpg",
-                            height: {
-                                sm: "60vh",
-                                md: "60vh",
-                                lg: "60vh"
-                            },
-                            text: {
-                                1: "Northwest",
-                                2: "Aire",
-                                3: "Services"
-                            }
-                        },
-                        ImageFeed: {
-                            images: {
-                            }
-                        },
-                        Section: {
-                            dot: {
-                                text: "A"
-                            },
-                            text: "About Us"
-                        },
-                        Header: {
-                            text: "Superior HVAC Service"
-                        },
-                        Text: {
-                            text: {
-                                1: "Founded in 2003, Northwest Aire Services, Inc. prides itself on providing superior HVAC expertise to the Pacific Northwest.",
-                                2: "Our goal is to ensure the continued satisfaction of our customers, while providing the most rewarding environment for our employees.",
-                                3: "We offer a wide variety of commercial services, including but not limited to: air conditioning, heating, refrigeration, clean rooms, computer/server rooms, controls, service, maintenance, and installation.", 
-                            }
-                        }
-                    },
-                    3: {
-                        Item: {
-                            marginWidth: {
-                                sm: "90%",
-                                md: "90%",
-                                lg: "90%"
-                            },
-                            width: {
-                                sm: "100vw",
-                                md: "100vw",
-                                lg: "50vw"
-                            }
-                        },
-                        CoverImage: {
-                            image: "uploads/57b35f928bcb76f5d65e79fa/seattle.jpg",
-                            height: {
-                                sm: "40vh",
-                                md: "40vh",
-                                lg: "40vh"
-                            },
-                            text: {
-                                1: "Northwest",
-                                2: "Aire",
-                                3: "Services"
-                            }
-                        },
-                        ImageFeed: {
-                            images: {
-                            }
-                        },
-                        Section: {
-                            dot: {
-                                text: "A"
-                            },
-                            text: "About Us"
-                        },
-                        Header: {
-                            text: "Superior HVAC Service"
-                        },
-                        Text: {
-                            text: {
-                                1: "Founded in 2003, Northwest Aire Services, Inc. prides itself on providing superior HVAC expertise to the Pacific Northwest.",
-                                //2: "Our goal is to ensure the continued satisfaction of our customers, while providing the most rewarding environment for our employees.",
-                                //3: "We offer a wide variety of commercial services, including but not limited to: air conditioning, heating, refrigeration, clean rooms, computer/server rooms, controls, service, maintenance, and installation.", 
-                            }
-                        }
-                    },
-                    4: {
-                        Item: {
-                            marginWidth: {
-                                sm: "90%",
-                                md: "90%",
-                                lg: "90%"
-                            },
-                            width: {
-                                sm: "100vw",
-                                md: "100vw",
-                                lg: "50vw"
-                            }
-                        },
-                        CoverImage: {
-                            image: "uploads/57b35f928bcb76f5d65e79fa/seattle.jpg",
-                            height: {
-                                sm: "40vh",
-                                md: "40vh",
-                                lg: "40vh"
-                            },
-                            text: {
-                                1: "Northwest",
-                                2: "Aire",
-                                3: "Services"
-                            }
-                        },
-                        ImageFeed: {
-                            images: {
-                            }
-                        },
-                        Section: {
-                            dot: {
-                                text: "A"
-                            },
-                            text: "About Us"
-                        },
-                        Header: {
-                            text: "Superior HVAC Service"
-                        },
-                        Text: {
-                            text: {
-                                1: "Founded in 2003, Northwest Aire Services, Inc. prides itself on providing superior HVAC expertise to the Pacific Northwest.",
-                                2: "Our goal is to ensure the continued satisfaction of our customers, while providing the most rewarding environment for our employees.",
-                                3: "We offer a wide variety of commercial services, including but not limited to: air conditioning, heating, refrigeration, clean rooms, computer/server rooms, controls, service, maintenance, and installation.", 
-                            }
-                        }
-                    },
-                    5: {
-                        Item: {
-                            marginWidth: {
-                                sm: "90%",
-                                md: "90%",
-                                lg: "90%"
-                            },
-                            width: {
-                                sm: "100vw",
-                                md: "100vw",
-                                lg: "50vw"
-                            }
-                        },
-                        CoverImage: {
-                            image: "uploads/57b35f928bcb76f5d65e79fa/seattle.jpg",
-                            height: {
-                                sm: "40vh",
-                                md: "40vh",
-                                lg: "40vh"
-                            },
-                            text: {
-                                1: "Northwest",
-                                2: "Aire",
-                                3: "Services"
-                            }
-                        },
-                        ImageFeed: {
-                            images: {
-                            }
-                        },
-                        Section: {
-                            dot: {
-                                text: "A"
-                            },
-                            text: "About Us"
-                        },
-                        Header: {
-                            text: "Superior HVAC Service"
-                        },
-                        Text: {
-                            text: {
-                                1: "Founded in 2003, Northwest Aire Services, Inc. prides itself on providing superior HVAC expertise to the Pacific Northwest.",
-                                2: "Our goal is to ensure the continued satisfaction of our customers, while providing the most rewarding environment for our employees.",
-                                3: "We offer a wide variety of commercial services, including but not limited to: air conditioning, heating, refrigeration, clean rooms, computer/server rooms, controls, service, maintenance, and installation.", 
-                            }
-                        }
-                    }
-                }
-            }
+            site: {}
         }
     },
 
@@ -323,6 +85,18 @@ var NWAireContainer = React.createClass({
                     marginTop = (currentRight - (currentLeft - adjustment) <= 0 ? currentRight - (currentLeft - adjustment) : 0);
                     currentRight = currentRight + imageHeight;
                 }
+                // Add the necessary height if an image feed is present
+                if (Number(i) > 3) {
+                    if (Object.keys(items[String(Number(i) - 2)].ImageFeed.images).length > 0) {
+                        marginTop = marginTop + 12;
+                        if(column === "left") {
+                            currentLeft = currentLeft + 12;
+                        }
+                        else {
+                            currentRight = currentRight + 12;
+                        }
+                    }
+                }
                 column = (column === "left" ? "right" : "left");
             }
             else {
@@ -334,6 +108,7 @@ var NWAireContainer = React.createClass({
             payload.push(
                 <NWAireContainerItem
                     key={i}
+                    id={i}
                     item={items[i]}
                 />
             )
@@ -348,9 +123,9 @@ var NWAireContainer = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {items, site, ...other} = this.props;
+        var {site, ...other} = this.props;
         let _section = this._section();
-        let __items = this.__items(items[site.display.path]);
+        let __items = this.__items(site.items);
         return (
             <section className="section" style={_section.style}>
                 {__items}

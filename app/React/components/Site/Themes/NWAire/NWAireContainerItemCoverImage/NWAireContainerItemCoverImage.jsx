@@ -24,8 +24,7 @@ var NWAireContainerItemCoverImage = React.createClass({
     */
     propTypes: {
         height: React.PropTypes.object.isRequired,
-        image: React.PropTypes.string.isRequired,
-        text: React.PropTypes.object.isRequired,
+        image: React.PropTypes.string.isRequired
     },
 
     /**

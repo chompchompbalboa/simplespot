@@ -177,7 +177,7 @@ var NWAireContainerItem = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {item, ...other} = this.props;
+        var {id, item, ...other} = this.props;
         let itemWidth = item.Item.width;
         let _container = this._container(this.state.inView, itemWidth, item.Item.marginTop);
         let _fullWidthContainer = this._fullWidthContainer(itemWidth);
@@ -186,7 +186,7 @@ var NWAireContainerItem = React.createClass({
             <div ref={(ref) => this.container = (ref)} className="container" style={_container.style}>
                 <div className="marginContainer" style={_marginContainer.style}>
                     <NWAireContainerItemCoverImage height={item.CoverImage.height} image={item.CoverImage.image} text={item.CoverImage.text} />
-                    <NWAireContainerItemImageFeed images={item.ImageFeed.images} />
+                    <NWAireContainerItemImageFeed id={id} images={item.ImageFeed.images} />
                     <div className="fullWidthContainer" style={_fullWidthContainer.style}>
                         <NWAireContainerItemSection dot={item.Section.dot} itemWidth={itemWidth} text={item.Section.text} />
                         <NWAireContainerItemHeader itemWidth={itemWidth} text={item.Header.text} />

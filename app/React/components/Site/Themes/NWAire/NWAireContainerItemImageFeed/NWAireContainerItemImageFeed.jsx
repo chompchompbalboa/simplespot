@@ -9,6 +9,7 @@
 var React = require('react');
 var Radium = require('radium');
 
+var contentActions = require('../../../../../actions/contentActions');
 /**
 * The theme for Northwest Aire Services
 *
@@ -23,7 +24,6 @@ var NWAireContainerItemImageFeed = React.createClass({
     * @return {object}
     */
     propTypes: {
-        images: React.PropTypes.object.isRequired
     },
 
     /**
@@ -36,6 +36,19 @@ var NWAireContainerItemImageFeed = React.createClass({
         return {
             images: {}
         }
+    },
+
+    /**
+    * Handle a click on one of the cover images
+    *
+    * @function handleClick
+    * @return {object}
+    */
+    handleClick: function(id, image) {
+        let changes = [
+            {key: "site.items." + id + ".CoverImage.image", value: image}
+        ];
+        contentActions.changeContent(changes);
     },
 
     /**
@@ -63,12 +76,13 @@ var NWAireContainerItemImageFeed = React.createClass({
     * @function __images
     * @return {object}
     */
-    __images: function(images) {
+    __images: function(id, images) {
         let payload = [];
         let length = Object.keys(images).length;
         let width = 100 / length + "%";
         for (let i in images) {
             let style = {
+                cursor: "pointer",
                 margin: "0.5vh 0 0 0",
                 width: width,
                 height: "100%",
@@ -78,7 +92,7 @@ var NWAireContainerItemImageFeed = React.createClass({
                 backgroundImage: "linear-gradient(to top, rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url(" + images[i] + ")"
             }
             payload.push(
-                <div key={i} style={style}></div>
+                <div key={i} style={style} onClick={() => this.handleClick(id, images[i])}></div>
             )
         }
         return payload;
@@ -91,9 +105,9 @@ var NWAireContainerItemImageFeed = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {images, ...other} = this.props;
+        var {id, images, ...other} = this.props;
         let _container = this._container(images);
-        let __images = this.__images(images);
+        let __images = this.__images(id, images);
         return (
             <div className="container" style={_container.style}>
                 {__images}

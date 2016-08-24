@@ -56,7 +56,7 @@ var NWAireContainerItemText = React.createClass({
                 letterSpacing: "1px",
                 color: "rgba(0,0,0,0.75)",
                 "@media (min-width: 64em)": {
-                    fontSize: "2.25vh"
+                    fontSize: "2.5vh"
                 }
             }
         }
