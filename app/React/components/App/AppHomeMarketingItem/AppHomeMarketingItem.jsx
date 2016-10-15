@@ -23,10 +23,7 @@ class AppHomeMarketingItem extends React.Component {
     * @requires {object} props
     */
     constructor(props) {
-        super(props);
-        this.state = {
-            inView: false
-        }
+        super(props)
     }
 
     /**
@@ -68,42 +65,6 @@ class AppHomeMarketingItem extends React.Component {
     }
 
     /**
-    * Component did mount
-    *
-    * @function componentDidMount
-    * @return {object}
-    */
-    componentDidMount() {
-        let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-        let elementBox = this.div.getBoundingClientRect();
-        if ((elementBox.top - (height * 0.01)) < height) {
-            this.setState({
-                inView: true
-            })
-        }
-        else {
-            window.addEventListener('scroll', this.handleScroll)
-        }
-    }
-
-    /**
-    * Settings for: handleScroll
-    *
-    * @function handleScroll
-    * @return {object}
-    */
-    handleScroll() {
-        let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-        let elementBox = this.container.getBoundingClientRect();
-        if (elementBox.top < (height - (height * 0.01))) {
-            window.removeEventListener('scroll', this.handleScroll);
-            this.setState({
-                inView: true
-            });
-        }
-    }
-
-    /**
     * Settings for: _div
     *
     * @function _div
@@ -136,14 +97,13 @@ class AppHomeMarketingItem extends React.Component {
     _image(image) {
         return {
             style: {
-                margin: (this.state.inView ? "7.5vh 0 0 0" : "7.5vh 0 0 200vw"),
+                margin: "7.5vh 0 0 0",
                 width: image.width['0em'],
                 height: image.height['0em'],
                 backgroundPosition: "center center",
                 backgroundRepeat: "no repeat",
                 backgroundSize: "cover",
                 backgroundImage: "url(" + image.url + ")",
-                transition: "margin 0.75s ease",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
@@ -161,11 +121,9 @@ class AppHomeMarketingItem extends React.Component {
     _largeText(largeText) {
         return {
             style: {
-                margin: (this.state.inView ? "0 0 0 0" : "0 0 0 200vw"),
                 fontSize: "6vw",
                 fontWeight: "300",
                 letterSpacing: "0.5vw",
-                transition: "margin 0.5s ease",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
@@ -184,8 +142,6 @@ class AppHomeMarketingItem extends React.Component {
     _smallText(smallText) {
         return {
             style: {
-                margin: (this.state.inView ? "0 0 0 0" : "0 0 0 200vw"),
-                transition: "margin 0.6s ease",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
@@ -247,8 +203,7 @@ class AppHomeMarketingItem extends React.Component {
     _textDividerContainer() {
         return {
             style: {
-                margin: (this.state.inView ? "3.5vh 0 3.5vh 0" : "3.5vh 0 3.5vh 200vw"),
-                transition: "margin 0.75s ease",
+                margin: "3.5vh 0 3.5vh 0",
                 width: "85vw",
                 display: "flex",
                 justifyContent: "flex-start",
@@ -278,7 +233,7 @@ class AppHomeMarketingItem extends React.Component {
         let _textDividerContainer = this._textDividerContainer();
 
         return (
-            <div ref={(c) => this.div = c} style={_div.style}>
+            <div style={_div.style}>
                 <div className="textContainer" style={_textContainer.style}>
                     <div className="largeText" style={_largeText.style}>{_largeText.text}</div>
                     <div className="textDividerContainer" style={_textDividerContainer.style}>
