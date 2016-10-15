@@ -38,10 +38,12 @@ class AppHomeMarketingItem extends React.Component {
         image: React.PropTypes.shape({
             url: React.PropTypes.string.isRequired,
             height: React.PropTypes.shape({
-                "0em": React.PropTypes.string.isRequired
+                "0em": React.PropTypes.string.isRequired,
+                "48em": React.PropTypes.string.isRequired
             }).isRequired,
             width: React.PropTypes.shape({
-                "0em": React.PropTypes.string.isRequired
+                "0em": React.PropTypes.string.isRequired,
+                "48em": React.PropTypes.string.isRequired
             }).isRequired
         }).isRequired
     }
@@ -58,10 +60,12 @@ class AppHomeMarketingItem extends React.Component {
         image: {
             url: "stock/examples/1.png",
             height: {
-                "0em": "33vw"
+                "0em": "33vw",
+                "48em": "26vw"
             },
             width: {
-                "0em": "85vw"
+                "0em": "85vw",
+                "48em": "70vw"
             }
         }
     }
@@ -81,7 +85,6 @@ class AppHomeMarketingItem extends React.Component {
                 justifyContent: "flex-start",
                 alignItems: "center",
                 "@media (min-width: 48em) and (max-width: 64em)": {
-                    flexDirection: "row"
                 },
                 "@media (min-width: 64em)": {
                     flexDirection: "row"
@@ -107,6 +110,9 @@ class AppHomeMarketingItem extends React.Component {
                 backgroundSize: "cover",
                 backgroundImage: "url(" + image.url + ")",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    margin: "5vh 0 2.5vh 0",
+                    width: image.width['48em'],
+                    height: image.height['48em']
                 },
                 "@media (min-width: 64em)": {
                 }
@@ -127,6 +133,8 @@ class AppHomeMarketingItem extends React.Component {
                 fontWeight: "300",
                 letterSpacing: "0.5vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    width: "60vw",
+                    fontSize: "4vw"
                 },
                 "@media (min-width: 64em)": {
                 }
@@ -145,6 +153,7 @@ class AppHomeMarketingItem extends React.Component {
         return {
             style: {
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    width: "65vw",
                 },
                 "@media (min-width: 64em)": {
                 }
@@ -190,6 +199,7 @@ class AppHomeMarketingItem extends React.Component {
                 height: "1px",
                 backgroundColor: "black",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    width: "22.5vw"
                 },
                 "@media (min-width: 64em)": {
                 }

@@ -54,7 +54,6 @@ class AppHomeMarketing extends React.Component {
             style: {
                 postion: "relative",
                 width: "100vw",
-                backgroundColor: "rgba(250,250,250,1)",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "flex-start",
@@ -87,12 +86,14 @@ class AppHomeMarketing extends React.Component {
                     largeText="Get your brand new website in seconds"
                     smallText="You're a busy person. We get that. That's why we built the fastest, easiest way to redesign your website. Don't let an out of date website cost you customers any more. Just type in the URL of your current website, hit go, and watch the magic happen."
                     image={{
-                        url: "stock/examples/1.png",
+                        url: "stock/examples/2.png",
                         height: {
-                            "0em": "33vw"
+                            "0em": "106vw",
+                            "48em": "87vw"
                         },
                         width: {
-                            "0em": "85vw"
+                            "0em": "85vw",
+                            "48em": "70vw"
                         }
                     }}
                 />
@@ -100,14 +101,33 @@ class AppHomeMarketing extends React.Component {
                     key={2}
                     align="right"
                     largeText="Custom built just for you"
-                    smallText="It doesnt matter what business you're in. You always want to stand out from your competition and show off what makes you unique. We've been working hard to make sure that your new website is as one of a kind as you are."
+                    smallText="It doesnt matter what business you're in. You want to stand out from your competition and show off what makes you unique. We've been working hard to make sure that your new website is as one of a kind as you are."
+                    image={{
+                        url: "stock/examples/1.png",
+                        height: {
+                            "0em": "138vw",
+                            "48em": "114vw"
+                        },
+                        width: {
+                            "0em": "85vw",
+                            "48em": "70vw"
+                        }
+                    }}
+                />
+                <AppHomeMarketingItem 
+                    key={3}
+                    align="left"
+                    largeText="Talk to a real human being"
+                    smallText="We hope that you love everything about your website right away. But if you don't, you can discuss changes - and see them in real time - with a design expert who wants your site to look just the way you want it. They'll also walk you through every step until your site is up and running for the world to see."
                     image={{
                         url: "stock/examples/2.png",
                         height: {
-                            "0em": "106vw"
+                            "0em": "0vw",
+                            "48em": "0vw"
                         },
                         width: {
-                            "0em": "85vw"
+                            "0em": "0vw",
+                            "48em": "0vw"
                         }
                     }}
                 />

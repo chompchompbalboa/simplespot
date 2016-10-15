@@ -11,6 +11,7 @@ import Radium from 'radium';
 
 const AppHomeLanding = require('../AppHomeLanding/AppHomeLanding.jsx');
 const AppHomeMarketing = require('../AppHomeMarketing/AppHomeMarketing.jsx');
+const AppHomeTryIt = require('../AppHomeTryIt/AppHomeTryIt.jsx');
 
 /**
 * AppHome
@@ -55,7 +56,8 @@ class AppHome extends React.Component {
             style: {
                 position: "relative",
                 top: "0vh",
-                left: "0vw"
+                left: "0vw",
+                backgroundColor: "rgba(250,250,250,1)"
             }
         }
     }
@@ -73,6 +75,7 @@ class AppHome extends React.Component {
             <div id="app" style={_div.style}>
                 <AppHomeLanding />
                 <AppHomeMarketing />
+                <AppHomeTryIt />
             </div>
         )
     }    
