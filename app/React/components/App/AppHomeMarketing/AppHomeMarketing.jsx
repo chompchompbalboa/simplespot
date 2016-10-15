@@ -77,7 +77,6 @@ class AppHomeMarketing extends React.Component {
     render() {
         let {...other} = this.props;
         let _div = this._div();
-        let __items = this.__items();
         return (
             <div style={_div.style}>
                 <AppHomeMarketingItem 
