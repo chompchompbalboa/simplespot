@@ -54,7 +54,6 @@ class AppHomeMarketing extends React.Component {
             style: {
                 postion: "relative",
                 width: "100vw",
-                height: "200vh",
                 backgroundColor: "rgba(250,250,250,1)",
                 display: "flex",
                 flexDirection: "column",
@@ -84,12 +83,28 @@ class AppHomeMarketing extends React.Component {
             <div style={_div.style}>
                 <AppHomeMarketingItem 
                     key={1}
+                    align="left"
                     largeText="Get your brand new website in seconds"
                     smallText="You're a busy person. We get that. That's why we built the fastest, easiest way to redesign your website. Don't let an out of date website cost you customers any more. Just type in the URL of your current website, hit go, and watch the magic happen."
                     image={{
                         url: "stock/examples/1.png",
                         height: {
                             "0em": "33vw"
+                        },
+                        width: {
+                            "0em": "85vw"
+                        }
+                    }}
+                />
+                <AppHomeMarketingItem 
+                    key={2}
+                    align="right"
+                    largeText="Custom built just for you"
+                    smallText="It doesnt matter what business you're in. You always want to stand out from your competition and show off what makes you unique. We've been working hard to make sure that your new website is as one of a kind as you are."
+                    image={{
+                        url: "stock/examples/2.png",
+                        height: {
+                            "0em": "106vw"
                         },
                         width: {
                             "0em": "85vw"

@@ -32,6 +32,7 @@ class AppHomeMarketingItem extends React.Component {
     * @prop propTypes
     */
     static propTypes = {
+        align: React.PropTypes.string.isRequired,
         largeText: React.PropTypes.string.isRequired,
         smallText: React.PropTypes.string.isRequired,
         image: React.PropTypes.shape({
@@ -51,6 +52,7 @@ class AppHomeMarketingItem extends React.Component {
     * @prop defautProps
     */
     static defaultProps = {
+        align: "left",
         largeText: "",
         smallText: "",
         image: {
@@ -97,7 +99,7 @@ class AppHomeMarketingItem extends React.Component {
     _image(image) {
         return {
             style: {
-                margin: "7.5vh 0 0 0",
+                margin: "7.5vh 0 5vh 0",
                 width: image.width['0em'],
                 height: image.height['0em'],
                 backgroundPosition: "center center",
@@ -163,9 +165,10 @@ class AppHomeMarketingItem extends React.Component {
                 margin: "7.5vh 0 0 0",
                 width: "85vw",
                 display: "flex",
+                textAlign: (this.props.align === "left" ? "left" : "right"),
                 flexDirection: "column",
                 justifyContent: "flex-start",
-                alignItems: "flex-start",
+                alignItems: (this.props.align === "left" ? "flex-start" : "flex-end"),
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
@@ -206,7 +209,7 @@ class AppHomeMarketingItem extends React.Component {
                 margin: "3.5vh 0 3.5vh 0",
                 width: "85vw",
                 display: "flex",
-                justifyContent: "flex-start",
+                justifyContent: (this.props.align === "left" ? "flex-start" : "flex-end"),
                 alignItems: "center",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
