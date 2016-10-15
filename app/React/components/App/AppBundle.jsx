@@ -12,68 +12,79 @@
 * @requires App
 */
 import {StyleRoot} from 'radium';
-var React = require('react');
-var Radium = require('radium');
+const React = require('react');
+const Radium = require('radium');
 
-var contentStore = require('../../stores/contentStore');
-var contentActions = require('../../actions/contentActions');
-//var utils = require('../../utils/utils');
+const contentStore = require('../../stores/contentStore');
+const contentActions = require('../../actions/contentActions');
 
-var App = require('./App.jsx');
-var Site = require('../Site/Site.jsx');
-
+const App = require('./App.jsx');
 /**
-* The bundler for built sites.
+* The bundler for the app.
 *
 * @module AppBundle
 */
-var AppBundle = React.createClass({
+class AppBundle extends React.Component {
 
     /**
-    * @function getInitialState
+    * Constructor
+    *
+    * @requires {object} props
     */
-    getInitialState: function() {
-        return {
+    constructor(props) {
+        super(props);
+        this.state = {
             content: null
         };
-    },
+        this._onChange = this._onChange.bind(this);
+    }
 
     /**
+    * Component Did Mount
+    *
     * @function componentDidMount
     */
-    componentDidMount: function() {
+    componentDidMount() {
         window.history.replaceState({content: this.state.content}, "", window.location.pathname);
         window.addEventListener('popstate', (e) => contentActions.replaceContent(e.state.content));
         contentStore.addChangeListener(this._onChange); 
         contentActions.fetchContent("CONTENT_APP");
-    },
+    }
 
     /**
-    * @function componentWillMount
+    * Component Will Unmount
+    *
+    * @function componentWillUnmount
     */
-    componentWillUnmount: function() {
+    componentWillUnmount() {
         window.removeEventListener('popstate', (e) => contentActions.replaceContent(e.state.content));
         displayStore.removeChangeListener(this._onChange);
-    },
+    }
 
     /**
-    * @function _onChange
+    * On Change
+    *
+    * Update the state tree when the content store emits a change event
+    *
+    * @function onChange
     */
-    _onChange: function() {
+    _onChange() {
       this.setState({
             content: contentStore.getContent()
       });
-    },
+    }
 
     /**
+    * Render the component
+    *
     * @function render
+    * @return {string}
     */
-    render: function() {
+    render() {
         if(this.state.content !== null) {
             return (
                 <StyleRoot>
                     <App content={this.state.content} />
-                    <Site content={this.state.content} />
                 </StyleRoot>
             ) 
         }
@@ -86,5 +97,5 @@ var AppBundle = React.createClass({
             ) 
         } 
     }    
-});
+}
 module.exports = Radium(AppBundle);

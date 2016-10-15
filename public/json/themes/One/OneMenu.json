@@ -1,0 +1,19 @@
+{
+    "{*( MenuNumber )*}": {
+        "module": "ContainerOneMenu",
+        "props": {
+            "header": "{*( MenuName )*}",
+            "height": {
+                "0em": 70,
+                "48em": 70,
+                "64em": 70
+            },
+            "sections": {*( sections )*},
+            "width": {
+                "0em": 100,
+                "48em": 60,
+                "64em": 50
+            }
+        }
+    }
+}

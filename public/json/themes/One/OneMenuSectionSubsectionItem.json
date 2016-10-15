@@ -1,0 +1,5 @@
+"{*( ItemNumber )*}": {
+    "description": "{*( ItemDescription )*}",
+    "item": "{*( ItemName )*}",
+    "price": "{*( ItemPrice )*}"
+}

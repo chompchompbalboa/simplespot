@@ -1,0 +1,340 @@
+{
+    "display": {
+        "path": "/"
+    },
+    "meta" : {
+        "title" : "Your Restaurant"
+    },
+    "theme" : "One",
+    "props": {
+        "container": {
+            "paths": {
+                "auto": {
+                    "module": "ContainerOne",
+                    "props": {
+                        "items": {
+                            "1": {
+                                "module": "ContainerOneImage",
+                                "props": {
+                                    "image": "/stock/One/sushi/1.jpg",
+                                    "height": {
+                                        "0em": 60,
+                                        "48em": 75,
+                                        "64em": 70
+                                    },
+                                    "width": {
+                                        "0em": 100,
+                                        "48em": 100,
+                                        "64em": 50
+                                    }
+                                }
+                            },
+                            "2": {
+                                "module": "ContainerOneColor",
+                                "props": {
+                                    "height": {
+                                        "0em": 0,
+                                        "48em": 0,
+                                        "64em": 25
+                                    },
+                                    "width": {
+                                        "0em": 100,
+                                        "48em": 100,
+                                        "64em": 50
+                                    }
+                                }
+                            },
+                            "3": {
+                                "module": "ContainerOneText",
+                                "props": {
+                                    "height": {
+                                        "0em": 35,
+                                        "48em": 25,
+                                        "64em": 30
+                                    },
+                                    "width": {
+                                        "0em": 100,
+                                        "48em": 60,
+                                        "64em": 50
+                                    },
+                                    "text": "Our mission is simple: offer excellent, yet affordable Japanese cuisine. We serve more than 60 creative and delicious rolls, sushi and sashimi, and bento including teriyaki, tonkatsu, gyoza, yakisoba, curry, and more. All menu items are proudly prepared right here in our kitchen, including dressings and sauces. We are looking forward to seeing you soon!"
+                                }
+                            },
+                            "4": {
+                                "module": "ContainerOneImage",
+                                "props": {
+                                    "image": "/stock/One/sushi/2.jpg",
+                                    "height": {
+                                        "0em": 50,
+                                        "48em": 25,
+                                        "64em": 95
+                                    },
+                                    "width": {
+                                        "0em": 100,
+                                        "48em": 40,
+                                        "64em": 50
+                                    }
+                                }
+                            },
+                            "5": {
+                                "module": "ContainerOneImage",
+                                "props": {
+                                    "image": "/stock/One/sushi/3.jpg",
+                                    "height": {
+                                        "0em": 60,
+                                        "48em": 60,
+                                        "64em": 70
+                                    },
+                                    "width": {
+                                        "0em": 100,
+                                        "48em": 100,
+                                        "64em": 50
+                                    }
+                                }
+                            },
+                            "6": {
+                                "module": "ContainerOneLink",
+                                "props": {
+                                    "fontSize": {
+                                        "0em": "4.5vw",
+                                        "48em": "1.75vw",
+                                        "64em": "2vw"
+                                    },
+                                    "href": "/menu",
+                                    "height": {
+                                        "0em": 20,
+                                        "48em": 25,
+                                        "64em": 35
+                                    },
+                                    "width": {
+                                        "0em": 100,
+                                        "48em": 40,
+                                        "64em": 50
+                                    },
+                                    "text": "MENU",
+                                    "textContainerHeight": {
+                                        "0em": "5vh",
+                                        "48em": "auto",
+                                        "64em": "auto"
+                                    },
+                                    "textContainerWidth": {
+                                        "0em": "50vw",
+                                        "48em": "12.5vw",
+                                        "64em": "15vw"
+                                    }
+                                }
+                            },
+                            "7": {
+                                "module": "ContainerOneHours",
+                                "props": {
+                                    "height": {
+                                        "0em": 25,
+                                        "48em": 25,
+                                        "64em": 35
+                                    },
+                                    "hours": {
+                                         "1": {
+                                            "day": "Monday",
+                                            "hours": "8:00 AM - 10:00 PM"
+                                        },
+                                        "2": {
+                                            "day": "Tuesday",
+                                            "hours": "8:00 AM - 10:00 PM"
+                                        },
+                                        "3": {
+                                            "day": "Wednesday",
+                                            "hours": "8:00 AM - 10:00 PM"
+                                        },
+                                        "4": {
+                                            "day": "Thursday",
+                                            "hours": "8:00 AM - 10:00 PM"
+                                        },
+                                        "5": {
+                                            "day": "Friday",
+                                            "hours": "8:00 AM - 10:00 PM"
+                                        },
+                                        "6": {
+                                            "day": "Saturday",
+                                            "hours": "8:00 AM - 10:00 PM"
+                                        },
+                                        "7": {
+                                            "day": "Sunday",
+                                            "hours": "8:00 AM - 10:00 PM"
+                                        }
+                                    },
+                                    "width": {
+                                        "0em": 100,
+                                        "48em": 60,
+                                        "64em": 50
+                                    }
+                                }
+                            },
+                            "8": {
+                                "module": "ContainerOneImage",
+                                "props": {
+                                    "image": "/stock/One/sushi/4.jpg",
+                                    "height": {
+                                        "0em": 60,
+                                        "48em": 60,
+                                        "64em": 70
+                                    },
+                                    "width": {
+                                        "0em": 100,
+                                        "48em": 100,
+                                        "64em": 50
+                                    }
+                                }
+                            },
+                            "9": {
+                                "module": "ContainerOneMapStatic",
+                                "props": {
+                                    "address": "400 Broad St",
+                                    "height": {
+                                        "0em": 35,
+                                        "48em": 35,
+                                        "64em": 60
+                                    },
+                                    "locality": "Seattle",
+                                    "name": "Space Needle",
+                                    "postalCode": "98109",
+                                    "region": "WA",
+                                    "textContainerHeight": {
+                                        "0em": "5vh",
+                                        "48em": "auto",
+                                        "64em": "auto"
+                                    },
+                                    "textContainerWidth": {
+                                        "0em": "50vw",
+                                        "48em": "20vw",
+                                        "64em": "15vw"
+                                    },
+                                    "width": {
+                                        "0em": 100,
+                                        "48em": 50,
+                                        "64em": 50
+                                    }
+                                }
+                            },
+                            "10": {
+                                "module": "ContainerOneSocial",
+                                "props": {
+                                    "platforms": {
+                                        "1": {
+                                            "props": {
+                                                "type": "facebook",
+                                                "href": "https://www.facebook.com/spaceneedle"     
+                                            }
+                                        },
+                                        "2": {
+                                            "props": {
+                                                "type": "email",
+                                                "href": "mailto:contactus@spaceneedle.com"     
+                                            }
+                                        },
+                                        "3": {
+                                            "props": {
+                                                "type": "phone",
+                                                "href": "tel:2069052100"     
+                                            }
+                                        }
+                                    },
+                                    "height": {
+                                        "0em": 20,
+                                        "48em": 35,
+                                        "64em": 40
+                                    },
+                                    "width": {
+                                        "0em": 100,
+                                        "48em": 50,
+                                        "64em": 50
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "menu": {
+                    "module": "ContainerOne",
+                    "props": {
+                        "items": {
+                            "1": {
+                                "module": "ContainerOneImage",
+                                "props": {
+                                    "image": "/stock/One/sushi/5.jpg",
+                                    "height": {
+                                        "0em": 60,
+                                        "48em": 75,
+                                        "64em": 75
+                                    },
+                                    "width": {
+                                        "0em": 100,
+                                        "48em": 100,
+                                        "64em": 100
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "header": {
+            "paths": {
+                "auto": {
+                    "module": "HeaderOne",
+                    "props": {
+                        "location": {
+                            "address": "400 Broad St",
+                            "locality": "Seattle",
+                            "name": "Space Needle",
+                            "postalCode": "98109",
+                            "region": "WA"
+                        },
+                        "name": "Your Restaurant",
+                        "phone": "206-905-2100"
+                    }
+                }
+            }
+        },
+        "title": {
+            "paths": {
+                "auto": {
+                    "module": "TitleOne",
+                    "props": {
+                        "color": {
+                            "0em": "124,44,44",
+                            "48em": "0,0,0",
+                            "64em": "0,0,0"
+                        },
+                        "height": {
+                            "0em": "0vh",
+                            "48em": "75vh",
+                            "64em": "25vh"
+                        },
+                        "fontFamily": "Josefin Sans, serif",
+                        "text": "Your Restaurant",
+                        "textTransform": "uppercase"
+                    }
+                },
+                "menu": {
+                    "module": "TitleOne",
+                    "props": {
+                        "color": {
+                            "0em": "124,44,44",
+                            "48em": "255,255,255",
+                            "64em": "255,255,255"
+                        },
+                        "height": {
+                            "0em": "0vh",
+                            "48em": "75vh",
+                            "64em": "75vh"
+                        },
+                        "fontFamily": "Josefin Sans, serif",
+                        "text": "The Menu",
+                        "textTransform": "uppercase"
+                    }
+                }
+            }  
+        }
+    }
+}

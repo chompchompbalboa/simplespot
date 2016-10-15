@@ -31,12 +31,12 @@ var contentActions = {
     },
 
     /**
-    * Fetch the initial content from the server
+    * Fetch content from the server
     * 
     * @function fetchContent
     */
-    fetchContent: function(request){
-        this._ajax(request);
+    fetchContent: function(request, data){
+        this._ajax(request, data);
     },
 
     /**
@@ -73,7 +73,7 @@ var contentActions = {
     * @function _ajax
     * @param {string} request
     */
-    _ajax: function(request) {
+    _ajax: function(request, data) {
         $.ajax({
             method: "POST",
             url: "/react",
@@ -81,6 +81,7 @@ var contentActions = {
                 'X-CSRF-TOKEN': this._token()
             },
             data: {
+                data: JSON.stringify(data),
                 request: request,
                 url: this._currentURL()
             },

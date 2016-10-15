@@ -32,6 +32,7 @@ class LocationOne extends React.Component {
     * @prop propTypes
     */
     static propTypes = {
+        locations: React.PropTypes.object.isRequired,
         section: React.PropTypes.object.isRequired
     }
 
@@ -41,6 +42,15 @@ class LocationOne extends React.Component {
     * @prop defautProps
     */
     static defaultProps = {
+        locations: {
+            "1": {
+                address1: "123 Somewhere St",
+                address2: "Suite 1",
+                locality: "Somewhere",
+                region: "NW",
+                postal_code: "98146"
+            }
+        },
         section: {}
     }
 
@@ -52,7 +62,13 @@ class LocationOne extends React.Component {
     */
     _section(section) {
         return {
-            style: {}
+            style: {
+                width: "100vw",
+                height: "40vh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+            }
         }
     }
 
@@ -63,11 +79,12 @@ class LocationOne extends React.Component {
     * @return {string}
     */
     render() {
-        var {section, ...other} = this.props;
+        var {locations, section, ...other} = this.props;
         let _section = this._section(section);
+        let __locations = this.__locations(locations)
         return (
             <section className="section" style={_section.style}>
-                LocationOne
+                {__locations}
             </section>
         )
     }    

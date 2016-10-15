@@ -6,17 +6,42 @@
 * @requires React
 * @requires Radium
 */
-var React = require('react');
-var Radium = require('radium');
+import React, { PropTypes } from 'react';
+import Radium from 'radium';
 
-var Thumbs = require('./Thumbs/Thumbs.jsx');
+const AppHome = require('./AppHome/AppHome.jsx');
 
 /**
 * The top level app component
 *
 * @module App
 */
-var App = React.createClass({
+class App extends React.Component {
+
+    /**
+    * Constructor
+    *
+    * @requires {object} props
+    */
+    constructor(props) {
+        super(props)
+    }
+
+    /**
+    * Validate the prop types
+    *
+    * @prop propTypes
+    */
+    static propTypes = {
+    }
+
+    /**
+    * Set the default props
+    *
+    * @prop defautProps
+    */
+    static defaultProps = {
+    }
 
     /**
     * Settings for: _section
@@ -24,27 +49,29 @@ var App = React.createClass({
     * @function _section
     * @return {object}
     */
-    _section: function() {
+    _section() {
         return {
             style: {
-                zIndex: '1',
-                position: 'absolute',
-                top: '0vh',
-                left: '0vw'
+                zIndex: "1",
+                position: "relative",
+                top: "0vh",
+                left: "0vw"
             }
         }
-    },
+    }
 
     /**
     * Settings for: __app
     *
     * @function __app
-    * @param {object} app
-    * @param {object} utils
-    * @return ReactElement
+    * @return {object}
     */
-    __app: function(app) {
-    },
+    __app(path) {
+        switch (path) {
+            default:
+                return (<AppHome />)      
+        }
+    }
 
     /**
     * Render the component
@@ -52,15 +79,15 @@ var App = React.createClass({
     * @function render
     * @return {string}
     */
-    render: function() {
-        var {content, utils, ...other} = this.props;
+    render() {
+        let {content, ...other} = this.props;
         let _section = this._section();
-        let __app = this.__app(content.app);
+        let __app = this.__app(content.app.display.path);
         return (
             <section id="app" style={_section.style}>
-                <Thumbs />
+                {__app}
             </section>
         )
     }    
-});
+}
 module.exports = Radium(App);

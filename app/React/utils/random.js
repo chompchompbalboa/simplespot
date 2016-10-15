@@ -249,6 +249,7 @@ export default class {
             'Hammersmith One, sans-serif',
             'News Cycle, sans-serif',
             'Monda, sans-serif',
+            'Lusitana, serif'
         ]);
     }
 }

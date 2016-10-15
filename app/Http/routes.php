@@ -42,6 +42,11 @@ Route::group(['middleware' => ['shared']], function () {
 
     $app = function() {
 
+        Route::any('/generate/{template}', [
+            "as" => "app_generate",
+            "uses" => "AppController@generate",
+        ]);
+
         Route::any('/{optional?}', [
             "as" => "app_home",
             "uses" => "AppController@home",

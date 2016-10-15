@@ -134,18 +134,18 @@ var NWAireMenuLinks = React.createClass({
         let _divider = this._divider();
         let __links = this.__links();
         let __info = this.__info();
-        /*return (
+        return (
             <div className="container" style={_container.style}>
                 {__links}
                 <div className="divider" style={_divider.style}></div>
                 {__info}
             </div>
-        )*/
-        return (
+        )
+        /*return (
             <div className="container" style={_container.style}>
                 {__info}
             </div>
-        )
+        )*/
     }    
 });
 module.exports = Radium(NWAireMenuLinks);

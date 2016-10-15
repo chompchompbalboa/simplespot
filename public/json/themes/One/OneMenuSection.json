@@ -1,0 +1,4 @@
+"{*( SectionNumber )*}": {
+    "sectionName": "{*( SectionName )*}",
+    "subsections": {*( subsections )*}
+}

@@ -1,0 +1,11 @@
+@keyframes arrowUpDown {
+  0 {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: 2vh;
+  }
+  100% {
+    margin-top: 0;
+  }
+}

@@ -6,17 +6,19 @@
 * @requires React
 * @requires Radium
 */
-var React = require('react');
-var Radium = require('radium');
+const React = require('react');
+const Radium = require('radium');
 
 /**
 * For now, our theme list is here. I will more than likely abstract this away
 * eventually, but for ease of development's sake, I'm going to leave it here
 * for now.
 */
-var NWAire = require('./Themes/NWAire/NWAire.jsx');
-var Omni = require('./Themes/Omni/Omni.jsx');
-var Rocky = require('./Themes/Rocky/Rocky.jsx');
+const Next = require('./Themes/Next/Next.jsx');
+const NWAire = require('./Themes/NWAire/NWAire.jsx');
+const Omni = require('./Themes/Omni/Omni.jsx');
+const One = require('./Themes/One/One.jsx');
+const Rocky = require('./Themes/Rocky/Rocky.jsx');
 
 /**
 * The top level site component
@@ -31,9 +33,10 @@ var Site = React.createClass({
     * @function _section
     * @return {object}
     */
-    _section: function() {
+    _section: function(path) {
         return {
             style: {
+                display: (path === "none" ? "none" : "block"),
                 zIndex: '0',
                 position: 'relative',
                 top: '0vh',
@@ -71,7 +74,7 @@ var Site = React.createClass({
     */
     render: function() {
         var {content, utils, ...other} = this.props;
-        let _section = this._section();
+        let _section = this._section(content.site.display.path);
         let __site = this.__site(content.site);
         return (
             <section id="site" style={_section.style}>

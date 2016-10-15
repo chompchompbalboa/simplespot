@@ -173,6 +173,7 @@ var NWAireMenuLogo = React.createClass({
                 width: "30%",
                 height: "100%",
                 display: "flex",
+                msFlexDirection: "row",
                 justifyContent: "flex-end",
                 alignItems: "center"
             }

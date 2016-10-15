@@ -134,11 +134,16 @@ class HoursOne extends React.Component {
                         period: "a.m."
                     }
                 }
+            },
+            style: {
+                fontFamily: "Cuprum, sans-serif",
+                fontSize: "18px",
+                letterSpacing: "1px"
             }
         },
         section: {
-            width: "40vw",
-            height: "40vh"
+            width: "50vw",
+            height: "60vh"
         }
     }
 
@@ -154,6 +159,7 @@ class HoursOne extends React.Component {
                 width: section.width,
                 height: section.height,
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center"
             }
@@ -168,10 +174,13 @@ class HoursOne extends React.Component {
     */
     __hours(hours) {
         let payload = [];
-        let style = {};
+        let style = {
+            fontFamily: hours.style.fontFamily,
+            fontSize: hours.style.fontSize,
+            letterSpacing: hours.style.letterSpacing
+        };
         for (let i in hours.hours) {
             let current = hours.hours[i];
-            console.log(current);
             payload.push(
                 <div key={i} className="hours" style={style}>
                     {current.day} {current.open.hour}:{current.open.minute} {current.open.period} - {current.close.hour}:{current.close.minute} {current.close.period}

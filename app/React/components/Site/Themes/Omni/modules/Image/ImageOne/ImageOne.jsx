@@ -41,7 +41,9 @@ class ImageOne extends React.Component {
     * @prop defautProps
     */
     static defaultProps = {
-        section: {}
+        section: {
+            backgroundImage: "linear-gradient(to top, rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url(stock/5.jpg)"
+        }
     }
 
     /**
@@ -52,7 +54,18 @@ class ImageOne extends React.Component {
     */
     _section(section) {
         return {
-            style: {}
+            style: {
+                width: "50vw",
+                height: "60vh",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center center",
+                backgroundSize: "cover",
+                backgroundImage: section.backgroundImage
+            }
         }
     }
 
@@ -67,7 +80,6 @@ class ImageOne extends React.Component {
         let _section = this._section(section);
         return (
             <section className="section" style={_section.style}>
-                ImageOne
             </section>
         )
     }    

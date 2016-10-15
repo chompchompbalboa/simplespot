@@ -6,52 +6,77 @@
 * @requires React
 * @requires Radium
 */
-var React = require('react');
-var Radium = require('radium');
+import React, { PropTypes } from 'react';
+import Radium from 'radium';
+
+const AdminDashboard = require('./AdminDashboard/AdminDashboard.jsx');
+const AdminLogin = require('./AdminLogin/AdminLogin.jsx');
 
 /**
 * The top level admin component
 *
 * @module Admin
 */
-var Admin = React.createClass({
+class Admin extends React.Component {
 
     /**
-    * Verify user access
+    * Constructor
     *
-    * @function style
-    * @return {object}
+    * @requires {object} props
     */
-    guard: function(admin, path) {
-        if (path !== "/" && admin.user.loggedIn === "false") {
-            // redirect to /
-            window.location = '/';
-        }
-        else if (path === "/" && admin.user.loggedIn === "true") {
-            // redirect to dashboard
-            window.location = '/dashboard';
-        }
-        else {
-            return true;
-        }
-    },
+    constructor(props) {
+        super(props)
+    }
 
     /**
-    * Builds the style object for this component
+    * Validate the prop types
     *
-    * @function style
+    * @prop propTypes
+    */
+    static propTypes = {
+    }
+
+    /**
+    * Set the default props
+    *
+    * @prop defautProps
+    */
+    static defaultProps = {
+    }
+
+    /**
+    * Settings for: _section
+    *
+    * @function _section
     * @return {object}
     */
-    style: function() {
-        var style = {
-            section: {
-                zIndex: '1',
-                position: 'fixed',
-                backfaceVisibility: 'hidden'
+    _section() {
+        return {
+            style: {
+                zIndex: "2",
+                position: "fixed",
+                top: "0",
+                left: "0"
             }
-        };
-        return style;
-    },
+        }
+    }
+
+    /**
+    * Settings for: __admin
+    *
+    * @function __admin
+    * @return {object}
+    */
+    __admin(content) {
+        switch (content.admin.display.path) {
+            case "dashboard":
+                return (<AdminDashboard content={content} />)
+            break;
+            case "login":
+                return (<AdminLogin />)
+            break;
+        }
+    }
 
     /**
     * Render the component
@@ -59,26 +84,15 @@ var Admin = React.createClass({
     * @function render
     * @return {string}
     */
-    render: function() {
-        var {admin, app, display, modules, site, utils, ...other} = this.props;
-        // Guard the path so only authenticated users are allowed permission to
-        // the admin
-        if(this.guard(admin, display.admin.path)) {
-            var path = display.admin.path;
-            var page = utils.loader.loadModules(admin, display, path, admin.versions.active.pages[path], site, utils);
-            var style = this.style();
-            return (
-                <section id="admin" style={style.section}>
-                    {page}
-                </section>
-            )
-        } 
-        else {
-            return (
-                <section id="admin-catcher">
-                </section>
-            )
-        }  
+    render() {
+        let {content, ...other} = this.props;
+        let _section = this._section();
+        let __admin = this.__admin(content);
+        return (
+            <section id="admin" style={_section.style}>
+                {__admin}
+            </section>
+        )
     }    
-});
+}
 module.exports = Radium(Admin);

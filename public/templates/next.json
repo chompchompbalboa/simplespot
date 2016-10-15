@@ -1,0 +1,109 @@
+{
+    "Next": {
+        "element": "section",
+        "includes": [
+            "NextHeader",
+            "NextIntro",
+            "NextPortfolio"
+        ]
+    },
+    "NextHeader": {
+        "element": "section",
+        "includes": [
+            "NextHeaderName"
+        ]
+    },
+    "NextHeaderName": {
+        "element": "div",
+        "includes": [
+        ]
+    },
+    "NextIntro": {
+        "element": "section",
+        "includes": [
+            "NextIntroSummary",
+            "NextIntroText"
+        ]
+    },
+    "NextIntroSummary": {
+        "element": "div",
+        "includes": [
+        ]
+    },
+    "NextIntroText": {
+        "element": "div",
+        "includes": [
+        ]
+    },
+    "NextPortfolio": {
+        "element": "section",
+        "includes": [
+            "NextPortfolioLabel",
+            "NextPortfolioContainer"
+        ]
+    },
+    "NextPortfolioLabel": {
+        "element": "div",
+        "includes": [
+        ]
+    },
+    "NextPortfolioContainer": {
+        "element": "div",
+        "includes": [
+            "NextPortfolioContainerItem"
+        ]
+    },
+    "NextPortfolioContainerItem": {
+        "element": "div",
+        "includes": [
+            "NextPortfolioContainerItemCover",
+            "NextPortfolioContainerItemExpanded"
+        ]
+    },
+    "NextPortfolioContainerItemCover": {
+        "element": "div",
+        "includes": [
+            "NextPortfolioContainerItemCoverImage",
+            "NextPortfolioContainerItemCoverOverlay"
+        ]
+    },
+    "NextPortfolioContainerItemCoverImage": {
+        "element": "div",
+        "includes": [
+        ]
+    },
+    "NextPortfolioContainerItemCoverOverlay": {
+        "element": "div",
+        "includes": [
+        ]
+    },
+    "NextPortfolioContainerItemExpanded": {
+        "element": "div",
+        "includes": [
+            "NextPortfolioContainerItemExpandedDesktop",
+            "NextPortfolioContainerItemExpandedTablet",
+            "NextPortfolioContainerItemExpandedMobile",
+            "NextPortfolioContainerItemExpandedDescription"
+        ]
+    },
+    "NextPortfolioContainerItemExpandedDesktop": {
+        "element": "div",
+        "includes": [
+        ]
+    },
+    "NextPortfolioContainerItemExpandedTablet": {
+        "element": "div",
+        "includes": [
+        ]
+    },
+    "NextPortfolioContainerItemExpandedMobile": {
+        "element": "div",
+        "includes": [
+        ]
+    },
+    "NextPortfolioContainerItemExpandedDescription": {
+        "element": "div",
+        "includes": [
+        ]
+    }
+}

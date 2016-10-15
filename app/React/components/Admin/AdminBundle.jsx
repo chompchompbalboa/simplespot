@@ -6,134 +6,101 @@
 * @requires StyleRoot
 * @requires React
 * @requires Radium
-* @requires appStore
-* @requires appActions
-* @requires modulesStore
-* @requires modulesActions
-* @requires siteStore
-* @requires siteActions
-* @requires utils
+* @requires contentStore
+* @requires contentActions
+* @requires Admin
+* @requires App
 * @requires Site
 */
 import {StyleRoot} from 'radium';
-var React = require('react');
-var Radium = require('radium');
+const React = require('react');
+const Radium = require('radium');
 
-var adminStore = require('../../stores/adminStore');
-var adminActions = require('../../actions/adminActions');
-var appStore = require('../../stores/appStore');
-var appActions = require('../../actions/appActions');
-var displayStore = require('../../stores/displayStore');
-var displayActions = require('../../actions/displayActions');
-var modulesStore = require('../../stores/modulesStore');
-var modulesActions = require('../../actions/modulesActions');
-var siteStore = require('../../stores/siteStore');
-var siteActions = require('../../actions/siteActions');
-var utils = require('../../utils/utils');
+const contentStore = require('../../stores/contentStore');
+const contentActions = require('../../actions/contentActions');
 
-var Admin = require('./Admin.jsx');
-var App = require('./App.jsx');
-var Site = require('../Site/Site.jsx');
+const Admin = require('./Admin.jsx');
+const App = require('../App/App.jsx');
+const Site = require('../Site/Site.jsx');
 
 /**
-* The bundler for the admin sections
+* The bundler for the app.
 *
 * @module AdminBundle
 */
-var AdminBundle = React.createClass({
+class AdminBundle extends React.Component {
 
     /**
-    * @function getInitialState
+    * Constructor
+    *
+    * @requires {object} props
     */
-    getInitialState: function() {
-        return {
-            admin: null,
-            app: null,
-            display: {
-                app: {
-                    AdminCreate: {
-                        active: "AdminCreateHome"
-                    },
-                    AdminHome: {
-                        submitText: "Login/Register"
-                    },
-                    load: "initial",
-                    path: window.location.pathname
-                },
-                site: {
-                    load: "initial",
-                    path: "/"
-                }
-            },
-            modules: null,
-            site: null
+    constructor(props) {
+        super(props);
+        this.state = {
+            content: null
         };
-    },
+        this._onChange = this._onChange.bind(this);
+    }
 
     /**
+    * Component Did Mount
+    *
     * @function componentDidMount
     */
-    componentDidMount: function() {
-        window.history.replaceState({display: this.state.display}, "", window.location.pathname);
-        window.addEventListener('popstate', (e) => utils.displayHandler.popStateChange(e));
-        adminStore.addChangeListener(this._onChange); 
-        adminActions.fetchContent();
-        appStore.addChangeListener(this._onChange); 
-        appActions.fetchContent();
-        displayStore.addChangeListener(this._onChange); 
-        displayActions.fetchContent();
-        modulesStore.addChangeListener(this._onChange); 
-        modulesActions.fetchContent();
-        siteStore.addChangeListener(this._onChange); 
-        siteActions.fetchContent();
-    },
+    componentDidMount() {
+        window.history.replaceState({content: this.state.content}, "", window.location.pathname);
+        window.addEventListener('popstate', (e) => contentActions.replaceContent(e.state.content));
+        contentStore.addChangeListener(this._onChange); 
+        contentActions.fetchContent("CONTENT_ADMIN");
+    }
 
     /**
-    * @function componentWillMount
+    * Component Will Unmount
+    *
+    * @function componentWillUnmount
     */
-    componentWillUnmount: function() {
-        window.removeEventListener('popstate', (e) => utils.displayHandler.popStateChange(e));
-        adminStore.removeChangeListener(this._onChange);
-        appStore.removeChangeListener(this._onChange);
+    componentWillUnmount() {
+        window.removeEventListener('popstate', (e) => contentActions.replaceContent(e.state.content));
         displayStore.removeChangeListener(this._onChange);
-        modulesStore.removeChangeListener(this._onChange);
-        siteStore.removeChangeListener(this._onChange);
-    },
+    }
 
     /**
-    * @function _onChange
+    * On Change
+    *
+    * Update the state tree when the content store emits a change event
+    *
+    * @function onChange
     */
-    _onChange: function() {
+    _onChange() {
       this.setState({
-            admin: adminStore.getContent(),
-            app: appStore.getContent(),
-            display: displayStore.getContent(),
-            modules: modulesStore.getContent(),
-            site: siteStore.getContent()
+            content: contentStore.getContent()
       });
-    },
+    }
 
     /**
-    * @function render a
+    * Render the component
+    *
+    * @function render
+    * @return {string}
     */
-    render: function() {
-        if(this.state.admin !== null && this.state.app !== null && this.state.display !== null && this.state.modules !== null && this.state.site !== null) {
+    render() {
+        if(this.state.content !== null) {
             return (
                 <StyleRoot>
-                    <Admin admin={this.state.admin} app={this.state.app} display={this.state.display} modules={this.state.modules} site={this.state.site} utils={utils} />
-                    <App app={this.state.app} display={this.state.display} modules={this.state.modules} site={this.state.site} utils={utils} />
-                    <Site display={this.state.display} site={this.state.site} utils={utils} />
+                    <Admin content={this.state.content} />
+                    <Site content={this.state.content} />
                 </StyleRoot>
             ) 
         }
         else {
             return (
                 <StyleRoot>
-                    <section id="app">
+                    <section id="admin">
                     </section>
                 </StyleRoot>
             ) 
         } 
     }    
-});
+}
 module.exports = Radium(AdminBundle);

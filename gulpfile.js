@@ -63,7 +63,7 @@ var build_dev = function(index, output) {
 gulp.task('all', function() {
     //build('./app/React/index/Admin/admin-index.js', 'admin-index.js');
     build('./app/React/index/App/app-index.js', 'app-index.js');
-    build('./app/React/index/Site/site-index.js', 'site-index.js');
+    //build('./app/React/index/Site/site-index.js', 'site-index.js');
     //simplespot.buildTasks(fs, jsonfile);
 });
 gulp.task('Admin', function() {build('./app/React/index/Admin/admin-index.js', 'admin-index.js')});
@@ -79,8 +79,6 @@ gulp.task('watch', function() {
     gulp.watch('./app/React/utils/*.js', ['all']);
     gulp.watch('./app/React/utils/**/*.js', ['all']);
     gulp.watch('./app/React/components/Themes/**/*.jsx', ['all']);
-    //gulp.watch('./app/React/components/Modules/**/*.js', ['all']);
-    //gulp.watch('./app/React/components/Modules/**/*.jsx', ['all']);
     gulp.watch('./app/React/components/Admin/**/*.js', ['all']);
     gulp.watch('./app/React/components/Admin/**/*.jsx', ['all']);
     gulp.watch('./app/React/components/App/**/*.js', ['all']);

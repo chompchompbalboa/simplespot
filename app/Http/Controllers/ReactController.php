@@ -1,4 +1,12 @@
 <?php
+/*
+* ReactController.php
+* @copyright simplespot.co, 2016-Present. All Rights Reserved.
+* @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
+*
+* Handles all the requests from the content store. Requires a request type, 
+* returns a change to the content store.
+*/
 
 namespace App\Http\Controllers;
 
@@ -10,50 +18,82 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Helpers\Helper;
-use App\Helpers\ThemeTranslator;
+use App\Helpers\Locu;
+use App\Helpers\Translate;
 
-use App\Models\Modules;
 use App\Models\Sites;
 use App\Models\User;
 
 class ReactController extends Controller
 {
-    //-------------------------------------------------------------------------
-    // Constructor
-    //-------------------------------------------------------------------------
-
-    public function __construct(Auth $auth, Modules $modules, Request $request, Sites $sites, ThemeTranslator $themeTranslator, User $user)
+    /**
+    * Constructor
+    *
+    * @requires Request
+    * @requires Sites
+    */
+    public function __construct(Request $request, Sites $sites, User $user)
     {
         $this->app = app();
-        $this->auth = $auth;
-        $this->modules = $modules;
         $this->request = $request;
         $this->sites = $sites;
-        $this->themeTranslator = $themeTranslator;
         $this->user = $user;
     }
 
+    /**
+    * React
+    *
+    * Accepts the request type, controls the translation to the content store change
+    *
+    * @function react
+    * @returns {json}
+    */
     public function react()
     {
         $request = $this->request->input('request');
-        $url = json_decode($this->request->input('url'));
         switch($request) {
-            case "CONTENT_APP":
-                $defaultSite = $this->app->make('stdClass');
-                $defaultSite->domain = "omni.com";
-                $defaultSite->path = "/";
+            case "ADMIN_FETCH_NEW":
+                $data = json_decode($this->request->input('data'));
+                $seed = Locu::fetchSeed($data->url);
+                $site = Translate::One($seed);
                 $response = [
                     [
-                        "key" => "app",
-                        "value" => $this->fetchApp()
+                        "key" => "admin.working.url",
+                        "value" => explode("/", explode("www.", $data->url)[1])[0]
                     ],
                     [
                         "key" => "site",
-                        "value" => $this->fetchSite($defaultSite)
+                        "value" => $site
                     ]
                 ];
             break;
-            case "CONTENT_SITE":
+            case "ADMIN_SAVE":
+                // Get the site to save
+                $data = json_decode($this->request->input('data'));
+                $save = $data->content->site;
+                // Check to see if it already exists in the db
+                if (!is_null($this->sites->find($save->meta->id))) {
+                    $current = $this->sites->find($save->meta->id);
+                }
+                else {
+                    $current = new $this->sites;
+                }
+                // Save the new content
+                $current->domain = $data->content->admin->working->url;
+                $current->versions = [
+                    "active" => [
+                        "meta" => $save->meta,
+                        "theme" => $save->theme,
+                        "props" => $save->props
+                    ]
+                ];
+                $current->save();
+                // Build the url to retrieve the freshly saved site from the db
+                $url = json_decode(json_encode([
+                    "domain" => $data->content->admin->working->url,
+                    "path" => "/"
+                ]));
+                // Build the response
                 $response = [
                     [
                         "key" => "site",
@@ -61,81 +101,125 @@ class ReactController extends Controller
                     ]
                 ];
             break;
+            case "CONTENT_ADMIN":
+                $url = Helper::fetchURL(json_decode($this->request->input('url')), $this->sites);
+                $response = [
+                    [
+                        "key" => "admin",
+                        "value" => $this->fetchAdmin(json_decode($this->request->input('url')))
+                    ],
+                    [
+                        "key" => "app",
+                        "value" => $this->fetchApp(json_decode($this->request->input('url')))
+                    ],
+                    [
+                        "key" => "site",
+                        "value" => $this->fetchSite(json_decode($url))
+                    ]
+                ];
+            break;
+            case "CONTENT_APP":
+                $url = Helper::fetchURL(json_decode($this->request->input('url')), $this->sites);
+                $response = [
+                    [
+                        "key" => "app",
+                        "value" => $this->fetchApp(json_decode($this->request->input('url')))
+                    ],
+                    [
+                        "key" => "site",
+                        "value" => $this->fetchSite(json_decode($url))
+                    ]
+                ];
+            break;
+            case "CONTENT_SITE":
+                $response = [
+                    [
+                        "key" => "site",
+                        "value" => $this->fetchSite(json_decode($this->request->input('url')))
+                    ]
+                ];
+            break;
+            case "LOGIN_ADMIN":
+                $data = $this->request->input('data');
+                Auth::attempt(['email' => $data['email'], 'password' => $data['password']], true);
+                $response = [
+                    [
+                        "key" => "admin",
+                        "value" => $this->fetchAdmin(json_decode($this->request->input('url')))
+                    ]
+                ];
+            break;
+            case "LOGOUT_ADMIN":
+                Auth::logout();
+                $response = [
+                    [
+                        "key" => "admin",
+                        "value" => $this->fetchAdmin(json_decode($this->request->input('url')))
+                    ]
+                ];
+            break;
         }
         return json_encode($response);
     }
 
-    //-------------------------------------------------------------------------
-    // Public functions
-    //-------------------------------------------------------------------------
-
-    public function admin($data, $info)
+    /**
+    * Fetch Admin
+    *
+    * @function fetchAdmin
+    */
+    private function fetchAdmin($url)
     {
-        $admin = Helper::fetchJSON('/json/adminNew.json');
-        $admin->display = [
-            "active" => "true",
-            "load" => "initial",
-            "path" => $data->path
+        $auto = [
+            "display" => [
+                "path" => "login"
+            ]
         ];
-        $admin->versions->active->stores->admin = Helper::fetchJSON('/json/stores/adminStoreNew.json');
-        return $admin;
-    }
-
-    private function app($data, $info)
-    {
-        switch ($info) {
-            case "login":
-                return $this->login($data);
-            break;
-            case "logout":
-                return $this->logout($data);
-            break;
-            case "new":
-                return $this->newSite($data);
-            break;
-            case "register":
-                return $this->register($data);
-            break;
-            case "user":
-                return $this->doesUserExist($data); 
-            break;
-            default:
-                $app = Helper::fetchJSON('/json/app.json');
-                if (Auth::check()) {
-                    $user = Auth::user();
-                    $app->user->loggedIn = "true";
-                    $app->user->email = $user->email;
-                }
-                return $app;
+        if (Auth::check()) {
+            $user = Auth::user();
+            if ($user->admin) {
+                return [
+                    "display" => [
+                        "path" => "dashboard",
+                        "edit" => "false"
+                    ],
+                    "working" => [
+                        "url" => "false"
+                    ]
+                ];
+            }
+            else {
+                return $auto;
+            }
         }
+        else {
+            return $auto;
+        }
+        
     }
 
-    private function modules($data, $info)
+    /**
+    * Fetch App
+    *
+    * @function fetchApp
+    */
+    private function fetchApp($url)
     {
-        $modules = Helper::fetchJSON('/json/modules.json');
-        //$modules = $this->modules->all();
-        return $modules;
+        return [
+            "display" => [
+                "path" => $url->path
+            ]
+        ];
     }
 
-    public function seed($data, $info)
-    {
-        $seed = Helper::fetchJSON('/json/seed.json');
-        return $seed;
-    }
-
-    private function fetchApp()
-    {
-        return [];
-    }
-
+    /**
+    * Fetch Site
+    *
+    * @function fetchSite
+    * @returns {object}
+    */
     private function fetchSite($url)
     {
         $site = Helper::fetchSite($this->sites, $url);
         return $site;
     }
-
-    //-------------------------------------------------------------------------
-    // Private functions
-    //-------------------------------------------------------------------------
-
 }
