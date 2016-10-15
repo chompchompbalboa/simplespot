@@ -64,9 +64,14 @@ class AppHomeMarketingItem extends React.Component {
                 width: "100vw",
                 height: "70vw",
                 display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-start",
+                alignItems: "center",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    flexDirection: "row"
                 },
                 "@media (min-width: 64em)": {
+                    flexDirection: "row"
                 }
             }
         }
@@ -115,8 +120,8 @@ class AppHomeMarketingItem extends React.Component {
     _imageContainer() {
         return {
             style: {
-                width: "50%",
-                height: "100%",
+                width: "100vw",
+                height: "70vw",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -134,14 +139,18 @@ class AppHomeMarketingItem extends React.Component {
     * @function _largeText
     * @return {object}
     */
-    _largeText() {
+    _largeText(largeText) {
         return {
             style: {
+                fontSize: "6vw",
+                fontWeight: "400",
+                letterSpacing: "0.5vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
                 }
-            }
+            },
+            text: largeText
         }
     }
 
@@ -205,11 +214,12 @@ class AppHomeMarketingItem extends React.Component {
     _textContainer() {
         return {
             style: {
-                width: "50%",
-                height: "100%",
+                width: "85vw",
+                height: "50vw",
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "center",
-                alignItems: "center",
+                alignItems: "flexStart",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
