@@ -32,6 +32,11 @@ class AppHomeMarketingItem extends React.Component {
     * @prop propTypes
     */
     static propTypes = {
+        largeText: React.PropTypes.string.isRequired,
+        smallText: React.PropTypes.string.isRequired,
+        desktopImage: React.PropTypes.string.isRequired,
+        tabletImage: React.PropTypes.string.isRequired,
+        mobileImage: React.PropTypes.string.isRequired
     }
 
     /**
@@ -40,6 +45,11 @@ class AppHomeMarketingItem extends React.Component {
     * @prop defautProps
     */
     static defaultProps = {
+        largeText: "",
+        smallText: "",
+        desktopImage: "",
+        tabletImage: "",
+        mobileImage: ""
     }
 
     /**
@@ -215,15 +225,15 @@ class AppHomeMarketingItem extends React.Component {
     * @return {string}
     */
     render() {
-        let {...other} = this.props;
+        let {largeText, smallText, desktopImage, tabletImage, mobileImage, ...other} = this.props;
         let _div = this._div();
-        let _desktopImage = this._desktopImage();
+        let _desktopImage = this._desktopImage(desktopImage);
         let _image = this._image();
         let _imageContainer = this._imageContainer();
-        let _largeText = this._largeText();
-        let _mobileImage = this._mobileImage();
-        let _smallText = this._smallText();
-        let _tabletImage = this._tabletImage();
+        let _largeText = this._largeText(largeText);
+        let _mobileImage = this._mobileImage(mobileImage);
+        let _smallText = this._smallText(smallText);
+        let _tabletImage = this._tabletImage(tabletImage);
         let _textContainer = this._textContainer();
         return (
             <div style={_div.style}>

@@ -69,22 +69,6 @@ class AppHomeMarketing extends React.Component {
     }
 
     /**
-    * Settings for: __items
-    *
-    * @function __items
-    * @return {object}
-    */
-    __items() {
-        let payload = [
-            <AppHomeMarketingItem key={1} />,
-            <AppHomeMarketingItem key={2} />,
-            <AppHomeMarketingItem key={3} />,
-            <AppHomeMarketingItem key={4} />
-        ];
-        return payload;
-    }
-
-    /**
     * Render the component
     *
     * @function render
@@ -96,7 +80,38 @@ class AppHomeMarketing extends React.Component {
         let __items = this.__items();
         return (
             <div style={_div.style}>
-                {__items}
+                <AppHomeMarketingItem 
+                    key={1}
+                    largeText=""
+                    smallText=""
+                    desktopImage=""
+                    tabletImage=""
+                    mobileImage=""
+                />
+                <AppHomeMarketingItem 
+                    key={2}
+                    largeText=""
+                    smallText=""
+                    desktopImage=""
+                    tabletImage=""
+                    mobileImage=""
+                />
+                <AppHomeMarketingItem 
+                    key={3}
+                    largeText=""
+                    smallText=""
+                    desktopImage=""
+                    tabletImage=""
+                    mobileImage=""
+                />
+                <AppHomeMarketingItem 
+                    key={4}
+                    largeText=""
+                    smallText=""
+                    desktopImage=""
+                    tabletImage=""
+                    mobileImage=""
+                />
             </div>
         )
     }    
