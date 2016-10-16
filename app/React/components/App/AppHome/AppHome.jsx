@@ -10,8 +10,7 @@ import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
 const AppHomeLanding = require('../AppHomeLanding/AppHomeLanding.jsx');
-const AppHomeMarketing = require('../AppHomeMarketing/AppHomeMarketing.jsx');
-const AppHomeTryIt = require('../AppHomeTryIt/AppHomeTryIt.jsx');
+const AppHomeContent = require('../AppHomeContent/AppHomeContent.jsx');
 
 /**
 * AppHome
@@ -74,8 +73,7 @@ class AppHome extends React.Component {
         return (
             <div id="app" style={_div.style}>
                 <AppHomeLanding />
-                <AppHomeMarketing />
-                <AppHomeTryIt />
+                <AppHomeContent />
             </div>
         )
     }    

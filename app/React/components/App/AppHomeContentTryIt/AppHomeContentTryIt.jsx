@@ -68,7 +68,6 @@ class AppHomeTryIt extends React.Component {
     _div() {
         return {
             style: {
-                margin: "-10vh 0 0 0",
                 width: "100vw",
                 height: "20vh",
                 display: "flex",
@@ -78,6 +77,9 @@ class AppHomeTryIt extends React.Component {
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
+                    order: this.props.order,
+                    width: "40vw",
+                    height: "40vh"
                 }
             }
         }
@@ -98,8 +100,19 @@ class AppHomeTryIt extends React.Component {
                 fontWeight: "400",
                 letterSpacing: "0.25vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    padding: "1.5vh 10vw 1.5vh 10vw",
+                    fontSize: "1.75vw",
+                    letterSpacing: "0.25vw",
                 },
                 "@media (min-width: 64em)": {
+                    margin: "0 0 0 10vw",
+                    padding: "2vh 5vw 2vh 5vw",
+                    border: "1px solid black",
+                    backgroundColor: "black",
+                    color: "white",
+                    fontWeight: "300",
+                    fontSize: "1.25vw",
+                    letterSpacing: "0.15vw"
                 }
             }
         }

@@ -61,11 +61,13 @@ class AppHomeMarketingItem extends React.Component {
             url: "stock/examples/1.png",
             height: {
                 "0em": "33vw",
-                "48em": "26vw"
+                "48em": "26vw",
+                "64em": "26vw"
             },
             width: {
                 "0em": "85vw",
-                "48em": "70vw"
+                "48em": "70vw",
+                "48em": "45vw"
             }
         }
     }
@@ -87,7 +89,8 @@ class AppHomeMarketingItem extends React.Component {
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
-                    flexDirection: "row"
+                    flexDirection: "row",
+                    justifyContent: "space-around"
                 }
             }
         }
@@ -115,6 +118,10 @@ class AppHomeMarketingItem extends React.Component {
                     height: image.height['48em']
                 },
                 "@media (min-width: 64em)": {
+                    order: (this.props.align === "left" ? "2" : "1"),
+                    margin: "5vh 0 2.5vh 0",
+                    width: image.width['64em'],
+                    height: image.height['64em']
                 }
             }
         }
@@ -137,6 +144,9 @@ class AppHomeMarketingItem extends React.Component {
                     fontSize: "4vw"
                 },
                 "@media (min-width: 64em)": {
+                    width: "35vw",
+                    fontSize: "2vw",
+                    letterSpacing: "0.25vw"
                 }
             },
             text: largeText
@@ -156,6 +166,7 @@ class AppHomeMarketingItem extends React.Component {
                     width: "65vw",
                 },
                 "@media (min-width: 64em)": {
+                    width: "35vw",
                 }
             },
             text: smallText
@@ -181,6 +192,8 @@ class AppHomeMarketingItem extends React.Component {
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
+                    order: (this.props.align === "left" ? "1" : "2"),
+                    width: "35vw"
                 }
             }
         }
@@ -202,6 +215,7 @@ class AppHomeMarketingItem extends React.Component {
                     width: "22.5vw"
                 },
                 "@media (min-width: 64em)": {
+                    width: "12.5vw"
                 }
             }
         }
