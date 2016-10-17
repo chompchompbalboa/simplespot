@@ -9,6 +9,7 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
+const AppDashboard = require('./AppDashboard/AppDashboard.jsx');
 const AppHome = require('./AppHome/AppHome.jsx');
 const AppLogin = require('./AppLogin/AppLogin.jsx');
 
@@ -70,6 +71,9 @@ class App extends React.Component {
     __app(path) {
         let basePath = path.split("/")[1];
         switch (basePath) {
+            case "dashboard":
+                return (<AppDashboard content={this.props.content}/>)
+            break;
             case "login":
                 return (<AppLogin content={this.props.content}/>)
             break;

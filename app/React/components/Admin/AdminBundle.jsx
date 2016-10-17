@@ -52,7 +52,7 @@ class AdminBundle extends React.Component {
         window.history.replaceState({content: this.state.content}, "", window.location.pathname);
         window.addEventListener('popstate', (e) => contentActions.replaceContent(e.state.content));
         contentStore.addChangeListener(this._onChange); 
-        contentActions.fetchContent("CONTENT_ADMIN");
+        contentActions.fetchContent("INITIAL_ADMIN");
     }
 
     /**

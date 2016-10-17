@@ -9,6 +9,8 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
+const contentActions = require('../../../actions/contentActions');
+
 /**
 * AppLogin
 *
@@ -68,7 +70,11 @@ class AppLogin extends React.Component {
     */
     handleSubmit(e) {
         e.preventDefault();
-        console.log('submit');
+        let data = {
+            email: this.emailInput.value,
+            password: this.passwordInput.value
+        };
+        contentActions.fetchContent("LOGIN_APP", data);
     }
 
     /**
@@ -215,6 +221,38 @@ class AppLogin extends React.Component {
     }
 
     /**
+    * Settings for: _message
+    *
+    * @function _message
+    * @return {object}
+    */
+    _message(message) {
+        return {
+            style: {
+                margin: "3vh 0 0 0",
+                width: "77.5vw",
+                height: "15vh",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                fontSize: "3.5vw",
+                fontWeight: "400",
+                color: "rgb(200,0,0)",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    width: "41.5vw",
+                    fontSize: "1.375vw"
+                },
+                "@media (min-width: 64em)": {
+                    width: "21vw",
+                    fontSize: ".95vw"
+                }
+            },
+            text: message
+        }
+    }
+
+    /**
     * Settings for: _submit
     *
     * @function _submit
@@ -258,13 +296,14 @@ class AppLogin extends React.Component {
     * @return {string}
     */
     render() {
-        let {...other} = this.props;
+        let {content, ...other} = this.props;
         let _div = this._div();
         let _form = this._form();
         let _input = this._input();
         let _logoContainer = this._logoContainer();
         let _logoImage = this._logoImage();
         let _logoText = this._logoText();
+        let _message = this._message(content.app.messages.login);
         let _submit = this._submit();
         return (
             <div id="app" style={_div.style}>
@@ -277,6 +316,9 @@ class AppLogin extends React.Component {
                     <input ref={(c) => this.passwordInput = c} type="password" value={this.state.password} style={_input.style} onChange={this.handleInputChange} placeholder="Password"/>
                     <input type="submit" value="Login" style={_submit.style}/>
                 </form>
+                <div className="message" style={_message.style}>
+                    {_message.text}
+                </div>
             </div>
         )
     }    

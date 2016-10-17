@@ -55,7 +55,13 @@ var activeBundle = function() {
 */
 var changeContent = function(changes){
     _store.content = store.changeContent(changes, _store.content);
-    window.history.pushState({content: _store.content}, "", _store.content[activeBundle()]['display']['path']);
+    if(_store.content.load === "initial") {
+        _store.content.load = "normal";
+        window.history.replaceState({content: _store.content}, "", _store.content[activeBundle()]['display']['path']);
+    }
+    else {
+        window.history.pushState({content: _store.content}, "", _store.content[activeBundle()]['display']['path']);
+    }
 };
 
 /**

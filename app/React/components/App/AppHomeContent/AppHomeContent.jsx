@@ -89,7 +89,7 @@ class AppHomeContent extends React.Component {
                     align="left"
                     padding={true}
                     largeText="Get your brand new website in seconds"
-                    smallText="You're a busy person. We get that. That's why we built the fastest, easiest way to redesign your website. Don't let an out of date website cost you customers any more. Just type in the URL of your current website, hit go, and watch the magic happen."
+                    smallText="You're a busy person. We get that. That's why we built the fastest, easiest way to redesign your website. Just type in the URL of your current website, hit go, and watch the magic happen."
                 />
                 <AppHomeContentImage
                     key={2}

@@ -45,10 +45,9 @@ class AppBundle extends React.Component {
     * @function componentDidMount
     */
     componentDidMount() {
-        window.history.replaceState({content: this.state.content}, "", window.location.pathname);
         window.addEventListener('popstate', (e) => contentActions.replaceContent(e.state.content));
         contentStore.addChangeListener(this._onChange); 
-        contentActions.fetchContent("CONTENT_APP");
+        contentActions.fetchContent("INITIAL_APP");
     }
 
     /**

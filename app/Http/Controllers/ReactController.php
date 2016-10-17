@@ -101,9 +101,13 @@ class ReactController extends Controller
                     ]
                 ];
             break;
-            case "CONTENT_ADMIN":
+            case "INITIAL_ADMIN":
                 $url = Helper::fetchURL(json_decode($this->request->input('url')), $this->sites);
                 $response = [
+                    [
+                        "key" => "load",
+                        "value" => "initial"
+                    ],
                     [
                         "key" => "admin",
                         "value" => $this->fetchAdmin(json_decode($this->request->input('url')))
@@ -118,9 +122,13 @@ class ReactController extends Controller
                     ]
                 ];
             break;
-            case "CONTENT_APP":
+            case "INITIAL_APP":
                 $url = Helper::fetchURL(json_decode($this->request->input('url')), $this->sites);
                 $response = [
+                    [
+                        "key" => "load",
+                        "value" => "initial"
+                    ],
                     [
                         "key" => "app",
                         "value" => $this->fetchApp(json_decode($this->request->input('url')))
@@ -131,11 +139,43 @@ class ReactController extends Controller
                     ]
                 ];
             break;
-            case "CONTENT_SITE":
+            case "INITIAL_SITE":
                 $response = [
+                    [
+                        "key" => "load",
+                        "value" => "initial"
+                    ],
                     [
                         "key" => "site",
                         "value" => $this->fetchSite(json_decode($this->request->input('url')))
+                    ]
+                ];
+            break;
+            case "LOGIN_APP":
+                $data = json_decode($this->request->input('data'));
+                if(Auth::attempt(['email' => $data->email, 'password' => $data->password], true)) {
+                    $response = [
+                        [
+                            "key" => "app",
+                            "value" => $this->fetchApp(json_decode($this->request->input('url')))
+                        ]
+                    ];
+                }
+                else {     
+                    $response = [
+                        [
+                            "key" => "app.messages.login",
+                            "value" => "Your username or password could not be found. Please try again."
+                        ]
+                    ];
+                }
+            break;
+            case "LOGOUT_APP":
+                Auth::logout();
+                $response = [
+                    [
+                        "key" => "app.display.path",
+                        "value" => "/"
                     ]
                 ];
             break;
@@ -204,11 +244,20 @@ class ReactController extends Controller
     */
     private function fetchApp($url)
     {
-        return [
-            "display" => [
-                "path" => $url->path
-            ]
-        ];
+        $app = [];
+        if(Auth::check()) {
+            $app['display']['path'] = "/dashboard";
+            $app['messages'] = [
+                "login" => ""
+            ];
+        }
+        else {
+            $app['display']['path'] = $url->path;
+            $app['messages'] = [
+                "login" => ""
+            ];
+        }
+        return $app;
     }
 
     /**
