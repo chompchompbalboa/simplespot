@@ -231,7 +231,7 @@ class AppHomeLandingHeader extends React.Component {
                     <div className="logoText" style={_logoText.style}>SIMPLESPOT</div>
                 </div>
                 <div className="loginLinkContainer" style={_loginLinkContainer.style}>
-                    <a href="/login" style={_a.style} onClick={(e) => this.handleLinkClick(e, "login")}>
+                    <a href="/login" style={_a.style} onClick={(e) => this.handleLinkClick(e, "/login")}>
                         <div className="loginLink" style={_loginLink.style}>LOGIN</div>
                     </a>
                 </div>
