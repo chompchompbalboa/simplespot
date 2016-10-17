@@ -1,5 +1,5 @@
 /**
-* AppDashboard.jsx
+* AppDashboardContent.jsx
 * @copyright simplespot.co, 2016-Present. All Rights Reserved.
 * @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
 *
@@ -11,16 +11,12 @@ import Radium from 'radium';
 
 const contentActions = require('../../../actions/contentActions');
 
-const AppDashboardContent = require('../AppDashboardContent/AppDashboardContent.jsx');
-const AppDashboardHeader = require('../AppDashboardHeader/AppDashboardHeader.jsx');
-const AppDashboardSidebar = require('../AppDashboardSidebar/AppDashboardSidebar.jsx');
-
 /**
-* AppDashboard
+* AppDashboardContent
 *
-* @module AppDashboard
+* @module AppDashboardContent
 */
-class AppDashboard extends React.Component {
+class AppDashboardContent extends React.Component {
 
     /**
     * Constructor
@@ -58,18 +54,19 @@ class AppDashboard extends React.Component {
     _div() {
         return {
             style: {
-                position: "relative",
-                top: "0vh",
-                left: "0vw",
+                backgroundColor: "white",
                 width: "100vw",
-                height: "100vh",
+                height: "86vh",
                 display: "flex",
-                flexFlow: "row wrap",
                 justifyContent: "center",
-                alignItems: "flex-start",
-                backgroundColor: "rgba(250,250,250,1)",
-                fontFamily: "Lato, sans-serif",
-                fontWeight: "300"
+                alignItems: "center",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    height: "88vh",
+                },
+                "@media (min-width: 64em)": {
+                    width: "85vw",
+                    height: "90vh"
+                }
             }
         }
     }
@@ -84,12 +81,10 @@ class AppDashboard extends React.Component {
         let {content, ...other} = this.props;
         let _div = this._div();
         return (
-            <div  style={_div.style}>
-                <AppDashboardHeader content={content}/>
-                <AppDashboardSidebar content={content}/>
-                <AppDashboardContent content={content}/>
+            <div style={_div.style}>
+                {content.app.display.path}
             </div>
         )
     }    
 }
-module.exports = Radium(AppDashboard);
+module.exports = Radium(AppDashboardContent);

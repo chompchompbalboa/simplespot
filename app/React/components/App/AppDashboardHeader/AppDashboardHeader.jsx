@@ -79,16 +79,18 @@ class AppHomeLandingHeader extends React.Component {
         return {
             style: {
                 width: "90vw",
-                height: "10vh",
+                height: "8vh",
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
                 fontSize: "2vh",
                 letterSpacing: "0.25vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    height: "8vh",
                     letterSpacing: "0.1875vw"
                 },
                 "@media (min-width: 64em)": {
+                    height: "10vh",
                     letterSpacing: "0.125vw"
                 }
             }
