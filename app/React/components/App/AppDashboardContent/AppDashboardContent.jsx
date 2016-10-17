@@ -11,6 +11,8 @@ import Radium from 'radium';
 
 const contentActions = require('../../../actions/contentActions');
 
+const AppDashboardContentPreview = require('../AppDashboardContentPreview/AppDashboardContentPreview.jsx');
+
 /**
 * AppDashboardContent
 *
@@ -54,7 +56,6 @@ class AppDashboardContent extends React.Component {
     _div() {
         return {
             style: {
-                backgroundColor: "white",
                 width: "100vw",
                 height: "86vh",
                 display: "flex",
@@ -72,6 +73,30 @@ class AppDashboardContent extends React.Component {
     }
 
     /**
+    * Settings for: __content
+    *
+    * @function __content
+    * @return {object}
+    */
+    __content(content) {
+        let path = content.app.display.path.split("/")[2];
+        switch (path) {
+            case "edit":
+                return ("Edit");
+            break;
+            case "profile":
+                return ("Profile");
+            break;
+            case "billing":
+                return ("Billing");
+            break;
+            default:
+                return (<AppDashboardContentPreview content={content}/>);
+
+        }
+    }
+
+    /**
     * Render the component
     *
     * @function render
@@ -80,9 +105,10 @@ class AppDashboardContent extends React.Component {
     render() {
         let {content, ...other} = this.props;
         let _div = this._div();
+        let __content = this.__content(content);
         return (
             <div style={_div.style}>
-                {content.app.display.path}
+                {__content}
             </div>
         )
     }    

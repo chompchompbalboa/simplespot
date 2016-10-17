@@ -186,8 +186,13 @@ class AppDashboardSidebar extends React.Component {
         return {
             style: {
                 color: "black",
-                "@media (min-width: 48em)": {
-                    margin: "0 0 0 1vw"
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    margin: "0 0 0 1vw",
+                    fontSize: "1.75vh"
+                },
+                "@media (min-width: 64em)": {
+                    margin: "0 0 0 1vw",
+                    fontSize: "2vh"
                 }
             }
         }
@@ -313,6 +318,7 @@ class AppDashboardSidebar extends React.Component {
         return {
             style: {
                 display: "none",
+                letterSpacing: "0.125vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                     display: "flex",
                     justifyContent: "center",

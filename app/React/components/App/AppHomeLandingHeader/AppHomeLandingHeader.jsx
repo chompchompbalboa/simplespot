@@ -197,12 +197,12 @@ class AppHomeLandingHeader extends React.Component {
                 "@media (min-width: 64em)": {
                     padding: "0.75vw 1.5vw 0.75vw 1.5vw",
                     border: "1px solid white",
-                    fontSize: "1.5vh"
-                },
-                ":hover": {
-                    backgroundColor: "white",
-                    color: "black",
-                    fontWeight: "400"
+                    fontSize: "1.5vh",
+                    ":hover": {
+                        backgroundColor: "white",
+                        color: "black",
+                        fontWeight: "400"   
+                    }
                 }
             }
         }
