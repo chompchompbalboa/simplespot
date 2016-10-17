@@ -10,6 +10,7 @@ import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
 const AppHome = require('./AppHome/AppHome.jsx');
+const AppLogin = require('./AppLogin/AppLogin.jsx');
 
 /**
 * The top level app component
@@ -67,9 +68,13 @@ class App extends React.Component {
     * @return {object}
     */
     __app(path) {
-        switch (path) {
+        let basePath = path.split("/")[1];
+        switch (basePath) {
+            case "login":
+                return (<AppLogin content={this.props.content}/>)
+            break;
             default:
-                return (<AppHome />)      
+                return (<AppHome content={this.props.content}/>)      
         }
     }
 

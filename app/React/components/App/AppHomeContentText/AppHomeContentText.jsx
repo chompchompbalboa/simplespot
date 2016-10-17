@@ -50,7 +50,7 @@ class AppHomeContentText extends React.Component {
     _div() {
         return {
             style: {
-                margin: "7.5vh 0 0 0",
+                margin: "7.5vh 0 7.5vh 0",
                 width: "85vw",
                 display: "flex",
                 textAlign: (this.props.align === "left" ? "left" : "right"),
@@ -58,8 +58,10 @@ class AppHomeContentText extends React.Component {
                 justifyContent: "flex-start",
                 alignItems: (this.props.align === "left" ? "flex-start" : "flex-end"),
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    margin: "5vh 0 5vh 0",
                 },
                 "@media (min-width: 64em)": {
+                    margin: "5vh 0 5vh 0",
                     order: this.props.order,
                     width: "40vw",
                     padding: (this.props.padding ? "20vh 0 0 0" : "0")

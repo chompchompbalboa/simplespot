@@ -232,7 +232,7 @@ class AppHomeContentPricing extends React.Component {
         let _textContainer = this._textContainer();
         return (
             <div style={_div.style}>
-                <div className="header" style={_header.style}>AFFORDABLE PRICING</div>
+                <div className="header" style={_header.style}>DATA DRIVEN DESIGN</div>
                 <div className="container" style={_container.style}>
                     <div className="image" style={_image.style}></div>
                     <div className="textContainer" style={_textContainer.style}>

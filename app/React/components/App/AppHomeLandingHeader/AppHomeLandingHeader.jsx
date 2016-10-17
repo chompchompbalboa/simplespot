@@ -9,6 +9,8 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
+const contentActions = require('../../../actions/contentActions');
+
 /**
 * AppHomeLandingHeader
 *
@@ -39,6 +41,20 @@ class AppHomeLandingHeader extends React.Component {
     * @prop defautProps
     */
     static defaultProps = {
+    }
+
+    /**
+    * Settings for: handleLinkClick
+    *
+    * @function handleLinkClick
+    * @return {object}
+    */
+    handleLinkClick(e, path) {
+        e.preventDefault();
+        let changes = [
+            {key: "app.display.path", value: path}
+        ];
+        contentActions.changeContent(changes);
     }
 
     /**
@@ -111,7 +127,7 @@ class AppHomeLandingHeader extends React.Component {
                 backgroundPosition: "center center",
                 backgroundRepeat: "no repeat",
                 backgroundSize: "cover",
-                backgroundImage: "url(assets/App/icons/logo.png)",
+                backgroundImage: "url(assets/App/icons/logo_white.png)",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                     height: "2vh",
                     width: "2vh"
@@ -215,7 +231,7 @@ class AppHomeLandingHeader extends React.Component {
                     <div className="logoText" style={_logoText.style}>SIMPLESPOT</div>
                 </div>
                 <div className="loginLinkContainer" style={_loginLinkContainer.style}>
-                    <a href="/login" style={_a.style}>
+                    <a href="/login" style={_a.style} onClick={(e) => this.handleLinkClick(e, "login")}>
                         <div className="loginLink" style={_loginLink.style}>LOGIN</div>
                     </a>
                 </div>

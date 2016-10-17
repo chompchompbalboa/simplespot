@@ -112,7 +112,7 @@ class AppHomeContent extends React.Component {
                     align="right"
                     padding={true}
                     largeText="Custom built just for you"
-                    smallText="It doesnt matter what business you're in. You want to stand out from your competition and show off what makes you unique. We've been working hard to make sure that your new website is as one of a kind as you are."
+                    smallText="It doesnt matter what business you're in. You want to stand out from your competition and show off what makes you unique. Lucky for you, our engineers work tirelessly to make sure that every site our servers build is as one of a kind as you are."
                 />
                 <AppHomeContentImage
                     key={4}
@@ -133,15 +133,59 @@ class AppHomeContent extends React.Component {
                     key={5}
                     order="5"
                     align="left"
-                    padding={false}
-                    largeText="Talk to a real human being"
-                    smallText="We hope that you love everything about your website right away. But if you don't, you can discuss changes - and see them in real time - with a design expert who wants your site to look just the way you want it. They'll also walk you through every step until your site is up and running for the world to see."
+                    padding={true}
+                    largeText="Data driven design"
+                    smallText="We're nerds and proud of it. Every website we build goes through extensive testing to make sure that your customers love to use it. No more sorting through clunky menus or swiping through page after page of useless information for them. Just easy to use, beautifully designed, thoughtful websites."
                 />
-                <AppHomeContentTryIt 
+                <AppHomeContentImage
+                    key={6}
                     order="6"
+                    url="stock/examples/2.png"
+                    height={{
+                        "0em": "138vw",
+                        "48em": "114vw",
+                        "64em": "65vw"
+                    }}
+                    width={{
+                        "0em": "85vw",
+                        "48em": "70vw",
+                        "64em": "40vw"
+                    }}
                 />
-                <AppHomeContentPricing
+                <AppHomeContentText
+                    key={7}
+                    order="8"
+                    align="right"
+                    padding={true}
+                    largeText="Talk to a real human being"
+                    smallText="We hope that you love everything about your website right away. But if you don't, you can discuss changes - and see them in real time - with a design expert who will make sure your site looks just the way you want it. They'll also walk you through every step until your site is up and running for the world to see."
+                />
+                <AppHomeContentImage
+                    key={8}
                     order="7"
+                    url="stock/examples/2.png"
+                    height={{
+                        "0em": "138vw",
+                        "48em": "114vw",
+                        "64em": "65vw"
+                    }}
+                    width={{
+                        "0em": "85vw",
+                        "48em": "70vw",
+                        "64em": "40vw"
+                    }}
+                />
+                <AppHomeContentText
+                    key={9}
+                    order="9"
+                    align="left"
+                    padding={false}
+                    largeText="It's free to try"
+                    smallText="You don't pay until the design is perfect and the site is live. And if you're ever unhappy with our service, we offer a fully money-back guarantee, no questions asked."
+                />
+                <AppHomeContentTryIt
+                    key={10} 
+                    order="10"
                 />
             </div>
         )

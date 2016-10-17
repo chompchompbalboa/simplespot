@@ -50,7 +50,7 @@ class AppHomeContentImage extends React.Component {
     _div(height, width, url) {
         return {
             style: {
-                margin: "7.5vh 0 5vh 0",
+                margin: "0vh 0 5vh 0",
                 width: width['0em'],
                 height: height['0em'],
                 backgroundPosition: "center center",
@@ -58,7 +58,7 @@ class AppHomeContentImage extends React.Component {
                 backgroundSize: "cover",
                 backgroundImage: "url(" + url + ")",
                 "@media (min-width: 48em) and (max-width: 64em)": {
-                    margin: "5vh 0 2.5vh 0",
+                    margin: "0 0 2.5vh 0",
                     width: width['48em'],
                     height: height['48em']
                 },

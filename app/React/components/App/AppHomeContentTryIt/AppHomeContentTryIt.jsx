@@ -68,6 +68,7 @@ class AppHomeTryIt extends React.Component {
     _div() {
         return {
             style: {
+                margin: "-7.5vh 0 0 0",
                 width: "100vw",
                 height: "20vh",
                 display: "flex",
@@ -75,8 +76,10 @@ class AppHomeTryIt extends React.Component {
                 alignItems: "center",
                 fontFamily: "Lato, sans-serif",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    margin: "-5vh 0 0 0",
                 },
                 "@media (min-width: 64em)": {
+                    margin: "0 0 0 0",
                     order: this.props.order,
                     width: "40vw",
                     height: "40vh"
