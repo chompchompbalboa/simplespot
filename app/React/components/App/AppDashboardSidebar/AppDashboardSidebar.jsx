@@ -338,6 +338,8 @@ class AppDashboardSidebar extends React.Component {
     _select() {
         return {
             style: {
+                border: "none",
+                backgroundColor: "transparent",
                 margin: "0 0 0 3vw",
                 fontFamily: "Lato",
                 fontSize: "4vw",
