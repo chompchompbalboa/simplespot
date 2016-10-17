@@ -129,6 +129,7 @@ class AppLogin extends React.Component {
                 border: "1px solid black",
                 fontSize: "3.25vw",
                 letterSpacing: "0.25vw",
+                borderRadius: "2px",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                     padding: "0 0.75vw",
                     height: "3.5vh",
@@ -230,6 +231,7 @@ class AppLogin extends React.Component {
                 fontSize: "3.25vw",
                 letterSpacing: "0.25vw",
                 transition: "background-color 0.25s ease, color 0.25s ease",
+                borderRadius: "2px",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                     height: "3.5vh",
                     width: "41.5vw",
