@@ -14,11 +14,11 @@ const Radium = require('radium');
 * eventually, but for ease of development's sake, I'm going to leave it here
 * for now.
 */
-const Next = require('./Themes/Next/Next.jsx');
-const NWAire = require('./Themes/NWAire/NWAire.jsx');
-const Omni = require('./Themes/Omni/Omni.jsx');
+//const Next = require('./Themes/Next/Next.jsx');
+const NWAire = require('./Themes/NorthwestAire/NorthwestAire.jsx');
+//const Omni = require('./Themes/Omni/Omni.jsx');
 const One = require('./Themes/One/One.jsx');
-const Rocky = require('./Themes/Rocky/Rocky.jsx');
+//const Rocky = require('./Themes/Rocky/Rocky.jsx');
 
 /**
 * The top level site component
