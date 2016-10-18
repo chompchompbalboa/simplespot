@@ -10,7 +10,7 @@ import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
 const NorthwestAireContainerOne = require('../NorthwestAireContainerOne/NorthwestAireContainerOne.jsx');
-const NorthwestAireMenu = require('../NorthwestAireMenu/NorthwestAireMenu.jsx');
+const NorthwestAireContainerTwo = require('../NorthwestAireContainerTwo/NorthwestAireContainerTwo.jsx');
 
 /**
 * The top level app component
@@ -77,6 +77,7 @@ class NorthwestAireContainer extends React.Component {
         return (
             <div className="div" style={_div.style}>
                 <NorthwestAireContainerOne />
+                <NorthwestAireContainerTwo />
             </div>
         )
     }    

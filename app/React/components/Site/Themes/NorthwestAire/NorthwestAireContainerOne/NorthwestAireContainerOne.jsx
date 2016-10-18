@@ -9,9 +9,6 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
-import randomImport from '../../../../../utils/random';
-const random = new randomImport();
-
 /**
 * The top level app component
 *
