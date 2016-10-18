@@ -50,6 +50,20 @@ class AppLogin extends React.Component {
     }
 
     /**
+    * Handle Exit Click
+    *
+    * @function handleExitClick
+    * @return {object}
+    */
+    handleExitClick(e) {
+        e.preventDefault();
+        let changes = [
+            {key: "app.display.path", value: "/"}
+        ];
+        contentActions.changeContent(changes);
+    }
+
+    /**
     * Handle Input Change
     *
     * @function handleInputChange
@@ -98,6 +112,41 @@ class AppLogin extends React.Component {
                 backgroundColor: "rgba(250,250,250,1)",
                 fontFamily: "Lato, sans-serif",
                 fontWeight: "300"
+            }
+        }
+    }
+
+    /**
+    * Settings for: _exit
+    *
+    * @function _exit
+    * @return {object}
+    */
+    _exit() {
+        return {
+            style: {
+                cursor: "pointer",
+                position: "fixed",
+                top: "7.5vw",
+                right: "7.5vw",
+                width: "5vw",
+                height: "5vw",
+                backgroundPosition: "center center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundImage: "url(/assets/App/icons/x.png)",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    top: "5.5vw",
+                    right: "5.5vw",
+                    width: "3.5vw",
+                    height: "3.5vw"
+                },
+                "@media (min-width: 64em)": {
+                    top: "2vw",
+                    right: "5vw",
+                    width: "2vw",
+                    height: "2vw"
+                }
             }
         }
     }
@@ -298,6 +347,7 @@ class AppLogin extends React.Component {
     render() {
         let {content, ...other} = this.props;
         let _div = this._div();
+        let _exit = this._exit();
         let _form = this._form();
         let _input = this._input();
         let _logoContainer = this._logoContainer();
@@ -307,6 +357,7 @@ class AppLogin extends React.Component {
         let _submit = this._submit();
         return (
             <div id="app" style={_div.style}>
+                <div className="exit" style={_exit.style} onClick={(e) => this.handleExitClick(e)}></div>
                 <div className="logoContainer" style={_logoContainer.style}>
                     <div className="logoImage" style={_logoImage.style}></div>
                     <div className="logoText" style={_logoText.style}>SIMPLESPOT</div>

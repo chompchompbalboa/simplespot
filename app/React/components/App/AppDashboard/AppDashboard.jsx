@@ -85,7 +85,6 @@ class AppDashboard extends React.Component {
         let _div = this._div();
         return (
             <div  style={_div.style}>
-                <AppDashboardHeader content={content}/>
                 <AppDashboardSidebar content={content}/>
                 <AppDashboardContent content={content}/>
             </div>

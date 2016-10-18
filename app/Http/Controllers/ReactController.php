@@ -246,13 +246,40 @@ class ReactController extends Controller
     {
         $app = [];
         if(Auth::check()) {
-            $app['display']['path'] = "/dashboard";
+            $user = Auth::user();
+            $userPaths = [
+                "/dashboard",
+                "/dashboard/preview",
+                "/dashboard/edit",
+                "/dashboard/profile",
+                "/dashboard/billing"
+            ];
+            if(in_array($url->path, $userPaths)) {
+                $app['display']['path'] = $url->path;
+            } 
+            else {
+                $app['display']['path'] = "/dashboard";
+            }
+            $app['user'] = [
+                "name" => $user->name,
+                "email" => $user->email
+            ];
             $app['messages'] = [
                 "login" => ""
             ];
         }
         else {
-            $app['display']['path'] = $url->path;
+            $guestPaths = [
+                "/",
+                "/login",
+                "/try"
+            ];
+            if(in_array($url->path, $guestPaths)) {
+                $app['display']['path'] = $url->path;
+            } 
+            else {
+                $app['display']['path'] = "/";
+            }
             $app['messages'] = [
                 "login" => ""
             ];

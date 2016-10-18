@@ -60,7 +60,7 @@ class AppHomeLanding extends React.Component {
                 backgroundPostition: "center center",
                 backgroundRepeat: "no repeat",
                 backgroundSize: "cover",
-                backgroundImage: "url(assets/App/AppHomeLanding/background_0em.jpg)",
+                backgroundImage: "url(/assets/App/AppHomeLanding/background_0em.jpg)",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "flex-start",
@@ -69,10 +69,10 @@ class AppHomeLanding extends React.Component {
                 fontWeight: "300",
                 color: "white",
                 "@media (min-width: 48em) and (max-width: 64em)": {
-                    backgroundImage: "url(assets/App/AppHomeLanding/background_48em.jpg)",
+                    backgroundImage: "url(/assets/App/AppHomeLanding/background_48em.jpg)",
                 },
                 "@media (min-width: 64em)": {
-                    backgroundImage: "url(assets/App/AppHomeLanding/background_64em.jpg)",
+                    backgroundImage: "url(/assets/App/AppHomeLanding/background_64em.jpg)",
                 }
             }
         }

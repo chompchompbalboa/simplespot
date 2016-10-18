@@ -1,5 +1,5 @@
 /**
-* AppHomeLandingHeader.jsx
+* AppDashboardSidebarHeader.jsx
 * @copyright simplespot.co, 2016-Present. All Rights Reserved.
 * @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
 *
@@ -12,11 +12,11 @@ import Radium from 'radium';
 const contentActions = require('../../../actions/contentActions');
 
 /**
-* AppHomeLandingHeader
+* AppDashboardSidebarHeader
 *
-* @module AppHomeLandingHeader
+* @module AppDashboardSidebarHeader
 */
-class AppHomeLandingHeader extends React.Component {
+class AppDashboardSidebarHeader extends React.Component {
 
     /**
     * Constructor
@@ -44,32 +44,6 @@ class AppHomeLandingHeader extends React.Component {
     }
 
     /**
-    * Settings for: handleLogoutClick
-    *
-    * @function handleLogoutClick
-    * @return {object}
-    */
-    handleLogoutClick(e) {
-        e.preventDefault();
-        let data = {};
-        contentActions.fetchContent("LOGOUT_APP", data);
-    }
-
-    /**
-    * Settings for: _a
-    *
-    * @function _a
-    * @return {object}
-    */
-    _a() {
-        return {
-            style: {
-                color: "black"
-            }
-        }
-    }
-
-    /**
     * Settings for: _div
     *
     * @function _div
@@ -78,19 +52,18 @@ class AppHomeLandingHeader extends React.Component {
     _div() {
         return {
             style: {
-                width: "90vw",
-                height: "8vh",
+                width: "10vw",
+                height: "10vh",
                 display: "flex",
-                justifyContent: "space-between",
+                justifyContent: "flex-start",
                 alignItems: "center",
                 fontSize: "2vh",
                 letterSpacing: "0.25vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
-                    height: "8vh",
                     letterSpacing: "0.1875vw"
                 },
                 "@media (min-width: 64em)": {
-                    height: "10vh",
+                    width: "80%",
                     letterSpacing: "0.125vw"
                 }
             }
@@ -133,7 +106,7 @@ class AppHomeLandingHeader extends React.Component {
                     width: "2vh"
                 },
                 "@media (min-width: 64em)": {
-
+                    backgroundImage: "url(/assets/App/icons/logo_white.png)",
                 }
             }
         }
@@ -148,61 +121,17 @@ class AppHomeLandingHeader extends React.Component {
     _logoText() {
         return {
             style: {
+                display: "none",
                 margin: "0 0 0 1.5vw",
-                display: "flex",
-                justifyContent: "flex-start",
-                alignItems: "center",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                     margin: "0 0 0 1vw",
                     fontSize: "1.75vh"
                 },
                 "@media (min-width: 64em)": {
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
                     margin: "0 0 0 0.75vw"
-                }
-            }
-        }
-    }
-
-    /**
-    * Settings for: _logoutLinkContainer
-    *
-    * @function _logoutLinkContainer
-    * @return {object}
-    */
-    _logoutLinkContainer() {
-        return {
-            style: {
-            }
-        }
-    }
-
-    /**
-    * Settings for: _logoutLink
-    *
-    * @function _logoutLink
-    * @return {object}
-    */
-    _logoutLink() {
-        return {
-            style: {
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                transition: "color 0.25s, background-color 0.25s, font-weight 0.25s",
-                "@media (min-width: 48em) and (max-width: 64em)": {
-                    padding: "1vw 2vw 1vw 2vw",
-                    border: "1px solid black",
-                    fontSize: "1.25vh"
-                },
-                "@media (min-width: 64em)": {
-                    padding: "0.75vw 1.5vw 0.75vw 1.5vw",
-                    border: "1px solid black",
-                    fontSize: "1.5vh"
-                },
-                ":hover": {
-                    backgroundColor: "black",
-                    color: "white",
-                    fontWeight: "400"
                 }
             }
         }
@@ -216,13 +145,10 @@ class AppHomeLandingHeader extends React.Component {
     */
     render() {
         let {...other} = this.props;
-        let _a = this._a();
         let _div = this._div();
         let _logoContainer = this._logoContainer();
         let _logoImage = this._logoImage();
         let _logoText = this._logoText();
-        let _logoutLinkContainer = this._logoutLinkContainer();
-        let _logoutLink = this._logoutLink();
 
         return (
             <div className="div" style={_div.style}>
@@ -230,13 +156,8 @@ class AppHomeLandingHeader extends React.Component {
                     <div className="logoImage" style={_logoImage.style}></div>
                     <div className="logoText" style={_logoText.style}>SIMPLESPOT</div>
                 </div>
-                <div className="logoutLinkContainer" style={_logoutLinkContainer.style}>
-                    <a href="/logout" style={_a.style} onClick={(e) => this.handleLogoutClick(e)}>
-                        <div className="logoutLink" style={_logoutLink.style}>LOGOUT</div>
-                    </a>
-                </div>
             </div>
         )
     }    
 }
-module.exports = Radium(AppHomeLandingHeader);
+module.exports = Radium(AppDashboardSidebarHeader);

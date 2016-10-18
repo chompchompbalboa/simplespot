@@ -57,7 +57,7 @@ class NorthwestAireContainerOne extends React.Component {
                 justifyContent: "flex-start",
                 alignItems: "center",
                 backgroundPosition: "center",
-                backgroundRepeat: "no repeat",
+                backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundImage: "linear-gradient(to top, rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(/uploads/57b35f928bcb76f5d65e79fa/needle.jpg)",
                 "@media (min-width: 48em)": {

@@ -12,6 +12,7 @@ import Radium from 'radium';
 const contentActions = require('../../../actions/contentActions');
 
 const AppDashboardContentPreview = require('../AppDashboardContentPreview/AppDashboardContentPreview.jsx');
+const AppDashboardContentProfile = require('../AppDashboardContentProfile/AppDashboardContentProfile.jsx');
 
 /**
 * AppDashboardContent
@@ -65,8 +66,8 @@ class AppDashboardContent extends React.Component {
                     height: "88vh",
                 },
                 "@media (min-width: 64em)": {
-                    width: "85vw",
-                    height: "90vh"
+                    width: "80vw",
+                    height: "100vh"
                 }
             }
         }
@@ -85,7 +86,7 @@ class AppDashboardContent extends React.Component {
                 return ("Edit");
             break;
             case "profile":
-                return ("Profile");
+                return (<AppDashboardContentProfile content={content}/>);
             break;
             case "billing":
                 return ("Billing");
