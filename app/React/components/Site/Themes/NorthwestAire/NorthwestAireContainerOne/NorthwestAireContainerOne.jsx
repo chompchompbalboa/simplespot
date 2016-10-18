@@ -118,7 +118,8 @@ class NorthwestAireContainerOne extends React.Component {
                 margin: "1vh 0 0 0",
                 letterSpacing: "0.5vw",
                 width: "85%",
-                textAlign: "justify"
+                textAlign: "justify",
+                whiteSpace: "nowrap"
             }
         }
     }
@@ -132,9 +133,8 @@ class NorthwestAireContainerOne extends React.Component {
     _container() {
         return {
             style: {
-                margin: "40vh 0 0 10vw",
-                width: "75vw",
-                height: "20vh",
+                margin: "37.5vh 0 0 10vw",
+                padding: "5vh 5vw",
                 display: "flex",
                 fontFamily: "Josefin Sans, sans-serif",
                 fontWeight: "700",
@@ -144,16 +144,12 @@ class NorthwestAireContainerOne extends React.Component {
                 backgroundColor: "rgba(27,48,42,0.25)",
                 color: "white",
                 "@media (min-width: 48em) and (max-width: 64em)": {
-                    margin: "0 0 0 10vw",
-                    width: "45vw",
-                    height: "15vh",
-                    fontSize: "3.75vw",
+                    margin: "37.5vh 0 0 20vw",
+                    padding: "4vh 7vw"
                 },
                 "@media (min-width: 64em)": {
-                    margin: "0 0 0 15vw",
-                    width: "32.5vw",
-                    height: "20vh",
-                    fontSize: "2.5vw",
+                    margin: "37.5vh 0 0 22.5vw",
+                    padding: "5vh 3vw"
                 }
             }
         }
@@ -168,10 +164,16 @@ class NorthwestAireContainerOne extends React.Component {
     _containerLine() {
         return {
             style: {
-                margin: "1vh 0 0 5vw",
+                margin: "1vh 0 0 2vw",
                 letterSpacing: "0.5vw",
-                width: "90%",
-                textAlign: "left"
+                textAlign: "left",
+                whiteSpace: "nowrap",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    margin: "1vh 0 0 1vw",
+                },
+                "@media (min-width: 64em)": {
+                    margin: "1vh 0 0 0.5vw",
+                }
             }
         }
     }
@@ -185,7 +187,13 @@ class NorthwestAireContainerOne extends React.Component {
     _containerLineBottom() {
         return {
             style: {
-                fontSize: "9vw"
+                fontSize: "9vw",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    fontSize: "6.5vw",
+                },
+                "@media (min-width: 64em)": {
+                    fontSize: "4.5vw",
+                }
             }
         }
     }
@@ -199,7 +207,13 @@ class NorthwestAireContainerOne extends React.Component {
     _containerLineTop() {
         return {
             style: {
-                fontSize: "5vw"
+                fontSize: "5vw",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    fontSize: "4vw",
+                },
+                "@media (min-width: 64em)": {
+                    fontSize: "3vw",
+                }
             }
         }
     }
