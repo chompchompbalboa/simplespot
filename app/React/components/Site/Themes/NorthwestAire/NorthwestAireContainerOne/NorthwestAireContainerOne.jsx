@@ -63,7 +63,7 @@ class NorthwestAireContainerOne extends React.Component {
                 backgroundRepeat: "no repeat",
                 backgroundSize: "cover",
                 backgroundImage: "linear-gradient(to top, rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(/uploads/57b35f928bcb76f5d65e79fa/needle.jpg)",
-                "@media (min-width: 48em) and (max-width: 64em)": {
+                "@media (min-width: 48em)": {
                     alignItems: "flex-start"
                 }
             }
@@ -95,6 +95,12 @@ class NorthwestAireContainerOne extends React.Component {
                     width: "45vw",
                     height: "15vh",
                     fontSize: "3.75vw",
+                },
+                "@media (min-width: 64em)": {
+                    margin: "0 0 0 15vw",
+                    width: "32.5vw",
+                    height: "20vh",
+                    fontSize: "2.5vw",
                 }
             }
         }
@@ -118,6 +124,87 @@ class NorthwestAireContainerOne extends React.Component {
     }
 
     /**
+    * Settings for: _container
+    *
+    * @function _container
+    * @return {object}
+    */
+    _container() {
+        return {
+            style: {
+                margin: "40vh 0 0 10vw",
+                width: "75vw",
+                height: "20vh",
+                display: "flex",
+                fontFamily: "Josefin Sans, sans-serif",
+                fontWeight: "700",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "flex-start",
+                backgroundColor: "rgba(27,48,42,0.25)",
+                color: "white",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    margin: "0 0 0 10vw",
+                    width: "45vw",
+                    height: "15vh",
+                    fontSize: "3.75vw",
+                },
+                "@media (min-width: 64em)": {
+                    margin: "0 0 0 15vw",
+                    width: "32.5vw",
+                    height: "20vh",
+                    fontSize: "2.5vw",
+                }
+            }
+        }
+    }
+
+    /**
+    * Settings for: _containerLine
+    *
+    * @function _containerLine
+    * @return {object}
+    */
+    _containerLine() {
+        return {
+            style: {
+                margin: "1vh 0 0 5vw",
+                letterSpacing: "0.5vw",
+                width: "90%",
+                textAlign: "left"
+            }
+        }
+    }
+
+    /**
+    * Settings for: _containerLineBottom
+    *
+    * @function _containerLineBottom
+    * @return {object}
+    */
+    _containerLineBottom() {
+        return {
+            style: {
+                fontSize: "9vw"
+            }
+        }
+    }
+
+    /**
+    * Settings for: _containerLineTop
+    *
+    * @function _containerLineTop
+    * @return {object}
+    */
+    _containerLineTop() {
+        return {
+            style: {
+                fontSize: "5vw"
+            }
+        }
+    }
+
+    /**
     * Render the component
     *
     * @function render
@@ -125,6 +212,10 @@ class NorthwestAireContainerOne extends React.Component {
     */
     render() {
         let {...other} = this.props;
+        let _container = this._container();
+        let _containerLine = this._containerLine();
+        let _containerLineBottom = this._containerLineBottom();
+        let _containerLineTop = this._containerLineTop();
         let _div = this._div();
         let _header = this._header();
         let _headerLine = this._headerLine();
@@ -133,6 +224,10 @@ class NorthwestAireContainerOne extends React.Component {
                 <div className="header" style={_header.style}>
                     <div className="headerLine" style={_headerLine.style}>NORTHWEST</div>
                     <div className="headerLine" style={_headerLine.style}>AIRE SERVICES</div>
+                </div>
+                <div className="container" style={_container.style}>
+                    <div className="containerLine" style={[_containerLine.style, _containerLineTop.style]}>FOR ALL YOUR</div>
+                    <div className="containerLine" style={[_containerLine.style, _containerLineBottom.style]}>HVAC NEEDS</div>
                 </div>
             </div>
         )
