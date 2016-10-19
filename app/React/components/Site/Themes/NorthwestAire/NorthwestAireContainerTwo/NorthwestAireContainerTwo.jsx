@@ -132,7 +132,7 @@ class NorthwestAireContainerTwo extends React.Component {
                 display: "flex",
                 justifyContent: "flex-start",
                 alignItems: "center",
-                fontWeight: "400",
+                fontWeight: "300",
                 fontSize: "4vw",
                 letterSpacing: "0.25vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
@@ -211,7 +211,7 @@ class NorthwestAireContainerTwo extends React.Component {
                 justifyContent: "flex-start",
                 alignItems: "center",
                 fontWeight: "400",
-                fontSize: "4.5vw",
+                fontSize: "5vw",
                 letterSpacing: "0.5vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                     fontSize: "2.5vw",
