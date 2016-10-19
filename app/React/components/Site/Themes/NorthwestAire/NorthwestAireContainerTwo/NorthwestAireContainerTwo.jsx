@@ -84,7 +84,7 @@ class NorthwestAireContainerTwo extends React.Component {
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
-                    margin: "10vh 0 5vh 0",
+                    margin: "10vh 0 0 0",
                 }
             }
         }
@@ -127,12 +127,12 @@ class NorthwestAireContainerTwo extends React.Component {
     _introSmallText() {
         return {
             style: {
-                margin: "3.5vh 0 0 0",
+                margin: "4vh 0 0 0",
                 width: "100%",
                 display: "flex",
                 justifyContent: "flex-start",
                 alignItems: "center",
-                fontWeight: "300",
+                fontWeight: "400",
                 fontSize: "4vw",
                 letterSpacing: "0.25vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
@@ -159,13 +159,118 @@ class NorthwestAireContainerTwo extends React.Component {
     _introDivider() {
         return {
             style: {
-                margin: "3.5vh 0 0 0",
+                margin: "4vh 0 0 0",
                 height: "2px",
                 width: "35vw",
                 backgroundColor: "white",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                     margin: "2.5vh 0 0 0",
                     width: "22vw",
+                },
+                "@media (min-width: 64em)": {
+                    width: "20vw"
+                }
+            }
+        }
+    }
+
+    /**
+    * Settings for: _service
+    *
+    * @function _service
+    * @return {object}
+    */
+    _service() {
+        return {
+            style: {
+                margin: "10vh 0 0 0",
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "flex-start",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    margin: "5vh 0 0 0",
+                    width: "45%"
+                },
+                "@media (min-width: 64em)": {
+                    margin: "7.5vh 0 0 0",
+                    width: "30%"
+                }
+            }
+        }
+    }
+
+    /**
+    * Settings for: _serviceLargeText
+    *
+    * @function _serviceLargeText
+    * @return {object}
+    */
+    _serviceLargeText() {
+        return {
+            style: {
+                width: "100%",
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                fontWeight: "400",
+                fontSize: "5vw",
+                letterSpacing: "0.5vw",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    fontSize: "2.5vw",
+                    letterSpacing: "0.35vw"
+                },
+                "@media (min-width: 64em)": {
+                    fontWeight: "700",
+                    fontSize: "1.25vw",
+                    letterSpacing: "0.1875vw"
+                }
+            }
+        }
+    }
+
+    /**
+    * Settings for: _serviceSmallText
+    *
+    * @function _serviceSmallText
+    * @return {object}
+    */
+    _serviceSmallText() {
+        return {
+            style: {
+                margin: "2.5vh 0 0 0",
+                width: "100%",
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                fontWeight: "300",
+                fontSize: "4vw",
+                letterSpacing: "0.25vw",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    margin: "2.5vh 0 0 0",
+                    fontSize: "2.25vw",
+                    letterSpacing: "0.15vw"
+                },
+                "@media (min-width: 64em)": {
+                    fontSize: "1.15vw",
+                    letterSpacing: "0.125vw"
+                }
+            }
+        }
+    }
+
+    /**
+    * Settings for: _serviceThree
+    *
+    * @function _serviceThree
+    * @return {object}
+    */
+    _serviceThree() {
+        return {
+            style: {
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    display: "none"
                 },
                 "@media (min-width: 64em)": {
                 }
@@ -182,76 +287,17 @@ class NorthwestAireContainerTwo extends React.Component {
     _servicesContainer() {
         return {
             style: {
-                margin: "10vh 0 5vh 0",
+                margin: "0 0 5vh 0",
                 width: "85vw",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
-                alignItems: "flex-statrt",
+                alignItems: "flex-start",
                 fontFamily: "Lato, sans-serif",
-                "@media (min-width: 48em) and (max-width: 64em)": {
-                },
-                "@media (min-width: 64em)": {
-                }
-            }
-        }
-    }
-
-    /**
-    * Settings for: _servicesLargeText
-    *
-    * @function _servicesLargeText
-    * @return {object}
-    */
-    _servicesLargeText() {
-        return {
-            style: {
-                width: "100%",
-                display: "flex",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                fontWeight: "400",
-                fontSize: "5vw",
-                letterSpacing: "0.5vw",
-                "@media (min-width: 48em) and (max-width: 64em)": {
-                    fontSize: "2.5vw",
-                    letterSpacing: "0.35vw"
-                },
-                "@media (min-width: 64em)": {
-                    fontSize: "1.25vw",
-                    letterSpacing: "0.1875vw"
-                }
-            }
-        }
-    }
-
-    /**
-    * Settings for: _servicesSmallText
-    *
-    * @function _servicesSmallText
-    * @return {object}
-    */
-    _servicesSmallText() {
-        return {
-            style: {
-                margin: "2.5vh 0 0 0",
-                width: "100%",
-                display: "flex",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                fontWeight: "300",
-                fontSize: "4vw",
-                letterSpacing: "0.25vw",
-                "@media (min-width: 48em) and (max-width: 64em)": {
-                    margin: "2.5vh 0 0 0",
-                    width: "60%",
-                    fontSize: "2.25vw",
-                    letterSpacing: "0.15vw"
-                },
-                "@media (min-width: 64em)": {
-                    width: "85%",
-                    fontSize: "1.15vw",
-                    letterSpacing: "0.125vw"
+                "@media (min-width: 48em)": {
+                    flexFlow: "row wrap",
+                    justifyContent: "space-between",
+                    alignItems: "center"
                 }
             }
         }
@@ -270,9 +316,11 @@ class NorthwestAireContainerTwo extends React.Component {
         let _introDivider = this._introDivider();
         let _introLargeText = this._introLargeText();
         let _introSmallText = this._introSmallText();
+        let _service = this._service();
+        let _serviceLargeText = this._serviceLargeText();
+        let _serviceSmallText = this._serviceSmallText();
+        let _serviceThree = this._serviceThree();
         let _servicesContainer = this._servicesContainer();
-        let _servicesLargeText = this._servicesLargeText();
-        let _servicesSmallText = this._servicesSmallText();
         return (
             <div className="div" style={_div.style}>
                 <div className="introContainer" style={_introContainer.style}>
@@ -283,9 +331,23 @@ class NorthwestAireContainerTwo extends React.Component {
                     <div className="introDivider" style={_introDivider.style}></div>
                 </div>
                 <div className="servicesContainer" style={_servicesContainer.style}>
-                    <div className="servicesLargeText" style={_servicesLargeText.style}>WHO WE ARE</div>
-                    <div className="servicesSmallText" style={_servicesSmallText.style}>
-                    We are a full service commercial HVAC contractor with the resources and motivation to provide industry-leading solutions. Equipped to competitively bid any job, it is our hope to build lifelong relationships with our customers - relationships that will lead to an enduring and mutual satisfaction.
+                    <div className="service" style={_service.style}>
+                        <div className="serviceLargeText" style={_serviceLargeText.style}>WHO WE ARE</div>
+                        <div className="serviceSmallText" style={_serviceSmallText.style}>
+                        We are a full service commercial HVAC contractor with the resources and motivation to provide industry-leading solutions. Equipped to competitively bid any job, it is our hope to build lifelong relationships with our customers - relationships that will lead to an enduring and mutual satisfaction.
+                        </div>
+                    </div>
+                    <div className="service" style={_service.style}>
+                        <div className="serviceLargeText" style={_serviceLargeText.style}>WHAT WE DO</div>
+                        <div className="serviceSmallText" style={_serviceSmallText.style}>
+                        We are a full service commercial HVAC contractor with the resources and motivation to provide industry-leading solutions. Equipped to competitively bid any job, it is our hope to build lifelong relationships with our customers - relationships that will lead to an enduring and mutual satisfaction.
+                        </div>
+                    </div>
+                    <div className="service" style={[_service.style, _serviceThree.style]}>
+                        <div className="serviceLargeText" style={_serviceLargeText.style}>WHY CHOOSE US</div>
+                        <div className="serviceSmallText" style={_serviceSmallText.style}>
+                        We are a full service commercial HVAC contractor with the resources and motivation to provide industry-leading solutions. Equipped to competitively bid any job, it is our hope to build lifelong relationships with our customers - relationships that will lead to an enduring and mutual satisfaction.
+                        </div>
                     </div>
                 </div>
             </div>
