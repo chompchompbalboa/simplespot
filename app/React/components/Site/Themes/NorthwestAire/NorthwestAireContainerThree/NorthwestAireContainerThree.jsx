@@ -125,7 +125,7 @@ class NorthwestAireContainerThree extends React.Component {
             style: {
                 margin: "4vh 0 0 0",
                 width: "100%",
-                height: "60vh",
+                height: "55vh",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "flex-end",
