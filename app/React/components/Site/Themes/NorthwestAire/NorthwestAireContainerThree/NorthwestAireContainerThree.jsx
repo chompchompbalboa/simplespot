@@ -55,7 +55,7 @@ class NorthwestAireContainerThree extends React.Component {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                backgroundColor: "rgb(250,250,250)",
+                backgroundColor: "rgb(225,225,225)",
                 color: "rgba(45,62,82)",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
@@ -75,7 +75,7 @@ class NorthwestAireContainerThree extends React.Component {
         return {
             style: {
                 margin: "5vh 0 5vh 0",
-                width: "90%",
+                width: "87.5%",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -133,11 +133,66 @@ class NorthwestAireContainerThree extends React.Component {
                 backgroundPosition: "center center",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
-                backgroundImage: "url(/uploads/57b35f928bcb76f5d65e79fa/hvac.jpg)",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
                 }
+            }
+        }
+    }
+
+    /**
+    * Settings for: _serviceOne
+    *
+    * @function _serviceOne
+    * @return {object}
+    */
+    _serviceOne() {
+        return {
+            style: {
+                backgroundImage: "url(/uploads/57b35f928bcb76f5d65e79fa/hvac2.jpg)",
+            }
+        }
+    }
+
+    /**
+    * Settings for: _serviceTwo
+    *
+    * @function _serviceTwo
+    * @return {object}
+    */
+    _serviceTwo() {
+        return {
+            style: {
+                backgroundImage: "url(/uploads/57b35f928bcb76f5d65e79fa/installation.jpg)",
+            }
+        }
+    }
+
+    /**
+    * Settings for: _serviceThree
+    *
+    * @function _serviceThree
+    * @return {object}
+    */
+    _serviceThree() {
+        return {
+            style: {
+                backgroundImage: "url(/uploads/57b35f928bcb76f5d65e79fa/maintenance.jpg)",
+            }
+        }
+    }
+
+    /**
+    * Settings for: _serviceFour
+    *
+    * @function _serviceFour
+    * @return {object}
+    */
+    _serviceFour() {
+        return {
+            style: {
+                backgroundImage: "url(/uploads/57b35f928bcb76f5d65e79fa/refrigeration.jpg)",
             }
         }
     }
@@ -158,7 +213,7 @@ class NorthwestAireContainerThree extends React.Component {
                 justifyContent: "center",
                 alignItems: "center",
                 textAlign: "center",
-                backgroundColor: "rgba(40,40,99,0.9)",
+                backgroundColor: "rgba(40,40,65,0.6)",
                 color: "white",
                 fontWeight: "700",
                 fontSize: "6vw",
@@ -181,6 +236,10 @@ class NorthwestAireContainerThree extends React.Component {
         let {...other} = this.props;
         let _div = this._div();
         let _service = this._service();
+        let _serviceOne = this._serviceOne();
+        let _serviceTwo = this._serviceTwo();
+        let _serviceThree = this._serviceThree();
+        let _serviceFour = this._serviceFour();
         let _serviceName = this._serviceName();
         let _servicesContainer = this._servicesContainer();
         let _servicesIntro = this._servicesIntro();
@@ -188,16 +247,16 @@ class NorthwestAireContainerThree extends React.Component {
             <div className="div" style={_div.style}>
                 <div className="servicesContainer" style={_servicesContainer.style}>
                     <div className="servicesIntro" style={_servicesIntro.style}>OUR SERVICES</div>
-                    <div className="service" style={_service.style}>
+                    <div className="service" style={[_service.style, _serviceOne.style]}>
                         <div className="serviceName" style={_serviceName.style}>AIR CONDITIONING + HEATING</div>
                     </div>
-                    <div className="service" style={_service.style}>
+                    <div className="service" style={[_service.style, _serviceTwo.style]}>
                         <div className="serviceName" style={_serviceName.style}>INSTALLATION</div>
                     </div>
-                    <div className="service" style={_service.style}>
+                    <div className="service" style={[_service.style, _serviceThree.style]}>
                         <div className="serviceName" style={_serviceName.style}>MAINTENANCE + SERVICE</div>
                     </div>
-                    <div className="service" style={_service.style}>
+                    <div className="service" style={[_service.style, _serviceFour.style]}>
                         <div className="serviceName" style={_serviceName.style}>REFRIGERATION</div>
                     </div>
                 </div>
