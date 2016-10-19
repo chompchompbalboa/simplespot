@@ -55,87 +55,8 @@ class NorthwestAireContainerTwo extends React.Component {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                backgroundColor: "rgba(250,250,250,1)",
-                color: "black",
-                "@media (min-width: 48em) and (max-width: 64em)": {
-                },
-                "@media (min-width: 64em)": {
-                    flexFlow: "row wrap"
-                }
-            }
-        }
-    }
-
-    /**
-    * Settings for: _imageContainer
-    *
-    * @function _imageContainer
-    * @return {object}
-    */
-    _imageContainer() {
-        return {
-            style: {
-                display: "none",
-                "@media (min-width: 48em) and (max-width: 64em)": {
-                },
-                "@media (min-width: 64em)": {
-                    margin: "5vh 0 5vh 0",
-                    width: "45vw",
-                    height: "55vw",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center"
-                }
-            }
-        }
-    }
-
-    /**
-    * Settings for: _imageOne
-    *
-    * @function _imageOne
-    * @return {object}
-    */
-    _imageOne() {
-        return {
-            style: {
-                width: "25vw",
-                height: "37vw",
-                margin: "-25% -25% 0 0",
-                backgroundImage: "url(/uploads/57b35f928bcb76f5d65e79fa/hvac.jpg)"
-            }
-        }
-    }
-
-    /**
-    * Settings for: _imageTwo
-    *
-    * @function _imageTwo
-    * @return {object}
-    */
-    _imageTwo() {
-        return {
-            style: {
-                width: "20vw",
-                height: "30vw",
-                margin: "25% 25% 0 0",
-                backgroundImage: "url(/uploads/57b35f928bcb76f5d65e79fa/northwest.jpg)"
-            }
-        }
-    }
-
-    /**
-    * Settings for: _image
-    *
-    * @function _image
-    * @return {object}
-    */
-    _image() {
-        return {
-            style: {
-                backgroundPosition: "center center",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
+                backgroundColor: "rgb(57,98,92)",
+                color: "white",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
@@ -145,12 +66,37 @@ class NorthwestAireContainerTwo extends React.Component {
     }
 
     /**
-    * Settings for: _largeText
+    * Settings for: _introContainer
     *
-    * @function _largeText
+    * @function _introContainer
     * @return {object}
     */
-    _largeText() {
+    _introContainer() {
+        return {
+            style: {
+                margin: "5vh 0 5vh 0",
+                width: "85vw",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "flex-statrt",
+                fontFamily: "Lato, sans-serif",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                },
+                "@media (min-width: 64em)": {
+                    margin: "10vh 0 5vh 0",
+                }
+            }
+        }
+    }
+
+    /**
+    * Settings for: _introLargeText
+    *
+    * @function _introLargeText
+    * @return {object}
+    */
+    _introLargeText() {
         return {
             style: {
                 width: "100%",
@@ -171,12 +117,12 @@ class NorthwestAireContainerTwo extends React.Component {
     }
 
     /**
-    * Settings for: _smallText
+    * Settings for: _introSmallText
     *
-    * @function _smallText
+    * @function _introSmallText
     * @return {object}
     */
-    _smallText() {
+    _introSmallText() {
         return {
             style: {
                 margin: "3vh 0 0 0",
@@ -199,27 +145,21 @@ class NorthwestAireContainerTwo extends React.Component {
     }
 
     /**
-    * Settings for: _textContainer
+    * Settings for: _introDivider
     *
-    * @function _textContainer
+    * @function _introDivider
     * @return {object}
     */
-    _textContainer() {
+    _introDivider() {
         return {
             style: {
-                margin: "5vh 0 5vh 0",
-                width: "85vw",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                fontFamily: "Open Sans, sans-serif",
+                margin: "3.5vh 0 0 0",
+                height: "2px",
+                width: "35vw",
+                backgroundColor: "white",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
-                    width: "45vw",
-                    height: "55vh",
-                    alignItems: "flex-start"
                 }
             }
         }
@@ -234,24 +174,18 @@ class NorthwestAireContainerTwo extends React.Component {
     render() {
         let {...other} = this.props;
         let _div = this._div();
-        let _image = this._image();
-        let _imageContainer = this._imageContainer();
-        let _imageOne = this._imageOne();
-        let _imageTwo = this._imageTwo();
-        let _largeText = this._largeText();
-        let _smallText = this._smallText();
-        let _textContainer = this._textContainer();
+        let _introContainer = this._introContainer();
+        let _introDivider = this._introDivider();
+        let _introLargeText = this._introLargeText();
+        let _introSmallText = this._introSmallText();
         return (
             <div className="div" style={_div.style}>
-                <div className="textContainer" style={_textContainer.style}>
-                    <div className="largeText" style={_largeText.style}>WELCOME</div>
-                    <div className="smallText" style={_smallText.style}>
-                    We are Northwest Aire Services, a full service commercial HVAC contractor with the resources and motivation to provide industry-leading solutions. Equipped to competitively bid any job, it is our hope to build lifelong relationships with our customers - relationships that will lead to an enduring and mutual satisfaction.
+                <div className="introContainer" style={_introContainer.style}>
+                    <div className="introLargeText" style={_introLargeText.style}>ABOUT US</div>
+                    <div className="introSmallText" style={_introSmallText.style}>
+                    Northwest Aire Services, Inc. has been serving the Pacific Northwest since 2003.
                     </div>
-                </div>
-                <div className="imageContainer" style={_imageContainer.style}>
-                    <div className="imageOne" style={[_image.style, _imageOne.style]}></div>
-                    <div className="imageTwo" style={[_image.style, _imageTwo.style]}></div>
+                    <div className="introDivider" style={_introDivider.style}></div>
                 </div>
             </div>
         )

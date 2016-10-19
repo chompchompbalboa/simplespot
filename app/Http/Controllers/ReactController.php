@@ -101,6 +101,40 @@ class ReactController extends Controller
                     ]
                 ];
             break;
+            case "APP_PROFILE_SAVE":
+                $data = json_decode($this->request->input('data'));
+                $messages = [
+                    "error" => "There was a problem saving your changes. Please try again",
+                    "success" => "Your changes were succesfully saved",
+                ];
+                $email = $data->email;
+                $name = $data->name;
+                $message = $messages['error'];
+                if (Auth::check()) {
+                    $user = Auth::user();
+                    $user->name = $name;
+                    $user->email = $email;
+                    if($user->save()) {
+                        $name = $user->name;
+                        $email = $user->email;
+                        $message = $messages['success'];
+                    }
+                }
+                $response = [
+                    [
+                        "key" => "app.user.name",
+                        "value" => $name
+                    ],
+                    [
+                        "key" => "app.user.email",
+                        "value" => $email
+                    ],
+                    [
+                        "key" => "app.messages.profile_save",
+                        "value" => $message
+                    ]
+                ];
+            break;
             case "INITIAL_ADMIN":
                 $url = Helper::fetchURL(json_decode($this->request->input('url')), $this->sites);
                 $response = [
@@ -265,7 +299,8 @@ class ReactController extends Controller
                 "email" => $user->email
             ];
             $app['messages'] = [
-                "login" => ""
+                "login" => "",
+                "profile_save" => ""
             ];
         }
         else {
@@ -281,7 +316,8 @@ class ReactController extends Controller
                 $app['display']['path'] = "/";
             }
             $app['messages'] = [
-                "login" => ""
+                "login" => "",
+                "profile_save" => ""
             ];
         }
         return $app;

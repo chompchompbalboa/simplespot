@@ -73,7 +73,6 @@ class AppDashboardSidebarLinksLink extends React.Component {
         return {
             style: {
                 width: "100%",
-                height: "5vh",
                 color: (active ? "black" : "white")
             }
         }
@@ -88,15 +87,12 @@ class AppDashboardSidebarLinksLink extends React.Component {
     _container(active) {
         return {
             style: {
-                "@media (min-width: 48em) and (max-width: 64em)": {
-                },
-                "@media (min-width: 64em)": {
-                    width: "85%",
-                    height: "100%",
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    alignItems: "center"
-                }
+                margin: "2vh 0",
+                width: "85%",
+                height: "100%",
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center"
             }
         }
     }
@@ -110,17 +106,15 @@ class AppDashboardSidebarLinksLink extends React.Component {
     _div(active) {
         return {
             style: {
-                "@media (min-width: 48em) and (max-width: 64em)": {
-                },
-                "@media (min-width: 64em)": {
-                    margin: "2vh 0",
-                    width: "100%",
-                    height: "5vh",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    backgroundColor: (active ? "white" : "transparent"),
-                    boxShadow: (active ? "0.25vw 0 0 orange" : "none")
+                width: "100%",
+                height: "5vh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: (active ? "white" : "transparent"),
+                boxShadow: (active ? "0.25vw 0 0 orange" : "none"),
+                ":hover": {
+                    backgroundColor: (active ? "white" : "rgba(255,255,255,0.25)"),
                 }
             }
         }
@@ -135,16 +129,12 @@ class AppDashboardSidebarLinksLink extends React.Component {
     _logo(active, logo) {
         return {
             style: {
-                "@media (min-width: 48em) and (max-width: 64em)": {
-                },
-                "@media (min-width: 64em)": {
-                    width: "2.5vh",
-                    height: "2.5vh",
-                    backgroundPosition: "center center",
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover",
-                    backgroundImage: "url(" + logo + ")"
-                }
+                width: "2.5vh",
+                height: "2.5vh",
+                backgroundPosition: "center center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundImage: "url(" + logo + ")"
             }
         }
     }
@@ -158,11 +148,7 @@ class AppDashboardSidebarLinksLink extends React.Component {
     _text(active, text) {
         return {
             style: {
-                "@media (min-width: 48em) and (max-width: 64em)": {
-                },
-                "@media (min-width: 64em)": {
-                    margin: "0 0 0 1.5vw"
-                }
+                margin: "0 0 0 1.5vw"
             },
             text: text
         }
@@ -184,7 +170,7 @@ class AppDashboardSidebarLinksLink extends React.Component {
         return (
             <a href={href} style={_a.style} onClick={(e) => this.handleLinkClick(e, href)}>
                 <div className="div" style={_div.style}>
-                    <div className="container" style={_container.style}>
+                    <div className="container hover_AppDashboardSidebarLinksLink" style={_container.style}>
                         <div className="logo" style={_logo.style}></div>
                         <div className="text" style={_text.style}>{_text.text}</div>
                     </div>

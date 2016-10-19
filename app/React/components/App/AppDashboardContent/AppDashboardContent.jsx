@@ -60,8 +60,10 @@ class AppDashboardContent extends React.Component {
                 width: "100vw",
                 height: "86vh",
                 display: "flex",
-                justifyContent: "center",
+                flexDirection: "column",
+                justifyContent: "flex-start",
                 alignItems: "center",
+                overflowY: "scroll",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                     height: "88vh",
                 },
