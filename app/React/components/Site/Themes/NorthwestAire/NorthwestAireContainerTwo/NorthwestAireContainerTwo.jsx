@@ -183,7 +183,7 @@ class NorthwestAireContainerTwo extends React.Component {
     _service() {
         return {
             style: {
-                margin: "10vh 0 0 0",
+                margin: "7.5vh 0 0 0",
                 width: "100%",
                 display: "flex",
                 flexDirection: "column",
@@ -215,7 +215,7 @@ class NorthwestAireContainerTwo extends React.Component {
                 justifyContent: "flex-start",
                 alignItems: "center",
                 fontWeight: "400",
-                fontSize: "5vw",
+                fontSize: "5.5vw",
                 letterSpacing: "0.5vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                     fontSize: "2.5vw",
