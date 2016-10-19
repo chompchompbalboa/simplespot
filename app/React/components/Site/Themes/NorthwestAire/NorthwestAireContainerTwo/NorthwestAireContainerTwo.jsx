@@ -127,12 +127,12 @@ class NorthwestAireContainerTwo extends React.Component {
     _introSmallText() {
         return {
             style: {
-                margin: "5vh 0 0 0",
+                margin: "3.5vh 0 0 0",
                 width: "100%",
                 display: "flex",
                 justifyContent: "flex-start",
                 alignItems: "center",
-                fontWeight: "300",
+                fontWeight: "400",
                 fontSize: "4vw",
                 letterSpacing: "0.25vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
@@ -240,7 +240,7 @@ class NorthwestAireContainerTwo extends React.Component {
                 justifyContent: "flex-start",
                 alignItems: "center",
                 fontWeight: "300",
-                fontSize: "3.5vw",
+                fontSize: "4vw",
                 letterSpacing: "0.25vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                     margin: "2.5vh 0 0 0",
