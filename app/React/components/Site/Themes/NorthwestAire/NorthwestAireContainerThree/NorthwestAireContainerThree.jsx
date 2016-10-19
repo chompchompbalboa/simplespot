@@ -151,8 +151,9 @@ class NorthwestAireContainerThree extends React.Component {
     _serviceName() {
         return {
             style: {
-                maxWidth: "80%",
-                padding: "3vh 5%",
+                width: "80%",
+                minHeight: "7vh",
+                padding: "3vh 5% 3vh 5%",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -189,6 +190,15 @@ class NorthwestAireContainerThree extends React.Component {
                     <div className="servicesIntro" style={_servicesIntro.style}>OUR SERVICES</div>
                     <div className="service" style={_service.style}>
                         <div className="serviceName" style={_serviceName.style}>AIR CONDITIONING + HEATING</div>
+                    </div>
+                    <div className="service" style={_service.style}>
+                        <div className="serviceName" style={_serviceName.style}>INSTALLATION</div>
+                    </div>
+                    <div className="service" style={_service.style}>
+                        <div className="serviceName" style={_serviceName.style}>MAINTENANCE + SERVICE</div>
+                    </div>
+                    <div className="service" style={_service.style}>
+                        <div className="serviceName" style={_serviceName.style}>REFRIGERATION</div>
                     </div>
                 </div>
             </div>
