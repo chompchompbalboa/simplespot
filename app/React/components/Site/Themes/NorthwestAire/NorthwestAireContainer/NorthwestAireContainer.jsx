@@ -11,6 +11,7 @@ import Radium from 'radium';
 
 const NorthwestAireContainerOne = require('../NorthwestAireContainerOne/NorthwestAireContainerOne.jsx');
 const NorthwestAireContainerTwo = require('../NorthwestAireContainerTwo/NorthwestAireContainerTwo.jsx');
+const NorthwestAireContainerThree = require('../NorthwestAireContainerThree/NorthwestAireContainerThree.jsx');
 
 /**
 * The top level app component
@@ -78,6 +79,7 @@ class NorthwestAireContainer extends React.Component {
             <div className="div" style={_div.style}>
                 <NorthwestAireContainerOne />
                 <NorthwestAireContainerTwo />
+                <NorthwestAireContainerThree />
             </div>
         )
     }    
