@@ -102,7 +102,7 @@ class NorthwestAireContainerThree extends React.Component {
                 display: "flex",
                 justifyContent: "flex-start",
                 alignItems: "center",
-                color: "rgb(45,62,82)",
+                color: "rgb(27,48,42)",
                 fontWeight: "700",
                 fontSize: "6vw",
                 letterSpacing: "0.6vw",
