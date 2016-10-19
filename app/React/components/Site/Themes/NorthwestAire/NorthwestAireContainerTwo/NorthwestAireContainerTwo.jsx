@@ -297,7 +297,9 @@ class NorthwestAireContainerTwo extends React.Component {
                 "@media (min-width: 48em)": {
                     flexFlow: "row wrap",
                     justifyContent: "space-between",
-                    alignItems: "center"
+                },
+                "@media (min-width: 64em)": {
+                    margin: "0 0 10vh 0"
                 }
             }
         }
@@ -340,13 +342,13 @@ class NorthwestAireContainerTwo extends React.Component {
                     <div className="service" style={_service.style}>
                         <div className="serviceLargeText" style={_serviceLargeText.style}>WHAT WE DO</div>
                         <div className="serviceSmallText" style={_serviceSmallText.style}>
-                        We are a full service commercial HVAC contractor with the resources and motivation to provide industry-leading solutions. Equipped to competitively bid any job, it is our hope to build lifelong relationships with our customers - relationships that will lead to an enduring and mutual satisfaction.
+                        We offer a wide variety of commercial services, including but not limited to: air conditioning, heating, refrigeration, clean rooms, computer/server rooms, controls, service, maintenance, and installation.
                         </div>
                     </div>
                     <div className="service" style={[_service.style, _serviceThree.style]}>
                         <div className="serviceLargeText" style={_serviceLargeText.style}>WHY CHOOSE US</div>
                         <div className="serviceSmallText" style={_serviceSmallText.style}>
-                        We are a full service commercial HVAC contractor with the resources and motivation to provide industry-leading solutions. Equipped to competitively bid any job, it is our hope to build lifelong relationships with our customers - relationships that will lead to an enduring and mutual satisfaction.
+                        We pride ourselves on providing superior HVAC expertise. We use only the most advanced tools and equipment available, coupled with trained, certified, and experienced technicians enabling us to ensure highly effective and efficient customer service. 
                         </div>
                     </div>
                 </div>
