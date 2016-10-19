@@ -115,6 +115,62 @@ class NorthwestAireContainerThree extends React.Component {
     }
 
     /**
+    * Settings for: _service
+    *
+    * @function _service
+    * @return {object}
+    */
+    _service() {
+        return {
+            style: {
+                margin: "4vh 0 0 0",
+                width: "100%",
+                height: "60vh",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+                alignItems: "center",
+                backgroundPosition: "center center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundImage: "url(/uploads/57b35f928bcb76f5d65e79fa/hvac.jpg)",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                },
+                "@media (min-width: 64em)": {
+                }
+            }
+        }
+    }
+
+    /**
+    * Settings for: _serviceName
+    *
+    * @function _serviceName
+    * @return {object}
+    */
+    _serviceName() {
+        return {
+            style: {
+                maxWidth: "80%",
+                padding: "3vh 5%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                backgroundColor: "rgba(30,30,99, 0.85)",
+                color: "white",
+                fontWeight: "700",
+                fontSize: "6vw",
+                letterSpacing: "0.6vw",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                },
+                "@media (min-width: 64em)": {
+                }
+            }
+        }
+    }
+
+    /**
     * Render the component
     *
     * @function render
@@ -123,12 +179,17 @@ class NorthwestAireContainerThree extends React.Component {
     render() {
         let {...other} = this.props;
         let _div = this._div();
+        let _service = this._service();
+        let _serviceName = this._serviceName();
         let _servicesContainer = this._servicesContainer();
         let _servicesIntro = this._servicesIntro();
         return (
             <div className="div" style={_div.style}>
                 <div className="servicesContainer" style={_servicesContainer.style}>
                     <div className="servicesIntro" style={_servicesIntro.style}>OUR SERVICES</div>
+                    <div className="service" style={_service.style}>
+                        <div className="serviceName" style={_serviceName.style}>AIR CONDITIONING + HEATING</div>
+                    </div>
                 </div>
             </div>
         )
