@@ -111,7 +111,8 @@ class NorthwestAireContainerTwo extends React.Component {
                     letterSpacing: "0.35vw"
                 },
                 "@media (min-width: 64em)": {
-                    fontSize: "2vw",
+                    fontWeight: "900",
+                    fontSize: "4vw",
                     letterSpacing: "0.1875vw"
                 }
             }

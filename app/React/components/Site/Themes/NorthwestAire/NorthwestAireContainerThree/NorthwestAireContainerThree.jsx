@@ -66,6 +66,122 @@ class NorthwestAireContainerThree extends React.Component {
     }
 
     /**
+    * Settings for: _introContainer
+    *
+    * @function _introContainer
+    * @return {object}
+    */
+    _introContainer() {
+        return {
+            style: {
+                width: "85vw",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "flex-start",
+                fontFamily: "Lato, sans-serif",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    width: "90vw",
+                    alignItems: "flex-end",
+                },
+                "@media (min-width: 64em)": {
+                    alignItems: "flex-end",
+                }
+            }
+        }
+    }
+
+    /**
+    * Settings for: _introLargeText
+    *
+    * @function _introLargeText
+    * @return {object}
+    */
+    _introLargeText() {
+        return {
+            style: {
+                width: "100%",
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                fontWeight: "700",
+                fontSize: "6vw",
+                letterSpacing: "0.6vw",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    justifyContent: "flex-end",
+                    fontSize: "3.75vw",
+                    letterSpacing: "0.35vw"
+                },
+                "@media (min-width: 64em)": {
+                    justifyContent: "flex-end",
+                    fontWeight: "900",
+                    fontSize: "4vw",
+                    letterSpacing: "0.1875vw"
+                }
+            }
+        }
+    }
+
+    /**
+    * Settings for: _introSmallText
+    *
+    * @function _introSmallText
+    * @return {object}
+    */
+    _introSmallText() {
+        return {
+            style: {
+                margin: "4vh 0 0 0",
+                width: "100%",
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                fontWeight: "400",
+                fontSize: "4vw",
+                letterSpacing: "0.25vw",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    textAlign: "right",
+                    margin: "2.5vh 0 0 0",
+                    width: "75%",
+                    fontSize: "2.5vw",
+                    letterSpacing: "0.15vw"
+                },
+                "@media (min-width: 64em)": {
+                    width: "60%",
+                    justifyContent: "flex-end",
+                    textAlign: "right",
+                    fontSize: "1.15vw",
+                    letterSpacing: "0.125vw"
+                }
+            }
+        }
+    }
+
+    /**
+    * Settings for: _introDivider
+    *
+    * @function _introDivider
+    * @return {object}
+    */
+    _introDivider() {
+        return {
+            style: {
+                margin: "4vh 0 0 0",
+                height: "2px",
+                width: "35vw",
+                backgroundColor: "black",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    margin: "2.5vh 0 0 0",
+                    width: "22vw",
+                },
+                "@media (min-width: 64em)": {
+                    width: "20vw"
+                }
+            }
+        }
+    }
+
+    /**
     * Settings for: _servicesContainer
     *
     * @function _servicesContainer
@@ -82,33 +198,15 @@ class NorthwestAireContainerThree extends React.Component {
                 alignItems: "center",
                 fontFamily: "Lato, sans-serif",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    width: "90%",
+                    flexFlow: "row wrap",
+                    justifyContent: "space-between"
                 },
                 "@media (min-width: 64em)": {
-                }
-            }
-        }
-    }
-
-    /**
-    * Settings for: _servicesIntro
-    *
-    * @function _servicesIntro
-    * @return {object}
-    */
-    _servicesIntro() {
-        return {
-            style: {
-                width: "100%",
-                display: "flex",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                color: "black",
-                fontWeight: "700",
-                fontSize: "6vw",
-                letterSpacing: "0.6vw",
-                "@media (min-width: 48em) and (max-width: 64em)": {
-                },
-                "@media (min-width: 64em)": {
+                    margin: "7.5vh 0 7.5vh 0",
+                    width: "85%",
+                    flexFlow: "row wrap",
+                    justifyContent: "space-between"
                 }
             }
         }
@@ -134,8 +232,13 @@ class NorthwestAireContainerThree extends React.Component {
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    width: "47.5%",
+                    height: "42.75vw",
                 },
                 "@media (min-width: 64em)": {
+                    margin: "7.5vh 0 0 0",
+                    width: "47.5%",
+                    height: "30vw"
                 }
             }
         }
@@ -219,8 +322,18 @@ class NorthwestAireContainerThree extends React.Component {
                 fontSize: "6vw",
                 letterSpacing: "0.6vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    width: "70%",
+                    minHeight: "5vh",
+                    padding: "1.5vh 5% 1.5vh 5%",
+                    fontSize: "3vw",
+                    letterSpacing: "0.35vw",
                 },
                 "@media (min-width: 64em)": {
+                    width: "60%",
+                    minHeight: "7.5vh",
+                    padding: "2vh 5% 2vh 5%",
+                    fontSize: "2vw",
+                    letterSpacing: "0.1875vw",
                 }
             }
         }
@@ -235,6 +348,10 @@ class NorthwestAireContainerThree extends React.Component {
     render() {
         let {...other} = this.props;
         let _div = this._div();
+        let _introContainer = this._introContainer();
+        let _introDivider = this._introDivider();
+        let _introLargeText = this._introLargeText();
+        let _introSmallText = this._introSmallText();
         let _service = this._service();
         let _serviceOne = this._serviceOne();
         let _serviceTwo = this._serviceTwo();
@@ -242,11 +359,16 @@ class NorthwestAireContainerThree extends React.Component {
         let _serviceFour = this._serviceFour();
         let _serviceName = this._serviceName();
         let _servicesContainer = this._servicesContainer();
-        let _servicesIntro = this._servicesIntro();
         return (
             <div className="div" style={_div.style}>
                 <div className="servicesContainer" style={_servicesContainer.style}>
-                    <div className="servicesIntro" style={_servicesIntro.style}>OUR SERVICES</div>
+                    <div className="introContainer" style={_introContainer.style}>
+                        <div className="introLargeText" style={_introLargeText.style}>OUR SERVICES</div>
+                        <div className="introSmallText" style={_introSmallText.style}>
+                            From retro-fitting to new construction, small light commercial buildings to large multi-million dollar projects, we offer a wide a range of services
+                        </div>
+                        <div className="introDivider" style={_introDivider.style}></div>
+                    </div>
                     <div className="service" style={[_service.style, _serviceOne.style]}>
                         <div className="serviceName" style={_serviceName.style}>AIR CONDITIONING + HEATING</div>
                     </div>
