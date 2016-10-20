@@ -60,6 +60,7 @@ class NorthwestAireContainerThree extends React.Component {
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
+                    backgroundColor: "white",
                 }
             }
         }
