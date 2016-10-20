@@ -73,7 +73,7 @@ var Site = React.createClass({
     * @return {string}
     */
     render: function() {
-        var {content, utils, ...other} = this.props;
+        var {content, ...other} = this.props;
         let _section = this._section(content.site.display.path);
         let __site = this.__site(content.site);
         return (

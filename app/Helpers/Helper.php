@@ -68,13 +68,20 @@ class Helper
     */
     public static function fetchURL($appURL, $sites)
     {
-        // Get the readableID
-        $readableID = str_replace("/", "", $appURL->path);
-        // Fetch the site from the db
-        $site = $sites->where('readableID', '=', $readableID)->first();
+        $site = null;
+        $domain = "omni.com";
+        // Is this a preview page? 
+        if(strpos($appURL->path, "/preview") !== false) {
+            // Get the readable ID
+            $explodePath = explode("/", $appURL->path);
+            if (isset($explodePath[2])) {
+                // Fetch the site from the db
+                $site = $sites->where('readableID', '=', $explodePath[2])->first();
+            }
+        }
         // Return a default site when needed
         if(is_null($site)) {
-            $site = $sites->where('domain', '=', 'omni.com')->first();
+            $site = $sites->where('domain', '=', $domain)->first();
         }
         // Build the domain object
         $url = [

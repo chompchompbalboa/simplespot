@@ -279,16 +279,14 @@ class ReactController extends Controller
     private function fetchApp($url)
     {
         $app = [];
+        $basePath = explode("/", $url->path)[1];
         if(Auth::check()) {
             $user = Auth::user();
             $userPaths = [
-                "/dashboard",
-                "/dashboard/preview",
-                "/dashboard/edit",
-                "/dashboard/profile",
-                "/dashboard/billing"
+                "dashboard",
+                "preview",
             ];
-            if(in_array($url->path, $userPaths)) {
+            if(in_array($basePath, $userPaths)) {
                 $app['display']['path'] = $url->path;
             } 
             else {
@@ -305,11 +303,11 @@ class ReactController extends Controller
         }
         else {
             $guestPaths = [
-                "/",
-                "/login",
-                "/try"
+                "login",
+                "preview",
+                "try",
             ];
-            if(in_array($url->path, $guestPaths)) {
+            if(in_array($basePath, $guestPaths)) {
                 $app['display']['path'] = $url->path;
             } 
             else {

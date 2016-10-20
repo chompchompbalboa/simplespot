@@ -175,7 +175,7 @@ class AppDashboardContentPreview extends React.Component {
             break;
         }
         return {
-            src: "https://www.squarespace.com",
+            src: "https://www.simplespot.co/preview/nw-aire",
             style: {
                 margin: "2% 0 0 0",
                 width: "100%",

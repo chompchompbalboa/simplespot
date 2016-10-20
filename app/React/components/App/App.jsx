@@ -12,6 +12,7 @@ import Radium from 'radium';
 const AppDashboard = require('./AppDashboard/AppDashboard.jsx');
 const AppHome = require('./AppHome/AppHome.jsx');
 const AppLogin = require('./AppLogin/AppLogin.jsx');
+const AppPreview = require('./AppPreview/AppPreview.jsx');
 
 /**
 * The top level app component
@@ -73,6 +74,9 @@ class App extends React.Component {
         switch (basePath) {
             case "dashboard":
                 return (<AppDashboard content={this.props.content}/>)
+            break;
+            case "preview":
+                return (<AppPreview content={this.props.content}/>)
             break;
             case "login":
                 return (<AppLogin content={this.props.content}/>)
