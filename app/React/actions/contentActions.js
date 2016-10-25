@@ -31,6 +31,20 @@ var contentActions = {
     },
 
     /**
+    * Change nested content within the store, without pushing the change to 
+    * the window history
+    * 
+    * @function changeContent
+    * @param {object} changes - The desired changes
+    */
+    changeContentNoHistory: function(changes){
+        ContentDispatcher.handleAction({
+            actionType: "CHANGE_CONTENT_NOHISTORY",
+            data: changes
+        });
+    },
+
+    /**
     * Fetch content from the server
     * 
     * @function fetchContent

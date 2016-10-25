@@ -65,6 +65,17 @@ var changeContent = function(changes){
 };
 
 /**
+* Change any nested content within the store object without pushing the change
+* to the window history
+* 
+* @function changeContent
+* @param {object} changes - The changes to be made within the store object
+*/
+var changeContentNoHistory = function(changes){
+    _store.content = store.changeContent(changes, _store.content);
+};
+
+/**
 * Update the store by replacing it in its entireity
 * 
 * @function replaceContent
@@ -104,6 +115,10 @@ contentStore.dispatchToken = ContentDispatcher.register(function(payload){
     switch(action.actionType){
         case "CHANGE_CONTENT":
             changeContent(action.data);
+            contentStore.emit(CHANGE_EVENT);
+        break;
+        case "CHANGE_CONTENT_NOHISTORY":
+            changeContentNoHistory(action.data);
             contentStore.emit(CHANGE_EVENT);
         break;
         case "REPLACE_CONTENT":

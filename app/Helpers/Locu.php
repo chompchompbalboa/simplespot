@@ -2,6 +2,9 @@
 
 namespace App\Helpers;
 
+use App\Models\Cities;
+use App\Models\RawSiteObjects;
+
 class Locu
 {
     /*
@@ -9,7 +12,7 @@ class Locu
     *
     * Fetch the raw data about a venue from Locu
     *
-    * @function fetchJSON
+    * @function fetchSeed
     */
     public static function fetchSeed($url)
     {
@@ -21,7 +24,8 @@ class Locu
                 'location',
                 'open_hours',
                 'name',
-                'menus'
+                'menus',
+                'website_url'
             ],
             'venue_queries' => [
                 [
@@ -38,6 +42,11 @@ class Locu
             'Content-Type: application/json',                                                                                
             'Content-Length: ' . strlen($query)]);
         $locuSeed = json_decode(curl_exec($ch));
-        return $locuSeed;
-    }
-}
+        if(!isset($locuSeed->venues[0])) {
+            $seed = null;
+        }
+        else {
+            $seed = $locuSeed->venues[0];
+        }
+        return $seed;
+    }}

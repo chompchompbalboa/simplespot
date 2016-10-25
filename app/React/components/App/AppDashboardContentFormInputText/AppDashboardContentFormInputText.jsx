@@ -1,0 +1,109 @@
+/**
+* AppDashboardContentFormInputText.jsx
+* @copyright simplespot.co, 2016-Present. All Rights Reserved.
+* @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
+*
+* @requires React
+* @requires Radium
+*/
+import React, { PropTypes } from 'react';
+import Radium from 'radium';
+
+const contentActions = require('../../../actions/contentActions');
+
+/**
+* AppDashboardContentFormInputText
+*
+* @module AppDashboardContentFormInputText
+*/
+class AppDashboardContentFormInputText extends React.Component {
+
+    /**
+    * Constructor
+    *
+    * @requires {object} props
+    */
+    constructor(props) {
+        super(props);
+    }
+
+    /**
+    * Validate the prop types
+    *
+    * @prop propTypes
+    */
+    static propTypes = {
+    }
+
+    /**
+    * Set the default props
+    *
+    * @prop defautProps
+    */
+    static defaultProps = {
+    }
+
+    /**
+    * Handle Change
+    *
+    * @function handleChange
+    * @return {object}
+    */
+    handleChange(e) {
+        let changes = [];
+        for (let i in this.props.changes) {
+            changes.push(
+                {key: this.props.changes[i], value: e.target.value}
+            )
+        }
+        contentActions.changeContentNoHistory(changes);
+    }
+
+    /**
+    * Settings for: _input
+    *
+    * @function _input
+    * @return {object}
+    */
+    _input(value) {
+        return {
+            style: {
+                border: (value !== "" ? "1.5px solid black" : "1.5px solid red"),
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                },
+                "@media (min-width: 64em)": {
+                    padding: "0.75vh 0.25vw",
+                    width: "50%",
+                    fontSize: "2vh"
+                }
+            }
+        }
+    }
+
+    /**
+    * Settings for: _value
+    *
+    * @function _value
+    * @return {object}
+    */
+    _value(content, key) {
+        key = "content." + key;
+        return eval(key);
+    }
+
+    /**
+    * Render the component
+    *
+    * @function render
+    * @return {string}
+    */
+    render() {
+        let {content, contentKey, ...other} = this.props;
+        let _value = this._value(content, contentKey);
+        let _input = this._input(_value);
+        return (
+            <input type="text" value={_value} style={_input.style} onChange={(e) => this.handleChange(e)} />
+        )
+    }    
+}
+module.exports = Radium(AppDashboardContentFormInputText);

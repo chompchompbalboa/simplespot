@@ -57,7 +57,8 @@ class AppDashboardSidebarLinksLink extends React.Component {
         }
         else {
             let changes = [
-                {key: "app.display.path", value: href}
+                {key: "app.display.path", value: href},
+                {key: "app.messages.submit", value: ""}
             ];
             contentActions.changeContent(changes);
         }

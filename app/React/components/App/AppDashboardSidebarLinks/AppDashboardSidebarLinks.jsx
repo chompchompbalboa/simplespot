@@ -78,7 +78,7 @@ class AppDashboardSidebarLinks extends React.Component {
         for (let i in links) {
             let link = links[i];
             let active = (path === link.href ? true : false);
-            active = (path === "/dashboard" && link.href === "/dashboard/preview" ? true : active);
+            active = (path === "/dashboard" && link.href === "/dashboard/get-started" ? true : active);
             payload.push(
                 <AppDashboardSidebarLinksLink 
                     key={i}

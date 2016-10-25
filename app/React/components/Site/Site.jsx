@@ -19,6 +19,7 @@ const NWAire = require('./Themes/NorthwestAire/NorthwestAire.jsx');
 //const Omni = require('./Themes/Omni/Omni.jsx');
 const One = require('./Themes/One/One.jsx');
 //const Rocky = require('./Themes/Rocky/Rocky.jsx');
+const New = require('./Themes/New/New.jsx');
 
 /**
 * The top level site component

@@ -60,7 +60,7 @@ class AppDashboardContentHeader extends React.Component {
                 },
                 "@media (min-width: 64em)": {
                     margin: "4vh 0 0 0",
-                    width: "90%",
+                    width: "100%",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "flex-start",
@@ -104,7 +104,7 @@ class AppDashboardContentHeader extends React.Component {
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
-                    margin: "3vh 0 0 0"
+                    margin: "3vh 0 3vh 0"
                 }
             },
             text: smallText

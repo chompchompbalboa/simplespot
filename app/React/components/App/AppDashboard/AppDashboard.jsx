@@ -9,11 +9,8 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
-const contentActions = require('../../../actions/contentActions');
-
-const AppDashboardContent = require('../AppDashboardContent/AppDashboardContent.jsx');
-const AppDashboardHeader = require('../AppDashboardHeader/AppDashboardHeader.jsx');
-const AppDashboardSidebar = require('../AppDashboardSidebar/AppDashboardSidebar.jsx');
+const AppDashboardAdmin = require('../AppDashboardAdmin/AppDashboardAdmin.jsx');
+const AppDashboardUser = require('../AppDashboardUser/AppDashboardUser.jsx');
 
 /**
 * AppDashboard
@@ -60,20 +57,27 @@ class AppDashboard extends React.Component {
             style: {
                 position: "relative",
                 top: "0vh",
-                left: "0vw",
-                width: "100vw",
-                height: "100vh",
-                display: "flex",
-                flexFlow: "row wrap",
-                justifyContent: "center",
-                alignItems: "flex-start",
-                backgroundColor: "rgba(250,250,250,1)",
-                fontFamily: "Lato, sans-serif",
-                fontWeight: "300"
+                left: "0vw"
             }
         }
     }
 
+    /**
+    * Settings for: __dashboard
+    *
+    * @function __dashboard
+    * @return {object}
+    */
+    __dashboard(userType) {
+        switch (userType) {
+            case "admin":
+                return (<AppDashboardAdmin content={this.props.content}/>)
+            break;
+            default:
+                return (<AppDashboardUser content={this.props.content}/>)
+        }
+           
+    }
     /**
     * Render the component
     *
@@ -83,10 +87,10 @@ class AppDashboard extends React.Component {
     render() {
         let {content, ...other} = this.props;
         let _div = this._div();
+        let __dashboard = this.__dashboard(content.app.user.type);
         return (
             <div  style={_div.style}>
-                <AppDashboardSidebar content={content}/>
-                <AppDashboardContent content={content}/>
+                {__dashboard}
             </div>
         )
     }    

@@ -11,6 +11,10 @@ import Radium from 'radium';
 
 const contentActions = require('../../../actions/contentActions');
 
+const AppDashboardContentBusinessInfo = require('../AppDashboardContentBusinessInfo/AppDashboardContentBusinessInfo.jsx');
+const AppDashboardContentChooseTheme = require('../AppDashboardContentChooseTheme/AppDashboardContentChooseTheme.jsx');
+const AppDashboardContentEdit = require('../AppDashboardContentEdit/AppDashboardContentEdit.jsx');
+const AppDashboardContentGetStarted = require('../AppDashboardContentGetStarted/AppDashboardContentGetStarted.jsx');
 const AppDashboardContentPreview = require('../AppDashboardContentPreview/AppDashboardContentPreview.jsx');
 const AppDashboardContentProfile = require('../AppDashboardContentProfile/AppDashboardContentProfile.jsx');
 
@@ -84,8 +88,20 @@ class AppDashboardContent extends React.Component {
     __content(content) {
         let path = content.app.display.path.split("/")[2];
         switch (path) {
+            case "business-info":
+                return (<AppDashboardContentBusinessInfo content={content}/>);
+            break;
+            case "choose-theme":
+                return (<AppDashboardContentChooseTheme content={content}/>);
+            break;
             case "edit":
-                return ("Edit");
+                return (<AppDashboardContentEdit content={content}/>);
+            break;
+            case "get-started":
+                return (<AppDashboardContentGetStarted content={content}/>);
+            break;
+            case "preview":
+                return (<AppDashboardContentPreview content={content}/>);
             break;
             case "profile":
                 return (<AppDashboardContentProfile content={content}/>);
@@ -94,7 +110,7 @@ class AppDashboardContent extends React.Component {
                 return ("Billing");
             break;
             default:
-                return (<AppDashboardContentPreview content={content}/>);
+                return (<AppDashboardContentGetStarted content={content}/>);
 
         }
     }

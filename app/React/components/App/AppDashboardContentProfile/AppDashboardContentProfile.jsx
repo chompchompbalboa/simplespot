@@ -115,23 +115,6 @@ class AppDashboardContentProfile extends React.Component {
     }
 
     /**
-    * Settings for: _header
-    *
-    * @function _header
-    * @return {object}
-    */
-    _header() {
-        return {
-            style: {
-                "@media (min-width: 48em) and (max-width: 64em)": {
-                },
-                "@media (min-width: 64em)": {
-                }
-            }
-        }
-    }
-
-    /**
     * Settings for: _input
     *
     * @function _input
@@ -302,7 +285,6 @@ class AppDashboardContentProfile extends React.Component {
     render() {
         let {content, ...other} = this.props;
         let _div = this._div();
-        let _header = this._header();
         let _profileForm = this._profileForm();
         let _input = this._input();
         let _inputContainer = this._inputContainer();

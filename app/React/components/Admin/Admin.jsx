@@ -9,11 +9,13 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
-const AdminDashboard = require('./AdminDashboard/AdminDashboard.jsx');
-const AdminLogin = require('./AdminLogin/AdminLogin.jsx');
+const AppDashboard = require('./AppDashboard/AppDashboard.jsx');
+const AppHome = require('./AppHome/AppHome.jsx');
+const AppLogin = require('./AppLogin/AppLogin.jsx');
+const AppPreview = require('./AppPreview/AppPreview.jsx');
 
 /**
-* The top level admin component
+* The top level app component
 *
 * @module Admin
 */
@@ -53,28 +55,34 @@ class Admin extends React.Component {
     _section() {
         return {
             style: {
-                zIndex: "2",
-                position: "fixed",
-                top: "0",
-                left: "0"
+                zIndex: "1",
+                position: "relative",
+                top: "0vh",
+                left: "0vw"
             }
         }
     }
 
     /**
-    * Settings for: __admin
+    * Settings for: __app
     *
-    * @function __admin
+    * @function __app
     * @return {object}
     */
-    __admin(content) {
-        switch (content.admin.display.path) {
+    __app(path) {
+        let basePath = path.split("/")[1];
+        switch (basePath) {
             case "dashboard":
-                return (<AdminDashboard content={content} />)
+                return (<AppDashboard content={this.props.content}/>)
+            break;
+            case "preview":
+                return (<AppPreview content={this.props.content}/>)
             break;
             case "login":
-                return (<AdminLogin />)
+                return (<AppLogin content={this.props.content}/>)
             break;
+            default:
+                return (<AppHome content={this.props.content}/>)      
         }
     }
 
@@ -87,10 +95,10 @@ class Admin extends React.Component {
     render() {
         let {content, ...other} = this.props;
         let _section = this._section();
-        let __admin = this.__admin(content);
+        let __app = this.__app(content.app.display.path);
         return (
-            <section id="admin" style={_section.style}>
-                {__admin}
+            <section id="app" style={_section.style}>
+                {__app}
             </section>
         )
     }    

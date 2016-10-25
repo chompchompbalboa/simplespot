@@ -19,10 +19,14 @@ use App\Http\Controllers\Controller;
 
 use App\Helpers\Helper;
 use App\Helpers\Locu;
+use App\Helpers\SiteObjects;
 use App\Helpers\Translate;
+use App\Helpers\BusinessInfoInputs;
+use App\Helpers\BuildSite;
 
 use App\Models\Sites;
 use App\Models\User;
+use App\Models\Sushi;
 
 class ReactController extends Controller
 {
@@ -52,124 +56,109 @@ class ReactController extends Controller
     {
         $request = $this->request->input('request');
         switch($request) {
-            case "ADMIN_FETCH_NEW":
+            case "APP_GET-BUSINESS-INFO":
                 $data = json_decode($this->request->input('data'));
                 $seed = Locu::fetchSeed($data->url);
-                $site = Translate::One($seed);
+                $businessInfoInputs = BusinessInfoInputs::buildFromLocu($seed);
+                if (!is_null($seed)) {
+                    $response = [
+                        [
+                            "key" => "app.display.path",
+                            "value" => "/dashboard/business-info"
+                        ],
+                        [
+                            "key" => "app.messages.submit",
+                            "value" => ""
+                        ],
+                        [
+                            "key" => "app.inputs.AppDashboardContentBusinessInfo",
+                            "value" => $businessInfoInputs
+                        ]
+                    ];  
+                }
+                else {
+                    $response = [
+                        [
+                            "key" => "app.messages.submit",
+                            "value" => "We don't have any information about that business yet. You can proceed and manually enter in the information we need by hand or try again later."
+                        ]
+                    ];   
+                }
+            break;
+            case "APP_GET-PREVIEW_RANDOM":
+                //$seed = SiteObjects::buildSeedDatabase();
+                //dd("Finished that round");
+                $seed = Sushi::all()->first();
+                // Build the preview site into the db
+                $preview = BuildSite::build($seed);
+                // Return the url
+                if (!is_null($seed)) {
+                    $response = [
+                        [
+                            "key" => "app.display.path",
+                            "value" => "/dashboard/preview"
+                        ],
+                        [
+                            "key" => "app.inputs.AppDashboardContentPreview.website",
+                            "value" => $preview['website']
+                        ],
+                        [
+                            "key" => "app.inputs.AppDashboardContentPreview.preview",
+                            "value" => "/preview/".$preview['readableID']
+                        ],
+                        [
+                            "key" => "app.messages.submit",
+                            "value" => ""
+                        ]
+                    ];  
+                }
+                else {
+                    $response = [
+                        [
+                            "key" => "app.messages.submit",
+                            "value" => "We don't have any information about that business yet. You can proceed and manually enter in the information we need by hand or try again later."
+                        ]
+                    ];   
+                }
+            break;
+            case "APP_GET-CHOOSE-THEME":
+                $data = json_decode($this->request->input('data'));
+                $site = true;
+                if (!is_null($site)) {
+                    $response = [
+                        [
+                            "key" => "app.display.path",
+                            "value" => "/dashboard/choose-theme"
+                        ],
+                        [
+                            "key" => "app.messages.submit",
+                            "value" => ""
+                        ]
+                    ];  
+                }
+                else {
+                    $response = [
+                        [
+                            "key" => "app.messages.submit",
+                            "value" => "We're having trouble loading the themes right now. Give us a second or two to work things out and try again."
+                        ]
+                    ];   
+                }   
+            break;
+            case "INITIAL_APP":
+                $site = $this->fetchSite(json_decode(Helper::fetchURL(json_decode($this->request->input('url')), $this->sites)));
                 $response = [
                     [
-                        "key" => "admin.working.url",
-                        "value" => explode("/", explode("www.", $data->url)[1])[0]
+                        "key" => "load",
+                        "value" => "initial"
+                    ],
+                    [
+                        "key" => "app",
+                        "value" => $this->fetchApp($site, json_decode($this->request->input('url')))
                     ],
                     [
                         "key" => "site",
                         "value" => $site
-                    ]
-                ];
-            break;
-            case "ADMIN_SAVE":
-                // Get the site to save
-                $data = json_decode($this->request->input('data'));
-                $save = $data->content->site;
-                // Check to see if it already exists in the db
-                if (!is_null($this->sites->find($save->meta->id))) {
-                    $current = $this->sites->find($save->meta->id);
-                }
-                else {
-                    $current = new $this->sites;
-                }
-                // Save the new content
-                $current->domain = $data->content->admin->working->url;
-                $current->versions = [
-                    "active" => [
-                        "meta" => $save->meta,
-                        "theme" => $save->theme,
-                        "props" => $save->props
-                    ]
-                ];
-                $current->save();
-                // Build the url to retrieve the freshly saved site from the db
-                $url = json_decode(json_encode([
-                    "domain" => $data->content->admin->working->url,
-                    "path" => "/"
-                ]));
-                // Build the response
-                $response = [
-                    [
-                        "key" => "site",
-                        "value" => $this->fetchSite($url)
-                    ]
-                ];
-            break;
-            case "APP_PROFILE_SAVE":
-                $data = json_decode($this->request->input('data'));
-                $messages = [
-                    "error" => "There was a problem saving your changes. Please try again",
-                    "success" => "Your changes were succesfully saved",
-                ];
-                $email = $data->email;
-                $name = $data->name;
-                $message = $messages['error'];
-                if (Auth::check()) {
-                    $user = Auth::user();
-                    $user->name = $name;
-                    $user->email = $email;
-                    if($user->save()) {
-                        $name = $user->name;
-                        $email = $user->email;
-                        $message = $messages['success'];
-                    }
-                }
-                $response = [
-                    [
-                        "key" => "app.user.name",
-                        "value" => $name
-                    ],
-                    [
-                        "key" => "app.user.email",
-                        "value" => $email
-                    ],
-                    [
-                        "key" => "app.messages.profile_save",
-                        "value" => $message
-                    ]
-                ];
-            break;
-            case "INITIAL_ADMIN":
-                $url = Helper::fetchURL(json_decode($this->request->input('url')), $this->sites);
-                $response = [
-                    [
-                        "key" => "load",
-                        "value" => "initial"
-                    ],
-                    [
-                        "key" => "admin",
-                        "value" => $this->fetchAdmin(json_decode($this->request->input('url')))
-                    ],
-                    [
-                        "key" => "app",
-                        "value" => $this->fetchApp(json_decode($this->request->input('url')))
-                    ],
-                    [
-                        "key" => "site",
-                        "value" => $this->fetchSite(json_decode($url))
-                    ]
-                ];
-            break;
-            case "INITIAL_APP":
-                $url = Helper::fetchURL(json_decode($this->request->input('url')), $this->sites);
-                $response = [
-                    [
-                        "key" => "load",
-                        "value" => "initial"
-                    ],
-                    [
-                        "key" => "app",
-                        "value" => $this->fetchApp(json_decode($this->request->input('url')))
-                    ],
-                    [
-                        "key" => "site",
-                        "value" => $this->fetchSite(json_decode($url))
                     ]
                 ];
             break;
@@ -213,62 +202,8 @@ class ReactController extends Controller
                     ]
                 ];
             break;
-            case "LOGIN_ADMIN":
-                $data = $this->request->input('data');
-                Auth::attempt(['email' => $data['email'], 'password' => $data['password']], true);
-                $response = [
-                    [
-                        "key" => "admin",
-                        "value" => $this->fetchAdmin(json_decode($this->request->input('url')))
-                    ]
-                ];
-            break;
-            case "LOGOUT_ADMIN":
-                Auth::logout();
-                $response = [
-                    [
-                        "key" => "admin",
-                        "value" => $this->fetchAdmin(json_decode($this->request->input('url')))
-                    ]
-                ];
-            break;
         }
         return json_encode($response);
-    }
-
-    /**
-    * Fetch Admin
-    *
-    * @function fetchAdmin
-    */
-    private function fetchAdmin($url)
-    {
-        $auto = [
-            "display" => [
-                "path" => "login"
-            ]
-        ];
-        if (Auth::check()) {
-            $user = Auth::user();
-            if ($user->admin) {
-                return [
-                    "display" => [
-                        "path" => "dashboard",
-                        "edit" => "false"
-                    ],
-                    "working" => [
-                        "url" => "false"
-                    ]
-                ];
-            }
-            else {
-                return $auto;
-            }
-        }
-        else {
-            return $auto;
-        }
-        
     }
 
     /**
@@ -276,7 +211,7 @@ class ReactController extends Controller
     *
     * @function fetchApp
     */
-    private function fetchApp($url)
+    private function fetchApp($site, $url)
     {
         $app = [];
         $basePath = explode("/", $url->path)[1];
@@ -287,19 +222,39 @@ class ReactController extends Controller
                 "preview",
             ];
             if(in_array($basePath, $userPaths)) {
-                $app['display']['path'] = $url->path;
+                if ($basePath === "dashboard") {
+                    $app['display']['path'] = "/dashboard/get-started";
+                }
+                else {
+                    $app['display']['path'] = $url->path;
+                }
             } 
             else {
-                $app['display']['path'] = "/dashboard";
+                $app['display']['path'] = "/dashboard/get-started";
             }
             $app['user'] = [
                 "name" => $user->name,
-                "email" => $user->email
+                "email" => $user->email,
+                "type" => $user->type
             ];
             $app['messages'] = [
                 "login" => "",
-                "profile_save" => ""
+                "submit" => ""
             ];
+            $app['inputs'] = [
+                "AppDashboardContentGetStarted" => [
+                    "url" => ""
+                ],
+                "AppDashboardContentBusinessInfo" => [
+                ],
+                "AppDashboardContentChooseTheme" => [
+                ],
+                "AppDashboardContentPreview" => [
+                    "website" => "",
+                    "preview" => ""
+                ]
+            ];
+            $app['editing'] = $site;
         }
         else {
             $guestPaths = [
@@ -313,9 +268,23 @@ class ReactController extends Controller
             else {
                 $app['display']['path'] = "/";
             }
+            $app['user'] = [
+                "type" => "guest"
+            ];
             $app['messages'] = [
                 "login" => "",
-                "profile_save" => ""
+                "submit" => ""
+            ];
+            $app['inputs'] = [
+                "AppDashboardContentGetStarted" => [
+                    "url" => ""
+                ],
+                "AppDashboardContentBusinessInfo" => [
+                ],
+                "AppDashboardContentChooseTheme" => [
+                ],
+                "AppDashboardContentPreview" => [
+                ]
             ];
         }
         return $app;
