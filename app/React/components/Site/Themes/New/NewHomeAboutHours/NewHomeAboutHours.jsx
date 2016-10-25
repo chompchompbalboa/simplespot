@@ -87,7 +87,7 @@ class NewHomeAboutHours extends React.Component {
                 margin: "0 0 1vh 0",
                 width: "100%",
                 display: "flex",
-                justifyContent: "center",
+                justifyContent: "space-between",
                 alignItems: "center",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
@@ -123,7 +123,7 @@ class NewHomeAboutHours extends React.Component {
     _div() {
         return {
             style: {
-                width: "100vw",
+                width: "80vw",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "flex-start",
