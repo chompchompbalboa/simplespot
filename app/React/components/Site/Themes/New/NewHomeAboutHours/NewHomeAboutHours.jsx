@@ -123,7 +123,7 @@ class NewHomeAboutHours extends React.Component {
     _div() {
         return {
             style: {
-                width: "80vw",
+                width: "85vw",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "flex-start",
@@ -150,6 +150,7 @@ class NewHomeAboutHours extends React.Component {
         return {
             style: {
                 margin: "0 0 0 3vw",
+                fontWeight: "300",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
