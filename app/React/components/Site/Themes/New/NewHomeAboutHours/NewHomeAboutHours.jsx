@@ -123,7 +123,7 @@ class NewHomeAboutHours extends React.Component {
     _div() {
         return {
             style: {
-                width: "70vw",
+                width: "100vw",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "flex-start",
