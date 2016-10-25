@@ -54,8 +54,8 @@ class NewHomeLandingBackground extends React.Component {
                 position: "absolute",
                 top: "0vh",
                 left: "0vw",
-                width: "100%",
-                height: "100%",
+                width: "100vw",
+                height: "100vh",
             }
         }
     }
@@ -72,8 +72,8 @@ class NewHomeLandingBackground extends React.Component {
                 position: "absolute",
                 top: "0vh",
                 left: "0vw",
-                width: "100%",
-                height: "100%",
+                width: "100vw",
+                height: "100vh",
                 backgroundPosition: "center center",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover"

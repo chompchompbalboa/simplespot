@@ -9,6 +9,7 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
+const NewHomeAbout = require('../NewHomeAbout/NewHomeAbout.jsx');
 const NewHomeLanding = require('../NewHomeLanding/NewHomeLanding.jsx');
 
 /**
@@ -92,7 +93,11 @@ class NewHome extends React.Component {
             style: {
                 position: "relative",
                 top: "0vh",
-                left: "0vw"
+                left: "0vw",
+                display: "flex",
+                flexFlow: "column wrap",
+                justifyContent: "flex-start",
+                alignItems: "center"
             }
         }
     }
@@ -109,6 +114,7 @@ class NewHome extends React.Component {
         return (
             <div className="div" style={_div.style}>
                 <NewHomeLanding activeModule={this.state.activeModule} activeNumber={this.state.activeNumber} site={site} />
+                <NewHomeAbout activeModule={this.state.activeModule} activeNumber={this.state.activeNumber} site={site} />
             </div>
         )
     }    

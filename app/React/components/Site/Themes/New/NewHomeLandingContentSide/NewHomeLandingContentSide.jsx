@@ -55,10 +55,12 @@ class NewHomeLandingContentSide extends React.Component {
                 justifyContent: "center",
                 alignItems: "center",
                 "@media (min-width: 48em) and (max-width: 64em)": {
-                    order: "1"
                 },
                 "@media (min-width: 64em)": {
-                    order: "1"
+                    order: "1",
+                    height: "40vw",
+                    transform: "rotate(90deg)",
+                    justifyContent: "flex-start"
                 }
             }
         }
@@ -74,12 +76,13 @@ class NewHomeLandingContentSide extends React.Component {
         return {
             style: {
                 display: "none",
-                width: "12.5vw",
-                height: "1vh",
                 backgroundColor: "white",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
+                    display: "block",
+                    width: "5vw",
+                    height: "1vh",
                 }
             }
         }
@@ -110,8 +113,11 @@ class NewHomeLandingContentSide extends React.Component {
                 textTransform: "uppercase",
                 letterSpacing: "0.25vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    fontSize: "4vw"
                 },
                 "@media (min-width: 64em)": {
+                    margin: "0 0 0 2vw",
+                    fontSize: "3vw"
                 }
             },
             text: text
@@ -131,8 +137,11 @@ class NewHomeLandingContentSide extends React.Component {
                 fontSize: "6vw",
                 transition: "color 0.5s ease",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    fontSize: "4vw"
                 },
                 "@media (min-width: 64em)": {
+                    margin: "0 0 0 2vw",
+                    fontSize: "3vw"
                 }
             }
         }

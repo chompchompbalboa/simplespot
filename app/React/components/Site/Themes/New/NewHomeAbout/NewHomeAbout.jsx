@@ -1,5 +1,5 @@
 /**
-* NewHomeLandingContent.jsx
+* NewHomeAbout.jsx
 * @copyright simplespot.co, 2016-Present. All Rights Reserved.
 * @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
 *
@@ -9,15 +9,14 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
-const NewHomeLandingContentSide = require('../NewHomeLandingContentSide/NewHomeLandingContentSide.jsx');
-const NewHomeLandingContentMain = require('../NewHomeLandingContentMain/NewHomeLandingContentMain.jsx');
+const NewHomeAboutWelcome = require('../NewHomeAboutWelcome/NewHomeAboutWelcome.jsx');
 
 /**
-* NewHomeLandingContent
+* NewHomeAbout
 *
-* @module NewHomeLandingContent
+* @module NewHomeAbout
 */
-class NewHomeLandingContent extends React.Component {
+class NewHomeAbout extends React.Component {
 
     /**
     * Constructor
@@ -53,22 +52,20 @@ class NewHomeLandingContent extends React.Component {
     _div() {
         return {
             style: {
-                margin: "32.5vh 0 0 0",
-                width: "85vw",
-                height: "60vh",
+                width: "100vw",
                 display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
+                flexFlow: "column wrap",
+                justifyContent: "flex-start",
                 alignItems: "center",
-                color: "white",
                 "@media (min-width: 48em) and (max-width: 64em)": {
-                    margin: "20.5vh 0 0 0",
-                    width: "90vw"
+                    flexFlow: "row wrap",
+                    justifyContent: "center",
+                    alignItems: "flex-start"
                 },
                 "@media (min-width: 64em)": {
-                    flexDirection: "row",
-                    margin: "0",
-                    height: "70vh"
+                    flexFlow: "row wrap",
+                    justifyContent: "flex-start",
+                    alignItems: "flex-start"
                 }
             }
         }
@@ -85,11 +82,10 @@ class NewHomeLandingContent extends React.Component {
         let _div = this._div(); 
         return (
             <div className="div" style={_div.style}>
-                <NewHomeLandingContentSide site={site} {...other} />
-                <NewHomeLandingContentMain site={site} {...other} />
+                <NewHomeAboutWelcome site={site} {...other} />
             </div>
         )
     }    
 }
 // Export
-module.exports = Radium(NewHomeLandingContent);
+module.exports = Radium(NewHomeAbout);

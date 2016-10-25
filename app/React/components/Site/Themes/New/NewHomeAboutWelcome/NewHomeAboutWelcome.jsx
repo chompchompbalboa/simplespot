@@ -1,5 +1,5 @@
 /**
-* NewHomeLandingContentMain.jsx
+* NewHomeAboutWelcome.jsx
 * @copyright simplespot.co, 2016-Present. All Rights Reserved.
 * @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
 *
@@ -10,11 +10,11 @@ import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
 /**
-* NewHomeLandingContentMain
+* NewHomeAboutWelcome
 *
-* @module NewHomeLandingContentMain
+* @module NewHomeAboutWelcome
 */
-class NewHomeLandingContentMain extends React.Component {
+class NewHomeAboutWelcome extends React.Component {
 
     /**
     * Constructor
@@ -23,10 +23,6 @@ class NewHomeLandingContentMain extends React.Component {
     */
     constructor(props) {
         super(props);
-        this.state = {
-            menuLinkArrow: "left"
-        }
-        this.moveMouseLinkArrow = this.moveMouseLinkArrow.bind(this);
     }
 
     /**
@@ -46,18 +42,6 @@ class NewHomeLandingContentMain extends React.Component {
     }
 
     /**
-    * Move Mouse Link Arrow
-    *
-    * @function moveMouseLinkArrow
-    * @return {object}
-    */
-    moveMouseLinkArrow() {
-        this.setState({
-            menuLinkArrow: (this.state.menuLinkArrow === "left" ? "right" : "left")
-        });
-    }
-
-    /**
     * Settings for: _div
     *
     * @function _div
@@ -66,32 +50,29 @@ class NewHomeLandingContentMain extends React.Component {
     _div() {
         return {
             style: {
-                order: "1",
+                width: "85vw",
                 display: "flex",
-                width: "100%",
                 flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "flex-start",
+                justifyContent: "flex-start",
+                alignItems: "center",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
-                    order: "2",
-                    margin: "-20vh 0 0 4vw"
                 }
             }
         }
     }
 
     /**
-    * Settings for: _name
+    * Settings for: _largeText
     *
-    * @function _name
+    * @function _largeText
     * @return {object}
     */
-    _name(name) {
+    _largeText() {
         return {
             style: {
-                margin: "0 0 3vh 0",
+                margin: "5vh 0 3vh 0",
                 fontFamily: "Lato, sans-serif",
                 fontSize: "8vw",
                 fontWeight: "900",
@@ -103,34 +84,28 @@ class NewHomeLandingContentMain extends React.Component {
                     fontSize: "5.5vw"
                 }
             },
-            text: (typeof name !== "undefined" ? name : "Your Restaurant")
         }
     }
 
     /**
-    * Settings for: _about
+    * Settings for: _smallText
     *
-    * @function _about
+    * @function _smallText
     * @return {object}
     */
-    _about(about) {
+    _smallText(about) {
         return {
             style: {
-                margin: "0 0 5vh 0",
-                fontFamily: "Alegreya, sans-serif",
-                fontSize: "5vw",
-                fontStyle: "italic",
-                fontWeight: "400",
-                letterSpacing: "0.125vw",
+                fontFamily: "Open Sans, sans-serif",
+                fontSize: "4vw",
+                fontWeight: "300",
+                letterSpacing: "0.1vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
-                    width: "65vw",
-                    fontSize: "3.5vw"
                 },
                 "@media (min-width: 64em)": {
-                    fontSize: "2vw"
                 }
             },
-            text: (typeof about !== "undefined" ? about : "Fresh, beautiful and delicious sushi in a setting perfect for any occasion.")
+            text: (typeof about !== "undefined" ? about : "Our mission is simple: offer excellent yet affordable Japanese cuisine. Every menu item is proudly prepared right here in our kitchen - we believe in serving our customers food that we are proud to eat ourselves; a blend of our childhood memories growing up and some favorite dishes along the way. We are looking forward to seeing you soon!")
         }
     }
 
@@ -143,6 +118,7 @@ class NewHomeLandingContentMain extends React.Component {
     _menuLink() {
         return {
             style: {
+                margin: "5vh 0 5vh 0",
                 cursor: "pointer",
                 padding: "1.1vh 3.5vw",
                 fontFamily: "Open Sans, sans-serif",
@@ -198,17 +174,17 @@ class NewHomeLandingContentMain extends React.Component {
     render() {
         var {site, ...other} = this.props;
         let _div = this._div(); 
-        let _name = this._name(site.seed.name); 
-        let _about = this._about(site.seed.aboutShort);
+        let _largeText = this._largeText(); 
+        let _smallText = this._smallText(site.seed.aboutLong);
         let _menuLink = this._menuLink();
         let _menuLinkArrow = this._menuLinkArrow(); 
         return (
             <div className="div" style={_div.style}>
-                <div className="name" style={_name.style}>{_name.text}</div>
-                <div className="about" style={_about.style}>{_about.text}</div>
-                <a href="#menu">
+                <div className="largeText" style={_largeText.style}>WELCOME!</div>
+                <div className="smallText" style={_smallText.style}>{_smallText.text}</div>
+                <a href="#location">
                     <div className="menuLink" style={_menuLink.style} onMouseEnter={this.moveMouseLinkArrow} onMouseLeave={this.moveMouseLinkArrow}>
-                        View Menu <div className="menuLinkArrow" style={_menuLinkArrow.style}>&rarr;</div>
+                        Our Location <div className="menuLinkArrow" style={_menuLinkArrow.style}>&rarr;</div>
                     </div>
                 </a>
             </div>
@@ -216,4 +192,4 @@ class NewHomeLandingContentMain extends React.Component {
     }    
 }
 // Export
-module.exports = Radium(NewHomeLandingContentMain);
+module.exports = Radium(NewHomeAboutWelcome);

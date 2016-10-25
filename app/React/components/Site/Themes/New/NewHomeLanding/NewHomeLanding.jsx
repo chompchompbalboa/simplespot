@@ -62,7 +62,7 @@ class NewHomeLanding extends React.Component {
                 alignItems: "center",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                     flexFlow: "row wrap",
-                    justifyContent: "flex-start",
+                    justifyContent: "center",
                     alignItems: "flex-start"
                 },
                 "@media (min-width: 64em)": {
