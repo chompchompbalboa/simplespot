@@ -10,7 +10,9 @@ import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
 const NewHomeAbout = require('../NewHomeAbout/NewHomeAbout.jsx');
+const NewHomeFooter = require('../NewHomeFooter/NewHomeFooter.jsx');
 const NewHomeLanding = require('../NewHomeLanding/NewHomeLanding.jsx');
+const NewHomeLocation = require('../NewHomeLocation/NewHomeLocation.jsx');
 const NewHomeMenu = require('../NewHomeMenu/NewHomeMenu.jsx');
 
 /**
@@ -117,6 +119,8 @@ class NewHome extends React.Component {
                 <NewHomeLanding activeModule={this.state.activeModule} activeNumber={this.state.activeNumber} site={site} />
                 <NewHomeAbout activeModule={this.state.activeModule} activeNumber={this.state.activeNumber} site={site} />
                 <NewHomeMenu activeModule={this.state.activeModule} activeNumber={this.state.activeNumber} site={site} />
+                <NewHomeLocation activeModule={this.state.activeModule} activeNumber={this.state.activeNumber} site={site} />
+                <NewHomeFooter activeModule={this.state.activeModule} activeNumber={this.state.activeNumber} site={site} />
             </div>
         )
     }    
