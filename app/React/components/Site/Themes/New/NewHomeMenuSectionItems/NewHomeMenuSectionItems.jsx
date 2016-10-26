@@ -9,6 +9,8 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
+const NewHomeMenuSectionItemsItem = require('../NewHomeMenuSectionItemsItem/NewHomeMenuSectionItemsItem.jsx');
+
 /**
 * NewHomeMenuSectionItems
 *
@@ -50,9 +52,7 @@ class NewHomeMenuSectionItems extends React.Component {
     _div() {
         return {
             style: {
-                position: "relative",
-                top: "0vh",
-                left: "0vw",
+                width: "100vw",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -66,17 +66,40 @@ class NewHomeMenuSectionItems extends React.Component {
     }
 
     /**
+    * Settings for: __items
+    *
+    * @function __items
+    * @return {object}
+    */
+    __items(section) {
+        let payload = [];
+        for (let i in section) {
+            let item = section[i];
+            if (typeof item.title !== "undefined") {
+                payload.push(
+                    <NewHomeMenuSectionItemsItem
+                        key={i}
+                        item={item}
+                    />
+                )
+            }   
+        }
+        return payload;
+    }
+
+    /**
     * Render the component
     *
     * @function render
     * @return {string}
     */
     render() {
-        var {site, ...other} = this.props;
-        let _div = this._div(); 
+        var {section, ...other} = this.props;
+        let _div = this._div();
+        let __items = this.__items(section); 
         return (
             <div className="div" style={_div.style}>
-                NewHomeMenuSectionItems
+                {__items}
             </div>
         )
     }    

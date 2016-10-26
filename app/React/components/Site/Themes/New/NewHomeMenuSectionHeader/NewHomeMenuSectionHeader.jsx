@@ -50,14 +50,17 @@ class NewHomeMenuSectionHeader extends React.Component {
     _div() {
         return {
             style: {
-                margin: "2vh 0 0 0",
+                position: "relative",
+                top: "0vh",
+                left: "0vw",
                 width: "100vw",
+                height: "7vh",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 fontFamily: "Lato",
                 fontWeight: "700",
-                fontSize: "5.5vw",
+                fontSize: "3.5vh",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {

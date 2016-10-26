@@ -77,6 +77,7 @@ class NewHomeMenu extends React.Component {
                 margin: "3vh 0 0 0",
                 width: "100vw",
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
                 fontFamily: "Lato, sans-serif",

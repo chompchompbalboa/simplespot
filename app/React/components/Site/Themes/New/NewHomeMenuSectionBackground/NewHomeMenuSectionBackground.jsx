@@ -48,12 +48,13 @@ class NewHomeMenuSectionBackground extends React.Component {
     * @return {object}
     */
     _div(count) {
+        let odd = (count % 2 == 0 ? false : true);
         return {
             style: {
                 zIndex: "-10",
-                position: "relative",
+                position: "absolute",
                 top: "0vh",
-                left: "-25vw",
+                left: (odd ? "-50vw" : "25vw"),
                 height: "60vh",
                 width: "150vw",
                 opacity: "0.25",
