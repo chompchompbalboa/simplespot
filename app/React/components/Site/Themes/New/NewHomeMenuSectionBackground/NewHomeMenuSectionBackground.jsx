@@ -54,7 +54,7 @@ class NewHomeMenuSectionBackground extends React.Component {
                 zIndex: "-10",
                 position: "absolute",
                 top: "0vh",
-                left: (odd ? "-50vw" : "25vw"),
+                left: (odd ? "25vw" : "-50vw"),
                 height: "60vh",
                 width: "150vw",
                 opacity: "0.25",
@@ -65,6 +65,11 @@ class NewHomeMenuSectionBackground extends React.Component {
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
+                    width: "100vw",
+                    height: "70vh",
+                    opacity: "0.6",
+                    left: "-50vw",
+                    backgroundImage: "radial-gradient(ellipse closest-side, rgba(0,0,0,0), rgba(255,255,255,0.25) 10%, rgba(255,255,255,0.5) 30%, rgba(255,255,255,1)), url(/stock/restaurants/sushi/" + count + ".jpg)",
                 }
             }
         }

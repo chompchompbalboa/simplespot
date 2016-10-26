@@ -57,6 +57,7 @@ class NewHomeMenu extends React.Component {
                 flexDirection: "column",
                 justifyContent: "flex-start",
                 alignItems: "center",
+                overflow: "hidden",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
@@ -87,6 +88,11 @@ class NewHomeMenu extends React.Component {
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
+                    alignSelf: "flex-start",
+                    margin: "0 0 0 30vw",
+                    alignItems: "flex-start",
+                    fontSize: "4vw",
+                    letterSpacing: "0.5vw",
                 }
             }
         }

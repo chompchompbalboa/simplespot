@@ -58,7 +58,6 @@ class NewHomeMenuSection extends React.Component {
                 top: "0vw",
                 left: "0vh",
                 width: "100vw",
-                overflow: "hidden",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {

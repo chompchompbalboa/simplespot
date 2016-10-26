@@ -52,7 +52,7 @@ class NewHomeMenuSectionItemsItem extends React.Component {
     _div() {
         return {
             style: {
-                margin: "1.5vh 0 0 0",
+                margin: "0 0 1.5vh 0",
                 width: "85vw",
                 display: "flex",
                 flexDirection: "column",
@@ -62,6 +62,8 @@ class NewHomeMenuSectionItemsItem extends React.Component {
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
+                    margin: "0 3vw 3vh 0",
+                    width: "18vw",
                 }
             }
         }
@@ -114,7 +116,20 @@ class NewHomeMenuSectionItemsItem extends React.Component {
     * @function _price
     * @return {object}
     */
-    _price(price) {
+    _price(rawPrice) {
+        let price = "";
+        let count = rawPrice.length;
+        if (count > 1) {
+            for (let i in rawPrice) {
+                price = price + rawPrice[i];
+                if (i < count - 1) {
+                    price = price + " / "
+                }
+            }
+        }
+        else {
+            price = rawPrice[0];
+        }
         return {
             style: {
                 fontWeight: "400",
@@ -123,7 +138,7 @@ class NewHomeMenuSectionItemsItem extends React.Component {
                 "@media (min-width: 64em)": {
                 }
             },
-            text: (typeof price !== "undefined" ? price : "")
+            text: (isSet.is(price) ? price : "")
         }
     }
 
@@ -142,7 +157,7 @@ class NewHomeMenuSectionItemsItem extends React.Component {
                 "@media (min-width: 64em)": {
                 }
             },
-            text: (typeof title !== "undefined" ? title : "")
+            text: (isSet.is(title) ? title : "")
         }
     }
 

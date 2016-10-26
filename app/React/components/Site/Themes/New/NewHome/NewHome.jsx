@@ -98,7 +98,7 @@ class NewHome extends React.Component {
                 display: "flex",
                 flexFlow: "column wrap",
                 justifyContent: "flex-start",
-                alignItems: "center"
+                alignItems: "center",
             }
         }
     }

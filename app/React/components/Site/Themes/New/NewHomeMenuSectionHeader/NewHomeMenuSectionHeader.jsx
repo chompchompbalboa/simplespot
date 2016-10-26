@@ -54,7 +54,7 @@ class NewHomeMenuSectionHeader extends React.Component {
                 top: "0vh",
                 left: "0vw",
                 width: "100vw",
-                height: "7vh",
+                height: "10vh",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -64,6 +64,9 @@ class NewHomeMenuSectionHeader extends React.Component {
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
+                    width: "40vw",
+                    justifyContent: "flex-start",
+                    fontSize: "3.5vh",
                 }
             }
         }

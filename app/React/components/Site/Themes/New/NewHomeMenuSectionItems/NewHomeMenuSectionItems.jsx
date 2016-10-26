@@ -9,6 +9,8 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
+const isSet = require('../../../../../utils/lib/isSet');
+
 const NewHomeMenuSectionItemsItem = require('../NewHomeMenuSectionItemsItem/NewHomeMenuSectionItemsItem.jsx');
 
 /**
@@ -60,6 +62,12 @@ class NewHomeMenuSectionItems extends React.Component {
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
+                    margin: "0 0 0 30vw",
+                    width: "70vw",
+                    minHeight: "60vh",
+                    flexFlow: "row wrap",
+                    justifyContent: "flex-start",
+                    aligItems: "flex-start" 
                 }
             }
         }
@@ -75,7 +83,7 @@ class NewHomeMenuSectionItems extends React.Component {
         let payload = [];
         for (let i in section) {
             let item = section[i];
-            if (typeof item.title !== "undefined") {
+            if (isSet.is(item.title)) {
                 payload.push(
                     <NewHomeMenuSectionItemsItem
                         key={i}
