@@ -1,5 +1,5 @@
 /**
-* NewHomeAbout.jsx
+* NewHomeMenuSectionBackground.jsx
 * @copyright simplespot.co, 2016-Present. All Rights Reserved.
 * @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
 *
@@ -9,16 +9,12 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
-const NewHomeAboutContact = require('../NewHomeAboutContact/NewHomeAboutContact.jsx');
-const NewHomeAboutHours = require('../NewHomeAboutHours/NewHomeAboutHours.jsx');
-const NewHomeAboutWelcome = require('../NewHomeAboutWelcome/NewHomeAboutWelcome.jsx');
-
 /**
-* NewHomeAbout
+* NewHomeMenuSectionBackground
 *
-* @module NewHomeAbout
+* @module NewHomeMenuSectionBackground
 */
-class NewHomeAbout extends React.Component {
+class NewHomeMenuSectionBackground extends React.Component {
 
     /**
     * Constructor
@@ -51,24 +47,23 @@ class NewHomeAbout extends React.Component {
     * @function _div
     * @return {object}
     */
-    _div() {
+    _div(count) {
         return {
             style: {
+                zIndex: "-10",
+                position: "relative",
+                top: "0vh",
+                left: "-25vw",
+                height: "60vh",
                 width: "100vw",
-                display: "flex",
-                flexFlow: "column wrap",
-                justifyContent: "flex-start",
-                alignItems: "center",
+                opacity: "0.25",
+                backgroundPosition: "center center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundImage: "radial-gradient(circle closest-side, rgba(0,0,0,0), rgba(255,255,255,1)), url(/stock/restaurants/sushi/" + count + ".jpg)",
                 "@media (min-width: 48em) and (max-width: 64em)": {
-                    flexFlow: "row wrap",
-                    justifyContent: "center",
-                    alignItems: "flex-start"
                 },
                 "@media (min-width: 64em)": {
-                    padding: "15vh 0 0 0",
-                    flexFlow: "row wrap",
-                    justifyContent: "flex-start",
-                    alignItems: "flex-start",
                 }
             }
         }
@@ -81,16 +76,13 @@ class NewHomeAbout extends React.Component {
     * @return {string}
     */
     render() {
-        var {site, ...other} = this.props;
-        let _div = this._div(); 
+        var {count, ...other} = this.props;
+        let _div = this._div(count); 
         return (
             <div className="div" style={_div.style}>
-                <NewHomeAboutWelcome site={site} {...other} />
-                <NewHomeAboutHours site={site} {...other} />
-                <NewHomeAboutContact site={site} {...other} />
             </div>
         )
     }    
 }
 // Export
-module.exports = Radium(NewHomeAbout);
+module.exports = Radium(NewHomeMenuSectionBackground);

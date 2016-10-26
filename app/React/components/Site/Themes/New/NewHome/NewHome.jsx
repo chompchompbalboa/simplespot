@@ -11,6 +11,7 @@ import Radium from 'radium';
 
 const NewHomeAbout = require('../NewHomeAbout/NewHomeAbout.jsx');
 const NewHomeLanding = require('../NewHomeLanding/NewHomeLanding.jsx');
+const NewHomeMenu = require('../NewHomeMenu/NewHomeMenu.jsx');
 
 /**
 * NewHome
@@ -115,6 +116,7 @@ class NewHome extends React.Component {
             <div className="div" style={_div.style}>
                 <NewHomeLanding activeModule={this.state.activeModule} activeNumber={this.state.activeNumber} site={site} />
                 <NewHomeAbout activeModule={this.state.activeModule} activeNumber={this.state.activeNumber} site={site} />
+                <NewHomeMenu activeModule={this.state.activeModule} activeNumber={this.state.activeNumber} site={site} />
             </div>
         )
     }    

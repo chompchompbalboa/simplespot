@@ -92,6 +92,10 @@ class NewHomeAboutHours extends React.Component {
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
+                    margin: "0 0 1.5vh 5vw",
+                    flexDirection: "column",
+                    width: "80%",
+                    alignItems: "flex-start"
                 }
             }
         }
@@ -133,8 +137,17 @@ class NewHomeAboutHours extends React.Component {
                 fontWeight: "400",
                 letterSpacing: "0.2vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    margin: "5vh 0 3.5vh 0",
+                    width: "40vw",
+                    fontSize: "2vw",
                 },
                 "@media (min-width: 64em)": {
+                    width: "22.5vw",
+                    height: "60vh",
+                    justifyContent: "center",
+                    order: "1",
+                    fontSize: "1.25vw",
+                    letterSpacing: "0.05vw",
                 }
             }
         }
@@ -154,6 +167,7 @@ class NewHomeAboutHours extends React.Component {
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
+                    margin: "0 0 0 0",
                 }
             }
         }

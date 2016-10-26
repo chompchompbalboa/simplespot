@@ -50,7 +50,7 @@ class NewHomeAboutContact extends React.Component {
     _container() {
         return {
             style: {
-                margin: "0 0 1vh 0",
+                margin: "0 0 1.5vh 0",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -77,8 +77,17 @@ class NewHomeAboutContact extends React.Component {
                 justifyContent: "flex-start",
                 alignItems: "center",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    margin: "10vh 0 0 5vw",
+                    width: "40vw",
+                    justifyContent: "center",
+                    alignItems: "center",
                 },
                 "@media (min-width: 64em)": {
+                    justifyContent: "center",
+                    alignItems: "flex-start",
+                    margin: "20vh 0 0 -3vw",
+                    order: "3",
+                    width: "17.5vw"
                 }
             }
         }
@@ -115,8 +124,12 @@ class NewHomeAboutContact extends React.Component {
                 height: "3.44vw",
                 backgroundImage: "url(/stock/New/email.png)",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    width: "2.56vw",
+                    height: "1.77vw",
                 },
                 "@media (min-width: 64em)": {
+                    width: "1.81vw",
+                    height: "1.15vw",
                 }
             }
         }
@@ -173,8 +186,12 @@ class NewHomeAboutContact extends React.Component {
                 height: "4.5vw",
                 backgroundImage: "url(/stock/New/phone.png)",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    width: "2.25vw",
+                    height: "2.25vw",
                 },
                 "@media (min-width: 64em)": {
+                    width: "1.6vw",
+                    height: "1.6vw",
                 }
             }
         }
@@ -197,6 +214,8 @@ class NewHomeAboutContact extends React.Component {
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
+                margin: "0 0 0 1.25vw",
+                letterSpacing: "0.05vw", 
                 }
             }
         }

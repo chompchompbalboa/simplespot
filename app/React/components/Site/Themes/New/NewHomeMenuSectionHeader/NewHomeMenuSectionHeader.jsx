@@ -1,5 +1,5 @@
 /**
-* NewHomeAbout.jsx
+* NewHomeMenuSectionHeader.jsx
 * @copyright simplespot.co, 2016-Present. All Rights Reserved.
 * @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
 *
@@ -9,16 +9,12 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
-const NewHomeAboutContact = require('../NewHomeAboutContact/NewHomeAboutContact.jsx');
-const NewHomeAboutHours = require('../NewHomeAboutHours/NewHomeAboutHours.jsx');
-const NewHomeAboutWelcome = require('../NewHomeAboutWelcome/NewHomeAboutWelcome.jsx');
-
 /**
-* NewHomeAbout
+* NewHomeMenuSectionHeader
 *
-* @module NewHomeAbout
+* @module NewHomeMenuSectionHeader
 */
-class NewHomeAbout extends React.Component {
+class NewHomeMenuSectionHeader extends React.Component {
 
     /**
     * Constructor
@@ -54,21 +50,17 @@ class NewHomeAbout extends React.Component {
     _div() {
         return {
             style: {
+                margin: "2vh 0 0 0",
                 width: "100vw",
                 display: "flex",
-                flexFlow: "column wrap",
-                justifyContent: "flex-start",
+                justifyContent: "center",
                 alignItems: "center",
+                fontFamily: "Lato",
+                fontWeight: "700",
+                fontSize: "5.5vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
-                    flexFlow: "row wrap",
-                    justifyContent: "center",
-                    alignItems: "flex-start"
                 },
                 "@media (min-width: 64em)": {
-                    padding: "15vh 0 0 0",
-                    flexFlow: "row wrap",
-                    justifyContent: "flex-start",
-                    alignItems: "flex-start",
                 }
             }
         }
@@ -81,16 +73,14 @@ class NewHomeAbout extends React.Component {
     * @return {string}
     */
     render() {
-        var {site, ...other} = this.props;
+        var {header, ...other} = this.props;
         let _div = this._div(); 
         return (
             <div className="div" style={_div.style}>
-                <NewHomeAboutWelcome site={site} {...other} />
-                <NewHomeAboutHours site={site} {...other} />
-                <NewHomeAboutContact site={site} {...other} />
+                {header}
             </div>
         )
     }    
 }
 // Export
-module.exports = Radium(NewHomeAbout);
+module.exports = Radium(NewHomeMenuSectionHeader);

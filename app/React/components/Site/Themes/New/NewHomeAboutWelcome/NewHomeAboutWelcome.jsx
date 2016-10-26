@@ -23,6 +23,10 @@ class NewHomeAboutWelcome extends React.Component {
     */
     constructor(props) {
         super(props);
+        this.state = {
+            menuLinkArrow: "left"
+        }
+        this.moveMouseLinkArrow = this.moveMouseLinkArrow.bind(this);
     }
 
     /**
@@ -42,6 +46,37 @@ class NewHomeAboutWelcome extends React.Component {
     }
 
     /**
+    * Move Mouse Link Arrow
+    *
+    * @function moveMouseLinkArrow
+    * @return {object}
+    */
+    moveMouseLinkArrow() {
+        this.setState({
+            menuLinkArrow: (this.state.menuLinkArrow === "left" ? "right" : "left")
+        });
+    }
+
+    /**
+    * Settings for: _a
+    *
+    * @function _a
+    * @return {object}
+    */
+    _a() {
+        return {
+            style: {
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    margin: "0 0 0 5vw",
+                    width: "25vw"
+                },
+                "@media (min-width: 64em)": {
+                }
+            }
+        }
+    }
+
+    /**
     * Settings for: _div
     *
     * @function _div
@@ -56,8 +91,14 @@ class NewHomeAboutWelcome extends React.Component {
                 justifyContent: "flex-start",
                 alignItems: "center",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    flexFlow: "row wrap"
                 },
                 "@media (min-width: 64em)": {
+                    alignItems: "flex-start",
+                    order: "2",
+                    width: "47.5vw",
+                    borderLeft: "1px solid rgba(0,0,0,0.1)",
+                    padding: "0 0 0 7.5vw",
                 }
             }
         }
@@ -79,9 +120,12 @@ class NewHomeAboutWelcome extends React.Component {
                 textTransform: "uppercase",
                 letterSpacing: "0.5vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    textAlign: "center",
+                    width: "90vw",
+                    fontSize: "6vw"
                 },
                 "@media (min-width: 64em)": {
-                    fontSize: "5.5vw"
+                    fontSize: "4vw"
                 }
             },
         }
@@ -101,8 +145,14 @@ class NewHomeAboutWelcome extends React.Component {
                 fontWeight: "300",
                 letterSpacing: "0.1vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    width: "45vw",
+                    fontSize: "2.125vw"
                 },
                 "@media (min-width: 64em)": {
+                    width: "40vw",
+                    fontSize: "1.25vw",
+                    letterSpacing: "none",
+                    color: "gray"
                 }
             },
             text: (typeof about !== "undefined" ? about : "Our mission is simple: offer excellent yet affordable Japanese cuisine. Every menu item is proudly prepared right here in our kitchen - we believe in serving our customers food that we are proud to eat ourselves; a blend of our childhood memories growing up and some favorite dishes along the way. We are looking forward to seeing you soon!")
@@ -132,11 +182,12 @@ class NewHomeAboutWelcome extends React.Component {
                 border: "1px solid rgb(213,180,101)",
                 color: "rgb(213,180,101)",
                 "@media (min-width: 48em) and (max-width: 64em)": {
-                    fontSize: "2.75vw"
+                    fontSize: "2.125vw",
+                    width: "25vw",
                 },
                 "@media (min-width: 64em)": {
                     padding: "1.25vh 2vh",
-                    fontSize: "1.5vw"
+                    fontSize: "1.25vw"
                 }
             }
         }
@@ -159,7 +210,7 @@ class NewHomeAboutWelcome extends React.Component {
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
-                    margin: (this.state.menuLinkArrow === "left" ? "0 0 0 1vw" : "0 0 0 2.5vw")
+                    margin: (this.state.menuLinkArrow === "left" ? "0 0 0 1vw" : "0 0 0 2vw")
                 }
             }
         }
@@ -173,6 +224,7 @@ class NewHomeAboutWelcome extends React.Component {
     */
     render() {
         var {site, ...other} = this.props;
+        let _a = this._a(); 
         let _div = this._div(); 
         let _largeText = this._largeText(); 
         let _smallText = this._smallText(site.seed.aboutLong);
@@ -182,7 +234,7 @@ class NewHomeAboutWelcome extends React.Component {
             <div className="div" style={_div.style}>
                 <div className="largeText" style={_largeText.style}>WELCOME!</div>
                 <div className="smallText" style={_smallText.style}>{_smallText.text}</div>
-                <a href="#location">
+                <a href="#location" style={_a.style}>
                     <div className="menuLink" style={_menuLink.style} onMouseEnter={this.moveMouseLinkArrow} onMouseLeave={this.moveMouseLinkArrow}>
                         Our Location <div className="menuLinkArrow" style={_menuLinkArrow.style}>&rarr;</div>
                     </div>

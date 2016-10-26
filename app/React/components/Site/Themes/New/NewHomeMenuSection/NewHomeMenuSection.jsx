@@ -1,5 +1,5 @@
 /**
-* NewHomeAbout.jsx
+* NewHomeMenuSection.jsx
 * @copyright simplespot.co, 2016-Present. All Rights Reserved.
 * @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
 *
@@ -9,16 +9,16 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
-const NewHomeAboutContact = require('../NewHomeAboutContact/NewHomeAboutContact.jsx');
-const NewHomeAboutHours = require('../NewHomeAboutHours/NewHomeAboutHours.jsx');
-const NewHomeAboutWelcome = require('../NewHomeAboutWelcome/NewHomeAboutWelcome.jsx');
+const NewHomeMenuSectionBackground = require('../NewHomeMenuSectionBackground/NewHomeMenuSectionBackground.jsx');
+const NewHomeMenuSectionHeader = require('../NewHomeMenuSectionHeader/NewHomeMenuSectionHeader.jsx');
+const NewHomeMenuSectionItems = require('../NewHomeMenuSectionItems/NewHomeMenuSectionItems.jsx');
 
 /**
-* NewHomeAbout
+* NewHomeMenuSection
 *
-* @module NewHomeAbout
+* @module NewHomeMenuSection
 */
-class NewHomeAbout extends React.Component {
+class NewHomeMenuSection extends React.Component {
 
     /**
     * Constructor
@@ -54,21 +54,14 @@ class NewHomeAbout extends React.Component {
     _div() {
         return {
             style: {
-                width: "100vw",
+                minHeight: "60vh",
                 display: "flex",
-                flexFlow: "column wrap",
-                justifyContent: "flex-start",
+                flexDirection: "column",
+                justifyContent: "center",
                 alignItems: "center",
                 "@media (min-width: 48em) and (max-width: 64em)": {
-                    flexFlow: "row wrap",
-                    justifyContent: "center",
-                    alignItems: "flex-start"
                 },
                 "@media (min-width: 64em)": {
-                    padding: "15vh 0 0 0",
-                    flexFlow: "row wrap",
-                    justifyContent: "flex-start",
-                    alignItems: "flex-start",
                 }
             }
         }
@@ -81,16 +74,16 @@ class NewHomeAbout extends React.Component {
     * @return {string}
     */
     render() {
-        var {site, ...other} = this.props;
+        var {...other} = this.props;
         let _div = this._div(); 
         return (
             <div className="div" style={_div.style}>
-                <NewHomeAboutWelcome site={site} {...other} />
-                <NewHomeAboutHours site={site} {...other} />
-                <NewHomeAboutContact site={site} {...other} />
+                <NewHomeMenuSectionHeader {...other} />
+                <NewHomeMenuSectionBackground {...other} />
+                <NewHomeMenuSectionItems {...other} />
             </div>
         )
     }    
 }
 // Export
-module.exports = Radium(NewHomeAbout);
+module.exports = Radium(NewHomeMenuSection);
