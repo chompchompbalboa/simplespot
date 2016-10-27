@@ -1,5 +1,5 @@
 /**
-* NewHomeMenu.jsx
+* NewHomeMenuImages.jsx
 * @copyright simplespot.co, 2016-Present. All Rights Reserved.
 * @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
 *
@@ -9,16 +9,14 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
-const NewHomeMenuHeader = require('../NewHomeMenuHeader/NewHomeMenuHeader.jsx');
-const NewHomeMenuImages = require('../NewHomeMenuImages/NewHomeMenuImages.jsx');
-const NewHomeMenuSection = require('../NewHomeMenuSection/NewHomeMenuSection.jsx');
+const NewHomeMenuImagesImage = require('../NewHomeMenuImagesImage/NewHomeMenuImagesImage.jsx');
 
 /**
-* NewHomeMenu
+* NewHomeMenuImages
 *
-* @module NewHomeMenu
+* @module NewHomeMenuImages
 */
-class NewHomeMenu extends React.Component {
+class NewHomeMenuImages extends React.Component {
 
     /**
     * Constructor
@@ -54,15 +52,14 @@ class NewHomeMenu extends React.Component {
     _div() {
         return {
             style: {
-                padding: "0 0 5vh 0",
-                position: "relative",
-                order: "3",
-                width: "100vw",
+                position: "absolute",
+                top: "0vh",
+                left: "0vw",
+                width: "50vw",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "flex-start",
-                alignItems: "center",
-                overflow: "hidden",
+                alignItems: "flex-start",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
@@ -72,25 +69,23 @@ class NewHomeMenu extends React.Component {
     }
 
     /**
-    * Settings for: __menus
+    * Settings for: __images
     *
-    * @function __menus
+    * @function __images
     * @return {object}
     */
-    __menus(menus) {
+    __images() {
+        let count = 30;
+        let image = 5;
         let payload = [];
-        let count = 4;
-        for (let i in menus) {
-            let menu = menus[i];
+        for (let i = 5; i < count; i++) {
+            image = (image > 19 ? 1 : image + 1);
             payload.push(
-                <NewHomeMenuSection
+                <NewHomeMenuImagesImage
                     key={i}
-                    count={count}
-                    header={i}
-                    section={menu}
+                    count={image}
                 />
             )
-            count = count + 1;
         }
         return payload;
     }
@@ -103,16 +98,14 @@ class NewHomeMenu extends React.Component {
     */
     render() {
         var {site, ...other} = this.props;
-        let _div = this._div();
-        let __menus = this.__menus(site.seed.menu);
+        let _div = this._div(); 
+        let __images = this.__images();
         return (
-            <div id="menu" className="div" style={_div.style}>
-                <NewHomeMenuHeader {...other} />
-                <NewHomeMenuImages menu={site.seed.menu} />
-                {__menus}
+            <div className="div" style={_div.style}>
+                {__images}
             </div>
         )
     }    
 }
 // Export
-module.exports = Radium(NewHomeMenu);
+module.exports = Radium(NewHomeMenuImages);

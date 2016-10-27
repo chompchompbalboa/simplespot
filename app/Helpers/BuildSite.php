@@ -14,7 +14,15 @@ class BuildSite
     */
     public static function build($seed)
     {
-        $domain = explode("www.", $seed->website)[1];
+        if(strpos($seed->website, "www.") !== false) {
+            $domain = explode("www.", $seed->website)[1];
+        }
+        else if(strpos($seed->website, "http://") !== false) {
+            $domain = explode("http://", $seed->website)[1];
+        }
+        else if(strpos($seed->website, "https://") !== false) {
+            $domain = explode("https://", $seed->website)[1];
+        }
         $check = Sites::where('domain', '=', $domain)->first();
         if (is_null($check)) {
             $site = new Sites;

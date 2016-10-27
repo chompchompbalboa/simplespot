@@ -44,6 +44,18 @@ class NewHomeMenuSectionItemsItem extends React.Component {
     }
 
     /**
+    * Settings for: description
+    *
+    * @function description
+    * @return {object}
+    */
+    description(rawDescription) {
+        let description = "";
+        description = (isSet.is(rawDescription) ? rawDescription.charAt(0).toUpperCase() + rawDescription.slice(1) : "");
+        return description;
+    }
+
+    /**
     * Settings for: _div
     *
     * @function _div
@@ -80,12 +92,15 @@ class NewHomeMenuSectionItemsItem extends React.Component {
             style: {
                 margin: "0.75vh 0 0 0",
                 fontWeight: "300",
+                minHeight: (description === "" ? "1vh" : "3vh"),
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    minHeight: (description === "" ? "0.5vh" : "2vh"),
                 },
                 "@media (min-width: 64em)": {
+                    minHeight: (description === "" ? "0vh" : "2vh"),
                 }
             },
-            text: (isSet.is(description) ? description.charAt(0).toUpperCase() + description.slice(1) : "")
+            text: description
         }
     }
 
@@ -99,10 +114,12 @@ class NewHomeMenuSectionItemsItem extends React.Component {
         return {
             style: {
                 width: "100%",
+                minHeight: "3vh",
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    minHeight: "2vh",
                 },
                 "@media (min-width: 64em)": {
                 }
@@ -118,17 +135,22 @@ class NewHomeMenuSectionItemsItem extends React.Component {
     */
     _price(rawPrice) {
         let price = "";
-        let count = rawPrice.length;
-        if (count > 1) {
-            for (let i in rawPrice) {
-                price = price + rawPrice[i];
-                if (i < count - 1) {
-                    price = price + " / "
+        if(isSet.is(rawPrice)) {    
+            let count = rawPrice.length;
+            if (count > 1) {
+                for (let i in rawPrice) {
+                    price = price + rawPrice[i];
+                    if (i < count - 1) {
+                        price = price + " / "
+                    }
                 }
             }
+            else {
+                price = rawPrice[0];
+            }
         }
-        else {
-            price = rawPrice[0];
+        if (price.length > 15) {
+            price = ""
         }
         return {
             style: {
@@ -138,7 +160,7 @@ class NewHomeMenuSectionItemsItem extends React.Component {
                 "@media (min-width: 64em)": {
                 }
             },
-            text: (isSet.is(price) ? price : "")
+            text: price
         }
     }
 
@@ -169,8 +191,9 @@ class NewHomeMenuSectionItemsItem extends React.Component {
     */
     render() {
         var {item, ...other} = this.props;
+        let description = this.description(item.description);
         let _div = this._div();
-        let _description = this._description(item.description);
+        let _description = this._description(description);
         let _info = this._info();
         let _price = this._price(item.price);
         let _title = this._title(item.title); 

@@ -62,9 +62,11 @@ class NewHomeAboutHours extends React.Component {
                 if (typeof hours[i] !== "undefined") {
                     let day = hours[i];
                     let openHour = (Number(day.open.hour) > 12 ? Number(day.open.hour) - 12 : Number(day.open.hour));
+                    openHour = (openHour === 0 ? 12 : openHour);
                     let openMinute = day.open.minute;
                     let openMeridien = (Number(day.open.hour) > 11 ? "PM" : "AM");
                     let closeHour = (Number(day.close.hour) > 12 ? Number(day.close.hour) - 12 : Number(day.close.hour));
+                    closeHour = (closeHour === 0 ? 12 : closeHour);
                     let closeMinute = day.close.minute;
                     let closeMeridien = (Number(day.close.hour) > 11 ? "PM" : "AM");
                     let string = openHour + ":" + openMinute + " " + openMeridien + " - " + closeHour + ":" + closeMinute + " " + closeMeridien;

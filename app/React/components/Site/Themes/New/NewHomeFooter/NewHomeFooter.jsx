@@ -164,30 +164,6 @@ class NewHomeFooter extends React.Component {
     }
 
     /**
-    * Settings for: _emailLogo
-    *
-    * @function _emailLogo
-    * @return {object}
-    */
-    _emailLogo() {
-        return {
-            style: {
-                width: "5.12vw",
-                height: "3.44vw",
-                backgroundImage: "url(/stock/New/email.png)",
-                "@media (min-width: 48em) and (max-width: 64em)": {
-                    width: "2.56vw",
-                    height: "1.77vw",
-                },
-                "@media (min-width: 64em)": {
-                    width: "1.81vw",
-                    height: "1.15vw",
-                }
-            }
-        }
-    }
-
-    /**
     * Settings for: _logo
     *
     * @function _logo
@@ -336,7 +312,7 @@ class NewHomeFooter extends React.Component {
                     margin: "0 0 0 1.5vw",
                 },
                 "@media (min-width: 64em)": {
-                    margin: "0 0 0 0",
+                    margin: "0 0 0 1vw",
                     letterSpacing: "0.05vw", 
                 }
             }
@@ -356,8 +332,6 @@ class NewHomeFooter extends React.Component {
         let _contact = this._contact(); 
         let _container = this._container(); 
         let _div = this._div(); 
-        let _email = this._email(seed.email[0]); 
-        let _emailLogo = this._emailLogo(); 
         let _logo = this._logo(); 
         let _name = this._name(seed.name); 
         let _phone = this._phone(seed.phone); 
@@ -375,12 +349,8 @@ class NewHomeFooter extends React.Component {
                 <div className="contact" style={_address.style}>
                     <a href={"tel:" + _phone.text}>
                         <div className="container" style={_container.style}>
+                            <div className="phoneLogo" style={[_logo.style, _phoneLogo.style]}></div>
                             <div className="phoneText" style={_text.style}>{_phone.text}</div> 
-                        </div>
-                    </a>
-                    <a href={"mailto:" + _email.text}>
-                        <div className="container" style={_container.style}>
-                            <div className="emailText" style={_text.style}>{_email.text}</div> 
                         </div>
                     </a>
                 </div>

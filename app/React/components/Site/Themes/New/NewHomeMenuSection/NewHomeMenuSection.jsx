@@ -103,7 +103,6 @@ class NewHomeMenuSection extends React.Component {
         let _items = this._items(); 
         return (
             <div className="div" style={_div.style}>
-                <NewHomeMenuSectionBackground {...other} />
                 <div className="items" style={_items.style}>
                     <NewHomeMenuSectionHeader {...other} />
                     <NewHomeMenuSectionItems {...other} />

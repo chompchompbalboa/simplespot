@@ -1,5 +1,5 @@
 /**
-* NewHomeMenuSectionItems.jsx
+* NewHomeMenuHeader.jsx
 * @copyright simplespot.co, 2016-Present. All Rights Reserved.
 * @author Rocky Eastman Jr. <eastmanrjr@gmail.com>
 *
@@ -9,16 +9,12 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
-const isSet = require('../../../../../utils/lib/isSet');
-
-const NewHomeMenuSectionItemsItem = require('../NewHomeMenuSectionItemsItem/NewHomeMenuSectionItemsItem.jsx');
-
 /**
-* NewHomeMenuSectionItems
+* NewHomeMenuHeader
 *
-* @module NewHomeMenuSectionItems
+* @module NewHomeMenuHeader
 */
-class NewHomeMenuSectionItems extends React.Component {
+class NewHomeMenuHeader extends React.Component {
 
     /**
     * Constructor
@@ -54,46 +50,27 @@ class NewHomeMenuSectionItems extends React.Component {
     _div() {
         return {
             style: {
+                margin: "3vh 0 0 0",
                 width: "100vw",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
+                fontFamily: "Lato, sans-serif",
+                fontWeight: "900",
+                fontSize: "8vw",
+                letterSpacing: "0.75vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
+                    alignSelf: "flex-start",
                     margin: "0 0 0 30vw",
-                    width: "70vw",
-                    flexFlow: "row wrap",
-                    justifyContent: "flex-start",
-                    aligItems: "flex-start" 
+                    alignItems: "flex-start",
+                    fontSize: "4vw",
+                    letterSpacing: "0.5vw",
                 }
             }
         }
-    }
-
-    /**
-    * Settings for: __items
-    *
-    * @function __items
-    * @return {object}
-    */
-    __items(section) {
-        let payload = [];
-        for (let i in section) {
-            let item = section[i];
-            if (isSet.is(item.title)) {
-                if (item.title !== "") {
-                    payload.push(
-                        <NewHomeMenuSectionItemsItem
-                            key={i}
-                            item={item}
-                        />
-                    )   
-                }
-            }   
-        }
-        return payload;
     }
 
     /**
@@ -103,15 +80,14 @@ class NewHomeMenuSectionItems extends React.Component {
     * @return {string}
     */
     render() {
-        var {section, ...other} = this.props;
-        let _div = this._div();
-        let __items = this.__items(section); 
+        var {site, ...other} = this.props;
+        let _div = this._div(); 
         return (
             <div className="div" style={_div.style}>
-                {__items}
+                MENU
             </div>
         )
     }    
 }
 // Export
-module.exports = Radium(NewHomeMenuSectionItems);
+module.exports = Radium(NewHomeMenuHeader);

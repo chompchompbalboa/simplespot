@@ -248,7 +248,7 @@ class NewHomeAboutContact extends React.Component {
                 <a href={"mailto:" + _email.text}>
                     <div className="container" style={_container.style}>
                         <div className="emailLogo" style={[_logo.style, _emailLogo.style]}></div>
-                        <div className="emailText" style={_text.style}>{_email.text}</div> 
+                        <div className="emailText" style={_text.style}>Email Us</div> 
                     </div>
                 </a>
             </div>

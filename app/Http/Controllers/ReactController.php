@@ -27,6 +27,7 @@ use App\Helpers\BuildSite;
 use App\Models\Sites;
 use App\Models\User;
 use App\Models\Sushi;
+use App\Models\ReadyForInvite;
 
 class ReactController extends Controller
 {
@@ -91,6 +92,13 @@ class ReactController extends Controller
                 $seed = Sushi::all()->first();
                 // Build the preview site into the db
                 $preview = BuildSite::build($seed);
+                $check = ReadyForInvite::where('readableID', '=', $preview['readableID'])->first();
+                if(is_null($check)) {
+                    $ready = new ReadyForInvite;
+                    $ready->readableID = $preview['readableID'];
+                    $ready->save();
+                }
+                $seed->delete();
                 // Return the url
                 if (!is_null($seed)) {
                     $response = [

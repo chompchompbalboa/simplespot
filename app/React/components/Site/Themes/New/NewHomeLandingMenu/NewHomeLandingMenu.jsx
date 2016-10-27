@@ -214,7 +214,7 @@ class NewHomeLandingMenu extends React.Component {
         let _location = this._location(activeModule);
         return (
             <div className="div" style={_div.style}>
-                <a href="/">
+                <a href="">
                     <div className="container" style={[_container.style, _home.style]}>
                         HOME
                     </div>

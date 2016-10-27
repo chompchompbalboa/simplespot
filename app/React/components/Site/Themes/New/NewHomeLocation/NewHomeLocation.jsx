@@ -213,7 +213,6 @@ class NewHomeLocation extends React.Component {
         return {
             style: {
                 order: "4",
-                margin: "5vh 0 0 0",
                 width: "100vw",
                 height: "30vh",
                 backgroundPosition: "center center",
