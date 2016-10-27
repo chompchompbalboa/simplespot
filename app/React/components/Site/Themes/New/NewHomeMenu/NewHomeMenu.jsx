@@ -52,6 +52,7 @@ class NewHomeMenu extends React.Component {
     _div() {
         return {
             style: {
+                order: "3",
                 width: "100vw",
                 display: "flex",
                 flexDirection: "column",
@@ -134,7 +135,7 @@ class NewHomeMenu extends React.Component {
         let _header = this._header(); 
         let __menus = this.__menus(site.seed.menu);
         return (
-            <div className="div" style={_div.style}>
+            <div id="menu" className="div" style={_div.style}>
                 <div className="header" style={_header.style}>MENU</div>
                 {__menus}
             </div>

@@ -101,7 +101,7 @@ class NewHomeLocation extends React.Component {
             return "http://maps.apple.com/?address=" + query;
         }
         else {
-            return "https://www.google.com/maps/place/" + query;
+            return "https://www.google.com/maps/search/" + query;
         }
     }
 
@@ -114,12 +114,26 @@ class NewHomeLocation extends React.Component {
     * @return string
     */
     getMapImage(address, city, state, zip) {
+        let mapImage = {
+            "0em": "",
+            "64em": ""
+        }
         let center = this.getMapImageCenter(city, address, state, zip);
         let style = this.getMapImageStyle("ShiftWork");
-        let mapImage = (
+        mapImage['0em'] = (
             "https://maps.googleapis.com/maps/api/staticmap?" + 
             "center=" + center + 
             "&zoom=16" +
+            "&size=640x640" +
+            "&scale=2" +
+            //"&markers=" + marker + 
+            style + 
+            "&key=AIzaSyCy0TJ-oTgR8qIe5SxF4UIwB1m2KHvpViU"
+        );
+        mapImage['64em'] = (
+            "https://maps.googleapis.com/maps/api/staticmap?" + 
+            "center=" + center + 
+            "&zoom=15" +
             "&size=640x640" +
             "&scale=2" +
             //"&markers=" + marker + 
@@ -180,7 +194,10 @@ class NewHomeLocation extends React.Component {
                 height: "100%",
                 display: "flex",
                 justifyContent: "center",
-                alignItems: "center"
+                alignItems: "center",
+                "@media (min-width: 64em)": {
+                    justifyContent: "flex-start"
+                }
             },
             href: href
         }
@@ -195,17 +212,21 @@ class NewHomeLocation extends React.Component {
     _div(backgroundImage) {
         return {
             style: {
+                order: "4",
                 margin: "5vh 0 0 0",
                 width: "100vw",
                 height: "30vh",
                 backgroundPosition: "center center",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
-                backgroundImage: "linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url(" + backgroundImage + ")",
+                backgroundImage: "linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url(" + backgroundImage['0em'] + ")",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
-                    display: "none"
+                    order: "5",
+                    margin: "0 0 0 0",
+                    height: "40vh",
+                    backgroundImage: "linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url(" + backgroundImage['64em'] + ")",
                 }
             }
         }
@@ -237,10 +258,9 @@ class NewHomeLocation extends React.Component {
                     fontSize: "2.125vw",
                 },
                 "@media (min-width: 64em)": {
+                    margin: "0 0 0 42.5vw",
                     padding: "1.25vh 2vh",
                     fontSize: "1.25vw",
-                    border: "1px solid black",
-                    color: "black",
                 }
             }
         }
@@ -284,7 +304,7 @@ class NewHomeLocation extends React.Component {
         let _menuLink = this._menuLink(); 
         let _menuLinkArrow = this._menuLinkArrow();
         return (
-            <div className="div" style={_div.style}>
+            <div id="location" className="div" style={_div.style}>
                 <a target="_blank" href={_a.href} style={_a.style}>
                     <div className="menuLink" style={_menuLink.style} onMouseEnter={this.moveMouseLinkArrow} onMouseLeave={this.moveMouseLinkArrow}>
                         Find Us <div className="menuLinkArrow" style={_menuLinkArrow.style}>&rarr;</div>

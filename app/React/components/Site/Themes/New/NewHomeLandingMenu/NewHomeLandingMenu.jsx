@@ -220,25 +220,25 @@ class NewHomeLandingMenu extends React.Component {
                     </div>
                 </a>
                 <div className="divider" style={_divider.style}></div>
-                <a href="/">
+                <a href="#about">
                     <div className="container" style={[_container.style, _about.style]}>
                         ABOUT
                     </div>
                 </a>
                 <div className="divider" style={_divider.style}></div>
-                <a href="/">
+                <a href="#menu">
                     <div className="container" style={[_container.style, _menu.style]}>
                         MENU
                     </div>
                 </a>
                 <div className="divider" style={_divider.style}></div>
-                <a href="/">
+                <a href="#about">
                     <div className="container" style={[_container.style, _contact.style]}>
                         CONTACT
                     </div>
                 </a>
                 <div className="divider" style={_divider.style}></div>
-                <a href="/">
+                <a href="#location">
                     <div className="container" style={[_container.style, _location.style]}>
                         LOCATION
                     </div>

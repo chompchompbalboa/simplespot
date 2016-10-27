@@ -78,8 +78,10 @@ class NewHomeFooter extends React.Component {
                 justifyContent: "center",
                 alignItems: "center",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    margin: "0 0 0 0"
                 },
                 "@media (min-width: 64em)": {
+                    margin: "0 0 0 0"
                 }
             }
         }
@@ -99,8 +101,10 @@ class NewHomeFooter extends React.Component {
                 justifyContent: "flex-start",
                 alignItems: "center",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    alignItems: "flex-start"
                 },
                 "@media (min-width: 64em)": {
+                    display: "none",
                 }
             }
         }
@@ -115,6 +119,7 @@ class NewHomeFooter extends React.Component {
     _div() {
         return {
             style: {
+                order: "5",
                 padding: "5vh 0 0 0",
                 width: "100vw",
                 display: "flex",
@@ -126,8 +131,15 @@ class NewHomeFooter extends React.Component {
                 letterSpacing: "0.1vw",
                 backgroundColor: "rgba(250,250,250,1)",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    padding: "2vh 0 0 0",
+                    flexDirection: "row",
+                    justifyContent: "space-around"
                 },
                 "@media (min-width: 64em)": {
+                    order: "4",
+                    padding: "2vh 0 0 0",
+                    flexDirection: "row",
+                    justifyContent: "space-around",
                 }
             }
         }
@@ -213,8 +225,10 @@ class NewHomeFooter extends React.Component {
                 fontWeight: "900",
                 textTransform: "uppercase",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    fontSize: "3.5vw"
                 },
                 "@media (min-width: 64em)": {
+                    fontSize: "2.5vw"
                 }
             },
             text: name
@@ -319,10 +333,11 @@ class NewHomeFooter extends React.Component {
                 margin: "0 0 0 3vw",
                 color: "black",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    margin: "0 0 0 1.5vw",
                 },
                 "@media (min-width: 64em)": {
-                margin: "0 0 0 1.25vw",
-                letterSpacing: "0.05vw", 
+                    margin: "0 0 0 0",
+                    letterSpacing: "0.05vw", 
                 }
             }
         }
@@ -351,7 +366,7 @@ class NewHomeFooter extends React.Component {
         let _region = this._region(seed.city, seed.state, seed.zip);
         let _text = this._text(); 
         return (
-            <div className="div" style={_div.style}>
+            <div id="contact" className="div" style={_div.style}>
                 <div className="name" style={_name.style}>{_name.text}</div>
                 <div className="address" style={_address.style}>
                     <div className="street" style={_street.style}>{_street.text}</div>
@@ -360,13 +375,11 @@ class NewHomeFooter extends React.Component {
                 <div className="contact" style={_address.style}>
                     <a href={"tel:" + _phone.text}>
                         <div className="container" style={_container.style}>
-                            <div className="phoneLogo" style={[_logo.style, _phoneLogo.style]}></div>
                             <div className="phoneText" style={_text.style}>{_phone.text}</div> 
                         </div>
                     </a>
                     <a href={"mailto:" + _email.text}>
                         <div className="container" style={_container.style}>
-                            <div className="emailLogo" style={[_logo.style, _emailLogo.style]}></div>
                             <div className="emailText" style={_text.style}>{_email.text}</div> 
                         </div>
                     </a>

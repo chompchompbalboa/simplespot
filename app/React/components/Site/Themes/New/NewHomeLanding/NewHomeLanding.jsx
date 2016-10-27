@@ -54,6 +54,7 @@ class NewHomeLanding extends React.Component {
     _div() {
         return {
             style: {
+                order: "1",
                 width: "100vw",
                 height: "100vh",
                 display: "flex",

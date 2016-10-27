@@ -54,6 +54,7 @@ class NewHomeAbout extends React.Component {
     _div() {
         return {
             style: {
+                order: "2",
                 width: "100vw",
                 display: "flex",
                 flexFlow: "column wrap",
@@ -84,7 +85,7 @@ class NewHomeAbout extends React.Component {
         var {site, ...other} = this.props;
         let _div = this._div(); 
         return (
-            <div className="div" style={_div.style}>
+            <div id="about" className="div" style={_div.style}>
                 <NewHomeAboutWelcome site={site} {...other} />
                 <NewHomeAboutHours site={site} {...other} />
                 <NewHomeAboutContact site={site} {...other} />
