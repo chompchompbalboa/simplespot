@@ -51,7 +51,7 @@ class NWAireContainerOne extends React.Component {
     * @return {object}
     */
     _background() {
-        let backgroundImage = "linear-gradient(to top, rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url(/uploads/57b35f928bcb76f5d65e79fa/needle2.jpg)";
+        let backgroundImage = "linear-gradient(to top, rgba(0,0,0,0.0), rgba(0,0,0,0.0)), url(/uploads/57b35f928bcb76f5d65e79fa/needle2.jpg)";
         return {
             style: {
                 position: "absolute",
