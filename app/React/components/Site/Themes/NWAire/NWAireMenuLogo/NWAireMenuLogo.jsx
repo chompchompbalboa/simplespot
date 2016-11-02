@@ -129,7 +129,7 @@ class NWAireMenuLogo extends React.Component {
     _linesContainer() {
         return {
             style: {
-                width: "90vw",
+                width: "45vw",
                 height: "2vh",
                 display: "flex",
                 flexDirection: "column",

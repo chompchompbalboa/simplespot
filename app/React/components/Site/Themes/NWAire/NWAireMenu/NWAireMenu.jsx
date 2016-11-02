@@ -56,8 +56,8 @@ class NWAireMenu extends React.Component {
                 zIndex: "100",
                 position: "fixed",
                 top: "0vw",
-                left: "0vh",
-                width: "100vw",
+                left: "15vw",
+                width: "calc(45vw + 2vh)",
                 height: "12vh",
                 display: "flex",
                 flexDirection: "column",
@@ -67,6 +67,7 @@ class NWAireMenu extends React.Component {
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
+                    left: "0vh",
                     width: "22.5vw",
                     height: "100vh"
                 }
