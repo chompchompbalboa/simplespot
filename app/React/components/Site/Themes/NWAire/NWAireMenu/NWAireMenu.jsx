@@ -57,11 +57,11 @@ class NWAireMenu extends React.Component {
                 position: "absolute",
                 top: "0vw",
                 left: "7.5vw",
-                width: "60vw",
+                width: "calc(60vw + 1vh)",
                 padding: "1vh",
                 backgroundColor: "rgb(25,25,25)",
                 "@media (min-width: 48em) and (max-width: 64em)": {
-                    width: "50vw"
+                    width: "calc(50vw + 1vh)"
                 },
                 "@media (min-width: 64em)": {
                     padding: "0",
