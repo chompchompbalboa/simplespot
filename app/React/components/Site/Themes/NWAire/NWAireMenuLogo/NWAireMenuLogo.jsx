@@ -90,7 +90,7 @@ class NWAireMenuLogo extends React.Component {
                     fontSize: "6vw",
                 },
                 "@media (min-width: 64em)": {
-                    letterSpacing: "none",
+                    letterSpacing: "normal",
                     margin: "0",
                     fontSize: "2.25vw" 
                 }    
@@ -112,11 +112,13 @@ class NWAireMenuLogo extends React.Component {
                 whiteSpace: "nowrap",
                 color: "gray",
                 letterSpacing: "0.5vw",
+                fontWeight: "700",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                     fontSize: "3.5vw",
                 },
                 "@media (min-width: 64em)": {
-                    letterSpacing: "none",
+                    fontWeight: "900",
+                    letterSpacing: "normal",
                     margin: "0",
                     fontSize: "1.1vw", 
                 }    
