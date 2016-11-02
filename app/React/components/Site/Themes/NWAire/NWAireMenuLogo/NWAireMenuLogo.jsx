@@ -83,7 +83,7 @@ class NWAireMenuLogo extends React.Component {
         return {
             style: {
                 margin: "0.5vh 0 0 0",
-                fontSize: "6vw",
+                fontSize: "8vw",
                 whiteSpace: "nowrap",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                     fontSize: "4vw",
@@ -106,7 +106,7 @@ class NWAireMenuLogo extends React.Component {
         return {
             style: {
                 margin: "0 0 0.5vh 0",
-                fontSize: "3.5vw",
+                fontSize: "5vw",
                 whiteSpace: "nowrap",
                 color: "gray",
                 "@media (min-width: 48em) and (max-width: 64em)": {
@@ -129,7 +129,7 @@ class NWAireMenuLogo extends React.Component {
     _linesContainer() {
         return {
             style: {
-                width: "45vw",
+                width: "60vw",
                 height: "2vh",
                 display: "flex",
                 flexDirection: "column",
