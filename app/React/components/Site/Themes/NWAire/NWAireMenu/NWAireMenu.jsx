@@ -59,7 +59,7 @@ class NWAireMenu extends React.Component {
                 left: "7.5vw",
                 width: "calc(60vw + 1vh)",
                 padding: "1vh",
-                backgroundColor: "rgb(25,25,25)",
+                backgroundColor: "rgba(0,0,0,0.5)",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                     width: "calc(50vw + 1vh)"
                 },
@@ -72,7 +72,8 @@ class NWAireMenu extends React.Component {
                     position: "fixed",
                     left: "0vh",
                     width: "22.5vw",
-                    height: "100vh"
+                    height: "100vh",
+                    backgroundColor: "rgb(25,25,25)"
                 }
             }
         }
