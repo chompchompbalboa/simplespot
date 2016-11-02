@@ -12,13 +12,13 @@ import Radium from 'radium';
 const contentActions = require('../../../actions/contentActions');
 
 const days = [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
+        "Mo",
+        "Tu",
+        "We",
+        "Th",
+        "Fr",
+        "Sa",
+        "Su"
 ];
 
 /**
@@ -60,18 +60,12 @@ class AppDashboardContentFormInputHours extends React.Component {
     * @function handleChange
     * @return {object}
     */
-    handleChange(e) {
+    handleChange(e, key) {
         let changes = [];
         for (let i in this.props.changes) {
             let change = this.props.changes[i];
             let current = [
-                {key: change + ".Monday", value: this.Monday.value},
-                {key: change + ".Tuesday", value: this.Tuesday.value},
-                {key: change + ".Wednesday", value: this.Wednesday.value},
-                {key: change + ".Thursday", value: this.Thursday.value},
-                {key: change + ".Friday", value: this.Friday.value},
-                {key: change + ".Saturday", value: this.Saturday.value},
-                {key: change + ".Sunday", value: this.Sunday.value}
+                {key: change + key, value: e.target.value},
             ]
             changes.push(...current);         
         }
@@ -88,7 +82,20 @@ class AppDashboardContentFormInputHours extends React.Component {
         let payload = {};
         for (let i in days) {
             let field = days[i];
-            payload[field] = eval("content." + key + "." + field)
+            try {
+                payload[field] = {
+                    open: {
+                        hour: eval("content." + key + "." + field + ".open.hour"),
+                        minute: eval("content." + key + "." + field + ".open.minute")
+                    },
+                    close: {
+                        hour: eval("content." + key + "." + field + ".close.hour"),
+                        minute: eval("content." + key + "." + field + ".close.minute")
+                    }
+                }
+            }
+            catch(e) {}
+            
         }
         return payload;
     }
@@ -107,24 +114,6 @@ class AppDashboardContentFormInputHours extends React.Component {
                 display: "flex",
                 justifyContent: "flex-start",
                 alignItems: "center",
-                "@media (min-width: 48em) and (max-width: 64em)": {
-                },
-                "@media (min-width: 64em)": {
-                }
-            }
-        }
-    }
-
-    /**
-    * Settings for: _day
-    *
-    * @function _day
-    * @return {object}
-    */
-    _day(value) {
-        return {
-            style: {
-                border: (value !== "" ? "1.5px solid black" : "1.5px solid red"),
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
@@ -164,6 +153,8 @@ class AppDashboardContentFormInputHours extends React.Component {
     _input() {
         return {
             style: {
+                margin: "0 0 0 0.5vw",
+                width: "2.5vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                 },
                 "@media (min-width: 64em)": {
@@ -173,26 +164,6 @@ class AppDashboardContentFormInputHours extends React.Component {
             }
         }
     }
-
-    /**
-    * Settings for: _label
-    *
-    * @function _label
-    * @return {object}
-    */
-    _label() {
-        return {
-            style: {
-                width: "25%",
-                fontWeight: "400",
-                "@media (min-width: 48em) and (max-width: 64em)": {
-                },
-                "@media (min-width: 64em)": {
-                }
-            }
-        }
-    }
-
     /**
     * Settings for: _label
     *
@@ -225,42 +196,56 @@ class AppDashboardContentFormInputHours extends React.Component {
         let _div = this._div();
         let _input = this._input();
         let _label = this._label();
-        let _Monday = this._day(values.Monday);
-        let _Tuesday = this._day(values.Tuesday);
-        let _Wednesday = this._day(values.Wednesday);
-        let _Thursday = this._day(values.Thursday);
-        let _Friday = this._day(values.Friday);
-        let _Saturday = this._day(values.Saturday);
-        let _Sunday = this._day(values.Sunday);
         return (
             <div className="div" style={_div.style}>
                 <div className="container" style={_container.style}>
                     <div className="label" style={_label.style}>Monday</div>
-                    <input type="text" ref={(c) => this.Monday = c} value={values.Monday} style={[_input.style, _Monday.style]} onChange={(e) => this.handleChange(e)} />
+                    <input type="text" value={values.Mo.open.hour} style={_input.style} onChange={(e) => this.handleChange(e, ".Mo.open.hour")} />
+                    <input type="text" value={values.Mo.open.minute} style={_input.style} onChange={(e) => this.handleChange(e, ".Mo.open.minute")} />
+                    <input type="text" value={values.Mo.close.hour} style={_input.style} onChange={(e) => this.handleChange(e, ".Mo.close.hour")} />
+                    <input type="text" value={values.Mo.close.minute} style={_input.style} onChange={(e) => this.handleChange(e, ".Mo.close.minute")} />
                 </div>
                 <div className="container" style={_container.style}>
                     <div className="label" style={_label.style}>Tuesday</div>
-                    <input type="text" ref={(c) => this.Tuesday = c} value={values.Tuesday} style={[_input.style, _Tuesday.style]} onChange={(e) => this.handleChange(e)} />
+                    <input type="text" value={values.Tu.open.hour} style={_input.style} onChange={(e) => this.handleChange(e, ".Tu.open.hour")} />
+                    <input type="text" value={values.Tu.open.minute} style={_input.style} onChange={(e) => this.handleChange(e, ".Tu.open.minute")} />
+                    <input type="text" value={values.Tu.close.hour} style={_input.style} onChange={(e) => this.handleChange(e, ".Tu.close.hour")} />
+                    <input type="text" value={values.Tu.close.minute} style={_input.style} onChange={(e) => this.handleChange(e, ".Tu.close.minute")} />
                 </div>
                 <div className="container" style={_container.style}>
                     <div className="label" style={_label.style}>Wednesday</div>
-                    <input type="text" ref={(c) => this.Wednesday = c} value={values.Wednesday} style={[_input.style, _Wednesday.style]} onChange={(e) => this.handleChange(e)} />
+                    <input type="text" value={values.We.open.hour} style={_input.style} onChange={(e) => this.handleChange(e, ".We.open.hour")} />
+                    <input type="text" value={values.We.open.minute} style={_input.style} onChange={(e) => this.handleChange(e, ".We.open.minute")} />
+                    <input type="text" value={values.We.close.hour} style={_input.style} onChange={(e) => this.handleChange(e, ".We.close.hour")} />
+                    <input type="text" value={values.We.close.minute} style={_input.style} onChange={(e) => this.handleChange(e, ".We.close.minute")} />
                 </div>
                 <div className="container" style={_container.style}>
                     <div className="label" style={_label.style}>Thursday</div>
-                    <input type="text" ref={(c) => this.Thursday = c} value={values.Thursday} style={[_input.style, _Thursday.style]} onChange={(e) => this.handleChange(e)} />
+                    <input type="text" value={values.Th.open.hour} style={_input.style} onChange={(e) => this.handleChange(e, ".Th.open.hour")} />
+                    <input type="text" value={values.Th.open.minute} style={_input.style} onChange={(e) => this.handleChange(e, ".Th.open.minute")} />
+                    <input type="text" value={values.Th.close.hour} style={_input.style} onChange={(e) => this.handleChange(e, ".Th.close.hour")} />
+                    <input type="text" value={values.Th.close.minute} style={_input.style} onChange={(e) => this.handleChange(e, ".Th.close.minute")} />
                 </div>
                 <div className="container" style={_container.style}>
                     <div className="label" style={_label.style}>Friday</div>
-                    <input type="text" ref={(c) => this.Friday = c} value={values.Friday} style={[_input.style, _Friday.style]} onChange={(e) => this.handleChange(e)} />
+                    <input type="text" value={values.Fr.open.hour} style={_input.style} onChange={(e) => this.handleChange(e, ".Fr.open.hour")} />
+                    <input type="text" value={values.Fr.open.minute} style={_input.style} onChange={(e) => this.handleChange(e, ".Fr.open.minute")} />
+                    <input type="text" value={values.Fr.close.hour} style={_input.style} onChange={(e) => this.handleChange(e, ".Fr.close.hour")} />
+                    <input type="text" value={values.Fr.close.minute} style={_input.style} onChange={(e) => this.handleChange(e, ".Fr.close.minute")} />
                 </div>
                 <div className="container" style={_container.style}>
                     <div className="label" style={_label.style}>Saturday</div>
-                    <input type="text" ref={(c) => this.Saturday = c} value={values.Saturday} style={[_input.style, _Saturday.style]} onChange={(e) => this.handleChange(e)} />
+                    <input type="text" value={values.Sa.open.hour} style={_input.style} onChange={(e) => this.handleChange(e, ".Sa.open.hour")} />
+                    <input type="text" value={values.Sa.open.minute} style={_input.style} onChange={(e) => this.handleChange(e, ".Sa.open.minute")} />
+                    <input type="text" value={values.Sa.close.hour} style={_input.style} onChange={(e) => this.handleChange(e, ".Sa.close.hour")} />
+                    <input type="text" value={values.Sa.close.minute} style={_input.style} onChange={(e) => this.handleChange(e, ".Sa.close.minute")} />
                 </div>
                 <div className="container" style={_container.style}>
                     <div className="label" style={_label.style}>Sunday</div>
-                    <input type="text" ref={(c) => this.Sunday = c} value={values.Sunday} style={[_input.style, _Sunday.style]} onChange={(e) => this.handleChange(e)} />
+                    <input type="text" value={values.Su.open.hour} style={_input.style} onChange={(e) => this.handleChange(e, ".Su.open.hour")} />
+                    <input type="text" value={values.Su.open.minute} style={_input.style} onChange={(e) => this.handleChange(e, ".Su.open.minute")} />
+                    <input type="text" value={values.Su.close.hour} style={_input.style} onChange={(e) => this.handleChange(e, ".Su.close.hour")} />
+                    <input type="text" value={values.Su.close.minute} style={_input.style} onChange={(e) => this.handleChange(e, ".Su.close.minute")} />
                 </div>
             </div>
         )

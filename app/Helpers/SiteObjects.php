@@ -8,36 +8,6 @@ use App\Models\Sushi;
 class SiteObjects
 {
     /*
-    * Fetch Sushi Seed
-    *
-    * Fetch the raw data about a venue from Locu
-    *
-    * @function fetchSeed
-    */
-    public static function fetchSushiSeed()
-    {
-        $meetsConditions = false;
-        $stopper = 0;
-        $count = 0;
-        while ($meetsConditions === false) {
-            $seed = RawSiteObjects::skip(rand(1,59730))->first();
-            if (is_array($seed->email)) {
-                if(!in_array(null, $seed->email)) {
-                    if (stripos(json_encode($seed->menu),"sushi")) {
-                        $meetsConditions = true;
-                    }
-                }    
-            }
-            $stopper = $stopper + 1;
-            if($stopper > 1000) {
-                $meetsConditions = true;
-            }
-        }
-        return $seed;
-    }
-
-
-    /*
     * Build Seed Database
     *
     * Fetch the raw data about a venue from Locu
@@ -49,7 +19,7 @@ class SiteObjects
         $meetsConditions = false;
         $stopper = 0;
         $count = 0;
-        $item = 4000;
+        $item = 59000;
         while ($meetsConditions === false) {
             $seed = RawSiteObjects::skip($item)->first();
             if (is_array($seed->email)) {
@@ -66,7 +36,7 @@ class SiteObjects
                             $new->phone = $seed->phone;
                             $new->email = $seed->email;
                             $new->website = $seed->website;
-                            $new->hours = $seed->hours;
+                            $new->hours = self::hours($seed->hours);
                             $new->menu = $seed->menu;
                             $new->save();
                         }
@@ -80,5 +50,46 @@ class SiteObjects
             }
             $item = $item + 1;
         }
+        dd(Sushi::count());
+    }
+
+    /*
+    * Hours
+    *
+    * @function hours
+    */
+    public static function hours($rawHours)
+    {
+        $hours = [];
+        $days = [
+            "Mo" => "Monday",
+            "Tu" => "Tuesday",
+            "We" => "Wednesday",
+            "Th" => "Thursday",
+            "Fr" => "Friday",
+            "Sa" => "Saturday",
+            "Su" => "Sunday"
+        ];
+        foreach ($days as $id => $day) {
+            if(isset($rawHours[$day])) {
+                return $rawHours;
+            }
+            else {
+                if(isset($rawHours[$id])) {
+                    $current = $rawHours[$id];
+                    $openHour = intval($current['open']['hour']);
+                    $closeHour = intval($current['close']['hour']);
+                    $openMeridien = ($openHour > 11 ? "PM" : "AM");
+                    $closeMeridien = ($closeHour > 11 ? "PM" : "AM");
+                    $openHour = ($openHour > 12 ? $openHour - 12 : $openHour);
+                    $closeHour = ($closeHour > 12 ? $closeHour - 12 : $closeHour);
+                    $hours[$day] = $openHour.":".$current['open']['minute']." ".$openMeridien." - ".$closeHour.":".$current['close']['minute']." ".$closeMeridien;
+                }
+                else {
+                    $hours[$day] = "Closed";
+                }    
+            }
+        }
+        return $hours;
     }
 }

@@ -6,115 +6,68 @@
 * @requires React
 * @requires Radium
 */
-var React = require('react');
-var Radium = require('radium');
+import React, { PropTypes } from 'react';
+import Radium from 'radium';
 
-var NWAireContainerItem = require('../NWAireContainerItem/NWAireContainerItem.jsx');
+const NWAireContainerOne = require('../NWAireContainerOne/NWAireContainerOne.jsx');
+
 /**
-* The theme for Northwest Aire Services
+* NWAireContainer
 *
 * @module NWAireContainer
 */
-var NWAireContainer = React.createClass({
+class NWAireContainer extends React.Component {
 
     /**
-    * Validate props types
+    * Constructor
+    *
+    * @requires {object} props
+    */
+    constructor(props) {
+        super(props);
+    }
+
+    /**
+    * Validate the prop types
     *
     * @prop propTypes
-    * @return {object}
     */
-    propTypes: {
-    },
+    static propTypes = {
+    }
 
     /**
-    * Get the default props
+    * Set the default props
     *
-    * @function getDefaultProps
-    * @return {object}
+    * @prop defautProps
     */
-    getDefaultProps: function() {
-        return {
-            site: {}
-        }
-    },
+    static defaultProps = {
+    }
 
     /**
-    * Settings for: _section
+    * Settings for: _div
     *
-    * @function _section
+    * @function _div
     * @return {object}
     */
-    _section: function() {
+    _div() {
         return {
             style: {
-                zIndex: "-1",
-                position: "absolute",
-                top: "10vh",
+                position: "relative",
+                top: "0vh",
                 left: "0vw",
                 width: "100vw",
                 display: "flex",
                 flexFlow: "row wrap",
                 justifyContent: "flex-start",
-                alignItems: "flex-start"
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                },
+                "@media (min-width: 64em)": {
+                    left: "22.5vw",
+                    width: "77.5vw",
+                }
             }
         }
-    },
-
-    /**
-    * Settings for: __items
-    *
-    * @function __items
-    * @return {object}
-    */
-    __items: function(items) {
-        let payload = [];
-        let column = "left";
-        let currentLeft = 0;
-        let currentRight = 0;
-        let adjustment = 0;
-        for (let i in items) {
-            let marginTop = 0;
-            if(items[i].Item.width.lg !== "100vw") {
-                let imageHeight = Number((items[i].CoverImage.height.lg).replace("vh", ""));
-                if (column === "left") {
-                    marginTop = (currentLeft - currentRight <= 0 ? currentLeft - currentRight : 0);
-                    currentLeft = currentLeft + imageHeight;
-                    adjustment = imageHeight;
-                }
-                else {
-                    marginTop = (currentRight - (currentLeft - adjustment) <= 0 ? currentRight - (currentLeft - adjustment) : 0);
-                    currentRight = currentRight + imageHeight;
-                }
-                // Add the necessary height if an image feed is present
-                if (Number(i) > 3) {
-                    if (Object.keys(items[String(Number(i) - 2)].ImageFeed.images).length > 0) {
-                        marginTop = marginTop + 12;
-                        if(column === "left") {
-                            currentLeft = currentLeft + 12;
-                        }
-                        else {
-                            currentRight = currentRight + 12;
-                        }
-                    }
-                }
-                column = (column === "left" ? "right" : "left");
-            }
-            else {
-                currentLeft = 0;
-                currentRight = 0;
-                adjustment = 0;
-            }
-            items[i].Item.marginTop = marginTop + "vh";
-            payload.push(
-                <NWAireContainerItem
-                    key={i}
-                    id={i}
-                    item={items[i]}
-                />
-            )
-        }
-        return payload;
-    },
+    }
 
     /**
     * Render the component
@@ -122,15 +75,15 @@ var NWAireContainer = React.createClass({
     * @function render
     * @return {string}
     */
-    render: function() {
-        var {site, ...other} = this.props;
-        let _section = this._section();
-        let __items = this.__items(site.items);
+    render() {
+        var {...other} = this.props;
+        let _div = this._div(); 
         return (
-            <section className="section" style={_section.style}>
-                {__items}
-            </section>
+            <div className="div" style={_div.style}>
+                <NWAireContainerOne {...other} />
+            </div>
         )
     }    
-});
+}
+// Export
 module.exports = Radium(NWAireContainer);

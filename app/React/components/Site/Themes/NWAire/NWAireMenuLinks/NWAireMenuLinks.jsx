@@ -6,35 +6,57 @@
 * @requires React
 * @requires Radium
 */
-var React = require('react');
-var Radium = require('radium');
+import React, { PropTypes } from 'react';
+import Radium from 'radium';
 
-var NWAireBusinessInfo = require('../NWAireBusinessInfo/NWAireBusinessInfo.jsx');
 /**
-* The theme for Northwest Aire Services
+* NWAireMenuLinks
 *
 * @module NWAireMenuLinks
 */
-var NWAireMenuLinks = React.createClass({
+class NWAireMenuLinks extends React.Component {
 
     /**
-    * Validate props types
+    * Constructor
+    *
+    * @requires {object} props
+    */
+    constructor(props) {
+        super(props);
+    }
+
+    /**
+    * Validate the prop types
     *
     * @prop propTypes
-    * @return {object}
     */
-    propTypes: {
-    },
+    static propTypes = {
+    }
 
     /**
-    * Get the default props
+    * Set the default props
     *
-    * @function getDefaultProps
+    * @prop defautProps
+    */
+    static defaultProps = {
+    }
+
+    /**
+    * Settings for: _a
+    *
+    * @function _a
     * @return {object}
     */
-    getDefaultProps: function() {
-        return {}
-    },
+    _a() {
+        return {
+            style: {
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                },
+                "@media (min-width: 64em)": {
+                }
+            }
+        }
+    }
 
     /**
     * Settings for: _container
@@ -42,85 +64,86 @@ var NWAireMenuLinks = React.createClass({
     * @function _container
     * @return {object}
     */
-    _container: function(active) {
+    _container(active) {
         return {
             style: {
-                zIndex: "1",
-                padding: "10vh 0 0 0",
-                position: "fixed",
-                backfaceVisibility: "hidden",
-                top: "0vh",
-                left: (active === "menu" ? "0vw" : "-75vw"),
-                width: "75vw",
-                height: "100vh",
+                width: "100%",
+                height: "7vh",
                 display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                backgroundColor: "rgba(255,255,255,0.85)",
-                transition: "left 0.25s",
-                "@media (min-width: 48em) and (max-width: 64em)": {
-                    width: "60vw"
-                },
-                "@media (min-width: 64em)": {
-                    width: "50vw"
+                justifyContent: "center",
+                alignItems: "center",
+                borderBottom: "1px solid gray",
+                backgroundColor: (active ? "rgb(15,15,15)" : "transparent"),
+                color: (active ? "rgb(37,133,251)" : "white"),
+                ":hover": {
+                    backgroundColor: "rgb(15,15,15)",
+                    color: "rgb(37,133,251)",   
                 }
             }
         }
-    },
+    }
 
     /**
-    * Settings for: _divider
+    * Settings for: _topContainer
     *
-    * @function _divider
+    * @function _topContainer
     * @return {object}
     */
-    _divider: function() {
+    _topContainer() {
         return {
             style: {
-                margin: "2vh 0 2vh 10vw",
-                width: "25vw",
-                height: "1px",
-                backgroundColor: "black"
+                borderTop: "1px solid gray",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                },
+                "@media (min-width: 64em)": {
+                }
             }
         }
-    },
+    }
 
     /**
-    * Settings for: __info
+    * Settings for: _nav
     *
-    * @function __info
+    * @function _nav
     * @return {object}
     */
-    __info: function() {
-        return (
-            <NWAireBusinessInfo />
-        )
-    },
+    _nav() {
+        return {
+            style: {
+                display: "none",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                },
+                "@media (min-width: 64em)": {
+                    margin: "10vh 0 0 0",
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "100%",
+                }
+            }
+        }
+    }
 
     /**
-    * Settings for: __links
+    * Settings for: _text
     *
-    * @function __links
+    * @function _text
     * @return {object}
     */
-    __links: function() {
-        let links = [
-            {path: "#about", text: "Services"},
-            {path: "#about", text: "Contact"}
-        ];
-        let style = {
-            margin: "2vh 0 0 10vw",
-            color: "black",
-            fontFamily: "Monda, sans-serif",
-            fontSize: "20px"
-        };
-        return links.map(function(item, index) {
-            return (
-                <a key={index} href={item.path} style={style}>{item.text}</a>
-            )
-        });
-    },
+    _text() {
+        return {
+            style: {
+                width: "85%",
+                fontFamily: "Open Sans, sans-serif",
+                fontSize: "1.25vw",
+                fontWeight: "700",
+                letterSpacing: "0.05vw",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                },
+                "@media (min-width: 64em)": {
+                }
+            }
+        }
+    }
 
     /**
     * Render the component
@@ -128,24 +151,41 @@ var NWAireMenuLinks = React.createClass({
     * @function render
     * @return {string}
     */
-    render: function() {
+    render() {
         var {active, ...other} = this.props;
-        let _container = this._container(active);
-        let _divider = this._divider();
-        let __links = this.__links();
-        let __info = this.__info();
+        let _a = this._a();
+        let _home = this._container((active === "home" ? true : false));
+        let _about = this._container((active === "about" ? true : false));
+        let _services = this._container((active === "services" ? true : false));
+        let _contact = this._container((active === "contact" ? true : false));
+        let _topContainer = this._topContainer();
+        let _nav = this._nav(); 
+        let _text = this._text();
         return (
-            <div className="container" style={_container.style}>
-                {__links}
-                <div className="divider" style={_divider.style}></div>
-                {__info}
-            </div>
+            <nav className="nav" style={_nav.style}>
+                <a href="/" style={_a.style}>
+                    <div key="home" className="container" style={[_home.style, _topContainer.style]}>
+                        <div className="text" style={_text.style}>HOME</div>
+                    </div>
+                </a>
+                <a href="/" style={_a.style}>
+                    <div key="about" className="about" style={_about.style}>
+                        <div className="text" style={_text.style}>ABOUT</div>
+                    </div>
+                </a>
+                <a href="/" style={_a.style}>
+                    <div key="services" className="services" style={_services.style}>
+                        <div className="text" style={_text.style}>SERVICES</div>
+                    </div>
+                </a>
+                <a href="/" style={_a.style}>
+                    <div key="contact" className="contact" style={_contact.style}>
+                        <div className="text" style={_text.style}>CONTACT</div>
+                    </div>
+                </a>
+            </nav>
         )
-        /*return (
-            <div className="container" style={_container.style}>
-                {__info}
-            </div>
-        )*/
     }    
-});
+}
+// Export
 module.exports = Radium(NWAireMenuLinks);

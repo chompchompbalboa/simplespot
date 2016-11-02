@@ -6,52 +6,78 @@
 * @requires React
 * @requires Radium
 */
-var React = require('react');
-var Radium = require('radium');
+import React, { PropTypes } from 'react';
+import Radium from 'radium';
 
-var NWAireContainer = require('./NWAireContainer/NWAireContainer.jsx');
-var NWAireMenu = require('./NWAireMenu/NWAireMenu.jsx');
+const NWAireContainer = require('./NWAireContainer/NWAireContainer.jsx');
+const NWAireMenu = require('./NWAireMenu/NWAireMenu.jsx');
 
 /**
-* The theme for Northwest Aire Services
+* NWAire
 *
 * @module NWAire
 */
-var NWAire = React.createClass({
+class NWAire extends React.Component {
 
     /**
-    * Validate props types
+    * Constructor
+    *
+    * @requires {object} props
+    */
+    constructor(props) {
+        super(props);
+        this.state = {
+            active: "home"
+        };
+        this.changeActive = this.changeActive.bind(this);
+    }
+
+    /**
+    * Change Active
+    *
+    * @function changeActive
+    */
+    changeActive(next) {
+        this.setState({
+            active: next
+        })
+    }
+
+    /**
+    * Validate the prop types
     *
     * @prop propTypes
-    * @return {object}
     */
-    propTypes: {
-    },
+    static propTypes = {
+    }
 
     /**
-    * Get the default props
+    * Set the default props
     *
-    * @function getDefaultProps
-    * @return {object}
+    * @prop defautProps
     */
-    getDefaultProps: function() {
-        return {
-        }
-    },
+    static defaultProps = {
+    }
 
     /**
-    * Settings for: _section
+    * Settings for: _div
     *
-    * @function _section
+    * @function _div
     * @return {object}
     */
-    _section: function() {
+    _div() {
         return {
             style: {
-                width: "100vw"
+                position: "relative",
+                top: "0vw",
+                left: "0vh",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                },
+                "@media (min-width: 64em)": {
+                }
             }
         }
-    },
+    }
 
     /**
     * Render the component
@@ -59,15 +85,16 @@ var NWAire = React.createClass({
     * @function render
     * @return {string}
     */
-    render: function() {
+    render() {
         var {site, ...other} = this.props;
-        let _section = this._section();
+        let _div = this._div(); 
         return (
-            <section className="section" style={_section.style}>
-                <NWAireMenu site={site} />
-                <NWAireContainer site={site} />
-            </section>
+            <div className="div" style={_div.style}>
+                <NWAireMenu site={site} active={this.state.active}/>
+                <NWAireContainer site={site} changeActive={this.changeActive}/>
+            </div>
         )
     }    
-});
+}
+// Export
 module.exports = Radium(NWAire);

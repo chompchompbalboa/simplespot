@@ -12,10 +12,10 @@ import Radium from 'radium';
 const contentActions = require('../../../actions/contentActions');
 
 const fields = [
-        "address1",
-        "locality",
-        "region",
-        "postal_code"
+        "address",
+        "city",
+        "state",
+        "zip"
 ];
 /**
 * AppDashboardContentFormInputAddress
@@ -61,10 +61,10 @@ class AppDashboardContentFormInputAddress extends React.Component {
         for (let i in this.props.changes) {
             let change = this.props.changes[i];
             let current = [
-                {key: change + ".address1", value: this.address1.value},
-                {key: change + ".locality", value: this.locality.value},
-                {key: change + ".region", value: this.region.value},
-                {key: change + ".postal_code", value: this.postalCode.value}
+                {key: change + ".address", value: this.address.value},
+                {key: change + ".city", value: this.city.value},
+                {key: change + ".state", value: this.state.value},
+                {key: change + ".zip", value: this.zip.value}
             ]
             changes.push(...current);         
         }
@@ -128,12 +128,12 @@ class AppDashboardContentFormInputAddress extends React.Component {
     }
 
     /**
-    * Settings for: _address1
+    * Settings for: _address
     *
-    * @function _address1
+    * @function _address
     * @return {object}
     */
-    _address1(value) {
+    _address(value) {
         return {
             style: {
                 width: "100%",
@@ -143,12 +143,12 @@ class AppDashboardContentFormInputAddress extends React.Component {
     }
 
     /**
-    * Settings for: _locality
+    * Settings for: _city
     *
-    * @function _locality
+    * @function _city
     * @return {object}
     */
-    _locality(value) {
+    _city(value) {
         return {
             style: {
                 margin: "0.5vh 0 0 0",
@@ -159,12 +159,12 @@ class AppDashboardContentFormInputAddress extends React.Component {
     }
 
     /**
-    * Settings for: _postalCode
+    * Settings for: _zip
     *
-    * @function _postalCode
+    * @function _zip
     * @return {object}
     */
-    _postalCode(value) {
+    _zip(value) {
         return {
             style: {
                 margin: "0.5vh 0 0 0",
@@ -175,12 +175,12 @@ class AppDashboardContentFormInputAddress extends React.Component {
     }
 
     /**
-    * Settings for: _region
+    * Settings for: _state
     *
-    * @function _region
+    * @function _state
     * @return {object}
     */
-    _region(value) {
+    _state(value) {
         return {
             style: {
                 margin: "0.5vh 0 0 0",
@@ -199,18 +199,18 @@ class AppDashboardContentFormInputAddress extends React.Component {
     render() {
         let {content, contentKey, ...other} = this.props;
         let values = this.values(content, contentKey);
-        let _address1 = this._address1(values.address1);
+        let _address = this._address(values.address);
         let _div = this._div();
         let _input = this._input();
-        let _locality = this._locality(values.locality);
-        let _postalCode = this._postalCode(values.postal_code);
-        let _region = this._region(values.region);
+        let _city = this._city(values.city);
+        let _zip = this._zip(values.zip);
+        let _state = this._state(values.state);
         return (
             <div className="div" style={_div.style}>
-                <input type="text" ref={(c) => this.address1 = c} value={values.address1} style={[_input.style, _address1.style]} onChange={(e) => this.handleChange(e)} />
-                <input type="text" ref={(c) => this.locality = c} value={values.locality} style={[_input.style, _locality.style]} onChange={(e) => this.handleChange(e)} />
-                <input type="text" ref={(c) => this.region = c} value={values.region} style={[_input.style, _region.style]} onChange={(e) => this.handleChange(e)} />
-                <input type="text" ref={(c) => this.postalCode = c} value={values.postal_code} style={[_input.style, _postalCode.style]} onChange={(e) => this.handleChange(e)} />
+                <input type="text" ref={(c) => this.address = c} value={values.address} style={[_input.style, _address.style]} onChange={(e) => this.handleChange(e)} />
+                <input type="text" ref={(c) => this.city = c} value={values.city} style={[_input.style, _city.style]} onChange={(e) => this.handleChange(e)} />
+                <input type="text" ref={(c) => this.state = c} value={values.state} style={[_input.style, _state.style]} onChange={(e) => this.handleChange(e)} />
+                <input type="text" ref={(c) => this.zip = c} value={values.zip} style={[_input.style, _zip.style]} onChange={(e) => this.handleChange(e)} />
             </div>
         )
     }    

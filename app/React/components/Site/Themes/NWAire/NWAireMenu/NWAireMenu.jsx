@@ -6,80 +6,73 @@
 * @requires React
 * @requires Radium
 */
-var React = require('react');
-var Radium = require('radium');
+import React, { PropTypes } from 'react';
+import Radium from 'radium';
 
-var NWAireMenuLogos = require('../NWAireMenuLogos/NWAireMenuLogos.jsx');
-var NWAireMenuLinks = require('../NWAireMenuLinks/NWAireMenuLinks.jsx');
+const NWAireMenuLinks = require('../NWAireMenuLinks/NWAireMenuLinks.jsx');
+const NWAireMenuLogo = require('../NWAireMenuLogo/NWAireMenuLogo.jsx');
 
 /**
-* The theme for Northwest Aire Services
+* NWAireMenu
 *
 * @module NWAireMenu
 */
-var NWAireMenu = React.createClass({
+class NWAireMenu extends React.Component {
 
     /**
-    * Validate props types
+    * Constructor
+    *
+    * @requires {object} props
+    */
+    constructor(props) {
+        super(props);
+    }
+
+    /**
+    * Validate the prop types
     *
     * @prop propTypes
-    * @return {object}
     */
-    propTypes: {
-    },
+    static propTypes = {
+    }
 
     /**
-    * Get the default props
+    * Set the default props
     *
-    * @function getDefaultProps
-    * @return {object}
+    * @prop defautProps
     */
-    getDefaultProps: function() {
-        return {
-        }
-    },
+    static defaultProps = {
+    }
 
     /**
-    * Set the initial state
+    * Settings for: _div
     *
-    * @function getInitialState
+    * @function _div
     * @return {object}
     */
-    getInitialState: function() {
-        return {
-            active: "logo"
-        }
-    },
-
-    /**
-    * Change active
-    *
-    * @function getInitialState
-    * @return {object}
-    */
-    changeActive: function(e, active) {
-        e.preventDefault();
-        let newActive = (active === "logo" ? "menu" : "logo");
-        this.setState({
-            active: newActive
-        });
-    },
-
-    /**
-    * Settings for: _section
-    *
-    * @function _section
-    * @return {object}
-    */
-    _section: function() {
+    _div() {
         return {
             style: {
-                position: "absolute",
-                top: "0vh",
-                left: "0vw"
+                zIndex: "100",
+                position: "fixed",
+                top: "0vw",
+                left: "0vh",
+                width: "100vw",
+                height: "12vh",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "rgb(25,25,25)",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                },
+                "@media (min-width: 64em)": {
+                    width: "22.5vw",
+                    height: "100vh"
+                }
             }
         }
-    },
+    }
 
     /**
     * Render the component
@@ -87,15 +80,16 @@ var NWAireMenu = React.createClass({
     * @function render
     * @return {string}
     */
-    render: function() {
+    render() {
         var {...other} = this.props;
-        let _section = this._section();
+        let _div = this._div(); 
         return (
-            <section className="section" style={_section.style}>
-                <NWAireMenuLogos active={this.state.active} changeActive={this.changeActive}/>
-                <NWAireMenuLinks active={this.state.active}/>
-            </section>
+            <div className="div" style={_div.style}>
+                <NWAireMenuLogo {...other} />
+                <NWAireMenuLinks {...other} />
+            </div>
         )
     }    
-});
+}
+// Export
 module.exports = Radium(NWAireMenu);

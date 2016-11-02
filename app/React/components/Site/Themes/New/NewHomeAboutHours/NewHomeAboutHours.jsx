@@ -42,42 +42,6 @@ class NewHomeAboutHours extends React.Component {
     }
 
     /**
-    * Settings for: hours
-    *
-    * @function hours
-    * @return {object}
-    */
-    hours(hours) {
-        let payload = {
-            Mo: "Closed",
-            Tu: "Closed",
-            We: "Closed",
-            Th: "Closed",
-            Fr: "Closed",
-            Sa: "Closed",
-            Su: "Closed"
-        };
-        if (typeof hours !== "undefined") {
-            for (let i in payload) {
-                if (typeof hours[i] !== "undefined") {
-                    let day = hours[i];
-                    let openHour = (Number(day.open.hour) > 12 ? Number(day.open.hour) - 12 : Number(day.open.hour));
-                    openHour = (openHour === 0 ? 12 : openHour);
-                    let openMinute = day.open.minute;
-                    let openMeridien = (Number(day.open.hour) > 11 ? "PM" : "AM");
-                    let closeHour = (Number(day.close.hour) > 12 ? Number(day.close.hour) - 12 : Number(day.close.hour));
-                    closeHour = (closeHour === 0 ? 12 : closeHour);
-                    let closeMinute = day.close.minute;
-                    let closeMeridien = (Number(day.close.hour) > 11 ? "PM" : "AM");
-                    let string = openHour + ":" + openMinute + " " + openMeridien + " - " + closeHour + ":" + closeMinute + " " + closeMeridien;
-                    payload[i] = string;    
-                }
-            }
-        }
-        return payload;
-    }
-
-    /**
     * Settings for: _container
     *
     * @function _container
@@ -161,7 +125,7 @@ class NewHomeAboutHours extends React.Component {
     * @function _hours
     * @return {object}
     */
-    _hours() {
+    _hours(hours) {
         return {
             style: {
                 margin: "0 0 0 3vw",
@@ -171,7 +135,8 @@ class NewHomeAboutHours extends React.Component {
                 "@media (min-width: 64em)": {
                     margin: "0 0 0 0",
                 }
-            }
+            },
+            text: hours
         }
     }
 
@@ -183,11 +148,10 @@ class NewHomeAboutHours extends React.Component {
     */
     render() {
         var {site, ...other} = this.props;
-        let hours = this.hours(site.seed.hours);
         let _container = this._container();
         let _day = this._day();
         let _div = this._div();
-        let _hours = this._hours();
+        let _hours = this._hours(site.seed.hours);
         return (
             <div className="div" style={_div.style}>
                 <div className="container" style={_container.style}>
@@ -195,7 +159,7 @@ class NewHomeAboutHours extends React.Component {
                         Monday: 
                     </div>
                     <div className="hours" style={_hours.style}>
-                        {hours.Mo}
+                        {_hours.text.Monday}
                     </div>
                 </div>
                 <div className="container" style={_container.style}>
@@ -203,7 +167,7 @@ class NewHomeAboutHours extends React.Component {
                         Tuesday: 
                     </div>
                     <div className="hours" style={_hours.style}>
-                        {hours.Tu}
+                        {_hours.text.Tuesday}
                     </div>
                 </div>
                 <div className="container" style={_container.style}>
@@ -211,7 +175,7 @@ class NewHomeAboutHours extends React.Component {
                         Wednesday: 
                     </div>
                     <div className="hours" style={_hours.style}>
-                        {hours.We}
+                        {_hours.text.Wednesday}
                     </div>
                 </div>
                 <div className="container" style={_container.style}>
@@ -219,7 +183,7 @@ class NewHomeAboutHours extends React.Component {
                         Thursday: 
                     </div>
                     <div className="hours" style={_hours.style}>
-                        {hours.Th}
+                        {_hours.text.Thursday}
                     </div>
                 </div>
                 <div className="container" style={_container.style}>
@@ -227,7 +191,7 @@ class NewHomeAboutHours extends React.Component {
                         Friday: 
                     </div>
                     <div className="hours" style={_hours.style}>
-                        {hours.Fr}
+                        {_hours.text.Friday}
                     </div>
                 </div>
                 <div className="container" style={_container.style}>
@@ -235,7 +199,7 @@ class NewHomeAboutHours extends React.Component {
                         Saturday: 
                     </div>
                     <div className="hours" style={_hours.style}>
-                        {hours.Sa}
+                        {_hours.text.Saturday}
                     </div>
                 </div>
                 <div className="container" style={_container.style}>
@@ -243,7 +207,7 @@ class NewHomeAboutHours extends React.Component {
                         Sunday: 
                     </div>
                     <div className="hours" style={_hours.style}>
-                        {hours.Su}
+                        {_hours.text.Sunday}
                     </div>
                 </div>
             </div>

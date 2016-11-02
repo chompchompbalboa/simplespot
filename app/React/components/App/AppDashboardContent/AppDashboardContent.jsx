@@ -15,6 +15,7 @@ const AppDashboardContentBusinessInfo = require('../AppDashboardContentBusinessI
 const AppDashboardContentChooseTheme = require('../AppDashboardContentChooseTheme/AppDashboardContentChooseTheme.jsx');
 const AppDashboardContentEdit = require('../AppDashboardContentEdit/AppDashboardContentEdit.jsx');
 const AppDashboardContentGetStarted = require('../AppDashboardContentGetStarted/AppDashboardContentGetStarted.jsx');
+const AppDashboardContentInvitations = require('../AppDashboardContentInvitations/AppDashboardContentInvitations.jsx');
 const AppDashboardContentPreview = require('../AppDashboardContentPreview/AppDashboardContentPreview.jsx');
 const AppDashboardContentProfile = require('../AppDashboardContentProfile/AppDashboardContentProfile.jsx');
 
@@ -99,6 +100,9 @@ class AppDashboardContent extends React.Component {
             break;
             case "get-started":
                 return (<AppDashboardContentGetStarted content={content}/>);
+            break;
+            case "invitations":
+                return (<AppDashboardContentInvitations content={content}/>);
             break;
             case "preview":
                 return (<AppDashboardContentPreview content={content}/>);

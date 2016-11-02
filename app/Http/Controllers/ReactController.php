@@ -22,8 +22,10 @@ use App\Helpers\Locu;
 use App\Helpers\SiteObjects;
 use App\Helpers\Translate;
 use App\Helpers\BusinessInfoInputs;
-use App\Helpers\BuildSite;
+use App\Helpers\InvitationInputs;
+use App\Helpers\BuildPreview;
 
+use App\Models\Previews;
 use App\Models\Sites;
 use App\Models\User;
 use App\Models\Sushi;
@@ -37,10 +39,11 @@ class ReactController extends Controller
     * @requires Request
     * @requires Sites
     */
-    public function __construct(Request $request, Sites $sites, User $user)
+    public function __construct(Request $request, Previews $previews, Sites $sites, User $user)
     {
         $this->app = app();
         $this->request = $request;
+        $this->previews = $previews;
         $this->sites = $sites;
         $this->user = $user;
     }
@@ -89,9 +92,11 @@ class ReactController extends Controller
             case "APP_GET-PREVIEW_RANDOM":
                 //$seed = SiteObjects::buildSeedDatabase();
                 //dd("Finished that round");
+                //$previews = BuildPreview::buildAll();
+                //dd("ok");
                 $seed = Sushi::all()->first();
                 // Build the preview site into the db
-                $preview = BuildSite::build($seed);
+                $preview = BuildPreview::build($seed);
                 $check = ReadyForInvite::where('readableID', '=', $preview['readableID'])->first();
                 if(is_null($check)) {
                     $ready = new ReadyForInvite;
@@ -153,8 +158,42 @@ class ReactController extends Controller
                     ];   
                 }   
             break;
+            case "APP_INVITATIONS_GET":
+                // Let's fix the hours thing
+
+                $seed = SiteObjects::buildSeedDatabase();
+                $previews = BuildPreview::buildAll();
+                dd("ok");
+                //InvitationInputs::buildAll($this->previews);
+                dd('stop');
+                // Get a random preview site
+                $rand = rand(1,$this->previews->count());
+                $preview = $this->previews->skip($rand)->first();
+                // Build the inputs
+                $inputs = InvitationInputs::build($preview);
+                if (!is_null($preview)) {
+                    $response = [
+                        [
+                            "key" => "app.messages.submit",
+                            "value" => ""
+                        ],
+                        [
+                            "key" => "app.inputs.AppDashboardContentInvitations",
+                            "value" => $inputs
+                        ],
+                    ];  
+                }
+                else {
+                    $response = [
+                        [
+                            "key" => "app.messages.submit",
+                            "value" => "I'm having trouble loading an invitation right now. Give me a second or two to work things out and try again."
+                        ]
+                    ];   
+                }   
+            break;
             case "INITIAL_APP":
-                $site = $this->fetchSite(json_decode(Helper::fetchURL(json_decode($this->request->input('url')), $this->sites)));
+                $site = $this->fetchSite(json_decode(Helper::fetchURL(json_decode($this->request->input('url')), $this->previews)));
                 $response = [
                     [
                         "key" => "load",
@@ -231,7 +270,7 @@ class ReactController extends Controller
             ];
             if(in_array($basePath, $userPaths)) {
                 if ($basePath === "dashboard") {
-                    $app['display']['path'] = "/dashboard/get-started";
+                    $app['display']['path'] = $url->path;
                 }
                 else {
                     $app['display']['path'] = $url->path;
@@ -256,6 +295,8 @@ class ReactController extends Controller
                 "AppDashboardContentBusinessInfo" => [
                 ],
                 "AppDashboardContentChooseTheme" => [
+                ],
+                "AppDashboardContentInvitations" => [
                 ],
                 "AppDashboardContentPreview" => [
                     "website" => "",
@@ -291,6 +332,8 @@ class ReactController extends Controller
                 ],
                 "AppDashboardContentChooseTheme" => [
                 ],
+                "AppDashboardContentInvitations" => [
+                ],
                 "AppDashboardContentPreview" => [
                 ]
             ];
@@ -306,7 +349,7 @@ class ReactController extends Controller
     */
     private function fetchSite($url)
     {
-        $site = Helper::fetchSite($this->sites, $url);
+        $site = Helper::fetchSite($this->previews, $url);
         return $site;
     }
 }

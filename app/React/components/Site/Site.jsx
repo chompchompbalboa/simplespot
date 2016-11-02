@@ -15,7 +15,7 @@ const Radium = require('radium');
 * for now.
 */
 //const Next = require('./Themes/Next/Next.jsx');
-const NWAire = require('./Themes/NorthwestAire/NorthwestAire.jsx');
+const NWAire = require('./Themes/NWAire/NWAire.jsx');
 //const Omni = require('./Themes/Omni/Omni.jsx');
 const One = require('./Themes/One/One.jsx');
 //const Rocky = require('./Themes/Rocky/Rocky.jsx');

@@ -47,24 +47,9 @@ class AppDashboardAdmin extends React.Component {
     static defaultProps = {
         links: {
             "1": {
-                href: "/dashboard/get-started",
-                logo: "/assets/App/icons/get-started.png",
-                text: "Get started"
-            },
-            "2": {
-                href: "/dashboard/business-info",
-                logo: "/assets/App/icons/business-info.png",
-                text: "Business info"
-            },
-            "3": {
-                href: "/dashboard/choose-theme",
-                logo: "/assets/App/icons/choose-theme.png",
-                text: "Choose theme"
-            },
-            "4": {
-                href: "/dashboard/preview",
-                logo: "/assets/App/icons/preview.png",
-                text: "Preview"
+                href: "/dashboard/invitations",
+                logo: "/assets/App/icons/invitations.png",
+                text: "Invitations"
             }
         }
     }
