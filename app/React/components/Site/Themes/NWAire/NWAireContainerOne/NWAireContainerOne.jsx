@@ -182,6 +182,7 @@ class NWAireContainerOne extends React.Component {
                 letterSpacing: "0.5vw",
                 textTransform: "uppercase",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    fontSize: "5vw",
                 },
                 "@media (min-width: 64em)": {
                 }
@@ -206,6 +207,7 @@ class NWAireContainerOne extends React.Component {
                 fontWeight: "300",
                 letterSpacing: "0.25vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
+                    fontSize: "2.75vw"
                 },
                 "@media (min-width: 64em)": {
                 }
