@@ -73,7 +73,6 @@ class AppHome extends React.Component {
         return (
             <div id="app" style={_div.style}>
                 <AppHomeLanding />
-                <AppHomeContent />
             </div>
         )
     }    
