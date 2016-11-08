@@ -50,6 +50,11 @@ class AppDashboardAdmin extends React.Component {
                 href: "/dashboard/invitations",
                 logo: "/assets/App/icons/invitations.png",
                 text: "Invitations"
+            },
+            "2": {
+                href: "/logout",
+                logo: "/assets/App/icons/logout.png",
+                text: "Logout"
             }
         }
     }
