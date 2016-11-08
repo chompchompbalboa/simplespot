@@ -44,7 +44,7 @@ class Helper
         $site = $sites->where('domain', '=', $domain)->first();
         // Return a default site when needed
         if(is_null($site)) {
-            $site = $sites->where('domain', '=', 'omni.com')->first();
+            $site = $sites->where('domain', '=', 'dozikapanasian.com')->first();
         }
         // Get the id
         $id = $site->_id;
@@ -69,7 +69,7 @@ class Helper
     public static function fetchURL($appURL, $sites)
     {
         $site = null;
-        $domain = "omni.com";
+        $domain = "dozikapanasian.com";
         // Is this a preview page? 
         if(strpos($appURL->path, "/preview") !== false) {
             // Get the readable ID

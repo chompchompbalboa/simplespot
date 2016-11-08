@@ -89,32 +89,11 @@ class AppDashboardContent extends React.Component {
     __content(content) {
         let path = content.app.display.path.split("/")[2];
         switch (path) {
-            case "business-info":
-                return (<AppDashboardContentBusinessInfo content={content}/>);
-            break;
-            case "choose-theme":
-                return (<AppDashboardContentChooseTheme content={content}/>);
-            break;
-            case "edit":
-                return (<AppDashboardContentEdit content={content}/>);
-            break;
-            case "get-started":
-                return (<AppDashboardContentGetStarted content={content}/>);
-            break;
             case "invitations":
                 return (<AppDashboardContentInvitations content={content}/>);
             break;
-            case "preview":
-                return (<AppDashboardContentPreview content={content}/>);
-            break;
-            case "profile":
-                return (<AppDashboardContentProfile content={content}/>);
-            break;
-            case "billing":
-                return ("Billing");
-            break;
             default:
-                return (<AppDashboardContentGetStarted content={content}/>);
+                return (<AppDashboardContentInvitations content={content}/>);
 
         }
     }

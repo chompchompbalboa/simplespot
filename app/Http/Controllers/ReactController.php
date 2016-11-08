@@ -60,107 +60,8 @@ class ReactController extends Controller
     {
         $request = $this->request->input('request');
         switch($request) {
-            case "APP_GET-BUSINESS-INFO":
-                $data = json_decode($this->request->input('data'));
-                $seed = Locu::fetchSeed($data->url);
-                $businessInfoInputs = BusinessInfoInputs::buildFromLocu($seed);
-                if (!is_null($seed)) {
-                    $response = [
-                        [
-                            "key" => "app.display.path",
-                            "value" => "/dashboard/business-info"
-                        ],
-                        [
-                            "key" => "app.messages.submit",
-                            "value" => ""
-                        ],
-                        [
-                            "key" => "app.inputs.AppDashboardContentBusinessInfo",
-                            "value" => $businessInfoInputs
-                        ]
-                    ];  
-                }
-                else {
-                    $response = [
-                        [
-                            "key" => "app.messages.submit",
-                            "value" => "We don't have any information about that business yet. You can proceed and manually enter in the information we need by hand or try again later."
-                        ]
-                    ];   
-                }
-            break;
-            case "APP_GET-PREVIEW_RANDOM":
-                //$seed = SiteObjects::buildSeedDatabase();
-                //dd("Finished that round");
-                //$previews = BuildPreview::buildAll();
-                //dd("ok");
-                $seed = Sushi::all()->first();
-                // Build the preview site into the db
-                $preview = BuildPreview::build($seed);
-                $check = ReadyForInvite::where('readableID', '=', $preview['readableID'])->first();
-                if(is_null($check)) {
-                    $ready = new ReadyForInvite;
-                    $ready->readableID = $preview['readableID'];
-                    $ready->save();
-                }
-                $seed->delete();
-                // Return the url
-                if (!is_null($seed)) {
-                    $response = [
-                        [
-                            "key" => "app.display.path",
-                            "value" => "/dashboard/preview"
-                        ],
-                        [
-                            "key" => "app.inputs.AppDashboardContentPreview.website",
-                            "value" => $preview['website']
-                        ],
-                        [
-                            "key" => "app.inputs.AppDashboardContentPreview.preview",
-                            "value" => "/preview/".$preview['readableID']
-                        ],
-                        [
-                            "key" => "app.messages.submit",
-                            "value" => ""
-                        ]
-                    ];  
-                }
-                else {
-                    $response = [
-                        [
-                            "key" => "app.messages.submit",
-                            "value" => "We don't have any information about that business yet. You can proceed and manually enter in the information we need by hand or try again later."
-                        ]
-                    ];   
-                }
-            break;
-            case "APP_GET-CHOOSE-THEME":
-                $data = json_decode($this->request->input('data'));
-                $site = true;
-                if (!is_null($site)) {
-                    $response = [
-                        [
-                            "key" => "app.display.path",
-                            "value" => "/dashboard/choose-theme"
-                        ],
-                        [
-                            "key" => "app.messages.submit",
-                            "value" => ""
-                        ]
-                    ];  
-                }
-                else {
-                    $response = [
-                        [
-                            "key" => "app.messages.submit",
-                            "value" => "We're having trouble loading the themes right now. Give us a second or two to work things out and try again."
-                        ]
-                    ];   
-                }   
-            break;
             case "APP_INVITATIONS_GET":
                 // Let's fix the hours thing
-
                 $seed = SiteObjects::buildSeedDatabase();
                 $previews = BuildPreview::buildAll();
                 dd("ok");
@@ -288,22 +189,6 @@ class ReactController extends Controller
                 "login" => "",
                 "submit" => ""
             ];
-            $app['inputs'] = [
-                "AppDashboardContentGetStarted" => [
-                    "url" => ""
-                ],
-                "AppDashboardContentBusinessInfo" => [
-                ],
-                "AppDashboardContentChooseTheme" => [
-                ],
-                "AppDashboardContentInvitations" => [
-                ],
-                "AppDashboardContentPreview" => [
-                    "website" => "",
-                    "preview" => ""
-                ]
-            ];
-            $app['editing'] = $site;
         }
         else {
             $guestPaths = [
@@ -323,19 +208,6 @@ class ReactController extends Controller
             $app['messages'] = [
                 "login" => "",
                 "submit" => ""
-            ];
-            $app['inputs'] = [
-                "AppDashboardContentGetStarted" => [
-                    "url" => ""
-                ],
-                "AppDashboardContentBusinessInfo" => [
-                ],
-                "AppDashboardContentChooseTheme" => [
-                ],
-                "AppDashboardContentInvitations" => [
-                ],
-                "AppDashboardContentPreview" => [
-                ]
             ];
         }
         return $app;

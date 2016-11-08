@@ -130,9 +130,9 @@ class AppDashboardContentInvitationsLinks extends React.Component {
         let _a = this._a();
         let _container = this._container();
         let _div = this._div();
-        let google = content.app.inputs.AppDashboardContentInvitations.google;
-        let preview = content.app.inputs.AppDashboardContentInvitations.preview;
-        let website = content.app.inputs.AppDashboardContentInvitations.website;
+        let google = "google";
+        let preview = "preview";
+        let website = "website";
         return (
             <div style={_div.style}>
                 <a target="_blank" href={website} style={_a.style} onClick={(e) => this.handleClick(e, "APP_INVITATIONS_GET", {})}>
