@@ -83,10 +83,10 @@ class NorthwestAireContainerThree extends React.Component {
                 fontFamily: "Lato, sans-serif",
                 "@media (min-width: 48em) and (max-width: 64em)": {
                     width: "90vw",
-                    alignItems: "flex-end",
+                    
                 },
                 "@media (min-width: 64em)": {
-                    alignItems: "flex-end",
+                    
                 }
             }
         }
@@ -109,12 +109,12 @@ class NorthwestAireContainerThree extends React.Component {
                 fontSize: "6vw",
                 letterSpacing: "0.6vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
-                    justifyContent: "flex-end",
+                    
                     fontSize: "3.75vw",
                     letterSpacing: "0.35vw"
                 },
                 "@media (min-width: 64em)": {
-                    justifyContent: "flex-end",
+                    
                     fontWeight: "900",
                     fontSize: "4vw",
                     letterSpacing: "0.1875vw"
@@ -141,7 +141,7 @@ class NorthwestAireContainerThree extends React.Component {
                 fontSize: "4vw",
                 letterSpacing: "0.25vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
-                    textAlign: "right",
+                    
                     margin: "2.5vh 0 0 0",
                     width: "75%",
                     fontSize: "2.5vw",
@@ -150,7 +150,7 @@ class NorthwestAireContainerThree extends React.Component {
                 "@media (min-width: 64em)": {
                     width: "60%",
                     justifyContent: "flex-end",
-                    textAlign: "right",
+                    
                     fontSize: "1.15vw",
                     letterSpacing: "0.125vw"
                 }
@@ -341,6 +341,97 @@ class NorthwestAireContainerThree extends React.Component {
     }
 
     /**
+    * Settings for: _serviceList
+    *
+    * @function _serviceList
+    * @return {object}
+    */
+    _serviceList() {
+        return {
+            style: {
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                },
+                "@media (min-width: 64em)": {
+                }
+            }
+        }
+    }
+
+    /**
+    * Settings for: _serviceListItem
+    *
+    * @function _serviceListItem
+    * @return {object}
+    */
+    _serviceListItem() {
+        return {
+            style: {
+                fontSize: "4vw",
+                margin: "1vh 0 2vh 0",
+                listStyle: "none",
+                letterSpacing: "0.25vw",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    fontSize: "2.5vw",
+                    letterSpacing: "0.15vw"
+                },
+                "@media (min-width: 64em)": {
+                    fontSize: "1.15vw",
+                    letterSpacing: "0.05vw"
+                }
+            }
+        }
+    }
+
+    /**
+    * Settings for: _textContainer
+    *
+    * @function _textContainer
+    * @return {object}
+    */
+    _textContainer() {
+        return {
+            style: {
+                margin: "4vh 0 0 0",
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "flex-start",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                    width: "47.5%",
+                    height: "42.75vw",
+                },
+                "@media (min-width: 64em)": {
+                    margin: "7.5vh 0 0 0",
+                    width: "47.5%",
+                    height: "30vw"
+                }
+            }
+        }
+    }
+
+    /**
+    * Settings for: _largeText
+    *
+    * @function _largeText
+    * @return {object}
+    */
+    _largeText() {
+        return {
+            style: {
+                fontWeight: "700",
+                fontSize: "4vw",
+                letterSpacing: "0.25vw",
+                margin: "0 0 1.5vh 0",
+                "@media (min-width: 48em) and (max-width: 64em)": {
+                },
+                "@media (min-width: 64em)": {
+                }
+            }
+        }
+    }
+
+    /**
     * Render the component
     *
     * @function render
@@ -360,6 +451,10 @@ class NorthwestAireContainerThree extends React.Component {
         let _serviceFour = this._serviceFour();
         let _serviceName = this._serviceName();
         let _servicesContainer = this._servicesContainer();
+        let _textContainer = this._textContainer();
+        let _serviceList = this._serviceList();
+        let _serviceListItem = this._serviceListItem();
+        let _largeText = this._largeText();
         return (
             <div className="div" style={_div.style}>
                 <div className="servicesContainer" style={_servicesContainer.style}>
@@ -373,14 +468,38 @@ class NorthwestAireContainerThree extends React.Component {
                     <div className="service" style={[_service.style, _serviceOne.style]}>
                         <div className="serviceName" style={_serviceName.style}>AIR CONDITIONING + HEATING</div>
                     </div>
+                    <div className="textContainer" style={_textContainer.style}>
+                        <ul className="serviceList" style={_serviceList.style}>
+                            <li className="serviceListItem" style={_serviceListItem.style}>Our highly trained and seasoned HVAC technicians can install, service, and repair any type of air conditioning or heating system that you need for your business.</li>
+                            <li className="serviceListItem" style={_serviceListItem.style}>We design and recommend systems that maximize energy efficiency and keep your heating and cooling costs to a minimum.</li>
+                        </ul>
+                    </div>
                     <div className="service" style={[_service.style, _serviceTwo.style]}>
                         <div className="serviceName" style={_serviceName.style}>INSTALLATION</div>
+                    </div>
+                    <div className="textContainer" style={_textContainer.style}>
+                        <ul className="serviceList" style={_serviceList.style}>
+                            <li className="serviceListItem" style={_serviceListItem.style}>Our highly trained and seasoned HVAC technicians can install, service, and repair any type of air conditioning or heating system that you need for your business.</li>
+                            <li className="serviceListItem" style={_serviceListItem.style}>We design and recommend systems that maximize energy efficiency and keep your heating and cooling costs to a minimum.</li>
+                        </ul>
                     </div>
                     <div className="service" style={[_service.style, _serviceThree.style]}>
                         <div className="serviceName" style={_serviceName.style}>MAINTENANCE + SERVICE</div>
                     </div>
+                    <div className="textContainer" style={_textContainer.style}>
+                        <ul className="serviceList" style={_serviceList.style}>
+                            <li className="serviceListItem" style={_serviceListItem.style}>Our highly trained and seasoned HVAC technicians can install, service, and repair any type of air conditioning or heating system that you need for your business.</li>
+                            <li className="serviceListItem" style={_serviceListItem.style}>We design and recommend systems that maximize energy efficiency and keep your heating and cooling costs to a minimum.</li>
+                        </ul>
+                    </div>
                     <div className="service" style={[_service.style, _serviceFour.style]}>
                         <div className="serviceName" style={_serviceName.style}>REFRIGERATION</div>
+                    </div>
+                    <div className="textContainer" style={_textContainer.style}>
+                        <ul className="serviceList" style={_serviceList.style}>
+                            <li className="serviceListItem" style={_serviceListItem.style}>Our highly trained and seasoned HVAC technicians can install, service, and repair any type of air conditioning or heating system that you need for your business.</li>
+                            <li className="serviceListItem" style={_serviceListItem.style}>We design and recommend systems that maximize energy efficiency and keep your heating and cooling costs to a minimum.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
