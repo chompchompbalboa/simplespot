@@ -472,6 +472,7 @@ class NorthwestAireContainerThree extends React.Component {
                         <ul className="serviceList" style={_serviceList.style}>
                             <li className="serviceListItem" style={_serviceListItem.style}>Our highly trained and seasoned HVAC technicians can install, service, and repair any type of air conditioning or heating system that you need for your business.</li>
                             <li className="serviceListItem" style={_serviceListItem.style}>We design and recommend systems that maximize energy efficiency and keep your heating and cooling costs to a minimum.</li>
+
                         </ul>
                     </div>
                     <div className="service" style={[_service.style, _serviceTwo.style]}>
@@ -479,8 +480,8 @@ class NorthwestAireContainerThree extends React.Component {
                     </div>
                     <div className="textContainer" style={_textContainer.style}>
                         <ul className="serviceList" style={_serviceList.style}>
-                            <li className="serviceListItem" style={_serviceListItem.style}>Our highly trained and seasoned HVAC technicians can install, service, and repair any type of air conditioning or heating system that you need for your business.</li>
-                            <li className="serviceListItem" style={_serviceListItem.style}>We design and recommend systems that maximize energy efficiency and keep your heating and cooling costs to a minimum.</li>
+                            <li className="serviceListItem" style={_serviceListItem.style}></li>
+                            <li className="serviceListItem" style={_serviceListItem.style}></li>
                         </ul>
                     </div>
                     <div className="service" style={[_service.style, _serviceThree.style]}>
@@ -488,8 +489,8 @@ class NorthwestAireContainerThree extends React.Component {
                     </div>
                     <div className="textContainer" style={_textContainer.style}>
                         <ul className="serviceList" style={_serviceList.style}>
-                            <li className="serviceListItem" style={_serviceListItem.style}>Our highly trained and seasoned HVAC technicians can install, service, and repair any type of air conditioning or heating system that you need for your business.</li>
-                            <li className="serviceListItem" style={_serviceListItem.style}>We design and recommend systems that maximize energy efficiency and keep your heating and cooling costs to a minimum.</li>
+                            <li className="serviceListItem" style={_serviceListItem.style}></li>
+                            <li className="serviceListItem" style={_serviceListItem.style}></li>
                         </ul>
                     </div>
                     <div className="service" style={[_service.style, _serviceFour.style]}>
@@ -497,8 +498,8 @@ class NorthwestAireContainerThree extends React.Component {
                     </div>
                     <div className="textContainer" style={_textContainer.style}>
                         <ul className="serviceList" style={_serviceList.style}>
-                            <li className="serviceListItem" style={_serviceListItem.style}>Our highly trained and seasoned HVAC technicians can install, service, and repair any type of air conditioning or heating system that you need for your business.</li>
-                            <li className="serviceListItem" style={_serviceListItem.style}>We design and recommend systems that maximize energy efficiency and keep your heating and cooling costs to a minimum.</li>
+                            <li className="serviceListItem" style={_serviceListItem.style}></li>
+                            <li className="serviceListItem" style={_serviceListItem.style}></li>
                         </ul>
                     </div>
                 </div>

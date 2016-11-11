@@ -90,7 +90,6 @@ class NorthwestAireContainerOne extends React.Component {
                 backgroundColor: "rgba(27,48,42,0.25)",
                 color: "white",
                 "@media (min-width: 48em) and (max-width: 64em)": {
-                    fontFamily: "Josefin Sans, sans-serif",
                     margin: "37.5vh 0 0 20vw",
                     padding: "2vh 3.5vw"
                 },
@@ -156,7 +155,7 @@ class NorthwestAireContainerOne extends React.Component {
             style: {
                 fontSize: "6vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
-                    fontSize: "4vw",
+                    fontSize: "5vw",
                 },
                 "@media (min-width: 64em)": {
                     fontSize: "4vw",
@@ -181,6 +180,7 @@ class NorthwestAireContainerOne extends React.Component {
                     margin: "0 0 0 10vw",
                 },
                 "@media (min-width: 64em)": {
+                    padding: "1vh 1vh",
                     margin: "0 0 0 15vw",
                     width: "32.5vw",
                 }

@@ -83,7 +83,7 @@ class NWAireLogo extends React.Component {
                 whiteSpace: "nowrap",
                 letterSpacing: "0.5vw",
                 "@media (min-width: 48em) and (max-width: 64em)": {
-                    fontSize: "6vw",
+                    fontSize: "5.5vw",
                 },
                 "@media (min-width: 64em)": {
                     letterSpacing: "normal",
@@ -110,7 +110,7 @@ class NWAireLogo extends React.Component {
                 letterSpacing: "0.5vw",
                 fontWeight: "700",
                 "@media (min-width: 48em) and (max-width: 64em)": {
-                    fontSize: "3.5vw",
+                    fontSize: "3vw",
                 },
                 "@media (min-width: 64em)": {
                     fontWeight: "900",
